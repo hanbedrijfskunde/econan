@@ -43,7 +43,7 @@ pre {
     border-radius: var(--radius-lg);
     padding: var(--space-4);
     overflow-x: auto;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-family-mono);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-relaxed);
     margin: var(--space-4) 0;
