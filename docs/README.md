@@ -16,7 +16,7 @@ docs/
 │   ├── senior-ceo.html        # CEO rol details
 │   ├── senior-cfo.html        # CFO rol details
 │   ├── senior-rvc.html        # RvC rol details
-│   └── junior-analyst.html    # Junior Analyst rol details
+│   └── junior-analyst.html    # Business Analyst rol details
 ├── sectoren/
 │   ├── index.html             # Sectoren overzicht
 │   ├── retail.html            # Retail strategische vraagstukken
@@ -101,7 +101,7 @@ docs/
 - [ ] Individual sector pages (8 pages: retail, energy, finance, etc.)
 
 ### Priority 3 (Should Have)
-- [ ] Detailed rol pages (CEO, CFO, RvC, Junior Analyst)
+- [ ] Detailed rol pages (CEO, CFO, RvC, Business Analyst)
 - [ ] Week-by-week detailed pages
 - [ ] FAQ page
 - [ ] Resources/links page

@@ -27,6 +27,7 @@
                     <li class="nav-item"><a class="nav-link" href="../index.html#overzicht">Overzicht</a></li>
                     <li class="nav-item"><a class="nav-link" href="../sectoren/">Sectoren</a></li>
                     <li class="nav-item"><a class="nav-link" href="../rollen/">Rollen</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../strategic-framework/">Strategisch Framework</a></li>
                     <li class="nav-item"><a class="nav-link" href="../weekplanning/">Planning</a></li>
                     <li class="nav-item"><a class="nav-link" href="../materiaal/">Materiaal</a></li>
                     <li class="nav-item"><a class="nav-link" href="./">Assessment</a></li>
@@ -40,11 +41,11 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1 class="hero-title">Assessment Criteria</h1>
-                    <p class="hero-subtitle">CRISP-DM + PAM Framework</p>
+                    <h1 class="hero-title">Beoordelingscriteria</h1>
+                    <p class="hero-subtitle">AOO BK - Economische Data Analyse ECONAN 2023/2024</p>
                     <p class="hero-description">
-                        Beoordeling op basis van CRISP-DM methodologie én student experience (Purpose, Autonomy, Mastery).
-                        Beide methodologiepaden (AI-augmented en Conventional) worden gelijkwaardig beoordeeld.
+                        Officiële beoordelingsstructuur volgens HAN richtlijnen. Beide methodologiepaden
+                        (AI-augmented en Conventional) worden op dezelfde criteria beoordeeld.
                     </p>
                 </div>
             </div>
@@ -55,98 +56,413 @@
     <section class="section">
         <div class="container">
             <h2 class="section-title">Beoordelingsstructuur</h2>
-            <p class="section-subtitle">Twee complementaire assessment frameworks</p>
 
-            <div class="grid grid-2">
+            <div class="card" style="margin-bottom: var(--space-8); border-left: 4px solid var(--color-primary-500);">
+                <div class="card-body">
+                    <h3 style="margin-top: 0; color: var(--color-primary-700);">Belangrijke Regels</h3>
+                    <ul style="line-height: var(--line-height-relaxed); margin-bottom: 0;">
+                        <li><strong>Minimum per criterium:</strong> Op alle vier criteria (A, B, C, D) minimaal een 3 scoren. Compenseren kan niet.</li>
+                        <li><strong>Knock-out:</strong> Is er op één criterium een 0 gescoord, dan wordt het eindcijfer een onvoldoende.</li>
+                        <li><strong>Weging:</strong> Opdracht 1 = 30%, Opdracht 2 = 30%, Opdracht 3 = 40%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid grid-3">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title">CRISP-DM Criteria (60%)</h3>
-                        <p class="card-text">
-                            Technische en methodologische kwaliteit van het data-analyse proces volgens de 6 CRISP-DM fasen.
-                        </p>
-                        <ul style="margin-top: var(--space-4); line-height: var(--line-height-relaxed);">
-                            <li><strong>A.</strong> Business & Data Understanding (15%)</li>
-                            <li><strong>B.</strong> Data Preparation (10%)</li>
-                            <li><strong>C.</strong> Modeling & Analysis (15%)</li>
-                            <li><strong>D.</strong> Evaluation & Deployment (10%)</li>
-                            <li><strong>E.</strong> Purpose (5%)</li>
-                            <li><strong>F.</strong> Autonomy (5%)</li>
-                        </ul>
+                        <h3 class="card-title">Opdracht 1: Kengetallen</h3>
+                        <p class="card-text" style="font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); color: var(--color-primary-600); margin: var(--space-4) 0;">30%</p>
+                        <p class="card-text" style="font-weight: var(--font-weight-semibold); color: var(--color-primary-700); margin-bottom: var(--space-2);">IST Situatie Bepalen</p>
+                        <p class="card-text" style="font-size: var(--font-size-sm);">Benchmark analyse: Waar staan we competitief gezien?</p>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title">PAM + Process (40%)</h3>
-                        <p class="card-text">
-                            Student experience, groei en procesbeoordeling via Purpose, Autonomy en Mastery framework.
-                        </p>
-                        <ul style="margin-top: var(--space-4); line-height: var(--line-height-relaxed);">
-                            <li><strong>G.</strong> Mastery & Groei (15%)</li>
-                            <li><strong>H.</strong> Teamproces & Samenwerking (10%)</li>
-                            <li><strong>I.</strong> Peer Feedback & Learning (5%)</li>
-                            <li><strong>J.</strong> Reflectie & Meta-Learning (10%)</li>
+                        <h3 class="card-title">Opdracht 2: Regressie</h3>
+                        <p class="card-text" style="font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); color: var(--color-primary-600); margin: var(--space-4) 0;">30%</p>
+                        <p class="card-text" style="font-weight: var(--font-weight-semibold); color: var(--color-info-700); margin-bottom: var(--space-2);">Marktdynamieken Begrijpen</p>
+                        <p class="card-text" style="font-size: var(--font-size-sm);">Welke factoren drijven prestatie in onze sector?</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Opdracht 3: Scenario-analyse</h3>
+                        <p class="card-text" style="font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); color: var(--color-primary-600); margin: var(--space-4) 0;">40%</p>
+                        <p class="card-text" style="font-weight: var(--font-weight-semibold); color: var(--color-success-700); margin-bottom: var(--space-2);">Groeistrategieën Evalueren</p>
+                        <p class="card-text" style="font-size: var(--font-size-sm);">Welke strategie creëert waarde? (Winstsprong/Groei/Risico)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: var(--space-8); padding: var(--space-4); background-color: var(--color-info-50); border-left: 4px solid var(--color-info-500); border-radius: var(--radius-md);">
+                <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-info-700);">🎯 Strategisch Framework</p>
+                <p style="margin-top: var(--space-2); margin-bottom: 0;">
+                    De drie opdrachten vormen een strategische rode draad: <strong>IST → Dynamieken → Groeistrategieën</strong>. Zie het <a href="../strategic-framework/" style="color: var(--color-primary-600); text-decoration: underline;">Strategisch Framework</a> voor de complete uitleg van deze aanpak.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Knock-out Criteria -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Knock-out Criteria</h2>
+            <p class="section-subtitle">Formele vereisten - moet aanwezig zijn</p>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 style="margin-top: 0;">Verplichte Informatie</h3>
+                    <div class="grid grid-2">
+                        <ul style="line-height: var(--line-height-relaxed);">
+                            <li>Titel</li>
+                            <li>Naam en contactgegevens studenten</li>
+                            <li>Studentnummers</li>
+                            <li>Naam docent</li>
+                            <li>Datum en plaats</li>
+                            <li>Versienummer / versiedatum</li>
+                            <li>Literatuurlijst en bronvermelding volgens APA-normen</li>
                         </ul>
+                        <ul style="line-height: var(--line-height-relaxed);">
+                            <li><strong>Voor schriftelijke producten ook:</strong></li>
+                            <li>Naam digitale document volgens vereisten</li>
+                            <li>Ephorus check</li>
+                            <li>Paginanummering</li>
+                            <li>Overzichtelijke en consequente opzet</li>
+                            <li>Tekstueel goed verzorgd taalgebruik</li>
+                            <li>Geen tot weinig spellings-, stijl-, of grammaticale fouten</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-error-50); border-left: 4px solid var(--color-error-500); border-radius: var(--radius-md);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-error-700);">
+                            ⚠️ Niet aan ontvankelijkheidseisen voldaan = eindcijfer 4,0
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CRISP-DM Criteria -->
-    <section class="section section-alt">
+    <!-- Grading Scale -->
+    <section class="section">
         <div class="container">
-            <h2 class="section-title">CRISP-DM Assessment Criteria (60%)</h2>
+            <h2 class="section-title">Beoordelingsschaal</h2>
+            <p class="section-subtitle">Voor alle drie opdrachten en alle vier criteria</p>
 
-            <!-- Criterium A -->
-            <div class="card" style="margin-bottom: var(--space-8);">
-                <div class="card-header">
-                    <h3 style="margin: 0; color: var(--color-primary-700);">A. Business & Data Understanding (15%)</h3>
-                </div>
+            <div class="card">
                 <div class="card-body">
-                    <p><strong>Focus:</strong> Begrip van business context en data bronnen</p>
-
-                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Role Differentiation</h4>
-                    <div class="grid grid-2">
-                        <div>
-                            <h5 style="color: var(--color-role-rvb);">👔 Senior Stakeholders (60% weight)</h5>
-                            <ul style="line-height: var(--line-height-relaxed);">
-                                <li>Strategische vraagformulering</li>
-                                <li>Stakeholder perspectief articuleren</li>
-                                <li>Business impact definiëren</li>
-                                <li>Decision criteria specificeren</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h5 style="color: var(--color-success-600);">📊 Junior Analysts (40% weight)</h5>
-                            <ul style="line-height: var(--line-height-relaxed);">
-                                <li>Data feasibility check</li>
-                                <li>Data bronnen identificeren</li>
-                                <li>Variabelen definiëren</li>
-                                <li>Constraints benoemen</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3);">Methodology Path Assessment</h4>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Aspect</th>
-                                <th>AI-Augmented Path</th>
-                                <th>Conventional Tools Path</th>
+                                <th>Niveau</th>
+                                <th>Cijfer</th>
+                                <th>Betekenis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color: var(--color-error-50);">
+                                <td><strong>Ontbreekt</strong></td>
+                                <td><strong>0,0</strong></td>
+                                <td>Criterium is niet aanwezig of onvoldoende uitgewerkt</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Begrijpen</strong></td>
+                                <td><strong>4,0</strong></td>
+                                <td>Je begrijpt de concepten maar de uitvoering is onvoldoende</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Toepassen</strong></td>
+                                <td><strong>5,5</strong></td>
+                                <td>Je past de methodologie correct toe in voldoende mate</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analyseren</strong></td>
+                                <td><strong>8,0</strong></td>
+                                <td>Je analyseert diepgaand en maakt goede verbindingen</td>
+                            </tr>
+                            <tr style="background-color: var(--color-success-50);">
+                                <td><strong>Evalueren / Creëren</strong></td>
+                                <td><strong>10,0</strong></td>
+                                <td>Je evalueert kritisch en doet gefundeerde aanbevelingen (vereisten = Analyseren + Evalueren)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opdracht 1 -->
+    <section class="section section-alt" id="opdracht1">
+        <div class="container">
+            <h2 class="section-title">Opdracht 1: Algemene Economische Analyse (30%)</h2>
+
+            <!-- Criterium A -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header" style="background-color: var(--color-primary-50);">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">A. Business & Data Understanding</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 120px;">Niveau</th>
+                                <th>Criteria</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Artifacts</strong></td>
-                                <td>Prompts + conversation logs tonen begrip</td>
-                                <td>Data schema's + dokumentatie</td>
+                                <td><strong>Ontbreekt (0)</strong></td>
+                                <td>• De vertaling van de opdracht in een datavraagstuk ontbreekt.</td>
                             </tr>
                             <tr>
-                                <td><strong>Bewijs</strong></td>
-                                <td>AI instructies reflecteren business vereisten</td>
-                                <td>SQL queries/Python code tonen begrip</td>
+                                <td><strong>Begrijpen (4.0)</strong></td>
+                                <td>
+                                    • Je begrijpt voldoende hoe de context van de opdracht is te vertalen naar een datavraagstuk binnen de gekozen rol <strong>maar</strong> de kwaliteit van de gekozen kentallen is onvoldoende <strong>en/of</strong> de vertaling van de kentallen naar de nodige data is onvoldoende.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Toepassen (5.5)</strong></td>
+                                <td>
+                                    • Je vertaalt de opdracht in <strong>voldoende mate</strong> naar een datavraagstuk binnen de gekozen rol.<br>
+                                    • De kwaliteit van gekozen kentallen is <strong>voldoende</strong>.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analyseren (8.0)</strong></td>
+                                <td>
+                                    • Je vertaalt de opdracht <strong>goed</strong> door naar een datavraagstuk passend binnen de gekozen rol.<br>
+                                    • De kwaliteit van de gekozen kentallen met <strong>minimaal één branchespecifiek kental</strong> is goed.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Evalueren (10)</strong></td>
+                                <td>
+                                    • Je vertaalt de opdracht <strong>uitstekend</strong> door naar een datavraagstuk passend binnen de gekozen rol en vult de uitwerking ter versterking aan.<br>
+                                    • De kwaliteit van de gekozen kentallen met <strong>meerdere branchespecifieke kentallen</strong> is uitstekend.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-info-50); border-left: 4px solid var(--color-info-500); border-radius: var(--radius-md);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-info-700);">
+                            💡 Methodologie-agnostisch: AI-prompts of Python/R code kunnen beide bewijslast leveren voor begrip van business context en datavraagstuk.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Criterium B -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header" style="background-color: var(--color-primary-50);">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">B. Data Preparation</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 120px;">Niveau</th>
+                                <th>Criteria</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Ontbreekt (0)</strong></td>
+                                <td>• Het gereed maken van de data is niet benoemd.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Begrijpen (4.0)</strong></td>
+                                <td>
+                                    • Je begrijpt voldoende hoe data gereed gemaakt moet worden <strong>maar</strong> past dit onvoldoende toe voor de volgende fase.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Toepassen (5.5)</strong></td>
+                                <td>
+                                    • Je leest data uit verschillende bronnen in en maakt deze <strong>correct gereed</strong> voor de volgende fase.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analyseren (8.0)</strong></td>
+                                <td>
+                                    • Je onderwerpt de kwaliteit van de data aan een <strong>grondige analyse</strong> alvorens deze te prepareren en in te lezen.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Evalueren (10)</strong></td>
+                                <td>
+                                    • Je formuleert <strong>gefundeerde aanbevelingen</strong> voor verbetering van de datakwaliteit en voert deze door alvorens de data te prepareren en in te lezen.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-info-50); border-left: 4px solid var(--color-info-500); border-radius: var(--radius-md);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-info-700);">
+                            💡 Bewijs: AI-prompts voor data cleaning + verificatie logs, of Python/R scripts + transformation logs, of Power Query stappen.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Criterium C -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header" style="background-color: var(--color-primary-50);">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">C. Modeling</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 120px;">Niveau</th>
+                                <th>Criteria</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Ontbreekt (0)</strong></td>
+                                <td>• Je benoemt niet hoe tot het model (formules en visualisatie) is gekomen en welke keuzes hierin zijn gemaakt.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Begrijpen (4.0)</strong></td>
+                                <td>
+                                    • Je benoemt voldoende hoe tot het model (formules en visualisatie) is gekomen en welke keuzes hierin zijn gemaakt <strong>maar</strong> dit sluit onvoldoende aan op de opdracht, businesscontext en gekozen rol.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Toepassen (5.5)</strong></td>
+                                <td>
+                                    • Je hebt <strong>voldoende benoemd</strong> hoe tot het model (formules en visualisatie) is gekomen en welke keuzes hierin zijn gemaakt in relatie tot de opdracht, businesscontext en gekozen rol.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analyseren (8.0)</strong></td>
+                                <td>
+                                    • Je presenteert het model (formules en visualisatie) en benoemt op <strong>overtuigende wijze</strong> welke keuzes hierin zijn gemaakt in relatie tot de opdracht, businesscontext en gekozen rol.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Evalueren (10)</strong></td>
+                                <td>
+                                    • Je doet <strong>gefundeerde aanbevelingen</strong> over verbeteringen van het model (formules en visualisaties).
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-info-50); border-left: 4px solid var(--color-info-500); border-radius: var(--radius-md);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-info-700);">
+                            💡 AI-pad: Prompts voor analyse + validatie van AI output. Conventional: Python/R code of Power BI models met uitleg.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Criterium D -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header" style="background-color: var(--color-primary-50);">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">D. Deploy & Evaluate</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 120px;">Niveau</th>
+                                <th>Criteria</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Ontbreekt (0)</strong></td>
+                                <td>• Je bespreekt de inhoudelijke uitkomsten van het model niet <strong>en/of</strong> evalueert niet in welke mate het model oplevert wat het op had moeten leveren.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Begrijpen (4.0)</strong></td>
+                                <td>
+                                    • Je toont aan de uitkomsten van de analyse te begrijpen <strong>maar</strong> brengt het onvoldoende in verband met de opdracht, businesscontext en gekozen rol <strong>en/of</strong> benoemt onvoldoende in welke mate het model oplevert wat het op had moeten leveren.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Toepassen (5.5)</strong></td>
+                                <td>
+                                    • Je geeft een inhoudelijke uiteenzetting van de analyseresultaten, bespreekt in <strong>voldoende mate</strong> de inhoudelijke betekenis van de analyseresultaten <strong>en/of</strong> evalueert in voldoende mate.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analyseren (8.0)</strong></td>
+                                <td>
+                                    • Je analyseert de inhoudelijke betekenis van de analyseresultaten, legt de koppeling met de businessvraag en evalueert het model <strong>diepgaand</strong>.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Evalueren (10)</strong></td>
+                                <td>
+                                    • Je evalueert in welke mate het model volstaat om de businessvraag te beantwoorden en doet <strong>aanbevelingen voor vervolgonderzoek</strong> met als doel het model te verbeteren.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-info-50); border-left: 4px solid var(--color-info-500); border-radius: var(--radius-md);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-info-700);">
+                            💡 Focus op business vertaling: Beide paden moeten analyseresultaten vertalen naar actionable recommendations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opdracht 2 -->
+    <section class="section" id="opdracht2">
+        <div class="container">
+            <h2 class="section-title">Opdracht 2: Lineaire Regressie Analyse (30%)</h2>
+            <p class="section-subtitle">Specifieke focus op regressieanalyse</p>
+
+            <!-- Criterium A -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header" style="background-color: var(--color-primary-50);">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">A. Business & Data Understanding (Regressie)</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 120px;">Niveau</th>
+                                <th>Criteria</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Ontbreekt (0)</strong></td>
+                                <td>• De data om lineaire regressie toe te kunnen passen ontbreekt.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Begrijpen (4.0)</strong></td>
+                                <td>
+                                    • Je begrijpt welke data benodigd is om een regressieanalyse uit te voeren, <strong>maar</strong> verzamelt dit niet correct.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Toepassen (5.5)</strong></td>
+                                <td>
+                                    • Je vertaalt de hoofdvraag <strong>correct</strong> naar een datavraagstuk en je verzamelt deze data.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analyseren (8.0)</strong></td>
+                                <td>
+                                    • Je vertaalt de hoofdvraag correct naar een datavraagstuk, verzamelt de data correct en onderneemt stappen om de regressieanalyse te <strong>versterken</strong>.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Evalueren (10)</strong></td>
+                                <td>
+                                    • Je geeft een <strong>kritische beschouwing</strong> over de kwaliteit van de data.
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -155,39 +471,45 @@
 
             <!-- Criterium B -->
             <div class="card" style="margin-bottom: var(--space-8);">
-                <div class="card-header">
-                    <h3 style="margin: 0; color: var(--color-primary-700);">B. Data Preparation (10%)</h3>
+                <div class="card-header" style="background-color: var(--color-primary-50);">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">B. Data Preparation (Regressie)</h3>
                 </div>
                 <div class="card-body">
-                    <p><strong>Focus:</strong> Kwaliteit van data cleaning, transformation en preprocessing</p>
-
-                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Primair Junior Analyst Criterium</h4>
-                    <p>Seniors worden hier lichter beoordeeld (20% weight) - zij moeten begrijpen waarom data prep nodig is.</p>
-
-                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3);">Methodology Path Assessment</h4>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Aspect</th>
-                                <th>AI-Augmented Path</th>
-                                <th>Conventional Tools Path</th>
+                                <th style="width: 120px;">Niveau</th>
+                                <th>Criteria</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Artifacts</strong></td>
-                                <td>AI prompts voor data cleaning + verification logs</td>
-                                <td>Python/R scripts of Power Query transformations</td>
+                                <td><strong>Ontbreekt (0)</strong></td>
+                                <td>• Het gereedmaken van de data is niet benoemd.</td>
                             </tr>
                             <tr>
-                                <td><strong>Quality Check</strong></td>
-                                <td>AI output validatie + correcties gedocumenteerd</td>
-                                <td>Data quality reports + transformation logs</td>
+                                <td><strong>Begrijpen (4.0)</strong></td>
+                                <td>
+                                    • Je begrijpt voldoende hoe data gereed gemaakt moet worden <strong>maar</strong> past dit onvoldoende toe voor de volgende fase.
+                                </td>
                             </tr>
                             <tr>
-                                <td><strong>Missing Values</strong></td>
-                                <td>Prompt: "Handle missing values in column X using..."</td>
-                                <td>Code: df.fillna() of Power BI transformaties</td>
+                                <td><strong>Toepassen (5.5)</strong></td>
+                                <td>
+                                    • Je leest data uit verschillende bronnen in en maakt deze <strong>correct gereed</strong> voor de volgende fase.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analyseren (8.0)</strong></td>
+                                <td>
+                                    • Je onderwerpt de kwaliteit van de data aan een <strong>grondige analyse</strong> alvorens deze te prepareren en in te lezen.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Evalueren (10)</strong></td>
+                                <td>
+                                    • Je formuleert gefundeerde aanbevelingen voor verbetering van de datakwaliteit en voert deze door alvorens de data te prepareren en in te lezen. <strong>Bijvoorbeeld het zoeken naar een beursgenoteerd bedrijf binnen de sector om als benchmark te fungeren.</strong>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -196,366 +518,391 @@
 
             <!-- Criterium C -->
             <div class="card" style="margin-bottom: var(--space-8);">
-                <div class="card-header">
-                    <h3 style="margin: 0; color: var(--color-primary-700);">C. Modeling & Analysis (15%)</h3>
+                <div class="card-header" style="background-color: var(--color-primary-50);">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">C. Modeling (Regressiemodel)</h3>
                 </div>
                 <div class="card-body">
-                    <p><strong>Focus:</strong> Kwaliteit van analytische technieken en modellering</p>
-
-                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Complexity Levels</h4>
-                    <div class="grid grid-3">
-                        <div class="card" style="border-left: 4px solid var(--color-success-600);">
-                            <div class="card-body">
-                                <h5>Foundation (max 7.0)</h5>
-                                <p style="font-size: var(--font-size-sm);">Descriptieve statistiek, visualisaties, basic KPI's</p>
-                            </div>
-                        </div>
-                        <div class="card" style="border-left: 4px solid var(--color-warning-600);">
-                            <div class="card-body">
-                                <h5>Analytical (max 8.5)</h5>
-                                <p style="font-size: var(--font-size-sm);">Regressie, correlatie, trend analysis</p>
-                            </div>
-                        </div>
-                        <div class="card" style="border-left: 4px solid var(--color-primary-600);">
-                            <div class="card-body">
-                                <h5>Advanced (max 10)</h5>
-                                <p style="font-size: var(--font-size-sm);">Predictive modeling, scenario-analyse, machine learning</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3);">Methodology Path Assessment</h4>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Aspect</th>
-                                <th>AI-Augmented Path</th>
-                                <th>Conventional Tools Path</th>
+                                <th style="width: 120px;">Niveau</th>
+                                <th>Criteria</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Artifacts</strong></td>
-                                <td>Prompt engineering voor analyse + AI output validatie</td>
-                                <td>Python/R code of Power BI models</td>
+                                <td><strong>Ontbreekt (0)</strong></td>
+                                <td>• Je hebt niet benoemd welke keuzes in het tot stand komen van het regressiemodel zijn gemaakt.</td>
                             </tr>
                             <tr>
-                                <td><strong>Technique</strong></td>
-                                <td>Prompt: "Perform regression analysis on X and Y..."</td>
-                                <td>sklearn.linear_model of Power BI analytics</td>
+                                <td><strong>Begrijpen (4.0)</strong></td>
+                                <td>
+                                    • Je benoemt welke keuzes in het tot stand komen van het regressiemodel zijn gemaakt, <strong>maar</strong> interpreteert het regressiemodel niet goed in de context van de businessvraag.
+                                </td>
                             </tr>
                             <tr>
-                                <td><strong>Validation</strong></td>
-                                <td>Kritisch beoordelen AI output + limitations documenteren</td>
-                                <td>Model validation metrics + residual analysis</td>
+                                <td><strong>Toepassen (5.5)</strong></td>
+                                <td>
+                                    • Je benoemt welke keuzes in het tot stand komen van het regressiemodel zijn gemaakt en interpreteert het regressiemodel <strong>voldoende</strong> in de context van de businessvraag.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analyseren (8.0)</strong></td>
+                                <td>
+                                    • Je benoemt op <strong>overtuigende wijze</strong> welke keuzes bij het tot stand komen van het regressiemodel zijn gemaakt en interpreteert het regressiemodel goed in de context van de businessvraag.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Evalueren (10)</strong></td>
+                                <td>
+                                    • Je doet <strong>gefundeerde aanbevelingen</strong> over verbeteringen van het regressiemodel (regressievergelijking en visualisaties).
+                                </td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-info-50); border-left: 4px solid var(--color-info-500); border-radius: var(--radius-md);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-info-700);">
+                            💡 AI-pad: Prompt "Perform regression analysis on X and Y..." + interpretatie. Conventional: sklearn, statsmodels, of Power BI analytics.
+                        </p>
+                    </div>
                 </div>
             </div>
 
             <!-- Criterium D -->
             <div class="card" style="margin-bottom: var(--space-8);">
-                <div class="card-header">
-                    <h3 style="margin: 0; color: var(--color-primary-700);">D. Evaluation & Deployment (10%)</h3>
+                <div class="card-header" style="background-color: var(--color-primary-50);">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">D. Deploy & Evaluate (Regressie)</h3>
                 </div>
                 <div class="card-body">
-                    <p><strong>Focus:</strong> Business vertaling van resultaten en actionable recommendations</p>
-
-                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Gezamenlijke Verantwoordelijkheid</h4>
-                    <p>Alle rollen gelijk gewogen - Juniors verklaren technisch, Seniors vertalen naar beslissing</p>
-
-                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3);">Methodology Path Assessment</h4>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Aspect</th>
-                                <th>AI-Augmented Path</th>
-                                <th>Conventional Tools Path</th>
+                                <th style="width: 120px;">Niveau</th>
+                                <th>Criteria</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Output</strong></td>
-                                <td>AI output → business recommendations + limitations</td>
-                                <td>Dashboard/visualisaties + interpretatie</td>
+                                <td><strong>Ontbreekt (0)</strong></td>
+                                <td>• Je bespreekt de inhoudelijke uitkomsten van het model niet <strong>en/of</strong> de evaluatie in welke mate het model oplevert wat het op had moeten leveren ontbreekt.</td>
                             </tr>
                             <tr>
-                                <td><strong>Recommendations</strong></td>
-                                <td>Actionable insights van AI kritisch geëvalueerd</td>
-                                <td>Data-driven beslissingen uit visualisaties</td>
+                                <td><strong>Begrijpen (4.0)</strong></td>
+                                <td>
+                                    • Je bespreekt de inhoudelijke uitkomsten van het regressiemodel <strong>maar</strong> de inhoudelijke interpretatie is onvoldoende <strong>en/of</strong> evalueert onvoldoende in welke mate het model oplevert wat het op had moeten leveren.
+                                </td>
                             </tr>
                             <tr>
-                                <td><strong>Deployment</strong></td>
-                                <td>Prompt templates + conversation logs als documentation</td>
-                                <td>Interactive dashboards of automated reports</td>
+                                <td><strong>Toepassen (5.5)</strong></td>
+                                <td>
+                                    • Je geeft een inhoudelijke uiteenzetting van de analyseresultaten, bespreekt in <strong>voldoende mate</strong> de inhoudelijke betekenis van de analyseresultaten <strong>en/of</strong> evalueert in voldoende mate.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analyseren (8.0)</strong></td>
+                                <td>
+                                    • Je analyseert de inhoudelijke betekenis van de analyseresultaten, legt de koppeling met de businessvraag en evalueert het model <strong>diepgaand</strong>.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Evalueren (10)</strong></td>
+                                <td>
+                                    • Je evalueert in welke mate het model volstaat om de businessvraag te beantwoorden en doet <strong>aanbevelingen voor vervolgonderzoek</strong> met als doel het model te verbeteren.
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
-
-            <!-- Criteria E & F (PAM) -->
-            <div class="card" style="margin-bottom: var(--space-8);">
-                <div class="card-header">
-                    <h3 style="margin: 0; color: var(--color-primary-700);">E. Purpose (5%) & F. Autonomy (5%)</h3>
-                </div>
-                <div class="card-body">
-                    <div class="grid grid-2">
-                        <div>
-                            <h4 style="color: var(--color-primary-600);">E. Purpose</h4>
-                            <p><strong>Focus:</strong> Impact van analyse op strategische besluitvorming</p>
-                            <ul style="line-height: var(--line-height-relaxed);">
-                                <li>Waarom doet deze analyse ertoe?</li>
-                                <li>Voor wie is dit relevant?</li>
-                                <li>Welke beslissing ondersteunt dit?</li>
-                                <li>Impact op business outcomes</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--color-primary-600);">F. Autonomy</h4>
-                            <p><strong>Focus:</strong> Zelfstandige keuzes en ownership</p>
-                            <ul style="line-height: var(--line-height-relaxed);">
-                                <li>Sector, vraagstuk, methodologie gekozen</li>
-                                <li>Rol geselecteerd en ingevuld</li>
-                                <li>Eigen leerpad bepaald (complexity level)</li>
-                                <li>Ownership over deliverables</li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PAM + Process Criteria -->
-    <section class="section">
+    <!-- Opdracht 3 -->
+    <section class="section section-alt" id="opdracht3">
         <div class="container">
-            <h2 class="section-title">PAM + Process Criteria (40%)</h2>
+            <h2 class="section-title">Opdracht 3: Scenarioanalyse (40%)</h2>
+            <p class="section-subtitle">Specifieke focus op scenarioanalyse</p>
 
-            <!-- Criterium G -->
+            <!-- Criterium A -->
             <div class="card" style="margin-bottom: var(--space-8);">
-                <div class="card-header">
-                    <h3 style="margin: 0; color: var(--color-primary-700);">G. Mastery & Groei (15%)</h3>
+                <div class="card-header" style="background-color: var(--color-primary-50);">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">A. Business & Data Understanding (Scenario)</h3>
                 </div>
                 <div class="card-body">
-                    <p><strong>Focus:</strong> Persoonlijke ontwikkeling en skill progression</p>
-
-                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Assessment Aanpak</h4>
-                    <ul style="line-height: var(--line-height-relaxed);">
-                        <li><strong>Week 1:</strong> Self-assessment (1-5 schaal) op relevante competenties</li>
-                        <li><strong>Week 4:</strong> Mid-term checkpoint - voortgang vs. persoonlijk leerdoel</li>
-                        <li><strong>Week 7:</strong> Final reflection - "Wat kan ik nu dat ik Week 1 niet kon?"</li>
-                    </ul>
-
-                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3);">Differentiation</h4>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Role</th>
-                                <th>Mastery Focus</th>
+                                <th style="width: 120px;">Niveau</th>
+                                <th>Criteria</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Senior Stakeholders</strong></td>
-                                <td>Strategic thinking, stakeholder management, business translation</td>
+                                <td><strong>Ontbreekt (0)</strong></td>
+                                <td>• De data om een scenarioanalyse toe te kunnen passen ontbreekt.</td>
                             </tr>
                             <tr>
-                                <td><strong>Junior Analysts (AI Path)</strong></td>
-                                <td>Prompt engineering, AI output validation, critical thinking</td>
+                                <td><strong>Begrijpen (4.0)</strong></td>
+                                <td>
+                                    • Je begrijpt voldoende hoe de op te zetten scenarioanalyse is te vertalen naar een datavraagstuk <strong>maar</strong> de kwaliteit van de gekozen variabelen en factoren aansluitend op het kental is onvoldoende <strong>en/of</strong> de vertaling naar de nodige data is onvoldoende.
+                                </td>
                             </tr>
                             <tr>
-                                <td><strong>Junior Analysts (Conventional)</strong></td>
-                                <td>Tool mastery (Power BI/Python/R), data manipulation, visualization</td>
+                                <td><strong>Toepassen (5.5)</strong></td>
+                                <td>
+                                    • De vertaling van het kental naar variabelen en factoren is <strong>voldoende</strong>.<br>
+                                    • Je vertaalt de factoren in voldoende mate naar een datavraagstuk ten behoeve van de scenarioanalyse.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analyseren (8.0)</strong></td>
+                                <td>
+                                    • De vertaling van het kental naar variabelen en factoren is <strong>goed</strong>.<br>
+                                    • Je vertaalt de factoren goed naar een datavraagstuk ten behoeve van de scenarioanalyse waarbij de impact van de factoren op het uiteindelijke kental goed is uitgewerkt.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Evalueren (10)</strong></td>
+                                <td>
+                                    • Je onderneemt stappen om de vertaling van kental naar variabelen en factoren en de vertaling van de factoren naar nodige data <strong>verdergaand te versterken</strong>.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Criterium B -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header" style="background-color: var(--color-primary-50);">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">B. Data Preparation (Scenario)</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 120px;">Niveau</th>
+                                <th>Criteria</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Ontbreekt (0)</strong></td>
+                                <td>• Het gereed maken van de data is niet benoemd.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Begrijpen (4.0)</strong></td>
+                                <td>
+                                    • Je begrijpt voldoende hoe data gereed gemaakt moet worden <strong>maar</strong> past dit onvoldoende toe voor de volgende fase.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Toepassen (5.5)</strong></td>
+                                <td>
+                                    • Je leest data uit verschillende bronnen in en maakt deze <strong>correct gereed</strong> voor de volgende fase.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analyseren (8.0)</strong></td>
+                                <td>
+                                    • Je onderwerpt de kwaliteit van de data aan een <strong>grondige analyse</strong> alvorens deze te prepareren en in te lezen.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Evalueren (10)</strong></td>
+                                <td>
+                                    • Je formuleert <strong>gefundeerde aanbevelingen</strong> voor verbetering van de datakwaliteit en voert deze door alvorens de data te prepareren en in te lezen.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Criterium C -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header" style="background-color: var(--color-primary-50);">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">C. Modeling (Scenariomodel)</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 120px;">Niveau</th>
+                                <th>Criteria</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Ontbreekt (0)</strong></td>
+                                <td>• Je benoemt niet hoe tot het model (formules en visualisatie) is gekomen en welke keuzes hierin zijn gemaakt.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Begrijpen (4.0)</strong></td>
+                                <td>
+                                    • Je benoemt voldoende hoe tot het model (formules en visualisatie) is gekomen en welke keuzes hierin zijn gemaakt <strong>maar</strong> dit sluit onvoldoende aan op de vereiste scenarioanalyse.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Toepassen (5.5)</strong></td>
+                                <td>
+                                    • Je hebt <strong>voldoende benoemd</strong> hoe tot het model (formules en visualisatie) is gekomen en welke keuzes hierin zijn gemaakt in relatie tot de vereiste scenarioanalyse.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analyseren (8.0)</strong></td>
+                                <td>
+                                    • Je presenteert het model (formules en visualisatie) en benoemt op <strong>overtuigende wijze</strong> welke keuzes hierin zijn gemaakt in relatie tot de vereiste scenarioanalyse.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Evalueren (10)</strong></td>
+                                <td>
+                                    • Je doet <strong>gefundeerde aanbevelingen</strong> over verbeteringen van het model (formules en visualisaties).
+                                </td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <p style="margin-top: var(--space-4);"><strong>Belangrijk:</strong> Dit criterium meet NIET "hoe goed ben je in Power BI" maar "hoeveel ben je gegroeid in je gekozen pad?"</p>
-                </div>
-            </div>
-
-            <!-- Criterium H -->
-            <div class="card" style="margin-bottom: var(--space-8);">
-                <div class="card-header">
-                    <h3 style="margin: 0; color: var(--color-primary-700);">H. Teamproces & Samenwerking (10%)</h3>
-                </div>
-                <div class="card-body">
-                    <p><strong>Focus:</strong> Effectieve samenwerking tussen rollen en methodologiepaden</p>
-
-                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Beoordelingsaspecten</h4>
-                    <ul style="line-height: var(--line-height-relaxed);">
-                        <li>Senior-Junior interactie: vraagstelling ↔ analyse ↔ besluitvorming</li>
-                        <li>Cross-methodology learning: AI en Conventional teams delen inzichten (Week 4)</li>
-                        <li>Peer buddy system: 2 teams ondersteunen elkaar (Week 2-6)</li>
-                        <li>Geen "niet mijn taak" mentaliteit - gezamenlijke ownership</li>
-                    </ul>
-
-                    <p style="margin-top: var(--space-4);"><strong>Evidence:</strong> Team meeting logs, peer feedback sessions, buddy check-ins</p>
-                </div>
-            </div>
-
-            <!-- Criterium I -->
-            <div class="card" style="margin-bottom: var(--space-8);">
-                <div class="card-header">
-                    <h3 style="margin: 0; color: var(--color-primary-700);">I. Peer Feedback & Learning (5%)</h3>
-                </div>
-                <div class="card-body">
-                    <p><strong>Focus:</strong> Kwaliteit van gegeven en ontvangen feedback</p>
-
-                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Feedback Momenten</h4>
-                    <ul style="line-height: var(--line-height-relaxed);">
-                        <li><strong>Week 4 Checkpoint:</strong> Cross-methodology presentaties met peer feedback</li>
-                        <li><strong>Buddy Sessions:</strong> 2-wekelijkse check-ins tussen buddy teams</li>
-                        <li><strong>Retrospectives:</strong> Team retrospective na elke fase (Week 3, 5, 7)</li>
-                    </ul>
-
-                    <p style="margin-top: var(--space-4);"><strong>Assessment Tool:</strong> <a href="https://hanbedrijfskunde.github.io/retrospective/?workshop=ECONAN%20WK1" target="_blank">Student Retrospective Tool</a> voor PAM scores</p>
-                </div>
-            </div>
-
-            <!-- Criterium J -->
-            <div class="card" style="margin-bottom: var(--space-8);">
-                <div class="card-header">
-                    <h3 style="margin: 0; color: var(--color-primary-700);">J. Reflectie & Meta-Learning (10%)</h3>
-                </div>
-                <div class="card-body">
-                    <p><strong>Focus:</strong> Inzicht in eigen leerproces en toepasbaarheid van methodologie</p>
-
-                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Reflectievragen (Week 7)</h4>
-                    <ul style="line-height: var(--line-height-relaxed);">
-                        <li>"Wanneer zou je AI gebruiken vs. conventional tools? Wat zijn de trade-offs?"</li>
-                        <li>"Wat zou je doen als Power BI (of AI tool) morgen niet meer bestaat?"</li>
-                        <li>"Welke CRISP-DM fase vond je het moeilijkst en waarom?"</li>
-                        <li>"Wat heb je geleerd over het vertalen van data naar beslissingen?"</li>
-                    </ul>
-
-                    <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-accent-light); border-left: 4px solid var(--color-accent-yellow); border-radius: var(--radius-md);">
-                        <p style="margin: 0; font-weight: var(--font-weight-semibold);">💡 Future-Proof Mindset</p>
-                        <p style="margin-top: var(--space-2); margin-bottom: 0;">
-                            "Tools veranderen, systematiek (CRISP-DM) blijft. De beste technische analyse is waardeloos als je stakeholder niet overtuigt."
+                    <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-info-50); border-left: 4px solid var(--color-info-500); border-radius: var(--radius-md);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-info-700);">
+                            💡 Scenarioanalyse: What-if scenarios met variabele manipulatie. Beide paden kunnen verschillende scenario's doorrekenen.
                         </p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Quick Reference -->
-    <section class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">Quick Reference: Assessment Weights</h2>
-
-            <div class="card">
+            <!-- Criterium D -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header" style="background-color: var(--color-primary-50);">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">D. Deploy & Evaluate (Scenario)</h3>
+                </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Criterium</th>
-                                <th>Weight</th>
-                                <th>Primary Role</th>
-                                <th>Methodology Agnostic?</th>
+                                <th style="width: 120px;">Niveau</th>
+                                <th>Criteria</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>A.</strong> Business & Data Understanding</td>
-                                <td>15%</td>
-                                <td>Senior (60%) / Junior (40%)</td>
-                                <td>✅ Ja</td>
+                                <td><strong>Ontbreekt (0)</strong></td>
+                                <td>• Je bespreekt de inhoudelijke uitkomsten van het model niet <strong>en/of</strong> evalueert niet in welke mate het model oplevert wat het op had moeten leveren.</td>
                             </tr>
                             <tr>
-                                <td><strong>B.</strong> Data Preparation</td>
-                                <td>10%</td>
-                                <td>Junior (80%) / Senior (20%)</td>
-                                <td>✅ Ja</td>
+                                <td><strong>Begrijpen (4.0)</strong></td>
+                                <td>
+                                    • Je toont aan de uitkomsten van de analyse te begrijpen <strong>maar</strong> brengt het onvoldoende in verband met de opdracht en businesscontext <strong>en/of</strong> benoemt onvoldoende in welke mate het model oplevert wat het op had moeten leveren.
+                                </td>
                             </tr>
                             <tr>
-                                <td><strong>C.</strong> Modeling & Analysis</td>
-                                <td>15%</td>
-                                <td>Junior (80%) / Senior (20%)</td>
-                                <td>✅ Ja</td>
+                                <td><strong>Toepassen (5.5)</strong></td>
+                                <td>
+                                    • Je geeft een inhoudelijke uiteenzetting van de analyseresultaten, bespreekt in <strong>voldoende mate</strong> de inhoudelijke betekenis van de analyseresultaten <strong>en/of</strong> evalueert in voldoende mate.
+                                </td>
                             </tr>
                             <tr>
-                                <td><strong>D.</strong> Evaluation & Deployment</td>
-                                <td>10%</td>
-                                <td>All roles (50/50)</td>
-                                <td>✅ Ja</td>
+                                <td><strong>Analyseren (8.0)</strong></td>
+                                <td>
+                                    • Je analyseert de inhoudelijke betekenis van de analyseresultaten, legt de koppeling met de businessvraag en evalueert het model <strong>diepgaand</strong>.
+                                </td>
                             </tr>
                             <tr>
-                                <td><strong>E.</strong> Purpose</td>
-                                <td>5%</td>
-                                <td>All roles</td>
-                                <td>✅ Ja</td>
-                            </tr>
-                            <tr>
-                                <td><strong>F.</strong> Autonomy</td>
-                                <td>5%</td>
-                                <td>All roles</td>
-                                <td>✅ Ja</td>
-                            </tr>
-                            <tr>
-                                <td><strong>G.</strong> Mastery & Groei</td>
-                                <td>15%</td>
-                                <td>Individual</td>
-                                <td>✅ Ja</td>
-                            </tr>
-                            <tr>
-                                <td><strong>H.</strong> Teamproces</td>
-                                <td>10%</td>
-                                <td>Team</td>
-                                <td>✅ Ja</td>
-                            </tr>
-                            <tr>
-                                <td><strong>I.</strong> Peer Feedback</td>
-                                <td>5%</td>
-                                <td>Individual</td>
-                                <td>✅ Ja</td>
-                            </tr>
-                            <tr>
-                                <td><strong>J.</strong> Reflectie & Meta-Learning</td>
-                                <td>10%</td>
-                                <td>Individual</td>
-                                <td>✅ Ja</td>
+                                <td><strong>Evalueren (10)</strong></td>
+                                <td>
+                                    • Je evalueert in welke mate het model volstaat om de businessvraag te beantwoorden en doet <strong>aanbevelingen voor vervolgonderzoek</strong> met als doel het model te verbeteren.
+                                </td>
                             </tr>
                         </tbody>
-                        <tfoot>
-                            <tr style="font-weight: var(--font-weight-bold); background-color: var(--color-primary-50);">
-                                <td>TOTAAL</td>
-                                <td>100%</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr>
-                        </tfoot>
                     </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAM Section (Program Quality, NOT Student Assessment) -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Purpose • Autonomy • Mastery (PAM)</h2>
+            <p class="section-subtitle">Voor programma kwaliteitsmeting - NIET voor studentbeoordeling</p>
+
+            <div class="card" style="border-left: 4px solid var(--color-accent-yellow);">
+                <div class="card-body">
+                    <div style="padding: var(--space-4); background-color: var(--color-warning-50); border-radius: var(--radius-md); margin-bottom: var(--space-6);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-warning-700);">
+                            ⚠️ Belangrijk: PAM is GEEN beoordelingscriterium voor studenten. PAM wordt gebruikt voor kwaliteitsmeting van het onderwijsprogramma (PDCA cyclus).
+                        </p>
+                    </div>
+
+                    <h3 style="color: var(--color-primary-700);">Wat is PAM?</h3>
+                    <p>
+                        PAM (Purpose, Autonomy, Mastery) is een framework uit Daniel Pink's Drive theorie voor het meten van intrinsieke motivatie.
+                        In ECONAN gebruiken we PAM om te meten of het programma voldoende Purpose, Autonomy en Mastery biedt aan studenten.
+                    </p>
+
+                    <div class="grid grid-3" style="margin-top: var(--space-6);">
+                        <div>
+                            <h4 style="color: var(--color-primary-600);">Purpose</h4>
+                            <p style="font-size: var(--font-size-sm);">
+                                Ervaren studenten waarom deze module ertoe doet? Zien ze de relevantie voor hun toekomstige carrière?
+                            </p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--color-primary-600);">Autonomy</h4>
+                            <p style="font-size: var(--font-size-sm);">
+                                Hebben studenten voldoende keuzevrijheid in sector, rol, methodologie en complexiteit?
+                            </p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--color-primary-600);">Mastery</h4>
+                            <p style="font-size: var(--font-size-sm);">
+                                Ervaren studenten groei in hun competenties? Is de uitdaging optimaal (niet te makkelijk, niet te moeilijk)?
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: var(--space-8); color: var(--color-primary-700);">Hoe meten we PAM?</h3>
+                    <ul style="line-height: var(--line-height-relaxed);">
+                        <li><strong>Wekelijkse retrospectives:</strong> Studenten geven zichzelf een 1-5 score op Purpose, Autonomy en Mastery</li>
+                        <li><strong>Tool:</strong> <a href="https://hanbedrijfskunde.github.io/retrospective/?workshop=ECONAN%20WK1" target="_blank">Student Retrospective Tool</a></li>
+                        <li><strong>Doel:</strong> Programma verbetering (PDCA) - als PAM scores laag zijn, passen we het programma aan</li>
+                        <li><strong>NIET voor cijfers:</strong> Deze scores tellen NIET mee voor de studentbeoordeling</li>
+                    </ul>
+
+                    <h3 style="margin-top: var(--space-8); color: var(--color-primary-700);">Waarom is dit belangrijk?</h3>
+                    <p>
+                        Het hybride ECONAN model (AI-augmented vs. Conventional) is ontworpen om 5/5 scores op alle drie PAM dimensies te bereiken.
+                        Door PAM wekelijks te meten, kunnen we het programma continu verbeteren en zorgen dat studenten intrinsiek gemotiveerd blijven.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Resources -->
-    <section class="section">
+    <section class="section section-alt">
         <div class="container">
             <h2 class="section-title">Assessment Resources</h2>
 
             <div class="grid grid-3">
-                <a href="https://hanbedrijfskunde.github.io/retrospective/?workshop=ECONAN%20WK1" target="_blank" class="card card-link">
-                    <div class="card-body">
-                        <h3 class="card-title">📊 Retrospective Tool</h3>
-                        <p class="card-text">Meet je Purpose, Autonomy en Mastery scores na elke week</p>
-                    </div>
-                </a>
                 <a href="../weekplanning/" class="card card-link">
                     <div class="card-body">
                         <h3 class="card-title">📅 Weekplanning</h3>
-                        <p class="card-text">Zie wanneer welke assessment momenten plaatsvinden</p>
+                        <p class="card-text">Zie wanneer opdrachten worden ingediend en beoordeeld</p>
                     </div>
                 </a>
                 <a href="../rollen/" class="card card-link">
                     <div class="card-body">
                         <h3 class="card-title">👥 Rollen</h3>
                         <p class="card-text">Begrijp welke criteria zwaarder wegen voor jouw rol</p>
+                    </div>
+                </a>
+                <a href="https://hanbedrijfskunde.github.io/retrospective/?workshop=ECONAN%20WK1" target="_blank" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">📊 Retrospective Tool</h3>
+                        <p class="card-text">Meet je PAM scores voor programma kwaliteit (niet voor cijfer)</p>
                     </div>
                 </a>
             </div>
