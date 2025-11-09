@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stakeholder Feedback Formulier - ECONAN Week 4 Checkpoint</title>
+    <style>
+        @media print {
+            @page {
+                size: A4;
+                margin: 2cm;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #0066cc;
+            margin: 0 0 10px 0;
+            font-size: 24px;
+        }
+
+        .header p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            background-color: #0066cc;
+            color: white;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .field-group {
+            margin-bottom: 20px;
+        }
+
+        .field-label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .field-input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            padding: 8px 0;
+            font-size: 14px;
+            min-height: 30px;
+        }
+
+        .field-textarea {
+            width: 100%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 14px;
+            min-height: 80px;
+            font-family: inherit;
+            line-height: 1.6;
+        }
+
+        .checkbox-group {
+            margin: 10px 0;
+        }
+
+        .checkbox-item {
+            margin: 8px 0;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 10px;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .checkbox-item label {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .instruction-box {
+            background-color: #f0f7ff;
+            border-left: 4px solid #0066cc;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .rating-scale {
+            display: flex;
+            gap: 15px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .rating-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .signature-section {
+            margin-top: 40px;
+            border-top: 2px solid #0066cc;
+            padding-top: 20px;
+        }
+
+        .signature-line {
+            border-bottom: 1px solid #333;
+            width: 300px;
+            margin: 20px 0 5px 0;
+            min-height: 50px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media print {
+            .form-container {
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .field-input, .field-textarea {
+                border: 1px solid #999;
+            }
+        }
+
+        .no-print {
+            background-color: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .print-button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .print-button:hover {
+            background-color: #0052a3;
+        }
+    </style>
+</head>
+<body>
+    <div class="no-print">
+        <h2>📋 Instructies voor gebruik</h2>
+        <p><strong>Optie 1:</strong> Klik op "Print / Opslaan als PDF" hieronder, kies "Opslaan als PDF" in je browser, en vul digitaal in.</p>
+        <p><strong>Optie 2:</strong> Print dit formulier en vul handmatig in tijdens de Week 4 Checkpoint sessie.</p>
+        <p><strong>Let op:</strong> Selecteer eerst je stakeholder rol voordat je print/opslaat!</p>
+        <button class="print-button" onclick="window.print()">🖨️ Print / Opslaan als PDF</button>
+    </div>
+
+    <div class="form-container">
+        <!-- Cover Page -->
+        <div class="header">
+            <h1>Stakeholder Feedback Formulier</h1>
+            <p><strong>ECONAN - Economic Analysis</strong></p>
+            <p>Week 4 Checkpoint: Eerste Resultaten Presentatie</p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">1. Team & Stakeholder Informatie</div>
+
+            <div class="field-group">
+                <label class="field-label">Team dat presenteert:</label>
+                <input type="text" class="field-input" />
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Organisatie / Bedrijf:</label>
+                <input type="text" class="field-input" />
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Sector:</label>
+                <input type="text" class="field-input" />
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Jouw team (feedback gevers):</label>
+                <input type="text" class="field-input" />
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Datum:</label>
+                <input type="date" class="field-input" />
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Selecteer je Stakeholder Rol:</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rvc-strategie" name="stakeholder-role" />
+                        <label for="rvc-strategie"><strong>RvC Strategie</strong> - Focus op concurrentiepositie, marktaandeel, groeistrategieën</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rvc-esg" name="stakeholder-role" />
+                        <label for="rvc-esg"><strong>RvC ESG</strong> - Focus op duurzaamheid, maatschappelijke impact, ESG-risico's</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rvc-digital" name="stakeholder-role" />
+                        <label for="rvc-digital"><strong>RvC Digital</strong> - Focus op digitale transformatie, tech-investeringen, data capabilities</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rvc-audit" name="stakeholder-role" />
+                        <label for="rvc-audit"><strong>RvC Audit</strong> - Focus op financiële gezondheid, risicomanagement, compliance</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rvc-remuneratie" name="stakeholder-role" />
+                        <label for="rvc-remuneratie"><strong>RvC Remuneratie</strong> - Focus op performance metrics, KPI's, beloningsstructuur</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rvc-governance" name="stakeholder-role" />
+                        <label for="rvc-governance"><strong>RvC Governance</strong> - Focus op besluitvorming, accountability, stakeholder management</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="investeerders" name="stakeholder-role" />
+                        <label for="investeerders"><strong>Investeerders</strong> - Focus op ROI, waardering, growth potential, exit strategy</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="toezichthouders" name="stakeholder-role" />
+                        <label for="toezichthouders"><strong>Toezichthouders & Maatschappelijke Stakeholders</strong> (AFM, ACM, AP, FNV, Milieudefensie, RVO) - Focus op compliance, consumentenbescherming, fair competition, privacy, arbeidsomstandigheden, milieu-impact</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Break -->
+        <div class="page-break"></div>
+
+        <div class="section">
+            <div class="section-title">2. Strategische Vraag Analyse (vanuit stakeholder perspectief)</div>
+
+            <div class="instruction-box">
+                <strong>Instructie:</strong> Beoordeel de strategische vraag vanuit jouw stakeholder rol. Is deze vraag relevant voor jouw belangen? Welke aspecten zijn cruciaal vanuit jouw perspectief?
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Wat is de strategische vraag van het team?</label>
+                <textarea class="field-textarea" rows="3"></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Hoe relevant is deze vraag voor jou als [jouw stakeholder rol]? (1-5)</label>
+                <div class="rating-scale">
+                    <div class="rating-option"><input type="radio" name="relevance" id="rel1"><label for="rel1">1 - Niet relevant</label></div>
+                    <div class="rating-option"><input type="radio" name="relevance" id="rel2"><label for="rel2">2</label></div>
+                    <div class="rating-option"><input type="radio" name="relevance" id="rel3"><label for="rel3">3</label></div>
+                    <div class="rating-option"><input type="radio" name="relevance" id="rel4"><label for="rel4">4</label></div>
+                    <div class="rating-option"><input type="radio" name="relevance" id="rel5"><label for="rel5">5 - Zeer relevant</label></div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Welke aanvullende vragen zou je vanuit jouw rol stellen?</label>
+                <textarea class="field-textarea" rows="4"></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Welke risico's of kansen zie je die het team mogelijk mist?</label>
+                <textarea class="field-textarea" rows="4"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">3. Data & Methodologie Review</div>
+
+            <div class="instruction-box">
+                <strong>Instructie:</strong> Beoordeel of de gekozen data en analyse-aanpak betrouwbaar en relevant zijn voor jouw besluitvorming als stakeholder.
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Welke databronnen gebruikt het team?</label>
+                <textarea class="field-textarea" rows="3"></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Vertrouw je deze databronnen voor strategische beslissingen? (1-5)</label>
+                <div class="rating-scale">
+                    <div class="rating-option"><input type="radio" name="trust-data" id="trust1"><label for="trust1">1 - Nee</label></div>
+                    <div class="rating-option"><input type="radio" name="trust-data" id="trust2"><label for="trust2">2</label></div>
+                    <div class="rating-option"><input type="radio" name="trust-data" id="trust3"><label for="trust3">3</label></div>
+                    <div class="rating-option"><input type="radio" name="trust-data" id="trust4"><label for="trust4">4</label></div>
+                    <div class="rating-option"><input type="radio" name="trust-data" id="trust5"><label for="trust5">5 - Ja, volledig</label></div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Welke KPI's of kentallen missen volgens jou?</label>
+                <textarea class="field-textarea" rows="4"></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Is de analyse-aanpak (CRISP-DM fase) geschikt voor jouw besluitvorming? Waarom wel/niet?</label>
+                <textarea class="field-textarea" rows="4"></textarea>
+            </div>
+        </div>
+
+        <!-- Page Break -->
+        <div class="page-break"></div>
+
+        <div class="section">
+            <div class="section-title">4. Eerste Resultaten & Bevindingen</div>
+
+            <div class="instruction-box">
+                <strong>Instructie:</strong> Beoordeel de eerste resultaten die het team presenteert. Zijn deze actionable vanuit jouw stakeholder perspectief?
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Wat zijn de belangrijkste bevindingen tot nu toe?</label>
+                <textarea class="field-textarea" rows="4"></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Zijn deze resultaten bruikbaar voor jouw besluitvorming? (1-5)</label>
+                <div class="rating-scale">
+                    <div class="rating-option"><input type="radio" name="actionable" id="act1"><label for="act1">1 - Niet bruikbaar</label></div>
+                    <div class="rating-option"><input type="radio" name="actionable" id="act2"><label for="act2">2</label></div>
+                    <div class="rating-option"><input type="radio" name="actionable" id="act3"><label for="act3">3</label></div>
+                    <div class="rating-option"><input type="radio" name="actionable" id="act4"><label for="act4">4</label></div>
+                    <div class="rating-option"><input type="radio" name="actionable" id="act5"><label for="act5">5 - Zeer bruikbaar</label></div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Welke trends of patronen zijn het meest relevant vanuit jouw rol?</label>
+                <textarea class="field-textarea" rows="4"></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Welke resultaten vragen om nadere uitdieping of verificatie?</label>
+                <textarea class="field-textarea" rows="4"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">5. Strategische Aanbevelingen & Prioriteiten</div>
+
+            <div class="instruction-box">
+                <strong>Instructie:</strong> Geef concrete aanbevelingen vanuit jouw stakeholder perspectief. Wat moet het team zeker oppakken? Wat zijn absolute dealbreakers?
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Top 3 Aanbevelingen voor het vervolg:</label>
+                <div style="margin-top: 10px;">
+                    <div style="margin-bottom: 15px;">
+                        <strong>1.</strong>
+                        <textarea class="field-textarea" rows="2"></textarea>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <strong>2.</strong>
+                        <textarea class="field-textarea" rows="2"></textarea>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <strong>3.</strong>
+                        <textarea class="field-textarea" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Dealbreakers: Welke aspecten MOETEN verbeterd worden voordat je de analyse serieus neemt?</label>
+                <textarea class="field-textarea" rows="4"></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Welke vervolgstappen raad je aan richting Week 5 (Regressie) en Week 7 (Scenario-analyse)?</label>
+                <textarea class="field-textarea" rows="4"></textarea>
+            </div>
+        </div>
+
+        <!-- Page Break -->
+        <div class="page-break"></div>
+
+        <div class="section">
+            <div class="section-title">6. Overall Assessment</div>
+
+            <div class="field-group">
+                <label class="field-label">Als je een Go/No-Go beslissing zou moeten nemen op basis van deze presentatie, wat zou je kiezen?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="radio" name="go-nogo" id="go" />
+                        <label for="go"><strong>GO</strong> - Ik zou investeren in dit traject / deze aanbeveling steunen</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" name="go-nogo" id="conditional" />
+                        <label for="conditional"><strong>CONDITIONAL GO</strong> - Alleen met aanpassingen/aanvullende analyses</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" name="go-nogo" id="nogo" />
+                        <label for="nogo"><strong>NO-GO</strong> - Onvoldoende basis voor een beslissing</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Toelichting op je Go/No-Go beslissing:</label>
+                <textarea class="field-textarea" rows="4"></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Aanvullende opmerkingen of complimenten:</label>
+                <textarea class="field-textarea" rows="4"></textarea>
+            </div>
+        </div>
+
+        <div class="signature-section">
+            <div class="section-title">Handtekening</div>
+            <p style="margin-bottom: 20px;">Dit feedback formulier wordt als cadeau aangeboden aan het management van de organisatie die het team analyseert.</p>
+
+            <div style="margin-top: 30px;">
+                <label class="field-label">Naam feedback team:</label>
+                <div class="signature-line"></div>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <label class="field-label">Datum:</label>
+                <div class="signature-line" style="width: 200px;"></div>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <label class="field-label">Handtekening teamvertegenwoordiger:</label>
+                <div class="signature-line"></div>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ccc; text-align: center; color: #666; font-size: 12px;">
+            <p>ECONAN - Economic Analysis | HAN University of Applied Sciences</p>
+            <p>Week 4 Checkpoint Stakeholder Feedback Form v1.0</p>
+        </div>
+    </div>
+</body>
+</html>
