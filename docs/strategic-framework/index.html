@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategisch Framework | ECONAN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/econan.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-main">
+        <div class="container">
+            <div class="nav-content">
+                <a class="nav-brand" href="../index.html">ECONAN</a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a class="nav-link" href="../index.html#overzicht">Overzicht</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sectoren/">Sectoren</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../rollen/">Rollen</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./">Strategisch Framework</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../weekplanning/">Planning</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../materiaal/">Materiaal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../assessment/">Assessment</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Strategisch Framework</h1>
+                    <p class="hero-subtitle">Van BEDROM naar ECONAN: Kwalitatief begrip → Kwantitatieve beslissingen</p>
+                    <p class="hero-description">
+                        Het ECONAN assessment volgt een strategische rode draad: IST Situatie bepalen → Marktdynamieken begrijpen → Groeistrategieën evalueren. Deze drie fases bouwen op elkaar voort en leiden tot data-gedreven strategische aanbevelingen.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Flow Overview -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">De Strategische Reis</h2>
+            <p class="section-subtitle">Drie opdrachten, één verhaal</p>
+
+            <!-- Timeline -->
+            <div style="margin: var(--space-12) 0;">
+                <div style="display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; justify-content: center;">
+                    <!-- Phase 1 -->
+                    <div class="card" style="flex: 1; min-width: 250px; border-left: 4px solid var(--color-primary-500);">
+                        <div class="card-body">
+                            <div style="font-size: var(--font-size-sm); color: var(--color-primary-600); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">Week 1-2</div>
+                            <h3 class="card-title" style="color: var(--color-primary-700);">1. IST Situatie</h3>
+                            <p class="card-text" style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Waar staan we?</p>
+                            <div style="background-color: var(--color-primary-50); padding: var(--space-3); border-radius: var(--radius-md);">
+                                <p style="margin: 0; font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold);">Opdracht 1: Kengetallen</p>
+                                <p style="margin: var(--space-2) 0 0 0; font-size: var(--font-size-sm);">Benchmark analyse van competitieve positie</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div style="font-size: var(--font-size-3xl); color: var(--color-primary-400);">→</div>
+
+                    <!-- Phase 2 -->
+                    <div class="card" style="flex: 1; min-width: 250px; border-left: 4px solid var(--color-info-500);">
+                        <div class="card-body">
+                            <div style="font-size: var(--font-size-sm); color: var(--color-info-600); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">Week 3-4</div>
+                            <h3 class="card-title" style="color: var(--color-info-700);">2. Marktdynamieken</h3>
+                            <p class="card-text" style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Wat drijft prestatie?</p>
+                            <div style="background-color: var(--color-info-50); padding: var(--space-3); border-radius: var(--radius-md);">
+                                <p style="margin: 0; font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold);">Opdracht 2: Regressie</p>
+                                <p style="margin: var(--space-2) 0 0 0; font-size: var(--font-size-sm);">Identificeer drivers van succes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div style="font-size: var(--font-size-3xl); color: var(--color-success-400);">→</div>
+
+                    <!-- Phase 3 -->
+                    <div class="card" style="flex: 1; min-width: 250px; border-left: 4px solid var(--color-success-600);">
+                        <div class="card-body">
+                            <div style="font-size: var(--font-size-sm); color: var(--color-success-600); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">Week 5-7</div>
+                            <h3 class="card-title" style="color: var(--color-success-700);">3. Groeistrategieën</h3>
+                            <p class="card-text" style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Welke strategie kiezen?</p>
+                            <div style="background-color: var(--color-success-50); padding: var(--space-3); border-radius: var(--radius-md);">
+                                <p style="margin: 0; font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold);">Opdracht 3: Scenario-analyse</p>
+                                <p style="margin: var(--space-2) 0 0 0; font-size: var(--font-size-sm);">Evalueer op winstsprong/groei/risico</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BEDROM to ECONAN Bridge -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Van BEDROM naar ECONAN</h2>
+            <p class="section-subtitle">De brug van kwalitatief naar kwantitatief</p>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="grid grid-2">
+                        <div>
+                            <h3 style="color: var(--color-primary-700); margin-top: 0;">BEDROM: Conceptueel Fundament</h3>
+                            <ul style="line-height: var(--line-height-relaxed);">
+                                <li><strong>Focus:</strong> Kwalitatief begrip van sectordynamiek</li>
+                                <li><strong>Methoden:</strong> SWOT, stakeholder mapping, business model canvas</li>
+                                <li><strong>Output:</strong> "ESG is belangrijk voor consumer sentiment"</li>
+                                <li><strong>Vragen:</strong> Waarom? Wie? Wat?</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 style="color: var(--color-success-700); margin-top: 0;">ECONAN: Kwantitatieve Validatie</h3>
+                            <ul style="line-height: var(--line-height-relaxed);">
+                                <li><strong>Focus:</strong> Data-gedreven besluitvorming</li>
+                                <li><strong>Methoden:</strong> CRISP-DM, regressie, scenario-analyse, DCF/DDM</li>
+                                <li><strong>Output:</strong> "30% hogere ESG scores → 8% hogere marge, NPV = €2.3M"</li>
+                                <li><strong>Vragen:</strong> Hoeveel? Wanneer? Welke trade-off?</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-accent-light); border-left: 4px solid var(--color-accent-yellow); border-radius: var(--radius-md);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold);">💡 De Brug</p>
+                        <p style="margin-top: var(--space-2); margin-bottom: 0;">
+                            ECONAN bouwt voort op je BEDROM kennis van de 8 sectoren. Je neemt dezelfde sector, maar nu met Euronext data van echte bedrijven. Het conceptuele begrip uit BEDROM wordt gekwantificeerd met harde cijfers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase 1: IST Situatie -->
+    <section class="section" id="ist-situatie">
+        <div class="container">
+            <h2 class="section-title">Fase 1: IST Situatie Bepalen</h2>
+            <p class="section-subtitle">Opdracht 1 - Kengetallen (Week 1-2, 30%)</p>
+
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-body">
+                    <h3 style="color: var(--color-primary-700);">Strategische Vraag</h3>
+                    <p style="font-size: var(--font-size-lg); font-style: italic; color: var(--color-gray-700);">
+                        "Waar staan we competitief gezien in onze sector op kritieke kentallen?"
+                    </p>
+
+                    <h3 style="margin-top: var(--space-8); color: var(--color-primary-700);">Aanpak</h3>
+                    <p>
+                        Teams voeren een <strong>benchmark analyse</strong> uit waarbij meerdere Euronext bedrijven in de gekozen sector worden vergeleken op branche-specifieke kentallen. Het doel is een statische snapshot van de huidige competitieve positie.
+                    </p>
+
+                    <h3 style="margin-top: var(--space-8); color: var(--color-primary-700);">Role Differentiation</h3>
+                    <div class="grid grid-2">
+                        <div class="card" style="background-color: var(--color-primary-50);">
+                            <div class="card-body">
+                                <h4 style="margin-top: 0; color: var(--color-primary-700);">👔 Senior: CFO (Chief Financial Officer)</h4>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);"><strong>Focus:</strong> Financiële analyse en strategische vraagformulering</p>
+                                <ul style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed);">
+                                    <li>Welke financiële kentallen zijn strategisch relevant voor onze competitieve positie?</li>
+                                    <li>Tegen welke concurrenten wil ik me meten? (selecteer 3-4 Euronext bedrijven)</li>
+                                    <li>Wat betekent "#2 in ROE" of "laagste leverage ratio" voor onze strategie?</li>
+                                    <li>Waar moet ik me zorgen over maken op basis van deze IST situatie?</li>
+                                </ul>
+                                <div style="margin-top: var(--space-4); padding: var(--space-3); background-color: white; border-radius: var(--radius-md); border-left: 3px solid var(--color-role-rvb);">
+                                    <p style="margin: 0; font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); color: var(--color-role-rvb);">🎯 Stakeholder Awareness</p>
+                                    <p style="margin-top: var(--space-2); margin-bottom: 0; font-size: var(--font-size-xs);">
+                                        Als CFO moet je anticiperen op vragen van de <strong>CEO</strong> ("Waarom staan we #3 in marge?") en <strong>externe stakeholders</strong> zoals aandeelhouders, banken, en RvC ("Is onze leverage ratio verantwoord?"). Bereid antwoorden voor op basis van de benchmark data.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card" style="background-color: var(--color-info-50);">
+                            <div class="card-body">
+                                <h4 style="margin-top: 0; color: var(--color-info-700);">📊 Junior Analyst</h4>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);"><strong>Focus:</strong> Data extractie en harmonisatie</p>
+                                <ul style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed);">
+                                    <li>Elk Junior analyseert 1 specifiek Euronext bedrijf</li>
+                                    <li>Harmonisatie: Alle Juniors gebruiken DEZELFDE kental definities</li>
+                                    <li>Methodologie keuze: AI-augmented (prompts) OF Conventional (Power BI/Python)</li>
+                                    <li>Creëer vergelijkbare visualisaties voor side-by-side analyse</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: var(--space-8); color: var(--color-primary-700);">Financial Statement Analysis Framework</h3>
+                    <p>
+                        Voor de IST situatie moeten teams een <strong>financial statement analyse</strong> maken. Dit geeft een volledig beeld van de financiële gezondheid en competitieve positie. De analyse omvat vijf categorieën kengetallen:
+                    </p>
+
+                    <!-- 5 Ratio Categories -->
+                    <div style="margin-top: var(--space-6); background-color: var(--color-gray-50); padding: var(--space-6); border-radius: var(--radius-md);">
+                        <h4 style="margin-top: 0; color: var(--color-primary-700);">Vijf Categorieën Kengetallen</h4>
+
+                        <div class="grid grid-2" style="gap: var(--space-4); margin-top: var(--space-4);">
+                            <!-- Liquiditeit -->
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-info-500);">
+                                <h5 style="margin-top: 0; color: var(--color-info-700);">💧 Liquiditeit</h5>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Kan het bedrijf op korte termijn aan verplichtingen voldoen?</p>
+                                <div style="font-family: var(--font-family-mono); font-size: var(--font-size-sm);">
+                                    <p style="margin: var(--space-2) 0;"><strong>Current Ratio</strong> = Vlottende Activa / Kortlopende Schulden</p>
+                                    <p style="margin: var(--space-2) 0;"><strong>Quick Ratio</strong> = (Vlottende Activa - Voorraad) / Kortlopende Schulden</p>
+                                </div>
+                                <p style="font-size: var(--font-size-xs); margin-top: var(--space-3); margin-bottom: 0; color: var(--color-gray-600);">
+                                    <em>Vuistregel: Current Ratio > 1.5, Quick Ratio > 1.0 is gezond</em>
+                                </p>
+                            </div>
+
+                            <!-- Financial Leverage -->
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-warning-600);">
+                                <h5 style="margin-top: 0; color: var(--color-warning-700);">⚖️ Financial Leverage</h5>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Hoe sterk leunt het bedrijf op vreemd vermogen?</p>
+                                <div style="font-family: var(--font-family-mono); font-size: var(--font-size-sm);">
+                                    <p style="margin: var(--space-2) 0;"><strong>Debt-Equity Ratio</strong> = Totale Schulden / Eigen Vermogen</p>
+                                    <p style="margin: var(--space-2) 0;"><strong>Equity Multiplier</strong> = Totale Activa / Eigen Vermogen</p>
+                                </div>
+                                <p style="font-size: var(--font-size-xs); margin-top: var(--space-3); margin-bottom: 0; color: var(--color-gray-600);">
+                                    <em>Hoger = meer risico, maar ook meer hefboom op rendement</em>
+                                </p>
+                            </div>
+
+                            <!-- Turnover (Efficiency) -->
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-success-500);">
+                                <h5 style="margin-top: 0; color: var(--color-success-700);">🔄 Turnover (Efficiëntie)</h5>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Hoe efficiënt worden activa ingezet voor omzet?</p>
+                                <div style="font-family: var(--font-family-mono); font-size: var(--font-size-sm);">
+                                    <p style="margin: var(--space-2) 0;"><strong>Asset Turnover</strong> = Omzet / Totale Activa</p>
+                                    <p style="margin: var(--space-2) 0;"><strong>Inventory Turnover</strong> = Kostprijs Omzet / Gemiddelde Voorraad</p>
+                                </div>
+                                <p style="font-size: var(--font-size-xs); margin-top: var(--space-3); margin-bottom: 0; color: var(--color-gray-600);">
+                                    <em>Hoger = meer omzet per euro geïnvesteerd kapitaal</em>
+                                </p>
+                            </div>
+
+                            <!-- Rendement (Profitability) -->
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary-500);">
+                                <h5 style="margin-top: 0; color: var(--color-primary-700);">💰 Rendement (Winstgevendheid)</h5>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Hoe winstgevend is het bedrijf?</p>
+                                <div style="font-family: var(--font-family-mono); font-size: var(--font-size-sm);">
+                                    <p style="margin: var(--space-2) 0;"><strong>ROE</strong> = Nettowinst / Eigen Vermogen</p>
+                                    <p style="margin: var(--space-2) 0;"><strong>Profit Margin</strong> = Nettowinst / Omzet</p>
+                                </div>
+                                <p style="font-size: var(--font-size-xs); margin-top: var(--space-3); margin-bottom: 0; color: var(--color-gray-600);">
+                                    <em>ROE is de ultieme maatstaf voor aandeelhouderswaarde</em>
+                                </p>
+                            </div>
+
+                            <!-- Markt (Market Value) -->
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-role-invest);">
+                                <h5 style="margin-top: 0; color: var(--color-role-invest);">📈 Markt (Market Value)</h5>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Hoe waardeert de markt het bedrijf?</p>
+                                <div style="font-family: var(--font-family-mono); font-size: var(--font-size-sm);">
+                                    <p style="margin: var(--space-2) 0;"><strong>P/E Ratio</strong> = Aandelenkoers / Winst per Aandeel</p>
+                                    <p style="margin: var(--space-2) 0;"><strong>Market-to-Book</strong> = Marktwaarde EV / Boekwaarde EV</p>
+                                </div>
+                                <p style="font-size: var(--font-size-xs); margin-top: var(--space-3); margin-bottom: 0; color: var(--color-gray-600);">
+                                    <em>Hoge P/E of M/B ratio = markt verwacht groei</em>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: var(--space-4); padding: var(--space-3); background-color: var(--color-accent-light); border-left: 4px solid var(--color-accent-yellow); border-radius: var(--radius-md);">
+                            <p style="margin: 0; font-size: var(--font-size-sm);">
+                                <strong>📚 Volledige lijst:</strong> Zie Hillier - Fundamentals of Corporate Finance (Hoofdstuk 3) voor alle 20+ ratio's met gedetailleerde uitleg en sector benchmarks.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- DuPont Identity -->
+                    <h3 style="margin-top: var(--space-10); color: var(--color-primary-700);">DuPont Identity: ROE Decomposition</h3>
+                    <p>
+                        De <strong>DuPont Identity</strong> is een krachtig framework om winstgevendheid te ontleden in drie strategische componenten. Het laat zien <em>hoe</em> een bedrijf zijn rendement behaalt:
+                    </p>
+
+                    <div style="margin-top: var(--space-4); background-color: var(--color-gray-50); padding: var(--space-6); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary-600);">
+                        <p style="text-align: center; font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin: 0 0 var(--space-4) 0; color: var(--color-primary-700);">
+                            ROE = Profit Margin × Asset Turnover × Equity Multiplier
+                        </p>
+                        <p style="text-align: center; font-family: var(--font-family-mono); font-size: var(--font-size-lg); margin: 0 0 var(--space-6) 0; color: var(--color-gray-700);">
+                            = (Nettowinst / Omzet) × (Omzet / Activa) × (Activa / Eigen Vermogen)
+                        </p>
+
+                        <div class="grid grid-3" style="gap: var(--space-4);">
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); text-align: center;">
+                                <p style="font-weight: var(--font-weight-bold); color: var(--color-primary-700); margin: 0 0 var(--space-2) 0; font-size: var(--font-size-lg);">1. Winstmarge</p>
+                                <p style="font-size: var(--font-size-sm); margin: 0; color: var(--color-gray-600);">Winstgevendheid van de <strong>omzet</strong></p>
+                                <p style="font-family: var(--font-family-mono); font-size: var(--font-size-sm); margin-top: var(--space-2); color: var(--color-primary-600);">Nettowinst / Omzet</p>
+                            </div>
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); text-align: center;">
+                                <p style="font-weight: var(--font-weight-bold); color: var(--color-info-700); margin: 0 0 var(--space-2) 0; font-size: var(--font-size-lg);">2. Asset Turnover</p>
+                                <p style="font-size: var(--font-size-sm); margin: 0; color: var(--color-gray-600);">Efficiëntie van <strong>activa</strong></p>
+                                <p style="font-family: var(--font-family-mono); font-size: var(--font-size-sm); margin-top: var(--space-2); color: var(--color-info-600);">Omzet / Activa</p>
+                            </div>
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); text-align: center;">
+                                <p style="font-weight: var(--font-weight-bold); color: var(--color-success-700); margin: 0 0 var(--space-2) 0; font-size: var(--font-size-lg);">3. Equity Multiplier</p>
+                                <p style="font-size: var(--font-size-sm); margin: 0; color: var(--color-gray-600);"><strong>Financierings</strong>structuur (leverage)</p>
+                                <p style="font-family: var(--font-family-mono); font-size: var(--font-size-sm); margin-top: var(--space-2); color: var(--color-success-600);">Activa / Eigen Vermogen</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-info-50); border-radius: var(--radius-md);">
+                            <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-info-700);">💡 Strategische Inzicht</p>
+                            <p style="margin-top: var(--space-2); margin-bottom: 0; font-size: var(--font-size-sm);">
+                                DuPont laat zien dat er <strong>drie wegen</strong> zijn naar hoog ROE: (1) Hoge winstmarges (premium pricing/kostenbeheersing), (2) Efficiënt activagebruik (lean operations), of (3) Financiële leverage (meer schuld). Elk sector kiest een eigen mix: retailers draaien op turnover, luxemerken op marge, banken op leverage.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Cash Flow Statement Analysis -->
+                    <h3 style="margin-top: var(--space-10); color: var(--color-primary-700);">Cash Flow Statement Analyse</h3>
+                    <p>
+                        Naast ratio's moeten teams de <strong>drie soorten cash flows</strong> uit de jaarrekening kunnen herkennen en interpreteren:
+                    </p>
+
+                    <div style="margin-top: var(--space-4); background-color: var(--color-gray-50); padding: var(--space-6); border-radius: var(--radius-md);">
+                        <div class="grid grid-3" style="gap: var(--space-4);">
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-success-600);">
+                                <h5 style="margin-top: 0; color: var(--color-success-700);">💚 Operating Cash Flow</h5>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Cash uit kernactiviteiten</p>
+                                <ul style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); margin: 0;">
+                                    <li>Verkopen aan klanten</li>
+                                    <li>Betalingen aan leveranciers</li>
+                                    <li>Salarissen, huur, etc.</li>
+                                </ul>
+                                <p style="font-size: var(--font-size-xs); margin-top: var(--space-3); margin-bottom: 0; font-style: italic; color: var(--color-success-700);">
+                                    <strong>Positief</strong> = Gezond bedrijf dat cash genereert
+                                </p>
+                            </div>
+
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-info-600);">
+                                <h5 style="margin-top: 0; color: var(--color-info-700);">🔵 Investing Cash Flow</h5>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Investeringen in de toekomst</p>
+                                <ul style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); margin: 0;">
+                                    <li>Koop/verkoop van activa</li>
+                                    <li>CapEx (machines, gebouwen)</li>
+                                    <li>Acquisities</li>
+                                </ul>
+                                <p style="font-size: var(--font-size-xs); margin-top: var(--space-3); margin-bottom: 0; font-style: italic; color: var(--color-info-700);">
+                                    <strong>Negatief</strong> = Investeren in groei (meestal goed)
+                                </p>
+                            </div>
+
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-warning-600);">
+                                <h5 style="margin-top: 0; color: var(--color-warning-700);">🟡 Financing Cash Flow</h5>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Transacties met financiers</p>
+                                <ul style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); margin: 0;">
+                                    <li>Leningen opnemen/aflossen</li>
+                                    <li>Aandelen uitgeven</li>
+                                    <li>Dividend uitkeren</li>
+                                </ul>
+                                <p style="font-size: var(--font-size-xs); margin-top: var(--space-3); margin-bottom: 0; font-style: italic; color: var(--color-warning-700);">
+                                    Toont kapitaalstructuur beslissingen
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: white; border-radius: var(--radius-md); border: 2px solid var(--color-primary-500);">
+                            <p style="margin: 0; font-family: var(--font-family-mono); font-size: var(--font-size-lg); font-weight: var(--font-weight-bold); text-align: center; color: var(--color-primary-700);">
+                                Net Cash Flow = Operating CF + Investing CF + Financing CF
+                            </p>
+                        </div>
+
+                        <div style="margin-top: var(--space-4); padding: var(--space-3); background-color: var(--color-accent-light); border-left: 4px solid var(--color-accent-yellow); border-radius: var(--radius-md);">
+                            <p style="margin: 0; font-size: var(--font-size-sm);">
+                                <strong>🎯 Student Taak:</strong> Extracteer deze drie cash flows uit de cash flow statement in de jaarrekening van je Euronext bedrijf. Vergelijk patronen: groeiende bedrijven hebben vaak negatieve Investing CF (investeren) maar sterke Operating CF.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- CFO Strategic Questions -->
+                    <h3 style="margin-top: var(--space-10); color: var(--color-primary-700);">CFO Strategische Vraagstelling</h3>
+                    <p>
+                        Als <strong>CFO</strong> analyseer je de benchmark data vanuit een financieel strategisch perspectief. Je stelt vragen die leiden tot actionable insights. Voorbeelden (sector-specifiek, zonder absolute bedragen):
+                    </p>
+
+                    <div style="margin-top: var(--space-4);">
+                        <div style="background-color: var(--color-primary-50); padding: var(--space-5); border-radius: var(--radius-md); border-left: 4px solid var(--color-role-rvb);">
+                            <h4 style="margin-top: 0; color: var(--color-role-rvb);">👔 CFO Analyse Vragen</h4>
+                            <ul style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); margin: 0;">
+                                <li><strong>Liquiditeit:</strong> "Met een current ratio van 1.2, kunnen we onze Q4 inventaris voorraad omzetten in cash bij plotselinge vraagdaling?"</li>
+                                <li><strong>Leverage:</strong> "Onze debt-equity ratio van 0.6 is onder sector gemiddelde (0.8) - lopen we groeikansen mis door te conservatief te financieren?"</li>
+                                <li><strong>DuPont:</strong> "Onze ROE van 14% komt vooral uit asset turnover (1.8x), niet uit marge (7%). Moeten we meer premium positionering overwegen?"</li>
+                                <li><strong>Cash Flow:</strong> "Operating CF is positief maar kleiner dan CapEx - hoe lang kunnen we deze groeifase zelf financieren?"</li>
+                                <li><strong>Efficiency:</strong> "Competitor B heeft 20% hogere inventory turnover - welke operational improvements kunnen we maken?"</li>
+                                <li><strong>Benchmark Positie:</strong> "We staan #2 in ROE maar #4 in profit margin - wat betekent dit voor onze strategie?"</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-top: var(--space-6); background-color: var(--color-gray-50); padding: var(--space-5); border-radius: var(--radius-md);">
+                            <h4 style="margin-top: 0; color: var(--color-primary-700);">Anticiperen op Stakeholder Vragen</h4>
+                            <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-4);">
+                                Als CFO moet je <strong>antwoorden voorbereiden</strong> op vragen van verschillende stakeholders. Denk na over hoe je de benchmark data zou gebruiken om deze vragen te beantwoorden:
+                            </p>
+
+                            <div style="display: grid; gap: var(--space-4);">
+                                <!-- CEO Questions -->
+                                <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 3px solid var(--color-primary-600);">
+                                    <p style="margin: 0; font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm); color: var(--color-primary-700);">💼 CEO Vragen</p>
+                                    <ul style="font-size: var(--font-size-sm); margin: var(--space-2) 0 0 0; line-height: var(--line-height-relaxed);">
+                                        <li>"Waarom staan we #3 in EBITDA margin terwijl we marktleider zijn in omzet?"</li>
+                                        <li>"Competitor A heeft 2x hogere ROE - wat doen zij anders?"</li>
+                                        <li>"Wat zijn onze belangrijkste financiële zwaktes die we moeten adresseren?"</li>
+                                    </ul>
+                                    <p style="margin-top: var(--space-3); margin-bottom: 0; font-size: var(--font-size-xs); font-style: italic; color: var(--color-gray-600);">
+                                        <strong>→ Koppeling naar Opdracht 3:</strong> De IST financiële baseline wordt gebruikt om te beoordelen welke groeistrategieën financieel haalbaar zijn (zie "Financiële Haalbaarheid Check" in Fase 3).
+                                    </p>
+                                </div>
+
+                                <!-- RvC Questions -->
+                                <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 3px solid var(--color-role-rvc);">
+                                    <p style="margin: 0; font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm); color: var(--color-role-rvc);">🎯 RvC (Supervisory Board) Vragen</p>
+                                    <ul style="font-size: var(--font-size-sm); margin: var(--space-2) 0 0 0; line-height: var(--line-height-relaxed);">
+                                        <li>"Welke component van DuPont (margin/turnover/leverage) biedt verbeterpotentieel zonder risico te verhogen?"</li>
+                                        <li>"Neemt management verantwoorde financiële risico's gegeven onze leverage positie?"</li>
+                                        <li>"ROE is hoger dan peers - komt dit uit operationele excellence of uit meer leverage?"</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Aandeelhouders Questions -->
+                                <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 3px solid var(--color-role-invest);">
+                                    <p style="margin: 0; font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm); color: var(--color-role-invest);">💰 Aandeelhouders / Investeerders Vragen</p>
+                                    <ul style="font-size: var(--font-size-sm); margin: var(--space-2) 0 0 0; line-height: var(--line-height-relaxed);">
+                                        <li>"Onze P/E ratio is 22 vs. sector gemiddelde 15 - rechtvaardigt de groeiprognose deze premium?"</li>
+                                        <li>"Asset turnover is lager dan peers - welk operationeel verbeterplan heeft management?"</li>
+                                        <li>"Operating CF / Net Income ratio van 1.3 - hoe duurzaam is deze cash generatie?"</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Banken / Kredietverschaffers Questions -->
+                                <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 3px solid var(--color-warning-600);">
+                                    <p style="margin: 0; font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm); color: var(--color-warning-700);">🏦 Banken / Kredietverschaffers Vragen</p>
+                                    <ul style="font-size: var(--font-size-sm); margin: var(--space-2) 0 0 0; line-height: var(--line-height-relaxed);">
+                                        <li>"Quick ratio is 0.8 - kunnen jullie aan kortlopende verplichtingen voldoen bij vraagschok?"</li>
+                                        <li>"Debt-to-assets ratio nadert 65% - past dit binnen jullie covenant agreements?"</li>
+                                        <li>"Times Interest Earned is gedaald - blijft schuldbediening haalbaar?"</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: var(--space-4); padding: var(--space-3); background-color: var(--color-accent-light); border-left: 4px solid var(--color-accent-yellow); border-radius: var(--radius-md);">
+                                <p style="margin: 0; font-size: var(--font-size-sm);">
+                                    <strong>💡 CFO Tip:</strong> Gebruik de benchmark data om <strong>proactief verhalen te construeren</strong>. Bijvoorbeeld: "We staan #2 in ROE door sterke asset turnover (1.8x vs sector 1.5x), wat onze lean operations strategie bevestigt. Onze lagere leverage (0.6 vs sector 0.9) geeft ons ruimte voor strategische acquisities."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI vs Conventional Comparison -->
+                    <h3 style="margin-top: var(--space-10); color: var(--color-primary-700);">Methodologie: AI vs Conventional Tools</h3>
+                    <p>
+                        Financial statement analyse kan via <strong>beide paden</strong>. Beide leveren dezelfde strategische output, maar met verschillende tools:
+                    </p>
+
+                    <table class="table" style="margin-top: var(--space-4);">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">Analyse Stap</th>
+                                <th style="width: 37.5%;">AI-Augmented Path</th>
+                                <th style="width: 37.5%;">Conventional Tools Path</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1. Data Extractie</strong></td>
+                                <td style="font-size: var(--font-size-sm);">
+                                    <strong>Prompt:</strong> "Extract total assets, current liabilities, total equity, net income, and revenue from [Company X] 2023 annual report PDF"
+                                </td>
+                                <td style="font-size: var(--font-size-sm);">
+                                    <strong>Python pandas:</strong> Read annual report PDF/Excel → Parse balance sheet en income statement met regex/tables<br>
+                                    <strong>Power BI:</strong> Connect to PDF data source → Extract tables
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>2. Ratio Berekening</strong></td>
+                                <td style="font-size: var(--font-size-sm);">
+                                    <strong>Prompt:</strong> "Calculate Current Ratio, ROE, Debt-Equity ratio, Asset Turnover using the extracted data. Show formulas and results."
+                                </td>
+                                <td style="font-size: var(--font-size-sm);">
+                                    <strong>Excel:</strong> Formulas zoals <code>=B10/B15</code> (Current Ratio)<br>
+                                    <strong>Python:</strong> <code>df['ROE'] = df['Net_Income'] / df['Equity']</code><br>
+                                    <strong>Power BI:</strong> DAX measures voor berekeningen
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>3. DuPont Analyse</strong></td>
+                                <td style="font-size: var(--font-size-sm);">
+                                    <strong>Prompt:</strong> "Decompose ROE using DuPont Identity. Show profit margin, asset turnover, and equity multiplier components. Which drives ROE most?"
+                                </td>
+                                <td style="font-size: var(--font-size-sm);">
+                                    <strong>Excel:</strong> Separate columns voor 3 componenten → Multiply → Waterfall chart<br>
+                                    <strong>Python:</strong> Calculate components → Matplotlib visualization
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>4. Cash Flow Extractie</strong></td>
+                                <td style="font-size: var(--font-size-sm);">
+                                    <strong>Prompt:</strong> "From the cash flow statement, extract Operating CF, Investing CF, and Financing CF. Calculate Net CF."
+                                </td>
+                                <td style="font-size: var(--font-size-sm);">
+                                    <strong>Excel:</strong> Manual input from jaarrekening → SUM formulas<br>
+                                    <strong>Python:</strong> Parse cash flow statement table → Extract values
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>5. Benchmark Vergelijking</strong></td>
+                                <td style="font-size: var(--font-size-sm);">
+                                    <strong>Prompt:</strong> "Compare these ratios to [Company Y and Z]. Rank the three companies on ROE, Current Ratio, and Debt-Equity. Create comparison table."
+                                </td>
+                                <td style="font-size: var(--font-size-sm);">
+                                    <strong>Excel:</strong> Pivot table met 3 bedrijven × 5 ratio categories<br>
+                                    <strong>Power BI:</strong> Matrix visual met conditional formatting
+                                </td>
+                            </tr>
+                            <tr style="background-color: var(--color-warning-50);">
+                                <td><strong>Assessment Focus</strong></td>
+                                <td style="font-size: var(--font-size-sm);">
+                                    <strong>Prompt kwaliteit:</strong> Specifieke formules vragen, validatie van AI output tegen jaarrekening, kritisch interpreteren van resultaten
+                                </td>
+                                <td style="font-size: var(--font-size-sm);">
+                                    <strong>Technische correctheid:</strong> Juiste formules, schone data pipeline, professionele visualisaties, reproduceerbare code
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Junior Harmonization Protocol -->
+                    <h3 style="margin-top: var(--space-10); color: var(--color-primary-700);">Junior Harmonisatie Protocol</h3>
+                    <p>
+                        Omdat elke Junior een ander Euronext bedrijf analyseert, is <strong>harmonisatie cruciaal</strong> voor vergelijkbare benchmark output. Week 1 kick-off proces:
+                    </p>
+
+                    <div style="margin-top: var(--space-4); background-color: var(--color-info-50); padding: var(--space-6); border-radius: var(--radius-md); border-left: 4px solid var(--color-info-600);">
+                        <ol style="line-height: var(--line-height-relaxed); margin: 0;">
+                            <li style="margin-bottom: var(--space-4);">
+                                <strong>Week 1 Maandag:</strong> Team kick-off meeting
+                                <ul style="margin-top: var(--space-2); font-size: var(--font-size-sm);">
+                                    <li>Seniors kiezen 3-4 Euronext bedrijven in de sector</li>
+                                    <li>Juniors claimen elk 1 bedrijf</li>
+                                    <li><strong>Agree op EXACTE ratio definities</strong> (bijv. "ROE = Net Income / Shareholders' Equity, NOT Total Equity")</li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: var(--space-4);">
+                                <strong>Template Sharing:</strong> Eén Junior maakt template (Excel/Power BI/Python script), anderen kopieëren
+                                <ul style="margin-top: var(--space-2); font-size: var(--font-size-sm);">
+                                    <li>AI path: Share prompt templates met placeholders voor company name</li>
+                                    <li>Conventional: Share Excel met formulas, Python notebook template, of Power BI .pbix file</li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: var(--space-4);">
+                                <strong>Data Source Akkoord:</strong> Welke jaarrekening periode? (Bijv. FY 2023 Q4 annual reports)
+                                <ul style="margin-top: var(--space-2); font-size: var(--font-size-sm);">
+                                    <li>Alle Juniors gebruiken ZELFDE fiscal year voor vergelijkbaarheid</li>
+                                    <li>Check of alle bedrijven publieke jaarrekeningen hebben (Euronext vereiste)</li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: var(--space-4);">
+                                <strong>Peer Review:</strong> Week 1 Vrijdag - Juniors reviewen elkaars eerste resultaten
+                                <ul style="margin-top: var(--space-2); font-size: var(--font-size-sm);">
+                                    <li>Cross-check: "Jouw Current Ratio lijkt erg hoog/laag - heb je dezelfde formule gebruikt?"</li>
+                                    <li>Sanity check sector averages: "Alle drie bedrijven hebben ROE > 25% - klopt dit voor onze sector?"</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Gestandaardiseerde Output:</strong> Iedereen levert dezelfde format
+                                <ul style="margin-top: var(--space-2); font-size: var(--font-size-sm);">
+                                    <li>Tabel met 5 categorieën × 2 key ratios = 10 rijen per bedrijf</li>
+                                    <li>DuPont breakdown (3 componenten)</li>
+                                    <li>Cash flow triplet (Operating/Investing/Financing)</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div style="margin-top: var(--space-6); background-color: var(--color-warning-50); padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-warning-600);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-warning-700);">⚠️ Waarom Harmonisatie Kritiek Is</p>
+                        <p style="margin-top: var(--space-2); margin-bottom: 0; font-size: var(--font-size-sm);">
+                            Zonder harmonisatie vergelijk je appels met peren: Junior A gebruikt "Total Equity", Junior B "Shareholders' Equity", Junior C "Common Equity" → resultaten niet vergelijkbaar → Senior kan geen conclusies trekken → assignment faalt. Investeer tijd in Week 1 alignment!
+                        </p>
+                    </div>
+
+                    <!-- Data Sources: Valid & Reliable -->
+                    <h3 style="margin-top: var(--space-10); color: var(--color-primary-700);">Valide Databronnen voor Euronext Bedrijven</h3>
+                    <p>
+                        <strong>Kritiek voor betrouwbaarheid:</strong> Analisten moeten zich baseren op <strong>officiële, geverifieerde bronnen</strong>. Aangezien jullie werken met beursgenoteerde Euronext bedrijven, zijn alle relevante data publiek beschikbaar via gereguleerde rapportages.
+                    </p>
+
+                    <div style="margin-top: var(--space-4); background-color: var(--color-gray-50); padding: var(--space-6); border-radius: var(--radius-md);">
+                        <h4 style="margin-top: 0; color: var(--color-primary-700);">Primaire Bronnen (Verplicht)</h4>
+
+                        <div style="margin-top: var(--space-4);">
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-success-600); margin-bottom: var(--space-4);">
+                                <h5 style="margin-top: 0; color: var(--color-success-700);">📄 Officiële Jaarverslagen & Jaarrekeningen</h5>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">
+                                    <strong>Wat:</strong> Annual Reports, Financial Statements (Balance Sheet, Income Statement, Cash Flow Statement), Notes to Accounts
+                                </p>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">
+                                    <strong>Waar te vinden:</strong>
+                                </p>
+                                <ul style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); margin: 0;">
+                                    <li>Bedrijfswebsite → Investor Relations sectie</li>
+                                    <li>Euronext website → Company page → Financial reports</li>
+                                    <li>AFAIK search tool (voor Nederlandse bedrijven)</li>
+                                </ul>
+                                <p style="font-size: var(--font-size-xs); margin-top: var(--space-3); margin-bottom: 0; font-style: italic; color: var(--color-success-700);">
+                                    <strong>Waarom primair?</strong> Dit zijn geauditeerde documenten die wettelijk verplicht zijn voor beursgenoteerde bedrijven. Feitelijke cijfers die je kunt verifiëren.
+                                </p>
+                            </div>
+
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-info-600);">
+                                <h5 style="margin-top: 0; color: var(--color-info-700);">📊 Financiële Marktdata Platforms</h5>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">
+                                    <strong>Voor:</strong> Real-time koersen, P/E ratios, Market Cap, historische prijzen, key metrics
+                                </p>
+                                <div style="display: grid; gap: var(--space-3); margin-top: var(--space-3);">
+                                    <div>
+                                        <p style="margin: 0; font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm);">Yahoo Finance</p>
+                                        <p style="margin: var(--space-1) 0 0 0; font-size: var(--font-size-xs); font-family: var(--font-family-mono); color: var(--color-gray-600);">
+                                            finance.yahoo.com → Search [TICKER.AS] (Amsterdam) of [TICKER.PA] (Parijs)
+                                        </p>
+                                        <p style="margin: var(--space-1) 0 0 0; font-size: var(--font-size-xs); color: var(--color-gray-600);">
+                                            Gratis, eenvoudig, toont Key Statistics, Financials, Historical Data
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p style="margin: 0; font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm);">Google Finance</p>
+                                        <p style="margin: var(--space-1) 0 0 0; font-size: var(--font-size-xs); font-family: var(--font-family-mono); color: var(--color-gray-600);">
+                                            google.com/finance → Search company name of ticker
+                                        </p>
+                                        <p style="margin: var(--space-1) 0 0 0; font-size: var(--font-size-xs); color: var(--color-gray-600);">
+                                            Snelle overview van key metrics en nieuwsfeeds
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p style="margin: 0; font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm);">Reuters Markets</p>
+                                        <p style="margin: var(--space-1) 0 0 0; font-size: var(--font-size-xs); font-family: var(--font-family-mono); color: var(--color-gray-600);">
+                                            reuters.com/markets/companies/[TICKER]/key-metrics
+                                        </p>
+                                        <p style="margin: var(--space-1) 0 0 0; font-size: var(--font-size-xs); color: var(--color-gray-600);">
+                                            Voorbeeld: <a href="https://www.reuters.com/markets/companies/MSFT.O/key-metrics/financial-strength" target="_blank" style="color: var(--color-primary-600);">reuters.com/markets/companies/MSFT.O/key-metrics/financial-strength</a>
+                                        </p>
+                                        <p style="margin: var(--space-1) 0 0 0; font-size: var(--font-size-xs); color: var(--color-gray-600);">
+                                            Diepgaande key metrics: Financial Strength, Profitability, Valuation
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p style="margin: 0; font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm);">Euronext Website</p>
+                                        <p style="margin: var(--space-1) 0 0 0; font-size: var(--font-size-xs); font-family: var(--font-family-mono); color: var(--color-gray-600);">
+                                            euronext.com → Markets → Equities → [Company page]
+                                        </p>
+                                        <p style="margin: var(--space-1) 0 0 0; font-size: var(--font-size-xs); color: var(--color-gray-600);">
+                                            Officiële beursdata, direct van de bron
+                                        </p>
+                                    </div>
+                                </div>
+                                <p style="font-size: var(--font-size-xs); margin-top: var(--space-3); margin-bottom: 0; font-style: italic; color: var(--color-info-700);">
+                                    <strong>Tip:</strong> Gebruik deze platforms voor snelle marktdata en ratio's, maar <strong>cross-check altijd met jaarrekening</strong> bij afwijkingen.
+                                </p>
+                            </div>
+                        </div>
+
+                        <h4 style="margin-top: var(--space-6); color: var(--color-primary-700);">Wat NIET te Gebruiken</h4>
+                        <div style="background-color: var(--color-error-50); padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-error-600); margin-top: var(--space-3);">
+                            <ul style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); margin: 0;">
+                                <li><strong>❌ Wikipedia, blogs, nieuwsartikelen</strong> - Niet geverifieerd, vaak verouderd, geen primaire bron</li>
+                                <li><strong>❌ Social media posts, forums (Reddit, X)</strong> - Onbetrouwbaar, geen audit trail</li>
+                                <li><strong>❌ AI-gegenereerde "schattingen"</strong> zonder bronvermelding - Valideer ALTIJD AI output tegen officiële cijfers</li>
+                                <li><strong>❌ Slide decks, presentaties</strong> zonder link naar jaarrekening - Mogelijk verouderd of selectief</li>
+                            </ul>
+                        </div>
+
+                        <h4 style="margin-top: var(--space-6); color: var(--color-primary-700);">Best Practices voor Data Validatie</h4>
+                        <div style="background-color: var(--color-accent-light); padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-yellow); margin-top: var(--space-3);">
+                            <ol style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); margin: 0;">
+                                <li style="margin-bottom: var(--space-2);">
+                                    <strong>Bronvermelding:</strong> Vermeld ALTIJD de bron + datum in je analyse
+                                    <div style="font-family: var(--font-family-mono); font-size: var(--font-size-xs); margin-top: var(--space-1); color: var(--color-gray-700);">
+                                        Voorbeeld: "ROE 14.2% (Bron: ASML Annual Report 2023, p. 42)"
+                                    </div>
+                                </li>
+                                <li style="margin-bottom: var(--space-2);">
+                                    <strong>Cross-validation:</strong> Als Yahoo Finance en jaarrekening verschillende ROE tonen → gebruik jaarrekening, noteer afwijking
+                                </li>
+                                <li style="margin-bottom: var(--space-2);">
+                                    <strong>Fiscal year alignment:</strong> Check of alle bronnen dezelfde periode gebruiken (FY 2023 = Jan-Dec 2023 OF fiscal year ending date)
+                                </li>
+                                <li style="margin-bottom: var(--space-2);">
+                                    <strong>AI-augmented validatie:</strong> Als je AI gebruikt voor data extractie, <strong>screenshot de relevante jaarrekening pagina</strong> en valideer AI output
+                                </li>
+                                <li>
+                                    <strong>Peer review:</strong> Laat een teamgenoot je bronnen checken voor Opdracht 1 inlevering
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-primary-50); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary-600);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-primary-700);">✅ Voorbeeld van Correcte Bronvermelding</p>
+                        <div style="margin-top: var(--space-3); padding: var(--space-3); background-color: white; border-radius: var(--radius-md); font-family: var(--font-family-mono); font-size: var(--font-size-xs);">
+                            <p style="margin: 0;"><strong>Bedrijf A - ASML Holding N.V. (ASML.AS)</strong></p>
+                            <p style="margin: var(--space-2) 0 0 0;">Current Ratio: 1.8 (Bron: ASML Annual Report 2023, Balance Sheet p. 42)</p>
+                            <p style="margin: var(--space-1) 0 0 0;">ROE: 14.2% (Berekening: Net Income €7.2B / Shareholders' Equity €50.7B, ibid. p. 42, 44)</p>
+                            <p style="margin: var(--space-1) 0 0 0;">P/E Ratio: 18.5 (Bron: Yahoo Finance, 15 Jan 2024, finance.yahoo.com/quote/ASML.AS)</p>
+                            <p style="margin: var(--space-2) 0 0 0; font-style: italic; color: var(--color-gray-600);">Validatie: ROE cross-check met Reuters (18.2%) → kleine afwijking door rounding, acceptabel.</p>
+                        </div>
+                    </div>
+
+                    <!-- Complete IST Analysis Example -->
+                    <h3 style="margin-top: var(--space-10); color: var(--color-primary-700);">Volledig IST Analyse Voorbeeld</h3>
+                    <p>
+                        Samengevat voorbeeld: Retail sector (Sustainable Fashion) - hoe financial statement analyse integreert in de benchmark:
+                    </p>
+
+                    <div style="background-color: var(--color-gray-50); padding: var(--space-6); border-radius: var(--radius-md); font-family: var(--font-family-mono); font-size: var(--font-size-sm);">
+                        <p style="margin: 0 0 var(--space-4) 0; font-weight: var(--font-weight-semibold); font-size: var(--font-size-base);">Retail Sector - Sustainable Fashion Benchmark (Financial Focus)</p>
+
+                        <table style="width: 100%; font-size: var(--font-size-sm); border-collapse: collapse;">
+                            <thead>
+                                <tr style="border-bottom: 2px solid var(--color-gray-400);">
+                                    <th style="text-align: left; padding: var(--space-2); background-color: var(--color-gray-100);">Kental / Ratio</th>
+                                    <th style="text-align: right; padding: var(--space-2); background-color: var(--color-gray-100);">Bedrijf A</th>
+                                    <th style="text-align: right; padding: var(--space-2); background-color: var(--color-gray-100);">Bedrijf B</th>
+                                    <th style="text-align: right; padding: var(--space-2); background-color: var(--color-gray-100);">Bedrijf C</th>
+                                    <th style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-100);">Sector Avg</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Liquiditeit -->
+                                <tr style="background-color: var(--color-info-50);">
+                                    <td colspan="5" style="padding: var(--space-2); font-weight: var(--font-weight-semibold);">💧 Liquiditeit</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">Current Ratio</td>
+                                    <td style="text-align: right; padding: var(--space-2);">1.8</td>
+                                    <td style="text-align: right; padding: var(--space-2);">2.1</td>
+                                    <td style="text-align: right; padding: var(--space-2);">1.4</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-50);">1.8</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">Quick Ratio</td>
+                                    <td style="text-align: right; padding: var(--space-2);">0.9</td>
+                                    <td style="text-align: right; padding: var(--space-2);">1.2</td>
+                                    <td style="text-align: right; padding: var(--space-2);">0.7</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-50);">0.9</td>
+                                </tr>
+                                <!-- Leverage -->
+                                <tr style="background-color: var(--color-warning-50);">
+                                    <td colspan="5" style="padding: var(--space-2); font-weight: var(--font-weight-semibold);">⚖️ Financial Leverage</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">Debt-Equity Ratio</td>
+                                    <td style="text-align: right; padding: var(--space-2);">0.6</td>
+                                    <td style="text-align: right; padding: var(--space-2);">0.8</td>
+                                    <td style="text-align: right; padding: var(--space-2);">1.2</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-50);">0.9</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">Equity Multiplier</td>
+                                    <td style="text-align: right; padding: var(--space-2);">1.6</td>
+                                    <td style="text-align: right; padding: var(--space-2);">1.8</td>
+                                    <td style="text-align: right; padding: var(--space-2);">2.2</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-50);">1.9</td>
+                                </tr>
+                                <!-- Turnover -->
+                                <tr style="background-color: var(--color-success-50);">
+                                    <td colspan="5" style="padding: var(--space-2); font-weight: var(--font-weight-semibold);">🔄 Turnover (Efficiëntie)</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">Asset Turnover</td>
+                                    <td style="text-align: right; padding: var(--space-2);">1.8</td>
+                                    <td style="text-align: right; padding: var(--space-2);">1.5</td>
+                                    <td style="text-align: right; padding: var(--space-2);">2.2</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-50);">1.8</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">Inventory Turnover</td>
+                                    <td style="text-align: right; padding: var(--space-2);">6.5</td>
+                                    <td style="text-align: right; padding: var(--space-2);">5.8</td>
+                                    <td style="text-align: right; padding: var(--space-2);">8.2</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-50);">6.8</td>
+                                </tr>
+                                <!-- Rendement -->
+                                <tr style="background-color: var(--color-primary-50);">
+                                    <td colspan="5" style="padding: var(--space-2); font-weight: var(--font-weight-semibold);">💰 Rendement</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">ROE (%)</td>
+                                    <td style="text-align: right; padding: var(--space-2);">14.2</td>
+                                    <td style="text-align: right; padding: var(--space-2);">16.8</td>
+                                    <td style="text-align: right; padding: var(--space-2);">12.1</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-100);">14.4</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">Profit Margin (%)</td>
+                                    <td style="text-align: right; padding: var(--space-2);">7.3</td>
+                                    <td style="text-align: right; padding: var(--space-2);">8.9</td>
+                                    <td style="text-align: right; padding: var(--space-2);">5.2</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-100);">7.1</td>
+                                </tr>
+                                <!-- Markt -->
+                                <tr style="background-color: #f0fdf4;">
+                                    <td colspan="5" style="padding: var(--space-2); font-weight: var(--font-weight-semibold);">📈 Markt</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">P/E Ratio</td>
+                                    <td style="text-align: right; padding: var(--space-2);">18.5</td>
+                                    <td style="text-align: right; padding: var(--space-2);">22.3</td>
+                                    <td style="text-align: right; padding: var(--space-2);">14.7</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-50);">18.5</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">Market-to-Book</td>
+                                    <td style="text-align: right; padding: var(--space-2);">2.6</td>
+                                    <td style="text-align: right; padding: var(--space-2);">3.7</td>
+                                    <td style="text-align: right; padding: var(--space-2);">1.8</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-50);">2.7</td>
+                                </tr>
+                                <!-- DuPont -->
+                                <tr style="background-color: var(--color-gray-200);">
+                                    <td colspan="5" style="padding: var(--space-2); font-weight: var(--font-weight-bold);">🔍 DuPont Decomposition (ROE)</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">1. Profit Margin (%)</td>
+                                    <td style="text-align: right; padding: var(--space-2);">7.3</td>
+                                    <td style="text-align: right; padding: var(--space-2);">8.9</td>
+                                    <td style="text-align: right; padding: var(--space-2);">5.2</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-50);">7.1</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">2. Asset Turnover</td>
+                                    <td style="text-align: right; padding: var(--space-2);">1.8</td>
+                                    <td style="text-align: right; padding: var(--space-2);">1.5</td>
+                                    <td style="text-align: right; padding: var(--space-2);">2.2</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-50);">1.8</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">3. Equity Multiplier</td>
+                                    <td style="text-align: right; padding: var(--space-2);">1.6</td>
+                                    <td style="text-align: right; padding: var(--space-2);">1.8</td>
+                                    <td style="text-align: right; padding: var(--space-2);">2.2</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-50);">1.9</td>
+                                </tr>
+                                <tr style="background-color: var(--color-primary-100); font-weight: var(--font-weight-bold);">
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">ROE (calculated)</td>
+                                    <td style="text-align: right; padding: var(--space-2);">21.0%</td>
+                                    <td style="text-align: right; padding: var(--space-2);">24.0%</td>
+                                    <td style="text-align: right; padding: var(--space-2);">25.2%</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-200);">23.4%</td>
+                                </tr>
+                                <!-- Cash Flow -->
+                                <tr style="background-color: var(--color-gray-200);">
+                                    <td colspan="5" style="padding: var(--space-2); font-weight: var(--font-weight-bold);">💵 Cash Flow (relatief t.o.v. Omzet, %)</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">Operating CF / Revenue (%)</td>
+                                    <td style="text-align: right; padding: var(--space-2);">+12.5</td>
+                                    <td style="text-align: right; padding: var(--space-2);">+14.8</td>
+                                    <td style="text-align: right; padding: var(--space-2);">+9.2</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-50);">+12.2</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">Investing CF / Revenue (%)</td>
+                                    <td style="text-align: right; padding: var(--space-2);">-5.2</td>
+                                    <td style="text-align: right; padding: var(--space-2);">-8.1</td>
+                                    <td style="text-align: right; padding: var(--space-2);">-3.5</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-50);">-5.6</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-2); padding-left: var(--space-4);">Financing CF / Revenue (%)</td>
+                                    <td style="text-align: right; padding: var(--space-2);">-3.8</td>
+                                    <td style="text-align: right; padding: var(--space-2);">-2.5</td>
+                                    <td style="text-align: right; padding: var(--space-2);">-4.1</td>
+                                    <td style="text-align: right; padding: var(--space-2); background-color: var(--color-primary-50);">-3.5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="margin-top: var(--space-6); padding: var(--space-5); background-color: white; border-radius: var(--radius-md); border: 2px solid var(--color-primary-500);">
+                            <p style="margin: 0 0 var(--space-3) 0; font-weight: var(--font-weight-bold); color: var(--color-primary-700); font-size: var(--font-size-base);">Senior Conclusie (CFO Perspectief):</p>
+                            <p style="margin: 0; font-size: var(--font-size-sm); line-height: var(--line-height-relaxed);">
+                                <strong>Competitieve Positie:</strong> We (Bedrijf A) zijn #2 in ROE (14.2%) en hebben de <strong>meest conservatieve financiële structuur</strong> (Debt-Equity 0.6 vs sector 0.9). Onze DuPont analyse toont dat we draaien op <strong>hoge asset turnover</strong> (1.8x) maar <strong>lagere margin</strong> (7.3%) dan Bedrijf B (8.9%).<br><br>
+
+                                <strong>Strategische Vraag:</strong> Bedrijf B heeft hogere ROE (16.8%) door betere marges EN meer leverage. Moeten we (1) investeren in premium positionering om marges te verhogen, of (2) meer leverage nemen om growth te accelereren?<br><br>
+
+                                <strong>Cash Flow Perspectief:</strong> Onze Operating CF (12.5% van revenue) is gezond, en we investeren matig (Investing CF -5.2%). We hebben ruimte voor groei-investeringen zonder liquiditeitsproblemen (Current Ratio 1.8).<br><br>
+
+                                <strong>Aanbeveling voor Fase 2:</strong> Onderzoek via regressie of hogere ESG scores correleren met hogere marges in onze sector. Als ja → investeer in sustainable line voor margin upside zonder leverage risico.
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: var(--space-8); color: var(--color-primary-700);">Voorbeeld Output</h3>
+                    <div style="background-color: var(--color-gray-50); padding: var(--space-4); border-radius: var(--radius-md); font-family: var(--font-family-mono); font-size: var(--font-size-sm);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold);">Retail Sector - Sustainable Fashion Benchmark</p>
+                        <table style="width: 100%; margin-top: var(--space-4); font-size: var(--font-size-sm);">
+                            <tr style="border-bottom: 1px solid var(--color-gray-300);">
+                                <th style="text-align: left; padding: var(--space-2);">Kental</th>
+                                <th style="text-align: right; padding: var(--space-2);">Bedrijf A</th>
+                                <th style="text-align: right; padding: var(--space-2);">Bedrijf B</th>
+                                <th style="text-align: right; padding: var(--space-2);">Bedrijf C</th>
+                                <th style="text-align: right; padding: var(--space-2);">Sector Avg</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: var(--space-2);">EBITDA margin (%)</td>
+                                <td style="text-align: right; padding: var(--space-2);">12.3</td>
+                                <td style="text-align: right; padding: var(--space-2);">15.7</td>
+                                <td style="text-align: right; padding: var(--space-2);">10.1</td>
+                                <td style="text-align: right; padding: var(--space-2);">12.7</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: var(--space-2);">ESG Score (0-100)</td>
+                                <td style="text-align: right; padding: var(--space-2);">68</td>
+                                <td style="text-align: right; padding: var(--space-2);">72</td>
+                                <td style="text-align: right; padding: var(--space-2);">45</td>
+                                <td style="text-align: right; padding: var(--space-2);">61.7</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: var(--space-2);">Online sales % omzet</td>
+                                <td style="text-align: right; padding: var(--space-2);">35</td>
+                                <td style="text-align: right; padding: var(--space-2);">28</td>
+                                <td style="text-align: right; padding: var(--space-2);">42</td>
+                                <td style="text-align: right; padding: var(--space-2);">35</td>
+                            </tr>
+                        </table>
+                        <p style="margin-top: var(--space-4); margin-bottom: 0;"><strong>Senior Conclusie:</strong> "We staan #2 in ESG, maar achterlopen in EBITDA margin. Moeten we investeren in operational efficiency of ESG verder verhogen?"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase 2: Marktdynamieken -->
+    <section class="section section-alt" id="marktdynamieken">
+        <div class="container">
+            <h2 class="section-title">Fase 2: Marktdynamieken Begrijpen</h2>
+            <p class="section-subtitle">Opdracht 2 - Lineaire Regressie (Week 3-4, 30%)</p>
+
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-body">
+                    <h3 style="color: var(--color-info-700);">Strategische Vraag</h3>
+                    <p style="font-size: var(--font-size-lg); font-style: italic; color: var(--color-gray-700);">
+                        "Welke factoren drijven prestatie in onze sector? Wat is de ROI van investering X?"
+                    </p>
+
+                    <h3 style="margin-top: var(--space-8); color: var(--color-info-700);">Aanpak</h3>
+                    <p>
+                        Teams onderzoeken <strong>causale relaties</strong> via regressie analyse. Het doel is begrijpen welke variabelen (marketing spend, ESG score, R&D investment) invloed hebben op outcome variabelen (omzet, marge, brand value). Dit helpt voorspellen wat de impact is van strategische keuzes.
+                    </p>
+
+                    <h3 style="margin-top: var(--space-8); color: var(--color-info-700);">Role Differentiation</h3>
+                    <div class="grid grid-2">
+                        <div class="card" style="background-color: var(--color-primary-50);">
+                            <div class="card-body">
+                                <h4 style="margin-top: 0; color: var(--color-primary-700);">👔 Senior Stakeholder</h4>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);"><strong>Focus:</strong> Hypothese formulering en business interpretatie</p>
+                                <ul style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed);">
+                                    <li>Formuleer hypothese: "Ik verwacht dat X invloed heeft op Y"</li>
+                                    <li>Interpreteer regressie output in business termen</li>
+                                    <li>"Voor elke €1M extra marketing spend zien we €2.5M extra omzet (R²=0.73)"</li>
+                                    <li>Vertaal naar strategische actie: "We moeten marketing budget verhogen"</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="card" style="background-color: var(--color-info-50);">
+                            <div class="card-body">
+                                <h4 style="margin-top: 0; color: var(--color-info-700);">📊 Junior Analyst</h4>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);"><strong>Focus:</strong> Regressie uitvoering en validatie</p>
+                                <ul style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed);">
+                                    <li>Voer regressie uit op eigen bedrijf data</li>
+                                    <li>Check assumptions: linearity, homoscedasticity, normality</li>
+                                    <li>Rapporteer coefficients, R², p-values</li>
+                                    <li>Cross-company check: "Zien andere Juniors dezelfde pattern?"</li>
+                                    <li><strong>AI path:</strong> Prompts voor regression + interpretation</li>
+                                    <li><strong>Conventional:</strong> Python statsmodels/sklearn, Power BI analytics</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: var(--space-8); color: var(--color-info-700);">Voorbeeld Output</h3>
+                    <div style="background-color: var(--color-gray-50); padding: var(--space-4); border-radius: var(--radius-md); font-family: var(--font-family-mono); font-size: var(--font-size-sm);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold);">Regressie: Marketing Spend → Omzet</p>
+                        <p style="margin-top: var(--space-3);">Model: Omzet = β₀ + β₁ * Marketing_Spend + ε</p>
+                        <table style="width: 100%; margin-top: var(--space-4); font-size: var(--font-size-sm);">
+                            <tr style="border-bottom: 1px solid var(--color-gray-300);">
+                                <th style="text-align: left; padding: var(--space-2);">Parameter</th>
+                                <th style="text-align: right; padding: var(--space-2);">Waarde</th>
+                                <th style="text-align: right; padding: var(--space-2);">Interpretatie</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: var(--space-2);">Intercept (β₀)</td>
+                                <td style="text-align: right; padding: var(--space-2);">€125M</td>
+                                <td style="padding: var(--space-2);">Base omzet zonder marketing</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: var(--space-2);">Coefficient (β₁)</td>
+                                <td style="text-align: right; padding: var(--space-2);">2.47</td>
+                                <td style="padding: var(--space-2);">Elke €1M marketing → €2.47M omzet</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: var(--space-2);">R²</td>
+                                <td style="text-align: right; padding: var(--space-2);">0.73</td>
+                                <td style="padding: var(--space-2);">73% variance verklaard</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: var(--space-2);">p-value</td>
+                                <td style="text-align: right; padding: var(--space-2);">< 0.001</td>
+                                <td style="padding: var(--space-2);">Statistisch significant</td>
+                            </tr>
+                        </table>
+                        <p style="margin-top: var(--space-4); margin-bottom: 0;"><strong>Senior Conclusie:</strong> "Marketing ROI is 2.47x → We verhogen budget met €10M, verwacht revenue impact = +€24.7M"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase 3: Groeistrategieën -->
+    <section class="section" id="groeistrategie">
+        <div class="container">
+            <h2 class="section-title">Fase 3: Groeistrategieën Evalueren</h2>
+            <p class="section-subtitle">Opdracht 3 - Scenario-analyse (Week 5-7, 40%)</p>
+
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-body">
+                    <h3 style="color: var(--color-success-700);">Strategische Vraag</h3>
+                    <p style="font-size: var(--font-size-lg); font-style: italic; color: var(--color-gray-700);">
+                        "Welke groeistrategie creëert de meeste waarde? Wat zijn de trade-offs tussen winstsprong, groei en risico?"
+                    </p>
+
+                    <h3 style="margin-top: var(--space-8); color: var(--color-success-700);">Aanpak</h3>
+                    <p>
+                        Teams evalueren 2-3 strategische groei-opties (bijv. duurzame productlijn lanceren vs. internationale expansie) op drie waardefactoren:
+                    </p>
+                    <div class="grid grid-3" style="margin-top: var(--space-4);">
+                        <div class="card" style="border-left: 4px solid var(--color-accent-yellow);">
+                            <div class="card-body">
+                                <h4 style="margin-top: 0;">💰 Winstsprong</h4>
+                                <p style="font-size: var(--font-size-sm);">Eenmalige profit jump in jaar 1. Hoeveel extra winst levert de strategie direct op?</p>
+                            </div>
+                        </div>
+                        <div class="card" style="border-left: 4px solid var(--color-success-500);">
+                            <div class="card-body">
+                                <h4 style="margin-top: 0;">📈 Groei</h4>
+                                <p style="font-size: var(--font-size-sm);">Duurzaam groeipercentage (jaren 2+). Wat is de long-term impact op revenue/profit growth?</p>
+                            </div>
+                        </div>
+                        <div class="card" style="border-left: 4px solid var(--color-error-500);">
+                            <div class="card-body">
+                                <h4 style="margin-top: 0;">⚠️ Risico</h4>
+                                <p style="font-size: var(--font-size-sm);">Onzekerheid en gevoeligheid. Hoe volatiel zijn de outcomes bij verschillende aannames?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: var(--space-8); color: var(--color-success-700);">DDM Conceptueel Framework</h3>
+                    <div style="background-color: var(--color-gray-50); padding: var(--space-6); border-radius: var(--radius-md); border-left: 4px solid var(--color-success-600);">
+                        <p style="margin: 0 0 var(--space-4) 0; font-weight: var(--font-weight-semibold);">Dividend Discount Model als Strategic Valuation Tool</p>
+                        <p style="margin-bottom: var(--space-4);">
+                            Het DDM (een special case van DCF met constante groei) biedt een conceptueel raamwerk om strategieën te evalueren op waardecreatie:
+                        </p>
+                        <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); font-family: var(--font-family-mono); margin-bottom: var(--space-4);">
+                            <p style="margin: 0; text-align: center; font-size: var(--font-size-lg);">Intrinsieke Waarde = D₁ / (r - g)</p>
+                        </div>
+                        <div class="grid grid-3">
+                            <div>
+                                <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-accent-orange);">D₁ = Winstsprong</p>
+                                <p style="margin: var(--space-2) 0 0 0; font-size: var(--font-size-sm);">Jaar 1 dividend/profit jump uit de strategie</p>
+                            </div>
+                            <div>
+                                <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-success-600);">g = Groei</p>
+                                <p style="margin: var(--space-2) 0 0 0; font-size: var(--font-size-sm);">Duurzame groeipercentage vanaf jaar 2</p>
+                            </div>
+                            <div>
+                                <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-error-600);">r = Risico</p>
+                                <p style="margin: var(--space-2) 0 0 0; font-size: var(--font-size-sm);">Required return (hoger bij meer risico)</p>
+                            </div>
+                        </div>
+                        <p style="margin-top: var(--space-4); margin-bottom: 0; font-size: var(--font-size-sm); font-style: italic;">
+                            <strong>Note:</strong> We gebruiken DDM conceptueel, niet als exacte formule. Het doel is trade-offs zichtbaar maken: hoge winstsprong vs. hoge groei vs. laag risico.
+                        </p>
+                    </div>
+
+                    <h3 style="margin-top: var(--space-8); color: var(--color-success-700);">Role Differentiation</h3>
+                    <div class="grid grid-2">
+                        <div class="card" style="background-color: var(--color-primary-50);">
+                            <div class="card-body">
+                                <h4 style="margin-top: 0; color: var(--color-primary-700);">👔 Senior: CFO</h4>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);"><strong>Focus:</strong> Strategische evaluatie met financiële haalbaarheid</p>
+                                <ul style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed);">
+                                    <li>Definieer 2-3 groeistrategieën (A vs B vs C)</li>
+                                    <li>Evalueer elk op winstsprong/groei/risico</li>
+                                    <li><strong>Check financiële haalbaarheid</strong> tegen IST situatie (Opdracht 1)</li>
+                                    <li>Pas DDM-thinking toe: "Welke strategie maximaliseert shareholder value?"</li>
+                                    <li>Bepaal financieringsstrategie: eigen vermogen, schuld, of hybride?</li>
+                                    <li>Identificeer welke stakeholders betrokken moeten worden</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="card" style="background-color: var(--color-info-50);">
+                            <div class="card-body">
+                                <h4 style="margin-top: 0; color: var(--color-info-700);">📊 Junior Analyst</h4>
+                                <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);"><strong>Focus:</strong> Scenario modeling en gevoeligheidsanalyse</p>
+                                <ul style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed);">
+                                    <li>Bouw scenario-modellen voor elke strategie</li>
+                                    <li>3 scenarios per strategie: Best case, Base case, Worst case</li>
+                                    <li>Sensitivity analysis: Wat als aannames ±20% afwijken?</li>
+                                    <li>Benchmark: "Wat gebeurde toen concurrent X dit probeerde?"</li>
+                                    <li><strong>AI path:</strong> Prompts voor scenario modeling + sensitivity</li>
+                                    <li><strong>Conventional:</strong> Excel scenario manager, Power BI parameters, Python simulations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financial Feasibility Check -->
+                    <h3 style="margin-top: var(--space-10); color: var(--color-success-700);">Financiële Haalbaarheid Check</h3>
+                    <p>
+                        <strong>De cirkel sluiten:</strong> Als CFO gebruik je de IST financiële baseline (Opdracht 1) om te beoordelen of de groeistrategieën <em>financieel haalbaar</em> zijn. Dit is een kritieke stap die vaak over het hoofd wordt gezien.
+                    </p>
+
+                    <div style="margin-top: var(--space-4); background-color: var(--color-gray-50); padding: var(--space-6); border-radius: var(--radius-md);">
+                        <h4 style="margin-top: 0; color: var(--color-primary-700);">CFO Vraagstelling per Groeistrategie</h4>
+
+                        <div style="margin-top: var(--space-4); background-color: white; padding: var(--space-5); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary-600);">
+                            <p style="margin: 0 0 var(--space-3) 0; font-weight: var(--font-weight-semibold); color: var(--color-primary-700);">🔍 Centrale Vraag</p>
+                            <p style="margin: 0; font-size: var(--font-size-lg); font-style: italic; color: var(--color-gray-700);">
+                                "Kunnen we deze groeistrategie financieren <strong>zonder</strong> kapitaalronde, gegeven onze huidige financiële positie?"
+                            </p>
+                        </div>
+
+                        <h5 style="margin-top: var(--space-6); color: var(--color-primary-700);">Financiële Haalbaarheid Analyse (4 stappen)</h5>
+
+                        <div style="display: grid; gap: var(--space-4); margin-top: var(--space-4);">
+                            <!-- Stap 1 -->
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-info-600);">
+                                <p style="margin: 0; font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm); color: var(--color-info-700);">1️⃣ Investerings behoefte schatten</p>
+                                <p style="margin: var(--space-2) 0 0 0; font-size: var(--font-size-sm);">
+                                    <strong>Vraag:</strong> Hoeveel kapitaal kost deze strategie in jaar 1? (CapEx, marketing, R&D, working capital)
+                                </p>
+                                <p style="margin: var(--space-2) 0 0 0; font-size: var(--font-size-xs); font-family: var(--font-family-mono); color: var(--color-gray-700);">
+                                    Voorbeeld: "Sustainable Line vereist €8M investering (€5M nieuwe productiefaciliteit + €3M marketing)"
+                                </p>
+                            </div>
+
+                            <!-- Stap 2 -->
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-success-600);">
+                                <p style="margin: 0; font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm); color: var(--color-success-700);">2️⃣ Beschikbare financieringscapaciteit (uit IST Opdracht 1)</p>
+                                <p style="margin: var(--space-2) 0 var(--space-2) 0; font-size: var(--font-size-sm);">
+                                    <strong>Check je IST benchmark data:</strong>
+                                </p>
+                                <ul style="margin: 0; font-size: var(--font-size-sm); line-height: var(--line-height-relaxed);">
+                                    <li><strong>Operating CF:</strong> "We genereren €15M operating cash flow per jaar - kunnen we hieruit investeren?"</li>
+                                    <li><strong>Liquiditeit:</strong> "Current ratio 1.8, cash reserves €12M - voldoende buffer?"</li>
+                                    <li><strong>Leverage ruimte:</strong> "Debt-Equity ratio 0.6 vs sector 0.9 - kunnen we €10M extra schuld opnemen?"</li>
+                                </ul>
+                            </div>
+
+                            <!-- Stap 3 -->
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-warning-600);">
+                                <p style="margin: 0; font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm); color: var(--color-warning-700);">3️⃣ Financieringsstrategie bepalen</p>
+                                <p style="margin: var(--space-2) 0 var(--space-2) 0; font-size: var(--font-size-sm);">
+                                    <strong>Drie opties (of combinatie):</strong>
+                                </p>
+                                <div style="display: grid; gap: var(--space-2);">
+                                    <div style="padding: var(--space-2); background-color: var(--color-gray-50); border-radius: var(--radius-sm);">
+                                        <p style="margin: 0; font-size: var(--font-size-sm);"><strong>A. Interne financiering</strong> - Gebruik operating CF + cash reserves</p>
+                                        <p style="margin: var(--space-1) 0 0 0; font-size: var(--font-size-xs); color: var(--color-gray-600);">
+                                            Pro: Geen dilutie, geen rente | Con: Lagere liquiditeit buffer
+                                        </p>
+                                    </div>
+                                    <div style="padding: var(--space-2); background-color: var(--color-gray-50); border-radius: var(--radius-sm);">
+                                        <p style="margin: 0; font-size: var(--font-size-sm);"><strong>B. Schuld opnemen</strong> - Bank lening / obligaties</p>
+                                        <p style="margin: var(--space-1) 0 0 0; font-size: var(--font-size-xs); color: var(--color-gray-600);">
+                                            Pro: Tax shield, geen dilutie | Con: Hogere leverage ratio, covenant risk
+                                        </p>
+                                    </div>
+                                    <div style="padding: var(--space-2); background-color: var(--color-gray-50); border-radius: var(--radius-sm);">
+                                        <p style="margin: 0; font-size: var(--font-size-sm);"><strong>C. Kapitaalronde</strong> - Nieuwe aandelen uitgeven</p>
+                                        <p style="margin: var(--space-1) 0 0 0; font-size: var(--font-size-xs); color: var(--color-gray-600);">
+                                            Pro: Balans versterking | Con: Aandeelhouders dilutie, signaling effect
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stap 4 -->
+                            <div style="background-color: white; padding: var(--space-4); border-radius: var(--radius-md); border-left: 4px solid var(--color-role-rvb);">
+                                <p style="margin: 0; font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm); color: var(--color-role-rvb);">4️⃣ Stakeholder mapping & communicatie</p>
+                                <p style="margin: var(--space-2) 0 var(--space-2) 0; font-size: var(--font-size-sm);">
+                                    <strong>Wie moet je overtuigen? (Afhankelijk van financieringskeuze)</strong>
+                                </p>
+                                <ul style="margin: 0; font-size: var(--font-size-sm); line-height: var(--line-height-relaxed);">
+                                    <li><strong>CEO & RvB:</strong> Strategische fit en ROI business case presenteren</li>
+                                    <li><strong>RvC:</strong> Risk governance - is leverage ratio acceptabel? Zijn scenario's realistisch?</li>
+                                    <li><strong>Banken:</strong> (bij schuld) Covenant compliance, debt servicing capacity, collateral</li>
+                                    <li><strong>Aandeelhouders:</strong> (bij kapitaalronde) Waarom is dilutie gerechtvaardigd? Wat is de verwachte ROI?</li>
+                                    <li><strong>CFO zelf bepaalt:</strong> Welk C-suite member heeft de lead in stakeholder gesprekken?</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-accent-light); border-left: 4px solid var(--color-accent-yellow); border-radius: var(--radius-md);">
+                            <p style="margin: 0; font-weight: var(--font-weight-semibold);">💡 Voorbeeld: Sluitende Cirkel IST → Groeistrategie</p>
+                            <p style="margin-top: var(--space-2); margin-bottom: 0; font-size: var(--font-size-sm);">
+                                <strong>IST (Opdracht 1):</strong> "We hebben debt-equity 0.6 (sector 0.9), operating CF €15M/jaar, cash reserves €12M."<br>
+                                <strong>Groeistrategie (Opdracht 3):</strong> "Sustainable Line kost €8M. We financieren €5M uit cash + €3M extra schuld (brengt D/E naar 0.7, nog steeds onder sector). CEO en CFO overtuigen RvC + bank. Geen kapitaalronde nodig."<br>
+                                <strong>Conclusie:</strong> "Strategie A is <em>financieel haalbaar</em> zonder aandeelhouders te verdunnen. De IST sterke liquiditeit (current ratio 1.8) geeft ons de ruimte."
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: var(--space-8); color: var(--color-success-700);">Voorbeeld Decision Matrix</h3>
+                    <div style="background-color: var(--color-gray-50); padding: var(--space-4); border-radius: var(--radius-md); font-family: var(--font-family-mono); font-size: var(--font-size-sm);">
+                        <p style="margin: 0 0 var(--space-4) 0; font-weight: var(--font-weight-semibold);">Retail: Sustainable Fashion Line vs. China Expansie</p>
+                        <table style="width: 100%; font-size: var(--font-size-sm);">
+                            <tr style="border-bottom: 2px solid var(--color-gray-400);">
+                                <th style="text-align: left; padding: var(--space-2);">Strategie</th>
+                                <th style="text-align: center; padding: var(--space-2);">Winstsprong (D₁)</th>
+                                <th style="text-align: center; padding: var(--space-2);">Groei (g)</th>
+                                <th style="text-align: center; padding: var(--space-2);">Risico (r)</th>
+                                <th style="text-align: center; padding: var(--space-2);">Waarde Range</th>
+                            </tr>
+                            <tr style="background-color: var(--color-success-50);">
+                                <td style="padding: var(--space-2); font-weight: var(--font-weight-semibold);">A: Sustainable Line</td>
+                                <td style="text-align: center; padding: var(--space-2);">+€5M</td>
+                                <td style="text-align: center; padding: var(--space-2);">+2%</td>
+                                <td style="text-align: center; padding: var(--space-2);">Low (8-10%)</td>
+                                <td style="text-align: center; padding: var(--space-2);">€83M - €125M</td>
+                            </tr>
+                            <tr style="background-color: var(--color-warning-50);">
+                                <td style="padding: var(--space-2); font-weight: var(--font-weight-semibold);">B: China Expansie</td>
+                                <td style="text-align: center; padding: var(--space-2);">+€10M</td>
+                                <td style="text-align: center; padding: var(--space-2);">+5%</td>
+                                <td style="text-align: center; padding: var(--space-2);">High (10-15%)</td>
+                                <td style="text-align: center; padding: var(--space-2);">€67M - €200M</td>
+                            </tr>
+                        </table>
+                        <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: white; border-radius: var(--radius-md);">
+                            <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-primary-700);">Senior Beslissing (CFO Perspectief):</p>
+                            <p style="margin-top: var(--space-2); margin-bottom: 0;">
+                                "Strategie A heeft lagere upside maar voorspelbare waardecreatie (€83-125M tight range). Strategie B heeft hoger potentieel maar grote onzekerheid (€67-200M breed range). Gegeven onze huidige balans en risico-appetijt adviseer ik <strong>Strategie A</strong>: stabiele ROI, past bij ESG profiel, minder regulatory risk."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integration: How Roles Work Together -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Samenwerking: Seniors en Juniors</h2>
+            <p class="section-subtitle">Hoe rollen samenwerken door de drie fases</p>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="grid grid-3">
+                        <div>
+                            <h4 style="color: var(--color-primary-600);">Fase 1: IST</h4>
+                            <ol style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed);">
+                                <li>Senior: "Welke kentallen zijn relevant?"</li>
+                                <li>Juniors: Harmoniseer KPI definities</li>
+                                <li>Juniors: Voer benchmark uit (elk 1 bedrijf)</li>
+                                <li>Team: Vergelijk resultaten side-by-side</li>
+                                <li>Senior: "We zijn #2 in margin, #4 in ESG"</li>
+                            </ol>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--color-info-600);">Fase 2: Dynamieken</h4>
+                            <ol style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed);">
+                                <li>Senior: "Ik denk X drijft Y"</li>
+                                <li>Juniors: Run regressies per bedrijf</li>
+                                <li>Team: Check consistentie over bedrijven</li>
+                                <li>Senior: "Data bevestigt: €1M marketing → €2.5M revenue"</li>
+                                <li>Senior: "Dus we verhogen marketing budget"</li>
+                            </ol>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--color-success-600);">Fase 3: Groeistrategieën</h4>
+                            <ol style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed);">
+                                <li>Senior: "Vergelijk strategie A vs B"</li>
+                                <li>Juniors: Model scenarios per strategie</li>
+                                <li>Juniors: "Wat deed concurrent bij vergelijkbare move?"</li>
+                                <li>Senior: Apply DDM - evalueer op winstsprong/groei/risico</li>
+                                <li>Team: Presenteer aanbeveling aan "klant" (Week 7)</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: var(--space-8); padding: var(--space-4); background-color: var(--color-primary-50); border-left: 4px solid var(--color-primary-500); border-radius: var(--radius-md);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-primary-700);">🎯 Het Resultaat</p>
+                        <p style="margin-top: var(--space-2); margin-bottom: 0;">
+                            Week 7 eindpresentatie bevat een compleet strategisch verhaal: "We staan #2 in de sector (IST), marketing is onze grootste driver (Dynamieken), dus we investeren €10M extra in digital marketing want dat creëert €25M waarde met laag risico (Groeistrategie)."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Agnostic -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Methodologie Keuze: AI-Augmented vs. Conventional</h2>
+            <p class="section-subtitle">Beide paden kunnen het framework volledig uitvoeren</p>
+
+            <div class="card">
+                <div class="card-body">
+                    <p style="margin-bottom: var(--space-6);">
+                        Het strategische framework (IST → Dynamieken → Groeistrategieën) is <strong>methodologie-agnostisch</strong>.
+                        Juniors kiezen hun pad, maar beide moeten dezelfde strategische outputs leveren.
+                    </p>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Fase</th>
+                                <th>AI-Augmented Path</th>
+                                <th>Conventional Tools Path</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>IST (Kengetallen)</strong></td>
+                                <td>Prompts: "Extract KPIs from annual report", "Calculate EBITDA margin"</td>
+                                <td>Power BI dashboards, Python pandas voor data extraction</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dynamieken (Regressie)</strong></td>
+                                <td>Prompts: "Perform regression analysis on X and Y, interpret coefficients"</td>
+                                <td>Python statsmodels/sklearn, Power BI Analytics, R lm()</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Groeistrategieën (Scenario)</strong></td>
+                                <td>Prompts: "Model 3 scenarios for strategy X with assumptions Y, Z"</td>
+                                <td>Excel Scenario Manager, Power BI what-if parameters, Python simulations</td>
+                            </tr>
+                            <tr style="background-color: var(--color-warning-50);">
+                                <td><strong>Assessment Focus</strong></td>
+                                <td>Kwaliteit van prompts, kritische validatie van AI output</td>
+                                <td>Technische correctheid van code, data visualisaties</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-accent-light); border-left: 4px solid var(--color-accent-yellow); border-radius: var(--radius-md);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold);">⚖️ Gelijkwaardigheid</p>
+                        <p style="margin-top: var(--space-2); margin-bottom: 0;">
+                            De officiële assessment criteria (A-D) beoordelen <strong>business outcomes</strong>, niet tools. "Begrijp je de sector?" en "Maak je goede strategische aanbevelingen?" is identiek voor beide paden.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Zie Ook</h2>
+
+            <div class="grid grid-3">
+                <a href="../assessment/" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">📋 Assessment Criteria</h3>
+                        <p class="card-text">Officiële beoordelingsrichtlijnen per opdracht (A-D criteria)</p>
+                    </div>
+                </a>
+                <a href="../rollen/" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">👥 Rollen</h3>
+                        <p class="card-text">Begrijp je rol als Senior Stakeholder of Junior Analyst</p>
+                    </div>
+                </a>
+                <a href="../weekplanning/" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">📅 Weekplanning</h3>
+                        <p class="card-text">Timeline en deadlines voor de drie opdrachten</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">ECONAN - Economische Analyse | HAN Bedrijfskunde | C-Cluster</p>
+                <p class="footer-tagline">Purpose • Autonomy • Mastery</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/navigation.js"></script>
+</body>
+</html>
