@@ -238,7 +238,7 @@ Maar we beoordelen BEIDE teams op:
 **CA**: Laten we een **praktische weekplanning** ontwerpen, gebaseerd op deze principes:
 
 **WEEK 1 - IDENTITY & MISSION**
-- **Purpose**: "Wie ben je als Junior Business Analyst? Wat is jouw missie?"
+- **Purpose**: "Wie ben je als Junior Analist? Wat is jouw missie?"
 - **Activiteit**:
   - Introductie van echte opdrachtgevers (5 organisaties pitchen hun vraagstuk - 10 min each)
   - Teams vormen zich rondom vraagstukken waar ze PURPOSE in zien
@@ -310,7 +310,7 @@ We maken glashelder:
 - Niveau "Analyseren" = maximaal cijfer 8.5
 - Niveau "Evalueren/Creëren" = mogelijk cijfer 9-10
 
-En we leggen uit WAAROM: "In het bedrijfsleven wordt een Junior Business Analyst betaald om te ANALYSEREN, niet alleen te beschrijven."
+En we leggen uit WAAROM: "In het bedrijfsleven wordt een Junior Analist betaald om te ANALYSEREN, niet alleen te beschrijven."
 
 Nu is de keuze bij de student: "Wil ik een 6 met minimale moeite, of wil ik een 8+ met stretch?"
 
@@ -385,7 +385,7 @@ Als de module echt "onvergetelijk" was, dan zien we:
 - **Of**: Zorg dat opdrachtgevers fysiek aanwezig zijn in Week 1 en Week 7
 
 **Hypothese 2: Studenten zien het verband niet met hun carrière**
-- **Test**: Voeg toe: "Guest speakers" - alumni die nu Business Analyst zijn en vertellen hoe ze deze skills gebruiken
+- **Test**: Voeg toe: "Guest speakers" - alumni die nu Analist zijn en vertellen hoe ze deze skills gebruiken
 - **Of**: Start met "Why this matters" video van een professional
 
 **Hypothese 3: Te veel focus op tools, te weinig op impact**
@@ -698,7 +698,7 @@ Of in de drie dimensies:
 **PURPOSE (5/5)**:
 - Echte opdrachtgevers met échte dilemma's
 - Impact op mensen, organisaties, maatschappij
-- "Ik ben een Business Analyst" (identity) vs "Ik leer data analyse" (task)
+- "Ik ben een Analist" (identity) vs "Ik leer data analyse" (task)
 
 **AUTONOMY (5/5)**:
 - Keuze in: opdracht, team, tools, aanpak, tempo
@@ -834,7 +834,7 @@ Getekend,
 
 | **OUD (Extrinsiek)**  | **NIEUW (Intrinsiek)** |
 |----------------------|------------------------|
-| "Leer data analyse voor je toekomst" | "Jij bent Junior Business Analyst die een organisatie helpt" |
+| "Leer data analyse voor je toekomst" | "Jij bent Junior Analist die een organisatie helpt" |
 | Verplichte teams, tools, methoden | Keuze binnen structuur: jij bepaalt hoe |
 | Iedereen dezelfde opdrachten | Jij kiest je niveau: Foundation / Analytical / Advanced |
 | Cijfer gebaseerd op eindproduct | Cijfer gebaseerd op groei + impact |

@@ -8,7 +8,7 @@
 
 ## Introductie
 
-Als Business Analyst die het **AI-Augmented Path** kiest, gebruik je AI assistants (zoals ChatGPT, Claude, of andere LLMs) om je door de CRISP-DM systematiek te leiden. Deze templates helpen je **effectieve prompts** te schrijven voor elke fase.
+Als Analist die het **AI-Augmented Path** kiest, gebruik je AI assistants (zoals ChatGPT, Claude, of andere LLMs) om je door de CRISP-DM systematiek te leiden. Deze templates helpen je **effectieve prompts** te schrijven voor elke fase.
 
 ### Belangrijke Principes
 
@@ -28,7 +28,7 @@ Vertaal de strategische vraag van je Senior stakeholder naar concrete data-analy
 
 ```
 [CONTEXT]
-Ik ben Junior Business Analyst voor [SECTOR] bedrijf. Mijn Senior stakeholder ([ROL: CEO/CFO/etc.])
+Ik ben Junior Analist voor [SECTOR] bedrijf. Mijn Senior stakeholder ([ROL: CEO/CFO/etc.])
 heeft de volgende strategische vraag:
 
 "[STRATEGISCHE VRAAG VAN SENIOR]"
@@ -643,7 +643,7 @@ Geef geen directe antwoorden, alleen vragen.
 
 ### ❌ Pitfall 1: "AI als Oracle"
 **Probleem**: Blindelings vertrouwen op AI output zonder validatie
-**Oplossing**: Treat AI als business analyst - check everything!
+**Oplossing**: Treat AI als analist - check everything!
 
 ### ❌ Pitfall 2: "Garbage In, Garbage Out"
 **Probleem**: Vage prompts leiden tot vage antwoorden

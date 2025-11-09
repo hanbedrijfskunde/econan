@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-Het ECONAN module herontwerp is succesvol afgerond met de implementatie van een **hybride model** dat studenten maximale autonomie geeft terwijl Purpose en Mastery behouden blijven. De kern innovatie: **role-based team structure** (Senior stakeholders vs. Business analysts) gecombineerd met **methodology autonomy** (AI-augmented vs. Conventional tools).
+Het ECONAN module herontwerp is succesvol afgerond met de implementatie van een **hybride model** dat studenten maximale autonomie geeft terwijl Purpose en Mastery behouden blijven. De kern innovatie: **role-based team structure** (Senior stakeholders vs. Analists) gecombineerd met **methodology autonomy** (AI-augmented vs. Conventional tools).
 
 ### Key Deliverables Created
 
@@ -31,8 +31,8 @@ Het ECONAN module herontwerp is succesvol afgerond met de implementatie van een 
 
 **New LRD v3.0 Concept** (hybride model):
 - ✅ **Simulatie met strategische vraagstukken** uit BEDROM sectoren
-- ✅ **Role-based teams**: 1-2 Seniors (CEO/CFO/RvC) + 2-3 Business Analysts (Analysts)
-- ✅ **Dual methodology**: AI-augmented OF Conventional tools (keuze voor Business Analysts)
+- ✅ **Role-based teams**: 1-2 Seniors (CEO/CFO/RvC) + 2-3 Analists (Analysts)
+- ✅ **Dual methodology**: AI-augmented OF Conventional tools (keuze voor Analists)
 - ✅ **Work within existing A-D criteria** maar prepare E-F-G als optionele extensie
 - ✅ **BEDROM integration**: Leverage student prior knowledge from previous module
 
@@ -65,13 +65,13 @@ Het ECONAN module herontwerp is succesvol afgerond met de implementatie van een 
 ### Section 2.5: Role-Based Team Structure Requirements (NEW)
 
 **LR-R1 through LR-R8** define:
-- Team composition: 4-5 studenten, 1-2 Seniors + 2-3 Business Analysts
+- Team composition: 4-5 studenten, 1-2 Seniors + 2-3 Analists
 - Role responsibilities:
   - **Seniors**: Strategic question formulation, steer analysts, make decisions, lead presentation
-  - **Business Analysts**: CRISP-DM execution, methodology choice (AI/Conventional), analysis delivery
+  - **Analists**: CRISP-DM execution, methodology choice (AI/Conventional), analysis delivery
 - Role-based assessment differentiation:
   - Seniors: zwaarder op Criterium A (Business Understanding) & E (Purpose)
-  - Business Analysts: zwaarder op Criteria B-C-D (technical execution) & G (Mastery)
+  - Analists: zwaarder op Criteria B-C-D (technical execution) & G (Mastery)
 - Real-world simulation fidelity (CEO/CFO/RvC roles uit rollen.md)
 
 **Impact**: Studenten kunnen kiezen: "Wil ik strategisch leren (Senior) of technisch leren (Junior)?"
@@ -94,8 +94,8 @@ All weekly plans updated to include:
 ### Assessment Updates (Section 4)
 
 **LR-AC1**: CRISP-DM criteria now **methodology-agnostic** and **role-differentiated**
-- Criterium A: 60% weging Seniors, 40% Business Analysts
-- Criteria B-C: 80% weging Business Analysts, 20% Seniors
+- Criterium A: 60% weging Seniors, 40% Analists
+- Criteria B-C: 80% weging Analists, 20% Seniors
 - Criterium D: Equal weging (joint responsibility)
 
 **LR-AC2**: PAM criteria E-F-G updated with role and methodology differentiation
@@ -348,7 +348,7 @@ For pilot (Semester 1):
 - ≥70% studenten score ≥4/5 op alle 3 PAM dimensies
 - Docent werkdruk ≤120% van huidige situatie
 - Beide methodologies (AI + Conventional) equally represented (geen bias)
-- Role distribution: ~40% Seniors, ~60% Business Analysts
+- Role distribution: ~40% Seniors, ~60% Analists
 
 **Data Collection**:
 - Pulse checks (Week 2, 6)
@@ -409,7 +409,7 @@ For pilot (Semester 1):
 **Impact**: High (teams met 4 Seniors, 1 Junior = onwerkbaar)
 
 **Mitigation**:
-- Week 1: Clear guidance on aanbevolen verdeling (40% Seniors, 60% Business Analysts)
+- Week 1: Clear guidance on aanbevolen verdeling (40% Seniors, 60% Analists)
 - Assessment: Make clear that role-mismatch (bijv. Senior student die geen strategic thinking toont) = lagere cijfer
 - Docent review van team charters (Week 2) met feedback op onrealistische rolverdeling
 
@@ -456,7 +456,7 @@ For pilot (Semester 1):
 
 **Mastery** (Target: 5/5):
 - Complexity levels (Foundation/Analytical/Advanced) accommoderen diverse startniveaus
-- Role-based differentiation: Seniors grow in strategic thinking, Business Analysts in technical skills
+- Role-based differentiation: Seniors grow in strategic thinking, Analists in technical skills
 - Methodology differentiation: AI path = prompt engineering mastery, Conventional = tool mastery
 - Visible progress: v1 → v2 → v3 iterations documented
 
@@ -466,17 +466,17 @@ For pilot (Semester 1):
 
 **Seniors** (CEO/CFO/RvC roles) will learn:
 - ✅ Strategic question formulation (from conceptual BEDROM to data-driven ECONAN)
-- ✅ Analyst steering (hoe stuur je Business analyst om juiste analyses te krijgen?)
+- ✅ Analyst steering (hoe stuur je Analist om juiste analyses te krijgen?)
 - ✅ Data-driven decision making (balancing data insights met business judgment)
 - ✅ Stakeholder communication (presenting to opdrachtgever = real skill)
 
-**Business Analysts - AI Path** will learn:
+**Analists - AI Path** will learn:
 - ✅ Prompt engineering voor CRISP-DM (systematic methodology)
 - ✅ Critical evaluation of AI output (validation, limitation recognition)
 - ✅ AI augmentation mindset (AI as tool, not oracle)
 - ✅ Meta-learning: "Wanneer AI vs conventional?"
 
-**Business Analysts - Conventional Path** will learn:
+**Analists - Conventional Path** will learn:
 - ✅ Technical tool mastery (Power BI/Python/Tableau/R)
 - ✅ Hands-on data manipulation (cleaning, feature engineering, modeling)
 - ✅ Reproducible workflows (code/scripts gedocumenteerd)

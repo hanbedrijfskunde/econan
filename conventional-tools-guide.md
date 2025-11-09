@@ -8,7 +8,7 @@
 
 ## Introductie
 
-Als Business Analyst die het **Conventional Tools Path** kiest, werk je hands-on met data-analyse tools zoals Power BI, Tableau, Python, of R. Deze gids helpt je de juiste tool te kiezen en effectief in te zetten door de CRISP-DM systematiek.
+Als Analist die het **Conventional Tools Path** kiest, werk je hands-on met data-analyse tools zoals Power BI, Tableau, Python, of R. Deze gids helpt je de juiste tool te kiezen en effectief in te zetten door de CRISP-DM systematiek.
 
 ### Belangrijke Principes
 

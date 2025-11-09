@@ -29,7 +29,7 @@ Voor elk sector worden **2-3 strategische vraagstukken** voorgesteld met:
 Studenten analyseerden: marktstructuur (oligopolie grote ketens vs. fragmentatie kleine spelers), prijselasticiteit, ESG impact (fast fashion vs. sustainable), cyclische gevoeligheid.
 
 ### Strategisch Vraagstuk 1.1: Sustainable Fashion Premium Pricing
-**Rol**: CEO + CFO (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: CEO + CFO (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we investeren in een duurzame collectie met 30% hogere prijzen, of blijven we bij fast fashion met hogere volume?"
 
@@ -52,7 +52,7 @@ Studenten analyseerden: marktstructuur (oligopolie grote ketens vs. fragmentatie
 ---
 
 ### Strategisch Vraagstuk 1.2: Marktexpansie naar Online Channels
-**Rol**: CEO + CMO (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: CEO + CMO (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we 40% van ons marketing budget verschuiven van winkels naar e-commerce, of optimaliseren we onze fysieke footprint?"
 
@@ -80,7 +80,7 @@ Studenten analyseerden: marktstructuur (oligopolie grote ketens vs. fragmentatie
 Studenten analyseerden: overheidsregulering (CO2 prijzen, subsidies), ESG transformatie, kapitaalintensiteit, lange termijn value creation.
 
 ### Strategisch Vraagstuk 2.1: Renewable Energy Portfolio Allocation
-**Rol**: CFO + RvC (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: CFO + RvC (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we €50M investeren in zonneparken (lage risk, lage return) of windenergie op zee (hoge risk, hoge return)?"
 
@@ -103,7 +103,7 @@ Studenten analyseerden: overheidsregulering (CO2 prijzen, subsidies), ESG transf
 ---
 
 ### Strategisch Vraagstuk 2.2: Fossil Fuel Phase-Out Timing
-**Rol**: CEO + RvC (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: CEO + RvC (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we onze gas-productie assets verkopen in 2026 (vroeg, lagere waarde) of 2030 (later, hogere stranded asset risk)?"
 
@@ -131,7 +131,7 @@ Studenten analyseerden: overheidsregulering (CO2 prijzen, subsidies), ESG transf
 Studenten analyseerden: marktconcentratie (oligopolie), regulatory burden (Basel III, DNB toezicht), technologie disruptie (fintechs), vertrouwenskwestie.
 
 ### Strategisch Vraagstuk 3.1: Digital Banking Investment
-**Rol**: CEO + CTO (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: CEO + CTO (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we €20M investeren in een volledig digitale bank (zonder filialen) of optimaliseren we ons hybride model?"
 
@@ -154,7 +154,7 @@ Studenten analyseerden: marktconcentratie (oligopolie), regulatory burden (Basel
 ---
 
 ### Strategisch Vraagstuk 3.2: Loan Portfolio Risk Management
-**Rol**: CFO + CRO (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: CFO + CRO (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we onze blootstelling aan MKB leningen reduceren (lager risico, lagere marge) of verhogen (hoger risico, hogere marge)?"
 
@@ -182,7 +182,7 @@ Studenten analyseerden: marktconcentratie (oligopolie), regulatory burden (Basel
 Studenten analyseerden: R&D intensiteit, patent cliff risks, regulatory approval proces (EMA), pricing pressure (zorgverzekeraars), ESG (medicijn toegankelijkheid).
 
 ### Strategisch Vraagstuk 4.1: Drug Portfolio Prioritization
-**Rol**: CEO + CSO (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: CEO + CSO (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we onze R&D focus leggen op blockbuster drug X (high risk, high reward) of niche therapie Y (lower risk, steady return)?"
 
@@ -205,7 +205,7 @@ Studenten analyseerden: R&D intensiteit, patent cliff risks, regulatory approval
 ---
 
 ### Strategisch Vraagstuk 4.2: Emerging Market Expansion
-**Rol**: CEO + CFO (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: CEO + CFO (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we onze patented drugs tegen lagere prijzen verkopen in Afrika (ESG positief, lagere marge) of focus op Westerse markten (hogere marge, patent cliff risk)?"
 
@@ -233,7 +233,7 @@ Studenten analyseerden: R&D intensiteit, patent cliff risks, regulatory approval
 Studenten analyseerden: cyclische gevoeligheid (consumentenvertrouwen), kapitaalintensiteit, supply chain complexity, EV transitie, ESG (CO2 footprint).
 
 ### Strategisch Vraagstuk 5.1: Electric Vehicle Portfolio Shift
-**Rol**: CEO + COO (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: CEO + COO (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we 60% van productiecapaciteit shiften naar EV's in 2026, of graduele transitie tot 2030?"
 
@@ -256,7 +256,7 @@ Studenten analyseerden: cyclische gevoeligheid (consumentenvertrouwen), kapitaal
 ---
 
 ### Strategisch Vraagstuk 5.2: Supply Chain Regionalization
-**Rol**: COO + CFO (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: COO + CFO (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we onze supply chain regionaliseren (hoger kosten, lager risico) of blijven bij global sourcing (lager kosten, hoger risico)?"
 
@@ -284,7 +284,7 @@ Studenten analyseerden: cyclische gevoeligheid (consumentenvertrouwen), kapitaal
 Studenten analyseerden: prijselasticiteit (convenience goods), true pricing (ecologische cost), consolidatie trends, brand loyalty vs. private label.
 
 ### Strategisch Vraagstuk 6.1: Plant-Based Product Launch
-**Rol**: CMO + CFO (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: CMO + CFO (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we €10M investeren in een plant-based product line, of optimaliseren we ons bestaande vlees portfolio?"
 
@@ -307,7 +307,7 @@ Studenten analyseerden: prijselasticiteit (convenience goods), true pricing (eco
 ---
 
 ### Strategisch Vraagstuk 6.2: Private Label Competition Response
-**Rol**: CEO + CMO (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: CEO + CMO (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we onze premium brand prijzen verlagen (verdedig marktaandeel) of prijzen handhaven (verdedig marge)?"
 
@@ -335,7 +335,7 @@ Studenten analyseerden: prijselasticiteit (convenience goods), true pricing (eco
 Studenten analyseerden: netwerk effecten, winner-takes-all dynamiek, schaalvoordelen, data privacy (GDPR), subscription business model.
 
 ### Strategisch Vraagstuk 7.1: Freemium vs. Premium Pricing
-**Rol**: CEO + CMO (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: CEO + CMO (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we ons SaaS product gratis aanbieden (freemium, snelle groei) of direct premium pricing (langzame groei, hogere marge)?"
 
@@ -358,7 +358,7 @@ Studenten analyseerden: netwerk effecten, winner-takes-all dynamiek, schaalvoord
 ---
 
 ### Strategisch Vraagstuk 7.2: Geographic Expansion Prioritization
-**Rol**: CEO + CFO (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: CEO + CFO (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we eerst expanderen naar US (grote markt, hoge competitie) of naar emerging markets (kleine markt, first-mover advantage)?"
 
@@ -386,7 +386,7 @@ Studenten analyseerden: netwerk effecten, winner-takes-all dynamiek, schaalvoord
 Studenten analyseerden: cyclische gevoeligheid (rente, economie), ESG (energie efficiency), remote work impact, kapitaalintensiteit, long-term leases.
 
 ### Strategisch Vraagstuk 8.1: Office Portfolio Repositioning
-**Rol**: CEO + CFO (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: CEO + CFO (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we 30% van ons kantoorportfolio verkopen (crystallize losses) of verbouwen tot flex-working spaces (investering, onzekere return)?"
 
@@ -409,7 +409,7 @@ Studenten analyseerden: cyclische gevoeligheid (rente, economie), ESG (energie e
 ---
 
 ### Strategisch Vraagstuk 8.2: Green Building Investment
-**Rol**: CFO + CSO (Seniors) | Junior Business Analyst (Business Analysts)
+**Rol**: CFO + CSO (Seniors) | Junior Analist (Analists)
 **Strategische Vraag**:
 > "Moeten we €5M investeren in BREEAM Excellent certificering (ESG positief, onduidelijke ROI) of alleen minimum regulatory compliance?"
 
@@ -452,7 +452,7 @@ Voor elk van de 5-8 sectoren (selectie op basis van studentenaantallen):
 3. **Rol Toewijzing Binnen Team** (25 min):
    - Binnen elk team: verdeling Senior (stakeholder) vs. Junior (analyst) rollen
    - Seniors kiezen stakeholder rol passend bij vraagstuk (CEO, CFO, etc.)
-   - Business Analysts kiezen methodology (AI vs. Conventional)
+   - Analists kiezen methodology (AI vs. Conventional)
 
 ### Data Beschikbaarheid
 
@@ -465,7 +465,7 @@ Voor pilot (Semester 1):
 
 Elk vraagstuk moet beoordeel baar zijn op:
 - **Criterium A (Business Understanding)**: Is strategische vraag helder geformuleerd door Seniors?
-- **Criteria B-C (Data Prep & Modeling)**: Voeren Business Analysts solide CRISP-DM analyse uit?
+- **Criteria B-C (Data Prep & Modeling)**: Voeren Analists solide CRISP-DM analyse uit?
 - **Criterium D (Deploy & Evaluate)**: Leidt analyse tot bruikbare business aanbeveling?
 - **Criteria E-F-G (indien toegevoegd)**: Purpose, Autonomy, Mastery reflectie
 
