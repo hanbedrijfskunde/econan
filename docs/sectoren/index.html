@@ -1198,5 +1198,33 @@
     </footer>
 
     <script src="../js/navigation.js"></script>
+    <script>
+        // Handle anchor scrolling on page load
+        (function() {
+            'use strict';
+
+            // Wait for page to fully load
+            window.addEventListener('load', function() {
+                // Check if there's a hash in the URL
+                if (window.location.hash) {
+                    const hash = window.location.hash;
+                    const target = document.querySelector(hash);
+
+                    if (target) {
+                        // Small delay to ensure content is rendered
+                        setTimeout(function() {
+                            const navHeight = document.querySelector('.nav-main')?.offsetHeight || 0;
+                            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }, 100);
+                    }
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
