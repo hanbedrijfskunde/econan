@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-Weken Planning | ECONAN</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/econan.css">
+    <style>
+        /* Week-specific styling */
+        .week-card {
+            position: relative;
+            margin-bottom: var(--space-8);
+            border-left: 4px solid var(--color-primary-500);
+        }
+
+        .week-header {
+            background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-700));
+            color: white;
+            padding: var(--space-6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .week-number-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-lg);
+        }
+
+        .week-duration {
+            font-size: var(--font-size-sm);
+            opacity: 0.9;
+        }
+
+        .week-title {
+            margin: 0;
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+        }
+
+        .week-subtitle {
+            margin-top: var(--space-2);
+            font-size: var(--font-size-base);
+            opacity: 0.9;
+        }
+
+        .activity-section {
+            padding: var(--space-6);
+            background-color: white;
+        }
+
+        .activity-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-gray-800);
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .activity-list {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-3) 0;
+        }
+
+        .activity-list li {
+            padding: var(--space-3);
+            padding-left: var(--space-10);
+            margin-bottom: var(--space-2);
+            background-color: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            position: relative;
+            transition: background-color var(--duration-fast) var(--ease-out);
+        }
+
+        .activity-list li:hover {
+            background-color: var(--color-primary-50);
+        }
+
+        .activity-list li::before {
+            content: '→';
+            position: absolute;
+            left: var(--space-4);
+            color: var(--color-primary-600);
+            font-weight: bold;
+            font-size: var(--font-size-lg);
+        }
+
+        .role-tag {
+            display: inline-block;
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+            margin-right: var(--space-2);
+        }
+
+        .role-tag.senior {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .role-tag.junior {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .role-tag.all {
+            background-color: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        .deliverable-box {
+            background-color: var(--color-success-50);
+            border: 2px solid var(--color-success-300);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            margin-top: var(--space-4);
+        }
+
+        .deliverable-box h5 {
+            color: var(--color-success-700);
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .deliverable-box ul {
+            margin-left: var(--space-6);
+            color: var(--color-gray-700);
+        }
+
+        .deliverable-box li {
+            margin-bottom: var(--space-2);
+        }
+
+        .crisp-dm-phase {
+            display: inline-block;
+            background-color: var(--color-warning-50);
+            color: var(--color-warning-700);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-3);
+        }
+
+        .stakeholder-moment {
+            background-color: var(--color-primary-50);
+            border-left: 3px solid var(--color-primary-500);
+            padding: var(--space-4);
+            margin-top: var(--space-4);
+            border-radius: var(--radius-md);
+        }
+
+        .stakeholder-moment h5 {
+            color: var(--color-primary-700);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-2);
+        }
+
+        .timeline-visual {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: var(--space-8) 0;
+            position: relative;
+        }
+
+        .timeline-week {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .timeline-dot {
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-primary-600);
+            border-radius: 50%;
+            margin: 0 auto var(--space-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .timeline-dot:hover {
+            transform: scale(1.2);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .timeline-dot.checkpoint {
+            background-color: var(--color-warning-500);
+        }
+
+        .timeline-dot.delivery {
+            background-color: var(--color-success-600);
+        }
+
+        .timeline-label {
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-gray-600);
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--color-primary-600), var(--color-success-600));
+            z-index: -1;
+        }
+
+        .methodology-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+            margin-top: var(--space-4);
+        }
+
+        .methodology-column h6 {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-2);
+            color: var(--color-gray-800);
+        }
+
+        .methodology-column.ai {
+            border-left: 3px solid var(--color-primary-500);
+            padding-left: var(--space-3);
+        }
+
+        .methodology-column.conventional {
+            border-left: 3px solid var(--color-success-500);
+            padding-left: var(--space-3);
+        }
+
+        @media (max-width: 768px) {
+            .methodology-split {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-visual {
+                flex-wrap: wrap;
+            }
+
+            .timeline-week {
+                min-width: 80px;
+                margin-bottom: var(--space-4);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-main">
+        <div class="container">
+            <div class="nav-content">
+                <a class="nav-brand" href="../index.html">ECONAN</a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a class="nav-link" href="../index.html#overzicht">Overzicht</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sectoren/">Sectoren</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../rollen/">Rollen</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Planning</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../materiaal/">Materiaal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../assessment/">Assessment</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-text">
+                <h1 class="hero-title">7-Weken Planning</h1>
+                <p class="hero-subtitle">Van BEDROM Conceptueel naar ECONAN Data-Gedreven</p>
+                <p class="hero-description">Elke week heeft duidelijke doelen, activiteiten voor Senior stakeholders én Junior analisten, en concrete deliverables.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Timeline Visual -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Module Timeline</h2>
+            <div class="timeline-visual">
+                <div class="timeline-line"></div>
+                <div class="timeline-week">
+                    <div class="timeline-dot">1</div>
+                    <div class="timeline-label">Identity</div>
+                </div>
+                <div class="timeline-week">
+                    <div class="timeline-dot">2</div>
+                    <div class="timeline-label">Discovery</div>
+                </div>
+                <div class="timeline-week">
+                    <div class="timeline-dot">3</div>
+                    <div class="timeline-label">Discovery</div>
+                </div>
+                <div class="timeline-week">
+                    <div class="timeline-dot checkpoint">4</div>
+                    <div class="timeline-label">Checkpoint</div>
+                </div>
+                <div class="timeline-week">
+                    <div class="timeline-dot">5</div>
+                    <div class="timeline-label">Analysis</div>
+                </div>
+                <div class="timeline-week">
+                    <div class="timeline-dot">6</div>
+                    <div class="timeline-label">Modeling</div>
+                </div>
+                <div class="timeline-week">
+                    <div class="timeline-dot delivery">7</div>
+                    <div class="timeline-label">Delivery</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Week-by-Week Planning -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Weekoverzicht</h2>
+
+            <!-- Week 1 -->
+            <div class="card week-card">
+                <div class="week-header">
+                    <div>
+                        <div class="week-number-badge">Week 1</div>
+                        <h3 class="week-title">Identity & Mission</h3>
+                        <p class="week-subtitle">Purpose foundation + BEDROM bridge + Rol & methodologie keuze</p>
+                    </div>
+                    <div class="week-duration">~4.5 uur</div>
+                </div>
+                <div class="activity-section">
+                    <h4 class="activity-title">🎯 Doel</h4>
+                    <p>Purpose foundation leggen, BEDROM → ECONAN bridge maken, en rollen + methodologie kiezen binnen je team.</p>
+
+                    <h4 class="activity-title" style="margin-top: var(--space-6);">📋 Activiteiten</h4>
+                    <ul class="activity-list">
+                        <li>
+                            <strong>BEDROM → ECONAN Bridge</strong> (30 min)<br>
+                            <span class="role-tag all">Alle studenten</span>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                Deel je BEDROM sector, zie hoe je conceptuele analyse data-gedreven wordt
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Purpose-Autonomy-Mastery Framework</strong> (45 min)<br>
+                            <span class="role-tag all">Alle studenten</span>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                Waarom intrinsieke motivatie cruciaal is voor je leerproces
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Future of Junior Business Analyst</strong> (15 min)<br>
+                            <span class="role-tag all">Alle studenten</span>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                5 survival skills in AI-augmented workplace
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Hybrid Methodology Introductie</strong> (30 min)<br>
+                            <span class="role-tag junior">Junior focus</span>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                AI-Augmented vs Conventional Tools - beide paden uitgelegd met demo
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Role-Based Team Structure</strong> (20 min)<br>
+                            <span class="role-tag all">Alle studenten</span>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                Senior stakeholder (1-2) vs Junior analyst (2-3) rollen binnen teams
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Strategische Vraagstukken Presentatie</strong> (60 min)<br>
+                            <span class="role-tag all">Alle studenten</span>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                5-8 BEDROM sectoren met strategische beslissingen (rendement/risico/groei)
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Teams Vormen + Rol Toewijzing</strong> (45 min)<br>
+                            <span class="role-tag all">Alle studenten</span>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                Kies je sector, vorm team (4-5 personen), verdeel rollen met rationale
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Capability Self-Assessment</strong> (30 min)<br>
+                            <span class="role-tag all">Alle studenten</span>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                Wat is jouw startniveau? Welk leerdoel past bij jou?
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Team Charter Draft</strong> (30 min)<br>
+                            <span class="role-tag all">Team samen</span>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                Mission statement, rolverdeling, methodologie keuze, persoonlijke leerdoelen
+                            </span>
+                        </li>
+                    </ul>
+
+                    <div class="deliverable-box">
+                        <h5>📦 Deliverable (deadline: einde Week 2)</h5>
+                        <ul>
+                            <li><strong>Team Project Charter</strong> (2 pagina's):
+                                <ul>
+                                    <li>Strategische vraag</li>
+                                    <li>Rolverdeling (wie is Senior, wie is Junior, waarom?)</li>
+                                    <li>Methodologie keuze voor Juniors (AI of Conventional, waarom?)</li>
+                                    <li>Persoonlijke leerdoelen per teamlid</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 2-3 -->
+            <div class="card week-card">
+                <div class="week-header">
+                    <div>
+                        <div class="week-number-badge">Week 2-3</div>
+                        <h3 class="week-title">Discovery & Preparation</h3>
+                        <p class="week-subtitle">Business & Data Understanding (CRISP-DM Fase 1-2)</p>
+                    </div>
+                </div>
+                <div class="activity-section">
+                    <span class="crisp-dm-phase">CRISP-DM: Business Understanding + Data Understanding</span>
+
+                    <h4 class="activity-title">🎯 Doel</h4>
+                    <p>Strategische vraag formuleren, databronnen identificeren, methodologie setup, en proof of concept leveren.</p>
+
+                    <h4 class="activity-title" style="margin-top: var(--space-6);">📋 Activiteiten Week 2</h4>
+                    <ul class="activity-list">
+                        <li>
+                            <strong>Business Understanding</strong><br>
+                            <span class="role-tag senior">Seniors</span>: Formuleren strategische vraag op basis van BEDROM sector kennis<br>
+                            <span class="role-tag junior">Juniors</span>: Data feasibility check - "Is deze vraag met data te beantwoorden?"
+                        </li>
+                        <li>
+                            <strong>Methodology Setup</strong> (90 min workshops, parallel tracks)<br>
+                            <div class="methodology-split">
+                                <div class="methodology-column ai">
+                                    <h6>🤖 AI Path (Juniors)</h6>
+                                    <p style="font-size: var(--font-size-sm);">AI tool selectie + eerste prompt templates verkennen</p>
+                                </div>
+                                <div class="methodology-column conventional">
+                                    <h6>🛠️ Conventional Path (Juniors)</h6>
+                                    <p style="font-size: var(--font-size-sm);">Tool setup (Power BI/Tableau/Python) + data connectie testen</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Data Exploration (start)</strong><br>
+                            <span class="role-tag junior">Juniors</span>: Welke databronnen zijn beschikbaar? Data kwaliteit check<br>
+                            <span class="role-tag senior">Seniors</span>: Feedback op relevantie ("Is dit de juiste data voor onze vraag?")
+                        </li>
+                    </ul>
+
+                    <h4 class="activity-title" style="margin-top: var(--space-6);">📋 Activiteiten Week 3</h4>
+                    <ul class="activity-list">
+                        <li>
+                            <strong>Data Exploration (verdieping)</strong><br>
+                            <span class="role-tag junior">AI Path</span>: Prompting AI voor initial data exploration<br>
+                            <span class="role-tag junior">Conventional Path</span>: Exploratory Data Analysis (EDA) met gekozen tool
+                        </li>
+                        <li>
+                            <strong>Proof of Concept</strong><br>
+                            <span class="role-tag junior">Juniors</span>: Eerste visualisaties/analyses om haalbaarheid te tonen<br>
+                            <span class="role-tag senior">Seniors</span>: Review en sturen ("Focus meer op X", "We missen nog Y")
+                        </li>
+                    </ul>
+
+                    <div class="stakeholder-moment">
+                        <h5>👥 Stakeholder Lens</h5>
+                        <p>Seniors moeten al anticiperen: "Welke vragen zal de RvC/CFO/Investeerders stellen over deze data?"</p>
+                    </div>
+
+                    <div class="deliverable-box">
+                        <h5>📦 Deliverables</h5>
+                        <ul>
+                            <li><strong>Team Project Charter</strong> (2 pagina's, Week 2):
+                                <ul>
+                                    <li>Strategische vraag geformuleerd door Seniors</li>
+                                    <li>Databronnen geïdentificeerd door Juniors</li>
+                                    <li>Rolverdeling + methodologie keuze met rationale</li>
+                                </ul>
+                            </li>
+                            <li><strong>Pulse Check</strong> (Week 2 - vrijdag): individueel invullen</li>
+                            <li><strong>Proof of Concept</strong> (intern team, Week 3): Juniors tonen aan Seniors</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 4 -->
+            <div class="card week-card">
+                <div class="week-header" style="background: linear-gradient(135deg, var(--color-warning-500), var(--color-warning-600));">
+                    <div>
+                        <div class="week-number-badge">Week 4</div>
+                        <h3 class="week-title">Checkpoint</h3>
+                        <p class="week-subtitle">Peer feedback + docent coaching + cross-methodology learning</p>
+                    </div>
+                </div>
+                <div class="activity-section">
+                    <h4 class="activity-title">🎯 Doel</h4>
+                    <p>Feedback ontvangen van peers en docent, leren van andere methodologieën, en commitment maken aan gekozen pad.</p>
+
+                    <h4 class="activity-title" style="margin-top: var(--space-6);">📋 Activiteiten</h4>
+                    <ul class="activity-list">
+                        <li>
+                            <strong>Team Pitch</strong> (10 min per team)<br>
+                            <span class="role-tag senior">Seniors</span>: Presenteren strategische vraag en business context<br>
+                            <span class="role-tag junior">Juniors</span>: Tonen aanpak (AI prompts OF conventional tool demo) + eerste resultaten
+                        </li>
+                        <li>
+                            <strong>Peer Feedback</strong> (5 min per team)<br>
+                            <span class="role-tag all">Alle studenten</span>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                Cross-path learning: AI teams vragen aan Conventional teams (en vice versa)
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Methodology Sharing</strong> (30 min plenair)<br>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                1 AI team + 1 Conventional team demonstreren hun aanpak. Discussie over sterke punten elk pad.
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Docent 1-op-1 Coaching</strong> (10 min per team)<br>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                "Jullie kunnen level up" of "Versterk eerst basis". Specifieke feedback op methodology.
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Commitment Moment</strong><br>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                Laatste kans om methodologie te switchen (AI ↔ Conventional). Na Week 4: commitment aan gekozen pad.
+                            </span>
+                        </li>
+                    </ul>
+
+                    <div class="stakeholder-moment">
+                        <h5>👥 Stakeholder Lens</h5>
+                        <p>Seniors: "Als ik CFO was, zou ik nu al deze vragen stellen..." - anticipeer op eindpresentatie.</p>
+                    </div>
+
+                    <div class="deliverable-box">
+                        <h5>📦 Deliverable</h5>
+                        <ul>
+                            <li><strong>Checkpoint Presentatie</strong>:
+                                <ul>
+                                    <li>Slides + live demo van aanpak</li>
+                                    <li>Wat werkt? Waar lopen we tegenaan?</li>
+                                </ul>
+                            </li>
+                            <li><strong>Reflectie</strong> (optioneel): "Blijven we bij gekozen methodologie? Waarom wel/niet?"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 5-6 -->
+            <div class="card week-card">
+                <div class="week-header">
+                    <div>
+                        <div class="week-number-badge">Week 5-6</div>
+                        <h3 class="week-title">Analysis & Modeling</h3>
+                        <p class="week-subtitle">Deep work op CRISP-DM Fase 3-4 met gekozen methodology</p>
+                    </div>
+                </div>
+                <div class="activity-section">
+                    <span class="crisp-dm-phase">CRISP-DM: Data Preparation + Modeling</span>
+
+                    <h4 class="activity-title">🎯 Doel</h4>
+                    <p>Technisch deep work: data preparation, modeling, en strategische afstemming tussen Juniors en Seniors.</p>
+
+                    <h4 class="activity-title" style="margin-top: var(--space-6);">📋 Activiteiten</h4>
+                    <ul class="activity-list">
+                        <li>
+                            <strong>Data Preparation & Modeling</strong> (CRISP-DM fasen 3-4)<br>
+                            <div class="methodology-split">
+                                <div class="methodology-column ai">
+                                    <h6>🤖 AI Path (Juniors)</h6>
+                                    <ul style="font-size: var(--font-size-sm); margin-top: var(--space-2);">
+                                        <li>Iteratief prompt engineering voor data cleaning, transformatie, modeling</li>
+                                        <li>Documenteren effective prompts + AI output validatie</li>
+                                        <li>Critical evaluation: "Is de AI output betrouwbaar?"</li>
+                                    </ul>
+                                </div>
+                                <div class="methodology-column conventional">
+                                    <h6>🛠️ Conventional Path (Juniors)</h6>
+                                    <ul style="font-size: var(--font-size-sm); margin-top: var(--space-2);">
+                                        <li>Hands-on data preparation met gekozen tool</li>
+                                        <li>Modelontwikkeling (regressie, correlatie, visualisaties)</li>
+                                        <li>Code/workflow documentatie</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Senior Sturing</strong><br>
+                            <span class="role-tag senior">Seniors</span>: Sturen op relevantie voor strategische beslissing
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600); display: block; margin-top: var(--space-1);">
+                                "Helpt deze analyse ons om besluit X te nemen?" + Prioriteren: "Focus op analyse Y, skip Z"
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Complexity Level Differentiation</strong> (alle Juniors)<br>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                <strong>Foundation</strong>: Descriptieve statistiek + visualisatie (max 7.0)<br>
+                                <strong>Analytical</strong>: + Regressie/correlatie + trend identificatie (max 8.5)<br>
+                                <strong>Advanced</strong>: + Scenario analyse/Predictive + sensitiviteitsanalyse (max 10)
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Consultsessies met Docent</strong> (op afspraak, minimaal 1× per team)<br>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                AI Path: review prompt quality. Conventional Path: technical troubleshooting. Alle teams: strategic alignment.
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Senior-Junior Sync Meetings</strong> (2× per week aanbevolen)<br>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                Juniors: "Dit hebben we gevonden in de data" → Seniors: "Wat betekent dit voor onze beslissing?"
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Methodology-Specific Support</strong><br>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                AI Path: Office hours voor prompt engineering (2× 60 min)<br>
+                                Conventional Path: Tool clinics voor technische vragen (2× 60 min)
+                            </span>
+                        </li>
+                    </ul>
+
+                    <div class="stakeholder-moment">
+                        <h5>👥 Stakeholder Lens</h5>
+                        <p>Seniors testen analyses: "Als RvC lid, zou ik vragen stellen over aannames X en risico Y. Kunnen we die beantwoorden?"</p>
+                    </div>
+
+                    <div class="deliverable-box">
+                        <h5>📦 Deliverables (intern, niet formeel beoordeeld)</h5>
+                        <ul>
+                            <li><strong>Progress Artifacts</strong>:
+                                <ul>
+                                    <li>AI Path: Prompt log + AI outputs + validation notes</li>
+                                    <li>Conventional Path: Data scripts/workflows + intermediate outputs</li>
+                                </ul>
+                            </li>
+                            <li><strong>Pulse Check</strong> (Week 6 - vrijdag): individueel invullen</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 7 -->
+            <div class="card week-card">
+                <div class="week-header" style="background: linear-gradient(135deg, var(--color-success-600), var(--color-success-700));">
+                    <div>
+                        <div class="week-number-badge">Week 7</div>
+                        <h3 class="week-title">Delivery & Reflection</h3>
+                        <p class="week-subtitle">Leveren van waarde + reflecteren op groei + meta-learning</p>
+                    </div>
+                </div>
+                <div class="activity-section">
+                    <span class="crisp-dm-phase">CRISP-DM: Evaluation + Deployment</span>
+
+                    <h4 class="activity-title">🎯 Doel</h4>
+                    <p>Strategische presentatie aan opdrachtgever, reflectie op leerproces, en meta-learning over methodologieën.</p>
+
+                    <h4 class="activity-title" style="margin-top: var(--space-6);">📋 Activiteiten</h4>
+                    <ul class="activity-list">
+                        <li>
+                            <strong>Strategische Decision Presentatie</strong> (30 min per team)<br>
+                            <span class="role-tag senior">Seniors leiden</span> (20 min):
+                            <ul style="font-size: var(--font-size-sm); margin-top: var(--space-2); margin-left: var(--space-6);">
+                                <li>Strategische vraag en business context (BEDROM connectie)</li>
+                                <li>Aanbeveling en onderbouwing met data</li>
+                                <li>Beslissing: "We adviseren optie X omdat..."</li>
+                            </ul>
+                            <span class="role-tag junior">Juniors ondersteunen</span>:
+                            <ul style="font-size: var(--font-size-sm); margin-top: var(--space-2); margin-left: var(--space-6);">
+                                <li>Live demo van analyse (AI output OF tool dashboard)</li>
+                                <li>Uitleg methodologie: "Zo hebben we dit gevonden..."</li>
+                                <li>Q&A: technische vragen beantwoorden</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Q&A met Opdrachtgever</strong> (10 min)<br>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                Kritische vragen over aannames, data, conclusions
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Opdrachtgever Feedback</strong> (5 min per team)<br>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                Formulier invullen: "Zou u deze analyse gebruiken?" + scores
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Methodology Reflection Panel</strong> (45 min plenair)<br>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                2-3 teams (mix AI + Conventional) delen ervaring. Reflectievragen:
+                                "Wanneer zou je AI vs conventional gebruiken?", "Wat waren sterke/zwakke punten?", "Future-proof mindset"
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Individuele Reflectie</strong> (60 min)<br>
+                            <span class="role-tag senior">Seniors</span>: "Hoe groeide ik in strategisch denken en analisten sturen?"<br>
+                            <span class="role-tag junior">Juniors</span>: "Wat leerde ik over mijn methodology (AI of conventional)?"<br>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600); display: block; margin-top: var(--space-1);">
+                                Meta-learning: "Wanneer zou ik welke aanpak kiezen in de toekomst?"
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Retrospective</strong> (15 min)<br>
+                            <span style="font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                                Purpose, Autonomy, Mastery scores + open feedback via
+                                <a href="https://hanbedrijfskunde.github.io/retrospective/?workshop=ECONAN%20WK1" target="_blank">retrospective tool</a>
+                            </span>
+                        </li>
+                    </ul>
+
+                    <div class="stakeholder-moment">
+                        <h5>👥 Stakeholder Lens - Final Test</h5>
+                        <p>Opdrachtgevers spelen verschillende stakeholder rollen: "Als CFO vraag ik...", "Als RvC lid wil ik weten..."</p>
+                    </div>
+
+                    <div class="deliverable-box">
+                        <h5>📦 Deliverables</h5>
+                        <ul>
+                            <li><strong>Team Eindpresentatie</strong> (slides + live demo):
+                                <ul>
+                                    <li>Strategische decision met onderbouwing</li>
+                                    <li>Alle artifacts:
+                                        <ul>
+                                            <li>AI Path: Prompt templates + conversation logs + output validation</li>
+                                            <li>Conventional Path: Dashboards/code + data + visualisaties</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><strong>Individuele Reflectie</strong> (2-3 pagina's):
+                                <ul>
+                                    <li>Rol-specifieke learnings (Senior vs Junior)</li>
+                                    <li>Methodology reflection (AI vs Conventional, if applicable)</li>
+                                    <li>BEDROM → ECONAN groei</li>
+                                    <li>Persoonlijk leerdoel achievement</li>
+                                </ul>
+                            </li>
+                            <li><strong>Retrospective Scores</strong> (online, individueel)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Key Moments -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Belangrijke Momenten</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title" style="color: var(--color-primary-600);">Week 2 & 6: Pulse Checks</h3>
+                        <p class="card-text">Individuele check-ins: "Is de opdracht te makkelijk / precies goed / te moeilijk?" Docent intervenieert binnen 1 week bij signalen.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title" style="color: var(--color-warning-600);">Week 4: Checkpoint</h3>
+                        <p class="card-text">Peer feedback, docent 1-op-1 coaching, methodology sharing. Laatste kans om methodologie te switchen (AI ↔ Conventional).</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title" style="color: var(--color-success-600);">Week 7: Eindpresentatie</h3>
+                        <p class="card-text">Strategische presentatie aan opdrachtgever. Seniors leiden, Juniors ondersteunen. Opdrachtgever feedback telt voor 20% van cijfer.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support & Resources -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Support & Resources</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div class="grid grid-2">
+                        <div>
+                            <h3 class="card-title">🤝 Ondersteuning</h3>
+                            <ul style="margin-left: var(--space-6);">
+                                <li><strong>Consultsessies</strong>: Op afspraak met docent (minimaal 1× per team)</li>
+                                <li><strong>Buddy Teams</strong>: Elk team krijgt buddy team voor eerste-lijn vragen</li>
+                                <li><strong>Office Hours</strong>:
+                                    <ul>
+                                        <li>AI Path: Prompt engineering support (Week 5-6, 2× 60 min)</li>
+                                        <li>Conventional Path: Tool clinics (Week 5-6, 2× 60 min)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>FAQ Document</strong>: Beschikbaar vanaf Week 1</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="card-title">📚 Materialen</h3>
+                            <ul style="margin-left: var(--space-6);">
+                                <li><strong>Asynchrone Content</strong>: Kennisclips over CRISP-DM (flipped classroom)</li>
+                                <li><strong>AI Path</strong>: Prompt template library, AI tool guides, critical evaluation guide</li>
+                                <li><strong>Conventional Path</strong>: Power BI guides, Python/R tutorials, quick-start guides</li>
+                                <li><strong>Case Library</strong>: Voorbeelden van Foundation en Analytical niveau</li>
+                                <li><strong>Cross-Path</strong>: CRISP-DM methodology guide, stakeholder communication tips</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Steps -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Ga Verder</h2>
+            <div class="grid grid-3">
+                <a href="../rollen/" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">Rollen</h3>
+                        <p class="card-text">Begrijp alle stakeholder perspectieven en kies je rol (Senior of Junior).</p>
+                    </div>
+                </a>
+                <a href="../sectoren/" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">Sectoren</h3>
+                        <p class="card-text">Kies een strategisch vraagstuk uit een BEDROM sector.</p>
+                    </div>
+                </a>
+                <a href="../materiaal/" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">Materiaal</h3>
+                        <p class="card-text">Bekijk materialen voor AI-augmented of Conventional tools pad.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">ECONAN - Economische Analyse | HAN Bedrijfskunde | C-Cluster</p>
+                <p class="footer-tagline">Purpose • Autonomy • Mastery</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

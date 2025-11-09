@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leermateriaal | ECONAN</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/econan.css">
+    <style>
+        /* Path-specific styling */
+        .path-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            margin: var(--space-10) 0;
+        }
+
+        .path-card {
+            border: 3px solid var(--color-gray-200);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            transition: all var(--duration-normal) var(--ease-out);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .path-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            transition: height var(--duration-normal) var(--ease-out);
+        }
+
+        .path-card.ai::before {
+            background: linear-gradient(90deg, var(--color-primary-500), var(--color-primary-700));
+        }
+
+        .path-card.conventional::before {
+            background: linear-gradient(90deg, var(--color-success-500), var(--color-success-700));
+        }
+
+        .path-card:hover {
+            border-color: transparent;
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .path-card.ai:hover {
+            border-color: var(--color-primary-500);
+        }
+
+        .path-card.conventional:hover {
+            border-color: var(--color-success-500);
+        }
+
+        .path-card:hover::before {
+            height: 100%;
+            opacity: 0.05;
+        }
+
+        .path-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-4);
+            display: block;
+        }
+
+        .path-title {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-3);
+        }
+
+        .path-card.ai .path-title {
+            color: var(--color-primary-700);
+        }
+
+        .path-card.conventional .path-title {
+            color: var(--color-success-700);
+        }
+
+        .path-description {
+            color: var(--color-gray-700);
+            margin-bottom: var(--space-6);
+            line-height: var(--line-height-relaxed);
+        }
+
+        .path-features {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-4) 0;
+        }
+
+        .path-features li {
+            padding: var(--space-2) 0;
+            padding-left: var(--space-6);
+            position: relative;
+            color: var(--color-gray-700);
+        }
+
+        .path-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: var(--font-size-lg);
+        }
+
+        .path-card.ai .path-features li::before {
+            color: var(--color-primary-600);
+        }
+
+        .path-card.conventional .path-features li::before {
+            color: var(--color-success-600);
+        }
+
+        .phase-card {
+            border-left: 4px solid var(--color-primary-500);
+            margin-bottom: var(--space-6);
+        }
+
+        .phase-header {
+            background-color: var(--color-gray-50);
+            padding: var(--space-4);
+            border-bottom: 1px solid var(--color-gray-200);
+        }
+
+        .phase-number {
+            display: inline-block;
+            background-color: var(--color-primary-600);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-right: var(--space-2);
+        }
+
+        .phase-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-gray-800);
+        }
+
+        .phase-content {
+            padding: var(--space-6);
+        }
+
+        .template-box {
+            background-color: var(--color-gray-50);
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            margin: var(--space-4) 0;
+            font-family: monospace;
+            font-size: var(--font-size-sm);
+        }
+
+        .tool-matrix {
+            width: 100%;
+            margin: var(--space-6) 0;
+            border-collapse: collapse;
+        }
+
+        .tool-matrix th {
+            background-color: var(--color-success-600);
+            color: white;
+            padding: var(--space-3);
+            text-align: left;
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .tool-matrix td {
+            padding: var(--space-3);
+            border-bottom: 1px solid var(--color-gray-200);
+        }
+
+        .tool-matrix tr:hover {
+            background-color: var(--color-gray-50);
+        }
+
+        .resource-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-4);
+            background-color: white;
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: inherit;
+            transition: all var(--duration-fast) var(--ease-out);
+            margin-bottom: var(--space-3);
+        }
+
+        .resource-link:hover {
+            border-color: var(--color-primary-500);
+            transform: translateX(4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .resource-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .resource-content {
+            flex: 1;
+        }
+
+        .resource-title {
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-gray-800);
+            margin-bottom: var(--space-1);
+        }
+
+        .resource-description {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-600);
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-4);
+            margin: var(--space-6) 0;
+        }
+
+        .principle-card {
+            background-color: var(--color-primary-50);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            border-left: 3px solid var(--color-primary-500);
+        }
+
+        .principle-title {
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary-700);
+            margin-bottom: var(--space-2);
+        }
+
+        .principle-text {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-700);
+        }
+
+        @media (max-width: 768px) {
+            .path-selector {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-main">
+        <div class="container">
+            <div class="nav-content">
+                <a class="nav-brand" href="../index.html">ECONAN</a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a class="nav-link" href="../index.html#overzicht">Overzicht</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sectoren/">Sectoren</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../rollen/">Rollen</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../weekplanning/">Planning</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Materiaal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../assessment/">Assessment</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-text">
+                <h1 class="hero-title">Leermateriaal</h1>
+                <p class="hero-subtitle">Kies Je Methodologie: AI-Augmented of Conventional Tools</p>
+                <p class="hero-description">
+                    Als Junior Analyst kies je hoe je data-analyse uitvoert. Beide paden leiden tot dezelfde CRISP-DM deliverables, maar met verschillende artifacts en skills.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Path Selector -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Kies Je Pad</h2>
+            <p class="section-subtitle">Beide paden zijn gelijkwaardig en leiden tot hetzelfde doel. De keuze hangt af van jouw leerdoel en interesse.</p>
+
+            <div class="path-selector">
+                <!-- AI-Augmented Path -->
+                <div class="card path-card ai">
+                    <span class="path-icon">🤖</span>
+                    <h3 class="path-title">AI-Augmented Path</h3>
+                    <p class="path-description">
+                        Gebruik AI assistants (ChatGPT, Claude) om data-analyse uit te voeren via prompt engineering. Focus op het sturen van AI door CRISP-DM.
+                    </p>
+                    <h4 style="font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); margin-top: var(--space-4); margin-bottom: var(--space-2);">Geschikt als je:</h4>
+                    <ul class="path-features">
+                        <li>Wilt leren hoe je AI effectief stuurt voor data-analyse</li>
+                        <li>Focus wilt op prompt engineering en kritisch evalueren van AI output</li>
+                        <li>Begrip wilt van AI limitations en validation</li>
+                        <li>Future-proof skills wilt in AI-augmented workplace</li>
+                    </ul>
+                    <h4 style="font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); margin-top: var(--space-4); margin-bottom: var(--space-2);">Je levert op:</h4>
+                    <ul class="path-features">
+                        <li>Prompt templates per CRISP-DM fase</li>
+                        <li>AI conversation logs</li>
+                        <li>Output validation documentatie</li>
+                        <li>Critical evaluation van AI suggesties</li>
+                    </ul>
+                    <a href="#ai-materials" class="btn btn-primary" style="margin-top: var(--space-6); width: 100%;">
+                        Bekijk AI Path Materiaal →
+                    </a>
+                </div>
+
+                <!-- Conventional Tools Path -->
+                <div class="card path-card conventional">
+                    <span class="path-icon">🛠️</span>
+                    <h3 class="path-title">Conventional Tools Path</h3>
+                    <p class="path-description">
+                        Werk hands-on met data-analyse tools zoals Power BI, Tableau, Python, of R. Focus op technische tool mastery en diepgaande data manipulation.
+                    </p>
+                    <h4 style="font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); margin-top: var(--space-4); margin-bottom: var(--space-2);">Geschikt als je:</h4>
+                    <ul class="path-features">
+                        <li>Diepgaande technische skills wilt ontwikkelen in data tools</li>
+                        <li>Focus wilt op hands-on data manipulation en visualisatie</li>
+                        <li>Technische troubleshooting en tool mastery wilt leren</li>
+                        <li>Directe controle wilt over elke stap in het proces</li>
+                    </ul>
+                    <h4 style="font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); margin-top: var(--space-4); margin-bottom: var(--space-2);">Je levert op:</h4>
+                    <ul class="path-features">
+                        <li>Power BI dashboards / Tableau stories</li>
+                        <li>Python/R code + notebooks</li>
+                        <li>Data transformation scripts</li>
+                        <li>Interactive visualisaties</li>
+                    </ul>
+                    <a href="#conventional-materials" class="btn btn-secondary" style="margin-top: var(--space-6); width: 100%;">
+                        Bekijk Conventional Path Materiaal →
+                    </a>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: var(--space-8); background-color: var(--color-warning-50); border-left: 4px solid var(--color-warning-500);">
+                <div class="card-body">
+                    <h3 class="card-title" style="color: var(--color-warning-700);">💡 Belangrijke Keuze Overwegingen</h3>
+                    <ul style="margin-left: var(--space-6); color: var(--color-gray-700);">
+                        <li><strong>Geen "makkelijk" pad</strong>: Beide paden vereisen even veel inspanning en denkvermogen</li>
+                        <li><strong>Switchen tot Week 3</strong>: Je mag je methodologie nog veranderen tot Week 3</li>
+                        <li><strong>Vanaf Week 4: commitment</strong>: Na de checkpoint blijf je bij je gekozen pad voor consistente assessment</li>
+                        <li><strong>Toekomst</strong>: In de praktijk zul je waarschijnlijk beide paden combineren - deze module helpt je een foundation in één pad te leggen</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI-Augmented Materials -->
+    <section id="ai-materials" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">🤖 AI-Augmented Path Materiaal</h2>
+
+            <!-- Principles -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 class="card-title">Belangrijke Principes</h3>
+                </div>
+                <div class="card-body">
+                    <div class="principles-grid">
+                        <div class="principle-card">
+                            <div class="principle-title">1. AI is een Tool</div>
+                            <div class="principle-text">Niet een vervanger. Jij blijft verantwoordelijk voor kwaliteit en validatie.</div>
+                        </div>
+                        <div class="principle-card">
+                            <div class="principle-title">2. Iteratief Prompting</div>
+                            <div class="principle-text">Eerste prompt is zelden perfect. Verfijn op basis van output.</div>
+                        </div>
+                        <div class="principle-card">
+                            <div class="principle-title">3. Kritische Evaluatie</div>
+                            <div class="principle-text">Vraag altijd: "Klopt dit? Hoe weet ik dat zeker?"</div>
+                        </div>
+                        <div class="principle-card">
+                            <div class="principle-title">4. Documentatie</div>
+                            <div class="principle-text">Log je prompts + AI outputs + jouw validatie stappen.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CRISP-DM Phases with Prompt Templates -->
+            <h3 style="font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-6); color: var(--color-gray-800);">Prompt Templates per CRISP-DM Fase</h3>
+
+            <!-- Phase 1: Business Understanding -->
+            <div class="card phase-card">
+                <div class="phase-header">
+                    <span class="phase-number">1</span>
+                    <span class="phase-title">Business Understanding</span>
+                </div>
+                <div class="phase-content">
+                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">Template: Strategische Vraag Decompositie</h4>
+                    <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
+                        Vertaal de strategische vraag van je Senior stakeholder naar concrete data-analyse vragen.
+                    </p>
+                    <div class="template-box">
+[CONTEXT]<br>
+Ik ben Junior Business Analyst voor [SECTOR] bedrijf. <br>
+Mijn Senior stakeholder ([ROL: CEO/CFO/etc.]) heeft de volgende strategische vraag:<br>
+<br>
+"[STRATEGISCHE VRAAG VAN SENIOR]"<br>
+<br>
+[BEDROM CONTEXT]<br>
+In BEDROM analyseerden we:<br>
+- [Inzicht 1 uit BEDROM]<br>
+- [Inzicht 2 uit BEDROM]<br>
+<br>
+[TAAK]<br>
+Help me deze strategische vraag omzetten in concrete, data-gedreven sub-vragen.<br>
+Geef minimaal 5 sub-vragen die specifiek, relevant, en haalbaar zijn.
+                    </div>
+                    <div style="background-color: var(--color-success-50); border-left: 3px solid var(--color-success-500); padding: var(--space-3); border-radius: var(--radius-md); margin-top: var(--space-4);">
+                        <strong style="color: var(--color-success-700);">✓ Output Validatie:</strong>
+                        <ul style="margin-left: var(--space-6); margin-top: var(--space-2); font-size: var(--font-size-sm); color: var(--color-gray-700);">
+                            <li>Zijn de sub-vragen SMART?</li>
+                            <li>Kan ik deze vragen beantwoorden met data (niet alleen expert opinion)?</li>
+                            <li>Zijn deze relevant voor mijn Senior stakeholder?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 2: Data Understanding -->
+            <div class="card phase-card">
+                <div class="phase-header">
+                    <span class="phase-number">2</span>
+                    <span class="phase-title">Data Understanding</span>
+                </div>
+                <div class="phase-content">
+                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">Template: Data Source Exploratie</h4>
+                    <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
+                        Vraag AI om databronnen te analyseren en data quality issues te identificeren.
+                    </p>
+                    <div class="template-box">
+[CONTEXT]<br>
+Ik werk aan vraagstuk: "[VRAAG]"<br>
+<br>
+Beschikbare datasets:<br>
+- Dataset 1: [naam, beschrijving, periode, aantal rijen]<br>
+- Dataset 2: [naam, beschrijving, periode, aantal rijen]<br>
+<br>
+[TAAK]<br>
+Help me deze datasets te begrijpen:<br>
+1. Welke dataset is meest relevant voor mijn vraag?<br>
+2. Welke data quality issues verwacht je?<br>
+3. Welke verbanden tussen datasets zijn mogelijk?<br>
+4. Welke exploratory analyses zou je aanraden?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 3: Data Preparation -->
+            <div class="card phase-card">
+                <div class="phase-header">
+                    <span class="phase-number">3</span>
+                    <span class="phase-title">Data Preparation</span>
+                </div>
+                <div class="phase-content">
+                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">Template: Data Cleaning Strategy</h4>
+                    <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
+                        Laat AI een cleaning plan maken, maar valideer elk onderdeel handmatig.
+                    </p>
+                    <div class="template-box">
+[CONTEXT]<br>
+Mijn dataset heeft de volgende issues:<br>
+- Missing values: [kolom X heeft 15% missings]<br>
+- Outliers: [kolom Y heeft extreme waarden]<br>
+- Inconsistencies: [kolom Z heeft format variaties]<br>
+<br>
+[TAAK]<br>
+Stel een data cleaning strategie voor:<br>
+1. Hoe ga ik om met missing values? (impute/delete/andere methode?)<br>
+2. Hoe identificeer en behandel ik outliers?<br>
+3. Hoe standardiseer ik inconsistente data?<br>
+<br>
+Geef per stap de rationale en mogelijke risks.
+                    </div>
+                    <div style="background-color: var(--color-warning-50); border-left: 3px solid var(--color-warning-500); padding: var(--space-3); border-radius: var(--radius-md); margin-top: var(--space-4);">
+                        <strong style="color: var(--color-warning-700);">⚠️ Critical Check:</strong>
+                        <p style="font-size: var(--font-size-sm); color: var(--color-gray-700); margin-top: var(--space-2);">
+                            AI kan cleaning strategie voorstellen, maar JIJ beslist. Check: Maakt deze strategie sense voor mijn business context?
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 4: Modeling -->
+            <div class="card phase-card">
+                <div class="phase-header">
+                    <span class="phase-number">4</span>
+                    <span class="phase-title">Modeling</span>
+                </div>
+                <div class="phase-content">
+                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">Template: Model Selection & Interpretation</h4>
+                    <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
+                        Vraag AI om modelkeuze en interpretatie hulp, maar verifieer assumpties.
+                    </p>
+                    <div class="template-box">
+[CONTEXT]<br>
+Mijn analyse doel: [beschrijving]<br>
+Data: [X variables, Y target, N observations]<br>
+<br>
+[TAAK]<br>
+1. Welk type analyse is geschikt? (descriptief/regressie/classificatie/etc.)<br>
+2. Welke assumpties moet mijn data voldoen?<br>
+3. Hoe interpreteer ik de resultaten in business termen?<br>
+4. Welke limitations heeft deze analyse?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 5: Evaluation -->
+            <div class="card phase-card">
+                <div class="phase-header">
+                    <span class="phase-number">5</span>
+                    <span class="phase-title">Evaluation</span>
+                </div>
+                <div class="phase-content">
+                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">Template: Results Validation</h4>
+                    <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
+                        Laat AI helpen met sanity checks en alternatieve interpretaties.
+                    </p>
+                    <div class="template-box">
+[CONTEXT]<br>
+Mijn analyse resultaten: [samenvatting van findings]<br>
+<br>
+[TAAK]<br>
+Help me deze resultaten kritisch evalueren:<br>
+1. Welke sanity checks moet ik uitvoeren?<br>
+2. Zijn er alternatieve verklaringen voor deze patterns?<br>
+3. Welke confounding factors heb ik mogelijk gemist?<br>
+4. Hoe robuust zijn deze conclusies?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 6: Deployment -->
+            <div class="card phase-card">
+                <div class="phase-header">
+                    <span class="phase-number">6</span>
+                    <span class="phase-title">Deployment</span>
+                </div>
+                <div class="phase-content">
+                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">Template: Stakeholder Communication</h4>
+                    <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
+                        AI helpt je technische resultaten vertalen naar business taal.
+                    </p>
+                    <div class="template-box">
+[CONTEXT]<br>
+Technische findings: [details]<br>
+Stakeholder: [CFO/CEO/RvC - welke rol?]<br>
+<br>
+[TAAK]<br>
+Help me dit vertalen naar executive summary:<br>
+1. Wat is de bottom line? (1 zin, geen jargon)<br>
+2. Welke actie adviseer ik? (concrete next steps)<br>
+3. Wat zijn de risks en limitations?<br>
+4. Hoe beantwoord ik verwachte kritische vragen?
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Tools & Resources -->
+            <h3 style="font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin: var(--space-10) 0 var(--space-6); color: var(--color-gray-800);">AI Tools & Resources</h3>
+
+            <a href="https://chat.openai.com" target="_blank" class="resource-link">
+                <div class="resource-icon">🤖</div>
+                <div class="resource-content">
+                    <div class="resource-title">ChatGPT</div>
+                    <div class="resource-description">OpenAI's conversational AI - goed voor exploratory analysis en prompt iteratie</div>
+                </div>
+            </a>
+
+            <a href="https://claude.ai" target="_blank" class="resource-link">
+                <div class="resource-icon">🤖</div>
+                <div class="resource-content">
+                    <div class="resource-title">Claude</div>
+                    <div class="resource-description">Anthropic's AI assistant - excellent voor lange context en nuanced analysis</div>
+                </div>
+            </a>
+
+            <a href="https://gemini.google.com" target="_blank" class="resource-link">
+                <div class="resource-icon">🤖</div>
+                <div class="resource-content">
+                    <div class="resource-title">Google Gemini</div>
+                    <div class="resource-description">Google's AI - geïntegreerd met Google Workspace tools</div>
+                </div>
+            </a>
+
+            <div class="card" style="margin-top: var(--space-6); background-color: var(--color-primary-50); border-left: 4px solid var(--color-primary-500);">
+                <div class="card-body">
+                    <h4 class="card-title" style="color: var(--color-primary-700);">📚 Aanbevolen Readings</h4>
+                    <ul style="margin-left: var(--space-6); color: var(--color-gray-700);">
+                        <li><strong>Prompt Engineering Guide</strong>: <a href="https://www.promptingguide.ai/" target="_blank">promptingguide.ai</a></li>
+                        <li><strong>AI for Data Analysis</strong>: Learn Prompting - Data Analysis section</li>
+                        <li><strong>Critical AI Evaluation</strong>: "How to Think About AI Output Validation"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conventional Tools Materials -->
+    <section id="conventional-materials" class="section">
+        <div class="container">
+            <h2 class="section-title">🛠️ Conventional Tools Path Materiaal</h2>
+
+            <!-- Principles -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 class="card-title">Belangrijke Principes</h3>
+                </div>
+                <div class="card-body">
+                    <div class="principles-grid">
+                        <div class="principle-card" style="background-color: var(--color-success-50); border-left-color: var(--color-success-500);">
+                            <div class="principle-title" style="color: var(--color-success-700);">1. Tool is Middel</div>
+                            <div class="principle-text">Niet doel. Focus op CRISP-DM proces, niet "coolste feature".</div>
+                        </div>
+                        <div class="principle-card" style="background-color: var(--color-success-50); border-left-color: var(--color-success-500);">
+                            <div class="principle-title" style="color: var(--color-success-700);">2. Start Simple, Scale Up</div>
+                            <div class="principle-text">Begin met basis functionaliteit, voeg complexity toe als nodig.</div>
+                        </div>
+                        <div class="principle-card" style="background-color: var(--color-success-50); border-left-color: var(--color-success-500);">
+                            <div class="principle-title" style="color: var(--color-success-700);">3. Reproducibility</div>
+                            <div class="principle-text">Documenteer je stappen zodat anderen kunnen volgen.</div>
+                        </div>
+                        <div class="principle-card" style="background-color: var(--color-success-50); border-left-color: var(--color-success-500);">
+                            <div class="principle-title" style="color: var(--color-success-700);">4. Business-First</div>
+                            <div class="principle-text">Elke technische keuze moet business rationale hebben.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool Selection Matrix -->
+            <h3 style="font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-6); color: var(--color-gray-800);">Tool Selectie Matrix</h3>
+
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-body">
+                    <table class="tool-matrix">
+                        <thead>
+                            <tr>
+                                <th>Tool</th>
+                                <th>Beste Voor</th>
+                                <th>Leercurve</th>
+                                <th>Visualisatie</th>
+                                <th>Modeling</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Power BI</strong></td>
+                                <td>Business dashboards, interactieve rapporten</td>
+                                <td>Middel</td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                                <td>⭐⭐⭐</td>
+                                <td>Gratis (Desktop)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tableau</strong></td>
+                                <td>Executive dashboards, storytelling</td>
+                                <td>Middel</td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                                <td>⭐⭐</td>
+                                <td>Student license</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Python</strong></td>
+                                <td>Data wrangling, custom analysis</td>
+                                <td>Hoog</td>
+                                <td>⭐⭐⭐</td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                                <td>Gratis</td>
+                            </tr>
+                            <tr>
+                                <td><strong>R</strong></td>
+                                <td>Statistical analysis, academic rigor</td>
+                                <td>Hoog</td>
+                                <td>⭐⭐⭐⭐</td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                                <td>Gratis</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Excel</strong></td>
+                                <td>Quick analysis, tabular data</td>
+                                <td>Laag</td>
+                                <td>⭐⭐</td>
+                                <td>⭐⭐</td>
+                                <td>Microsoft 365</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tool Selection Guides -->
+            <h3 style="font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-6); color: var(--color-gray-800);">Keuze Hulp: Welke Tool Voor Jou?</h3>
+
+            <div class="grid grid-2" style="margin-bottom: var(--space-8);">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: var(--color-success-700);">Kies Power BI als:</h4>
+                        <ul class="path-features">
+                            <li>Je prioriteit is: Interactieve dashboards voor stakeholders</li>
+                            <li>Je wilt: Drag-and-drop interface (minder coding)</li>
+                            <li>Je complexity level: Foundation of Analytical</li>
+                            <li>Je Senior verwacht: Visueel aantrekkelijk dashboard</li>
+                        </ul>
+                        <a href="https://aka.ms/pbidesktop" target="_blank" class="btn btn-secondary" style="margin-top: var(--space-4); width: 100%;">
+                            Download Power BI Desktop →
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: var(--color-success-700);">Kies Python als:</h4>
+                        <ul class="path-features">
+                            <li>Je prioriteit is: Flexibiliteit en custom analysis</li>
+                            <li>Je wilt: Leren programmeren (toekomstbestendig)</li>
+                            <li>Je complexity level: Analytical of Advanced</li>
+                            <li>Je Senior verwacht: Diepgaande statistische analyse</li>
+                        </ul>
+                        <a href="https://www.anaconda.com/download" target="_blank" class="btn btn-secondary" style="margin-top: var(--space-4); width: 100%;">
+                            Download Anaconda (Python) →
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: var(--color-success-700);">Kies Tableau als:</h4>
+                        <ul class="path-features">
+                            <li>Je prioriteit is: Storytelling met data</li>
+                            <li>Je wilt: Beste-in-class visualisaties</li>
+                            <li>Je complexity level: Foundation of Analytical</li>
+                            <li>Je Senior verwacht: Executive summary met visuals</li>
+                        </ul>
+                        <a href="https://www.tableau.com/academic/students" target="_blank" class="btn btn-secondary" style="margin-top: var(--space-4); width: 100%;">
+                            Get Student License →
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: var(--color-success-700);">Kies R als:</h4>
+                        <ul class="path-features">
+                            <li>Je prioriteit is: Statistical rigor</li>
+                            <li>Je wilt: Academic-grade analysis</li>
+                            <li>Je complexity level: Analytical of Advanced</li>
+                            <li>Je Senior verwacht: Peer-review kwaliteit insights</li>
+                        </ul>
+                        <a href="https://posit.co/download/rstudio-desktop/" target="_blank" class="btn btn-secondary" style="margin-top: var(--space-4); width: 100%;">
+                            Download RStudio →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Learning Resources -->
+            <h3 style="font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin: var(--space-10) 0 var(--space-6); color: var(--color-gray-800);">Learning Resources</h3>
+
+            <h4 style="font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-4); color: var(--color-gray-800);">Power BI</h4>
+
+            <a href="https://learn.microsoft.com/en-us/training/powerplatform/power-bi" target="_blank" class="resource-link">
+                <div class="resource-icon">📊</div>
+                <div class="resource-content">
+                    <div class="resource-title">Microsoft Learn: Power BI</div>
+                    <div class="resource-description">Official tutorials and learning paths voor Power BI Desktop</div>
+                </div>
+            </a>
+
+            <a href="https://www.youtube.com/user/mspowerbi" target="_blank" class="resource-link">
+                <div class="resource-icon">🎥</div>
+                <div class="resource-content">
+                    <div class="resource-title">Power BI YouTube Channel</div>
+                    <div class="resource-description">Video tutorials and tips from Microsoft Power BI team</div>
+                </div>
+            </a>
+
+            <h4 style="font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold); margin-top: var(--space-8); margin-bottom: var(--space-4); color: var(--color-gray-800);">Python (Pandas & Visualization)</h4>
+
+            <a href="https://www.datacamp.com/courses/data-manipulation-with-pandas" target="_blank" class="resource-link">
+                <div class="resource-icon">🐍</div>
+                <div class="resource-content">
+                    <div class="resource-title">DataCamp: Data Manipulation with Pandas</div>
+                    <div class="resource-description">Interactive Python tutorials voor data wrangling</div>
+                </div>
+            </a>
+
+            <a href="https://jakevdp.github.io/PythonDataScienceHandbook/" target="_blank" class="resource-link">
+                <div class="resource-icon">📖</div>
+                <div class="resource-content">
+                    <div class="resource-title">Python Data Science Handbook</div>
+                    <div class="resource-description">Free online book covering NumPy, Pandas, Matplotlib, and Scikit-Learn</div>
+                </div>
+            </a>
+
+            <h4 style="font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold); margin-top: var(--space-8); margin-bottom: var(--space-4); color: var(--color-gray-800);">R (Tidyverse & ggplot2)</h4>
+
+            <a href="https://r4ds.hadley.nz/" target="_blank" class="resource-link">
+                <div class="resource-icon">📊</div>
+                <div class="resource-content">
+                    <div class="resource-title">R for Data Science (2nd Edition)</div>
+                    <div class="resource-description">Free online book by Hadley Wickham - de standard voor Tidyverse</div>
+                </div>
+            </a>
+
+            <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank" class="resource-link">
+                <div class="resource-icon">📄</div>
+                <div class="resource-content">
+                    <div class="resource-title">RStudio Cheatsheets</div>
+                    <div class="resource-description">Quick reference guides voor dplyr, ggplot2, tidyr, en meer</div>
+                </div>
+            </a>
+
+            <div class="card" style="margin-top: var(--space-8); background-color: var(--color-success-50); border-left: 4px solid var(--color-success-500);">
+                <div class="card-body">
+                    <h4 class="card-title" style="color: var(--color-success-700);">💡 Pro Tips voor Tool Mastery</h4>
+                    <ul style="margin-left: var(--space-6); color: var(--color-gray-700);">
+                        <li><strong>Start met tutorials</strong>: Doorloop minimaal 1 getting started tutorial VOOR je met je project begint</li>
+                        <li><strong>Tool Clinics</strong>: Gebruik de office hours (Week 5-6) voor technische vragen</li>
+                        <li><strong>Documenteer je workflow</strong>: Maak screenshots/comments zodat je stappen reproduceerbaar zijn</li>
+                        <li><strong>Version control</strong>: Bewaar eerdere versies van je analyses (v1, v2, v3) - je wilt soms terug</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cross-Path Resources -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">📚 Cross-Path Materialen</h2>
+            <p class="section-subtitle">Deze materialen zijn relevant voor BEIDE paden (AI én Conventional)</p>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">CRISP-DM Methodology</h3>
+                        <p class="card-text">
+                            Tool-agnostic gids door de 6 fasen van CRISP-DM. Systematiek blijft hetzelfde, ongeacht je gekozen tools.
+                        </p>
+                        <ul style="margin-top: var(--space-4); margin-left: var(--space-6); font-size: var(--font-size-sm);">
+                            <li>Business Understanding: Van strategische vraag naar data vraag</li>
+                            <li>Data Understanding: Data quality, exploratory analysis</li>
+                            <li>Data Preparation: Cleaning, transformation, feature engineering</li>
+                            <li>Modeling: Analyse technieken en interpretatie</li>
+                            <li>Evaluation: Validatie en sanity checks</li>
+                            <li>Deployment: Stakeholder communication</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Stakeholder Communication</h3>
+                        <p class="card-text">
+                            Hoe leg je technische analyses uit aan niet-technische Seniors (CEO, CFO, RvC)?
+                        </p>
+                        <ul style="margin-top: var(--space-4); margin-left: var(--space-6); font-size: var(--font-size-sm);">
+                            <li><strong>Bottom Line First</strong>: Start met conclusie, dan onderbouwing</li>
+                            <li><strong>Visual > Numbers</strong>: Laat zien, niet alleen vertellen</li>
+                            <li><strong>Anticipeer vragen</strong>: Bedenk kritische vragen van stakeholders</li>
+                            <li><strong>Limitations expliciet</strong>: Wees transparant over assumpties en risks</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Data Interpretation</h3>
+                        <p class="card-text">
+                            Van correlatie naar business insight - hoe interpreteer je analyse resultaten?
+                        </p>
+                        <ul style="margin-top: var(--space-4); margin-left: var(--space-6); font-size: var(--font-size-sm);">
+                            <li>Correlation ≠ Causation (altijd onthouden!)</li>
+                            <li>Confounding variables identificeren</li>
+                            <li>Alternative explanations overwegen</li>
+                            <li>Business context toevoegen aan statistiek</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Example Cases</h3>
+                        <p class="card-text">
+                            Voorbeelden van excellent work op verschillende complexity levels.
+                        </p>
+                        <ul style="margin-top: var(--space-4); margin-left: var(--space-6); font-size: var(--font-size-sm);">
+                            <li><strong>Foundation</strong>: Descriptieve statistiek + heldere visualisatie</li>
+                            <li><strong>Analytical</strong>: + Regressie analyse + trend identificatie</li>
+                            <li><strong>Advanced</strong>: + Scenario analyse + sensitiviteitsanalyse</li>
+                        </ul>
+                        <p style="font-size: var(--font-size-sm); color: var(--color-gray-600); margin-top: var(--space-4);">
+                            💡 Cases worden toegevoegd na elke cohort (geanonimiseerd student work)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Steps -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Volgende Stappen</h2>
+            <div class="grid grid-3">
+                <a href="../weekplanning/" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">Planning</h3>
+                        <p class="card-text">Bekijk wanneer je welke materialen nodig hebt in de 7-weken planning.</p>
+                    </div>
+                </a>
+                <a href="../rollen/" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">Rollen</h3>
+                        <p class="card-text">Kies je rol: Senior stakeholder of Junior analyst?</p>
+                    </div>
+                </a>
+                <a href="../assessment/" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">Assessment</h3>
+                        <p class="card-text">Hoe wordt je werk beoordeeld? CRISP-DM criteria + PAM.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">ECONAN - Economische Analyse | HAN Bedrijfskunde | C-Cluster</p>
+                <p class="footer-tagline">Purpose • Autonomy • Mastery</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

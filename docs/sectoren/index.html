@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sectoren & Strategische Vraagstukken | ECONAN</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/econan.css">
+    <style>
+        /* Sector-specific styling */
+        .sector-card {
+            border-left: 4px solid var(--color-primary-500);
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .sector-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-left-color: var(--color-primary-700);
+        }
+
+        .euronext-badge {
+            display: inline-block;
+            background-color: var(--color-primary-50);
+            color: var(--color-primary-700);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+            margin-right: var(--space-2);
+            margin-bottom: var(--space-2);
+        }
+
+        .company-list {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-4) 0;
+        }
+
+        .company-list li {
+            padding: var(--space-2) var(--space-3);
+            background-color: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color var(--duration-fast) var(--ease-out);
+        }
+
+        .company-list li:hover {
+            background-color: var(--color-primary-50);
+        }
+
+        .company-ticker {
+            font-family: monospace;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary-600);
+            font-size: var(--font-size-sm);
+        }
+
+        .strategic-question {
+            background-color: var(--color-primary-50);
+            border-left: 3px solid var(--color-primary-500);
+            padding: var(--space-4);
+            border-radius: var(--radius-md);
+            margin: var(--space-4) 0;
+        }
+
+        .strategic-question h4 {
+            color: var(--color-primary-700);
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-2);
+        }
+
+        .strategic-question blockquote {
+            font-style: italic;
+            color: var(--color-gray-700);
+            margin: var(--space-3) 0;
+            padding-left: var(--space-4);
+            border-left: 2px solid var(--color-primary-300);
+        }
+
+        .stakeholder-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-top: var(--space-3);
+        }
+
+        .stakeholder-tag {
+            font-size: var(--font-size-xs);
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-base);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .stakeholder-tag.rvb {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .stakeholder-tag.rvc {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .stakeholder-tag.invest {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .stakeholder-tag.toezicht {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .decision-type {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-top: var(--space-2);
+        }
+
+        .decision-badge {
+            font-size: var(--font-size-xs);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            font-weight: var(--font-weight-semibold);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .decision-badge.rendement {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .decision-badge.risico {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .decision-badge.groei {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .decision-badge.esg {
+            background-color: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        .data-access {
+            background-color: var(--color-success-50);
+            border: 1px solid var(--color-success-200);
+            border-radius: var(--radius-md);
+            padding: var(--space-3);
+            margin-top: var(--space-4);
+        }
+
+        .data-access h5 {
+            color: var(--color-success-700);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-2);
+        }
+
+        .data-access ul {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-700);
+            margin-left: var(--space-4);
+        }
+
+        .bedrom-link {
+            background-color: var(--color-gray-100);
+            border-radius: var(--radius-md);
+            padding: var(--space-3);
+            margin-top: var(--space-3);
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-700);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-main">
+        <div class="container">
+            <div class="nav-content">
+                <a class="nav-brand" href="../index.html">ECONAN</a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a class="nav-link" href="../index.html#overzicht">Overzicht</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Sectoren</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../rollen/">Rollen</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../weekplanning/">Planning</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../materiaal/">Materiaal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../assessment/">Assessment</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-text">
+                <h1 class="hero-title">Strategische Vraagstukken per Sector</h1>
+                <p class="hero-subtitle">Van BEDROM Conceptueel naar ECONAN Kwantitatief</p>
+                <p class="hero-description">Kies een strategische beslissing uit een BEDROM sector die je al kent. Elk vraagstuk draait om <strong>rendement, risico, of groei</strong> - en jouw team moet data-gedreven adviseren.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Euronext Integration Info -->
+    <section class="section">
+        <div class="container">
+            <div class="card" style="border-left: 4px solid var(--color-success-500);">
+                <div class="card-body">
+                    <h2 class="card-title" style="color: var(--color-success-700);">📊 Werk met Beursgenoteerde Ondernemingen</h2>
+                    <p class="card-text">
+                        Elk team kiest een <strong>Euronext-listed company</strong> binnen hun sector. Dit betekent:
+                    </p>
+                    <ul style="margin-top: var(--space-3); margin-left: var(--space-6);">
+                        <li><strong>Toegang tot financiële data</strong>: Jaarverslagen, kwartaalcijfers, investor relations</li>
+                        <li><strong>ESG rapportages</strong>: Duurzaamheidsverslagen, CO2 footprint, governance data</li>
+                        <li><strong>Analyst coverage</strong>: Sell-side research, Bloomberg/Refinitiv data</li>
+                        <li><strong>Publieke strategie</strong>: CEO statements, strategy days, earnings calls</li>
+                    </ul>
+                    <p style="margin-top: var(--space-4);">
+                        <a href="https://live.euronext.com/en/products/equities/list" target="_blank" class="btn btn-secondary">
+                            Bekijk Euronext Companies →
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sectoren Overview -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">8 Strategische Sectoren</h2>
+            <p class="section-subtitle">Elk sector heeft 2 strategische vraagstukken. Kies er één die aansluit bij je interesse en BEDROM ervaring.</p>
+
+            <!-- Sector 1: Retail -->
+            <div class="card sector-card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 class="card-title">1. Retail (Fashion & Consumer Goods)</h3>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <span class="euronext-badge">Euronext: Consumer Discretionary</span>
+                        <span class="euronext-badge">Consumer Staples</span>
+                    </div>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-gray-800);">Beschikbare Ondernemingen (kies 1 "eigen" + 2-3 benchmarks)</h4>
+                    <ul class="company-list">
+                        <li>
+                            <span>Ahold Delhaize (Food Retailers)</span>
+                            <span class="company-ticker">AD.AS</span>
+                        </li>
+                        <li>
+                            <span>Inditex - Zara (Apparel Retailers)</span>
+                            <span class="company-ticker">ITX.MC</span>
+                        </li>
+                        <li>
+                            <span>LVMH (Luxury Items)</span>
+                            <span class="company-ticker">MC.PA</span>
+                        </li>
+                        <li>
+                            <span>Carrefour (Diversified Retailers)</span>
+                            <span class="company-ticker">CA.PA</span>
+                        </li>
+                        <li>
+                            <span>H&M (Apparel Retailers)</span>
+                            <span class="company-ticker">HM-B.ST</span>
+                        </li>
+                        <li>
+                            <span>Kering - Gucci (Luxury Goods)</span>
+                            <span class="company-ticker">KER.PA</span>
+                        </li>
+                        <li>
+                            <span>Adidas (Sportswear)</span>
+                            <span class="company-ticker">ADS.DE</span>
+                        </li>
+                        <li>
+                            <span>Hermès (Luxury Goods)</span>
+                            <span class="company-ticker">RMS.PA</span>
+                        </li>
+                    </ul>
+
+                    <div style="background-color: var(--color-primary-50); border-left: 3px solid var(--color-primary-500); padding: var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-6);">
+                        <h5 style="color: var(--color-primary-700); font-weight: var(--font-weight-bold); margin-bottom: var(--space-2);">🎯 Benchmark Guidance</h5>
+                        <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);"><strong>Vergelijkbare bedrijven kiezen:</strong></p>
+                        <ul style="font-size: var(--font-size-sm); margin-left: var(--space-6);">
+                            <li><strong>Fast Fashion cluster:</strong> H&M, Inditex (Zara), Adidas - vergelijkbare price points, volume focus</li>
+                            <li><strong>Luxury cluster:</strong> LVMH, Kering (Gucci), Hermès - premium pricing, brand prestige</li>
+                            <li><strong>Food Retail cluster:</strong> Ahold Delhaize, Carrefour - volume retailers, private label</li>
+                        </ul>
+                        <p style="font-size: var(--font-size-sm); margin-top: var(--space-3); font-style: italic;">💡 Tip: Kies benchmarks binnen zelfde cluster voor betere vergelijkbaarheid</p>
+                    </div>
+
+                    <!-- Strategic Question 1.1 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 1.1: Sustainable Fashion Premium Pricing</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge rendement">Rendement</span>
+                            <span class="decision-badge risico">Risico</span>
+                            <span class="decision-badge esg">ESG</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we investeren in een duurzame collectie met 30% hogere prijzen, of blijven we bij fast fashion met hogere volume?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (CEO of CFO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: CFO</span>
+                            <span class="stakeholder-tag rvc">RvC: Strategie</span>
+                            <span class="stakeholder-tag invest">Investeerders: ESG Funds</span>
+                            <span class="stakeholder-tag toezicht">NGO: Milieudefensie</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM analyseerde je ESG risico's conceptueel. Nu kwantificeer je of sustainable positioning winstgevend is.
+                        </div>
+                    </div>
+
+                    <!-- Strategic Question 1.2 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 1.2: Marktexpansie naar Online Channels</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge groei">Groei</span>
+                            <span class="decision-badge rendement">Rendement</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we 40% van ons marketing budget verschuiven van winkels naar e-commerce, of optimaliseren we onze fysieke footprint?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (CEO of CMO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: CMO</span>
+                            <span class="stakeholder-tag rvc">RvC: Digital</span>
+                            <span class="stakeholder-tag invest">Investeerders: Growth Funds</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM zag je e-commerce groei. Nu bepaal je of deze trend jouw investering rechtvaardigt.
+                        </div>
+                    </div>
+
+                    <div class="data-access">
+                        <h5>📊 Data Toegang</h5>
+                        <ul>
+                            <li>Investor Relations: Jaarverslagen, segmentrapportages (online vs. winkel)</li>
+                            <li>ESG Reports: CO2 footprint, sustainable sourcing data</li>
+                            <li>Analyst Coverage: Sell-side research over retail trends</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sector 2: Energy -->
+            <div class="card sector-card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 class="card-title">2. Energy (Renewable vs. Fossil)</h3>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <span class="euronext-badge">Euronext: Energy - Oil & Gas</span>
+                        <span class="euronext-badge">Renewable Energy</span>
+                    </div>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-gray-800);">Beschikbare Ondernemingen (kies 1 "eigen" + 2-3 benchmarks)</h4>
+                    <ul class="company-list">
+                        <li>
+                            <span>Shell (Integrated Oil & Gas)</span>
+                            <span class="company-ticker">SHELL.AS</span>
+                        </li>
+                        <li>
+                            <span>TotalEnergies (Integrated Oil & Gas)</span>
+                            <span class="company-ticker">TTE.PA</span>
+                        </li>
+                        <li>
+                            <span>Ørsted (Renewable Energy)</span>
+                            <span class="company-ticker">ORSTED.CO</span>
+                        </li>
+                        <li>
+                            <span>Vattenfall (Utilities - Renewable)</span>
+                            <span class="company-ticker">VATN.ST</span>
+                        </li>
+                        <li>
+                            <span>BP (Integrated Oil & Gas)</span>
+                            <span class="company-ticker">BP.L</span>
+                        </li>
+                        <li>
+                            <span>Equinor (Integrated Oil & Gas)</span>
+                            <span class="company-ticker">EQNR.OL</span>
+                        </li>
+                        <li>
+                            <span>Engie (Utilities - Renewable)</span>
+                            <span class="company-ticker">ENGI.PA</span>
+                        </li>
+                    </ul>
+
+                    <div style="background-color: var(--color-primary-50); border-left: 3px solid var(--color-primary-500); padding: var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-6);">
+                        <h5 style="color: var(--color-primary-700); font-weight: var(--font-weight-bold);">🎯 Benchmark Guidance</h5>
+                        <p><strong>Vergelijkbare bedrijven kiezen:</strong></p>
+                        <ul>
+                            <li><strong>Integrated Oil & Gas cluster:</strong> Shell, TotalEnergies, BP, Equinor - traditional energy transitioning to renewables</li>
+                            <li><strong>Pure Renewable cluster:</strong> Ørsted, Vattenfall, Engie - focus on wind, solar, and green utilities</li>
+                        </ul>
+                        <p style="font-style: italic;">💡 Tip: Kies benchmarks binnen zelfde cluster voor betere vergelijkbaarheid van transition strategies</p>
+                    </div>
+
+                    <!-- Strategic Question 2.1 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 2.1: Renewable Energy Portfolio Allocation</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge rendement">Rendement</span>
+                            <span class="decision-badge risico">Risico</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we €50M investeren in zonneparken (lage risk, lage return) of windenergie op zee (hoge risk, hoge return)?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (CFO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: CFO</span>
+                            <span class="stakeholder-tag rvc">RvC: Audit</span>
+                            <span class="stakeholder-tag invest">Investeerders: Pensioenfonds</span>
+                            <span class="stakeholder-tag toezicht">Toezicht: RVO</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM analyseerde je ESG drivers. Nu kwantificeer je welke renewable investment optimaal is.
+                        </div>
+                    </div>
+
+                    <!-- Strategic Question 2.2 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 2.2: Fossil Fuel Phase-Out Timing</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge risico">Risico</span>
+                            <span class="decision-badge rendement">Rendement</span>
+                            <span class="decision-badge esg">ESG</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we onze gas-productie assets verkopen in 2026 (vroeg, lagere waarde) of 2030 (later, hogere stranded asset risk)?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (CEO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: CEO</span>
+                            <span class="stakeholder-tag rvc">RvC: ESG</span>
+                            <span class="stakeholder-tag invest">Investeerders: Activist</span>
+                            <span class="stakeholder-tag toezicht">NGO: Milieudefensie</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM identificeerde je regulatory risks. Nu bepaal je optimaal timing voor divestment.
+                        </div>
+                    </div>
+
+                    <div class="data-access">
+                        <h5>📊 Data Toegang</h5>
+                        <ul>
+                            <li>Investor Relations: Segment reporting (renewable vs. fossil)</li>
+                            <li>ESG Reports: CO2 emissions, energy transition roadmaps</li>
+                            <li>Market Data: Energy prices, forward curves, subsidy regimes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sector 3: Financial Services -->
+            <div class="card sector-card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 class="card-title">3. Financial Services (Banking)</h3>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <span class="euronext-badge">Euronext: Financials - Banks</span>
+                        <span class="euronext-badge">Insurance</span>
+                    </div>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-gray-800);">Beschikbare Ondernemingen (kies 1 "eigen" + 2-3 benchmarks)</h4>
+                    <ul class="company-list">
+                        <li>
+                            <span>ING Group (Diversified Banks)</span>
+                            <span class="company-ticker">INGA.AS</span>
+                        </li>
+                        <li>
+                            <span>ABN AMRO (Diversified Banks)</span>
+                            <span class="company-ticker">ABN.AS</span>
+                        </li>
+                        <li>
+                            <span>KBC Group (Diversified Banks)</span>
+                            <span class="company-ticker">KBC.BR</span>
+                        </li>
+                        <li>
+                            <span>BNP Paribas (Diversified Banks)</span>
+                            <span class="company-ticker">BNP.PA</span>
+                        </li>
+                        <li>
+                            <span>Société Générale (Diversified Banks)</span>
+                            <span class="company-ticker">GLE.PA</span>
+                        </li>
+                        <li>
+                            <span>Deutsche Bank (Diversified Banks)</span>
+                            <span class="company-ticker">DBK.DE</span>
+                        </li>
+                        <li>
+                            <span>NN Group (Insurance)</span>
+                            <span class="company-ticker">NN.AS</span>
+                        </li>
+                    </ul>
+
+                    <div style="background-color: var(--color-primary-50); border-left: 3px solid var(--color-primary-500); padding: var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-6);">
+                        <h5 style="color: var(--color-primary-700); font-weight: var(--font-weight-bold);">🎯 Benchmark Guidance</h5>
+                        <p><strong>Vergelijkbare bedrijven kiezen:</strong></p>
+                        <ul>
+                            <li><strong>Dutch Retail Banking cluster:</strong> ING, ABN AMRO, NN Group - Netherlands-focused, retail/SME lending</li>
+                            <li><strong>European Universal Banks cluster:</strong> BNP Paribas, Société Générale, Deutsche Bank - diversified, international presence</li>
+                            <li><strong>Regional Benelux Banks cluster:</strong> KBC Group, ING, ABN AMRO - Benelux market focus</li>
+                        </ul>
+                        <p style="font-style: italic;">💡 Tip: Kies benchmarks binnen zelfde cluster voor betere vergelijkbaarheid van business models</p>
+                    </div>
+
+                    <!-- Strategic Question 3.1 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 3.1: Digital Banking Investment</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge groei">Groei</span>
+                            <span class="decision-badge risico">Risico</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we €20M investeren in een volledig digitale bank (zonder filialen) of optimaliseren we ons hybride model?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (CEO of CTO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: CTO</span>
+                            <span class="stakeholder-tag rvc">RvC: Digital</span>
+                            <span class="stakeholder-tag invest">Investeerders: Growth Funds</span>
+                            <span class="stakeholder-tag toezicht">Toezicht: DNB</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM zag je fintech disruptie. Nu bepaal je of digital-first strategie financieel haalbaar is.
+                        </div>
+                    </div>
+
+                    <!-- Strategic Question 3.2 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 3.2: Loan Portfolio Risk Management</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge risico">Risico</span>
+                            <span class="decision-badge rendement">Rendement</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we onze blootstelling aan MKB leningen reduceren (lager risico, lagere marge) of verhogen (hoger risico, hogere marge)?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (CFO of CRO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: CFO</span>
+                            <span class="stakeholder-tag rvc">RvC: Audit</span>
+                            <span class="stakeholder-tag invest">Investeerders: Value</span>
+                            <span class="stakeholder-tag toezicht">Toezicht: DNB</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM analyseerde je marktrisico's. Nu kwantificeer je credit risk voor portfolio optimization.
+                        </div>
+                    </div>
+
+                    <div class="data-access">
+                        <h5>📊 Data Toegang</h5>
+                        <ul>
+                            <li>Investor Relations: Credit quality metrics, loan portfolio composition</li>
+                            <li>Basel III Pillar 3 Disclosures: Risk-weighted assets, capital ratios</li>
+                            <li>Analyst Coverage: Bank sector research, digital transformation reports</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sector 4: Healthcare -->
+            <div class="card sector-card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 class="card-title">4. Healthcare (Pharmaceuticals)</h3>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <span class="euronext-badge">Euronext: Healthcare - Pharmaceuticals</span>
+                        <span class="euronext-badge">Biotechnology</span>
+                    </div>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-gray-800);">Beschikbare Ondernemingen (kies 1 "eigen" + 2-3 benchmarks)</h4>
+                    <ul class="company-list">
+                        <li>
+                            <span>Sanofi (Pharmaceuticals)</span>
+                            <span class="company-ticker">SAN.PA</span>
+                        </li>
+                        <li>
+                            <span>Novo Nordisk (Pharmaceuticals)</span>
+                            <span class="company-ticker">NOVO-B.CO</span>
+                        </li>
+                        <li>
+                            <span>Galapagos (Biotechnology)</span>
+                            <span class="company-ticker">GLPG.AS</span>
+                        </li>
+                        <li>
+                            <span>argenx (Biotechnology)</span>
+                            <span class="company-ticker">ARGX.BR</span>
+                        </li>
+                        <li>
+                            <span>AstraZeneca (Pharmaceuticals)</span>
+                            <span class="company-ticker">AZN.L</span>
+                        </li>
+                        <li>
+                            <span>GSK (Pharmaceuticals)</span>
+                            <span class="company-ticker">GSK.L</span>
+                        </li>
+                        <li>
+                            <span>Koninklijke Philips (Medical Devices)</span>
+                            <span class="company-ticker">PHIA.AS</span>
+                        </li>
+                    </ul>
+
+                    <div style="background-color: var(--color-primary-50); border-left: 3px solid var(--color-primary-500); padding: var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-6);">
+                        <h5 style="color: var(--color-primary-700); font-weight: var(--font-weight-bold);">🎯 Benchmark Guidance</h5>
+                        <p><strong>Vergelijkbare bedrijven kiezen:</strong></p>
+                        <ul>
+                            <li><strong>Big Pharma cluster:</strong> Sanofi, Novo Nordisk, AstraZeneca, GSK - established pharma, blockbuster drugs</li>
+                            <li><strong>Biotech Innovation cluster:</strong> Galapagos, argenx - high-risk R&D, specialty therapies</li>
+                            <li><strong>Medical Technology cluster:</strong> Koninklijke Philips - medical devices, healthcare IT</li>
+                        </ul>
+                        <p style="font-style: italic;">💡 Tip: Kies benchmarks binnen zelfde cluster voor betere vergelijkbaarheid van R&D strategy</p>
+                    </div>
+
+                    <!-- Strategic Question 4.1 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 4.1: Drug Portfolio Prioritization</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge risico">Risico</span>
+                            <span class="decision-badge rendement">Rendement</span>
+                            <span class="decision-badge groei">Groei</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we onze R&D focus leggen op blockbuster drug X (high risk, high reward) of niche therapie Y (lower risk, steady return)?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (CEO of CSO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: CSO</span>
+                            <span class="stakeholder-tag rvc">RvC: Strategie</span>
+                            <span class="stakeholder-tag invest">Investeerders: Hedge Fund</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM analyseerde je R&D risico's. Nu bepaal je welk drug project optimaal value creëert.
+                        </div>
+                    </div>
+
+                    <!-- Strategic Question 4.2 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 4.2: Emerging Market Expansion</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge groei">Groei</span>
+                            <span class="decision-badge esg">ESG</span>
+                            <span class="decision-badge rendement">Rendement</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we onze patented drugs tegen lagere prijzen verkopen in Afrika (ESG positief, lagere marge) of focus op Westerse markten (hogere marge, patent cliff risk)?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (CEO of CFO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: CEO</span>
+                            <span class="stakeholder-tag rvc">RvC: ESG</span>
+                            <span class="stakeholder-tag invest">Investeerders: ESG Funds</span>
+                            <span class="stakeholder-tag toezicht">NGO: Médecins Sans Frontières</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM analyseerde je ESG dilemma's. Nu kwantificeer je trade-off tussen profit en access to medicine.
+                        </div>
+                    </div>
+
+                    <div class="data-access">
+                        <h5>📊 Data Toegang</h5>
+                        <ul>
+                            <li>Investor Relations: R&D pipeline updates, clinical trial results</li>
+                            <li>ESG Reports: Access to medicine programs, pricing transparency</li>
+                            <li>EMA/FDA Databases: Drug approval timelines, patent expiry data</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sector 5: Manufacturing -->
+            <div class="card sector-card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 class="card-title">5. Manufacturing (Automotive)</h3>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <span class="euronext-badge">Euronext: Industrials - Automobiles</span>
+                        <span class="euronext-badge">Auto Parts</span>
+                    </div>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-gray-800);">Beschikbare Ondernemingen (kies 1 "eigen" + 2-3 benchmarks)</h4>
+                    <ul class="company-list">
+                        <li>
+                            <span>Stellantis (Automobiles)</span>
+                            <span class="company-ticker">STLAM.PA</span>
+                        </li>
+                        <li>
+                            <span>Renault (Automobiles)</span>
+                            <span class="company-ticker">RNO.PA</span>
+                        </li>
+                        <li>
+                            <span>Volvo Cars (Automobiles)</span>
+                            <span class="company-ticker">VOLCAR-B.ST</span>
+                        </li>
+                        <li>
+                            <span>Forvia (Auto Parts)</span>
+                            <span class="company-ticker">FRVIA.PA</span>
+                        </li>
+                        <li>
+                            <span>Volkswagen Group (Automobiles)</span>
+                            <span class="company-ticker">VOW3.DE</span>
+                        </li>
+                        <li>
+                            <span>BMW (Automobiles)</span>
+                            <span class="company-ticker">BMW.DE</span>
+                        </li>
+                        <li>
+                            <span>Mercedes-Benz Group (Automobiles)</span>
+                            <span class="company-ticker">MBG.DE</span>
+                        </li>
+                    </ul>
+
+                    <div style="background-color: var(--color-primary-50); border-left: 3px solid var(--color-primary-500); padding: var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-6);">
+                        <h5 style="color: var(--color-primary-700); font-weight: var(--font-weight-bold);">🎯 Benchmark Guidance</h5>
+                        <p><strong>Vergelijkbare bedrijven kiezen:</strong></p>
+                        <ul>
+                            <li><strong>Volume Manufacturers cluster:</strong> Stellantis, Renault, Volkswagen - mass-market, EV transition challenges</li>
+                            <li><strong>Premium Manufacturers cluster:</strong> BMW, Mercedes-Benz, Volvo Cars - premium segment, technology focus</li>
+                            <li><strong>Auto Suppliers cluster:</strong> Forvia - Tier 1 suppliers, component manufacturing</li>
+                        </ul>
+                        <p style="font-style: italic;">💡 Tip: Kies benchmarks binnen zelfde cluster voor betere vergelijkbaarheid van EV strategy</p>
+                    </div>
+
+                    <!-- Strategic Question 5.1 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 5.1: Electric Vehicle Portfolio Shift</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge groei">Groei</span>
+                            <span class="decision-badge risico">Risico</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we 60% van productiecapaciteit shiften naar EV's in 2026, of graduele transitie tot 2030?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (CEO of COO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: COO</span>
+                            <span class="stakeholder-tag rvc">RvC: ESG</span>
+                            <span class="stakeholder-tag invest">Investeerders: Growth</span>
+                            <span class="stakeholder-tag toezicht">Toezicht: EU Commission</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM zag je EV trends. Nu bepaal je optimale transitie snelheid voor jouw fabriek.
+                        </div>
+                    </div>
+
+                    <!-- Strategic Question 5.2 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 5.2: Supply Chain Regionalization</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge risico">Risico</span>
+                            <span class="decision-badge rendement">Rendement</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we onze supply chain regionaliseren (hoger kosten, lager risico) of blijven bij global sourcing (lager kosten, hoger risico)?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (COO of CFO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: CFO</span>
+                            <span class="stakeholder-tag rvc">RvC: Audit</span>
+                            <span class="stakeholder-tag invest">Investeerders: Value</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM analyseerde je supply chain risico's. Nu kwantificeer je trade-off tussen cost en resilience.
+                        </div>
+                    </div>
+
+                    <div class="data-access">
+                        <h5>📊 Data Toegang</h5>
+                        <ul>
+                            <li>Investor Relations: Production volumes, EV sales mix</li>
+                            <li>ESG Reports: CO2 emissions per vehicle, supply chain transparency</li>
+                            <li>Industry Data: EV adoption curves, battery cost trends</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sector 6: Food & Beverage -->
+            <div class="card sector-card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 class="card-title">6. Food & Beverage (Consumer Goods)</h3>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <span class="euronext-badge">Euronext: Consumer Staples - Food Products</span>
+                        <span class="euronext-badge">Beverages</span>
+                    </div>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-gray-800);">Beschikbare Ondernemingen (kies 1 "eigen" + 2-3 benchmarks)</h4>
+                    <ul class="company-list">
+                        <li>
+                            <span>Unilever (Food Products)</span>
+                            <span class="company-ticker">UNA.AS</span>
+                        </li>
+                        <li>
+                            <span>Danone (Food Products)</span>
+                            <span class="company-ticker">BN.PA</span>
+                        </li>
+                        <li>
+                            <span>Heineken (Beverages)</span>
+                            <span class="company-ticker">HEIA.AS</span>
+                        </li>
+                        <li>
+                            <span>Nestlé (Food Products)</span>
+                            <span class="company-ticker">NESN.SW</span>
+                        </li>
+                        <li>
+                            <span>Diageo (Alcoholic Beverages)</span>
+                            <span class="company-ticker">DGE.L</span>
+                        </li>
+                        <li>
+                            <span>Carlsberg (Brewers)</span>
+                            <span class="company-ticker">CARL-B.CO</span>
+                        </li>
+                        <li>
+                            <span>Pernod Ricard (Spirits)</span>
+                            <span class="company-ticker">RI.PA</span>
+                        </li>
+                    </ul>
+
+                    <div style="background-color: var(--color-primary-50); border-left: 3px solid var(--color-primary-500); padding: var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-6);">
+                        <h5 style="color: var(--color-primary-700); font-weight: var(--font-weight-bold);">🎯 Benchmark Guidance</h5>
+                        <p><strong>Vergelijkbare bedrijven kiezen:</strong></p>
+                        <ul>
+                            <li><strong>Food Products cluster:</strong> Unilever, Danone, Nestlé - branded foods, consumer packaged goods</li>
+                            <li><strong>Beer cluster:</strong> Heineken, Carlsberg - brewers, global distribution</li>
+                            <li><strong>Spirits cluster:</strong> Diageo, Pernod Ricard - premium alcoholic beverages</li>
+                        </ul>
+                        <p style="font-style: italic;">💡 Tip: Kies benchmarks binnen zelfde cluster voor betere vergelijkbaarheid van brand strategy</p>
+                    </div>
+
+                    <!-- Strategic Question 6.1 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 6.1: Plant-Based Product Launch</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge groei">Groei</span>
+                            <span class="decision-badge risico">Risico</span>
+                            <span class="decision-badge esg">ESG</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we €10M investeren in een plant-based product line, of optimaliseren we ons bestaande vlees portfolio?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (CMO of CFO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: CMO</span>
+                            <span class="stakeholder-tag rvc">RvC: Strategie</span>
+                            <span class="stakeholder-tag invest">Investeerders: ESG Funds</span>
+                            <span class="stakeholder-tag toezicht">NGO: Wakker Dier</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM analyseerde je consumer trends. Nu bepaal je of plant-based investment rendabel is.
+                        </div>
+                    </div>
+
+                    <!-- Strategic Question 6.2 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 6.2: Private Label Competition Response</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge rendement">Rendement</span>
+                            <span class="decision-badge groei">Groei</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we onze premium brand prijzen verlagen (verdedig marktaandeel) of prijzen handhaven (verdedig marge)?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (CEO of CMO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: CEO</span>
+                            <span class="stakeholder-tag rvc">RvC: Audit</span>
+                            <span class="stakeholder-tag invest">Investeerders: Value</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM analyseerde je marktstructuur. Nu bepaal je optimale pricing strategie onder concurrentiedruk.
+                        </div>
+                    </div>
+
+                    <div class="data-access">
+                        <h5>📊 Data Toegang</h5>
+                        <ul>
+                            <li>Investor Relations: Brand performance, geographic segments</li>
+                            <li>ESG Reports: Sustainable sourcing, nutritional profiles</li>
+                            <li>Market Research: Nielsen data, private label share trends</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sector 7: Technology -->
+            <div class="card sector-card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 class="card-title">7. Technology (SaaS/Cloud)</h3>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <span class="euronext-badge">Euronext: Technology - Software & Services</span>
+                        <span class="euronext-badge">IT Services</span>
+                    </div>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-gray-800);">Beschikbare Ondernemingen (kies 1 "eigen" + 2-3 benchmarks)</h4>
+                    <ul class="company-list">
+                        <li>
+                            <span>ASML (Technology Hardware)</span>
+                            <span class="company-ticker">ASML.AS</span>
+                        </li>
+                        <li>
+                            <span>Prosus/Naspers (Internet)</span>
+                            <span class="company-ticker">PRX.AS</span>
+                        </li>
+                        <li>
+                            <span>Adyen (Financial Technology)</span>
+                            <span class="company-ticker">ADYEN.AS</span>
+                        </li>
+                        <li>
+                            <span>Dassault Systèmes (Software)</span>
+                            <span class="company-ticker">DSY.PA</span>
+                        </li>
+                        <li>
+                            <span>SAP (Enterprise Software)</span>
+                            <span class="company-ticker">SAP.DE</span>
+                        </li>
+                        <li>
+                            <span>Capgemini (IT Services)</span>
+                            <span class="company-ticker">CAP.PA</span>
+                        </li>
+                        <li>
+                            <span>Wolters Kluwer (Software)</span>
+                            <span class="company-ticker">WKL.AS</span>
+                        </li>
+                    </ul>
+
+                    <div style="background-color: var(--color-primary-50); border-left: 3px solid var(--color-primary-500); padding: var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-6);">
+                        <h5 style="color: var(--color-primary-700); font-weight: var(--font-weight-bold);">🎯 Benchmark Guidance</h5>
+                        <p><strong>Vergelijkbare bedrijven kiezen:</strong></p>
+                        <ul>
+                            <li><strong>Enterprise Software cluster:</strong> SAP, Dassault Systèmes, Wolters Kluwer - B2B software, subscription models</li>
+                            <li><strong>Fintech/Payments cluster:</strong> Adyen - payment processing, transaction-based revenue</li>
+                            <li><strong>IT Services cluster:</strong> Capgemini - consulting, digital transformation</li>
+                            <li><strong>Specialized Tech cluster:</strong> ASML (semiconductor equipment), Prosus (internet investments)</li>
+                        </ul>
+                        <p style="font-style: italic;">💡 Tip: Kies benchmarks binnen zelfde cluster voor betere vergelijkbaarheid van business models</p>
+                    </div>
+
+                    <!-- Strategic Question 7.1 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 7.1: Freemium vs. Premium Pricing</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge groei">Groei</span>
+                            <span class="decision-badge rendement">Rendement</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we ons SaaS product gratis aanbieden (freemium, snelle groei) of direct premium pricing (langzame groei, hogere marge)?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (CEO of CMO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: CMO</span>
+                            <span class="stakeholder-tag rvc">RvC: Digital</span>
+                            <span class="stakeholder-tag invest">Investeerders: Growth Funds</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM analyseerde je business models. Nu bepaal je optimale pricing strategie voor scale.
+                        </div>
+                    </div>
+
+                    <!-- Strategic Question 7.2 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 7.2: Geographic Expansion Prioritization</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge groei">Groei</span>
+                            <span class="decision-badge risico">Risico</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we eerst expanderen naar US (grote markt, hoge competitie) of naar emerging markets (kleine markt, first-mover advantage)?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (CEO of CFO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: CEO</span>
+                            <span class="stakeholder-tag rvc">RvC: Strategie</span>
+                            <span class="stakeholder-tag invest">Investeerders: Venture Capital</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM analyseerde je internationale markten. Nu bepaal je optimale expansion volgorde.
+                        </div>
+                    </div>
+
+                    <div class="data-access">
+                        <h5>📊 Data Toegang</h5>
+                        <ul>
+                            <li>Investor Relations: ARR growth, customer acquisition metrics</li>
+                            <li>ESG Reports: Data privacy, cybersecurity governance</li>
+                            <li>Tech Benchmarks: SaaS metrics (CAC, LTV, churn rates)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sector 8: Real Estate -->
+            <div class="card sector-card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 class="card-title">8. Real Estate (Commercial)</h3>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <span class="euronext-badge">Euronext: Real Estate - Office REITs</span>
+                        <span class="euronext-badge">Diversified REITs</span>
+                    </div>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-gray-800);">Beschikbare Ondernemingen (kies 1 "eigen" + 2-3 benchmarks)</h4>
+                    <ul class="company-list">
+                        <li>
+                            <span>Unibail-Rodamco-Westfield (Retail REITs)</span>
+                            <span class="company-ticker">URW.AS</span>
+                        </li>
+                        <li>
+                            <span>Warehouses De Pauw (Industrial REITs)</span>
+                            <span class="company-ticker">WDP.BR</span>
+                        </li>
+                        <li>
+                            <span>Carmila (Retail REITs)</span>
+                            <span class="company-ticker">CARM.PA</span>
+                        </li>
+                        <li>
+                            <span>Covivio (Diversified REITs)</span>
+                            <span class="company-ticker">COV.PA</span>
+                        </li>
+                        <li>
+                            <span>Gecina (Office REITs)</span>
+                            <span class="company-ticker">GFC.PA</span>
+                        </li>
+                        <li>
+                            <span>Klepierre (Retail REITs)</span>
+                            <span class="company-ticker">LI.PA</span>
+                        </li>
+                        <li>
+                            <span>Montea (Logistics REITs)</span>
+                            <span class="company-ticker">MONT.BR</span>
+                        </li>
+                    </ul>
+
+                    <div style="background-color: var(--color-primary-50); border-left: 3px solid var(--color-primary-500); padding: var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-6);">
+                        <h5 style="color: var(--color-primary-700); font-weight: var(--font-weight-bold);">🎯 Benchmark Guidance</h5>
+                        <p><strong>Vergelijkbare bedrijven kiezen:</strong></p>
+                        <ul>
+                            <li><strong>Retail REITs cluster:</strong> Unibail-Rodamco-Westfield, Carmila, Klepierre - shopping centers, e-commerce impact</li>
+                            <li><strong>Office REITs cluster:</strong> Gecina, Covivio - office buildings, remote work impact</li>
+                            <li><strong>Logistics/Industrial REITs cluster:</strong> WDP, Montea - warehouses, e-commerce growth</li>
+                        </ul>
+                        <p style="font-style: italic;">💡 Tip: Kies benchmarks binnen zelfde cluster voor betere vergelijkbaarheid van portfolio strategy</p>
+                    </div>
+
+                    <!-- Strategic Question 8.1 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 8.1: Office Portfolio Repositioning</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge risico">Risico</span>
+                            <span class="decision-badge rendement">Rendement</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we 30% van ons kantoorportfolio verkopen (crystallize losses) of verbouwen tot flex-working spaces (investering, onzekere return)?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (CEO of CFO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: CFO</span>
+                            <span class="stakeholder-tag rvc">RvC: Audit</span>
+                            <span class="stakeholder-tag invest">Investeerders: REITs</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM analyseerde je remote work impact. Nu kwantificeer je optimale portfolio strategie.
+                        </div>
+                    </div>
+
+                    <!-- Strategic Question 8.2 -->
+                    <div class="strategic-question">
+                        <h4>Vraagstuk 8.2: Green Building Investment</h4>
+                        <div class="decision-type">
+                            <span class="decision-badge risico">Risico</span>
+                            <span class="decision-badge rendement">Rendement</span>
+                            <span class="decision-badge esg">ESG</span>
+                        </div>
+                        <blockquote>
+                            "Moeten we €5M investeren in BREEAM Excellent certificering (ESG positief, onduidelijke ROI) of alleen minimum regulatory compliance?"
+                        </blockquote>
+                        <p><strong>Rollen:</strong> Senior (CFO of CSO) + 3-4 Junior Analisten (elk analyseert 1 bedrijf)</p>
+                        <div class="stakeholder-tags">
+                            <span class="stakeholder-tag rvb">RvB: CSO</span>
+                            <span class="stakeholder-tag rvc">RvC: ESG</span>
+                            <span class="stakeholder-tag invest">Investeerders: ESG Funds</span>
+                            <span class="stakeholder-tag toezicht">Toezicht: Klimaatakkoord</span>
+                        </div>
+                        <div class="bedrom-link">
+                            💡 <strong>BEDROM Connectie:</strong> In BEDROM analyseerde je ESG costs. Nu kwantificeer je ROI van duurzaamheidsinvestering.
+                        </div>
+                    </div>
+
+                    <div class="data-access">
+                        <h5>📊 Data Toegang</h5>
+                        <ul>
+                            <li>Investor Relations: Occupancy rates, rental income per segment</li>
+                            <li>ESG Reports: Energy efficiency metrics, GRESB scores</li>
+                            <li>Market Data: Cap rates, green building rental premiums</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Next Steps -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Volgende Stappen</h2>
+            <div class="grid grid-3">
+                <a href="../rollen/" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">1. Kies Je Rol</h3>
+                        <p class="card-text">Senior stakeholder of Junior analyst? Begrijp alle stakeholder perspectieven.</p>
+                    </div>
+                </a>
+                <a href="../weekplanning/" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">2. Planning</h3>
+                        <p class="card-text">Bekijk de 7-weken planning en belangrijke milestones.</p>
+                    </div>
+                </a>
+                <a href="../materiaal/" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">3. Materiaal</h3>
+                        <p class="card-text">AI-augmented of Conventional tools? Kies je methodologie.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">ECONAN - Economische Analyse | HAN Bedrijfskunde | C-Cluster</p>
+                <p class="footer-tagline">Purpose • Autonomy • Mastery</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

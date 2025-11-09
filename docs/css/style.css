@@ -1,0 +1,83 @@
+/* ECONAN Additional Styles */
+/* This file is for legacy support and can be removed once all pages use econan.css */
+
+/* Table Styles (for assessment pages) */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-base);
+    margin: var(--space-6) 0;
+}
+
+.table thead {
+    background-color: var(--color-primary-600);
+    color: white;
+}
+
+.table th {
+    padding: var(--space-4);
+    text-align: left;
+    font-weight: var(--font-weight-semibold);
+    border-bottom: 2px solid var(--color-primary-700);
+}
+
+.table td {
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--color-gray-200);
+}
+
+.table tbody tr:hover {
+    background-color: var(--color-gray-50);
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Code Blocks (for prompt templates and documentation) */
+pre {
+    background-color: var(--color-gray-100);
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    margin: var(--space-4) 0;
+}
+
+code {
+    background-color: var(--color-gray-100);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-base);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    color: var(--color-error-700);
+}
+
+pre code {
+    background-color: transparent;
+    padding: 0;
+    color: var(--color-gray-800);
+}
+
+/* Syntax Highlighting (basic) */
+.code-keyword {
+    color: var(--color-primary-700);
+    font-weight: var(--font-weight-semibold);
+}
+
+.code-string {
+    color: var(--color-success-700);
+}
+
+.code-comment {
+    color: var(--color-gray-500);
+    font-style: italic;
+}
+
+/* Note: This file can be merged into econan.css or removed entirely
+   once all pages are migrated to the new design system */
