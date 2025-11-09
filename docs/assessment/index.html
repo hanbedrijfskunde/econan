@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Criteria | ECONAN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/econan.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-main">
+        <div class="container">
+            <div class="nav-content">
+                <a class="nav-brand" href="../index.html">ECONAN</a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a class="nav-link" href="../index.html#overzicht">Overzicht</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sectoren/">Sectoren</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../rollen/">Rollen</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../weekplanning/">Planning</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../materiaal/">Materiaal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./">Assessment</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Assessment Criteria</h1>
+                    <p class="hero-subtitle">CRISP-DM + PAM Framework</p>
+                    <p class="hero-description">
+                        Beoordeling op basis van CRISP-DM methodologie én student experience (Purpose, Autonomy, Mastery).
+                        Beide methodologiepaden (AI-augmented en Conventional) worden gelijkwaardig beoordeeld.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Overview -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Beoordelingsstructuur</h2>
+            <p class="section-subtitle">Twee complementaire assessment frameworks</p>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">CRISP-DM Criteria (60%)</h3>
+                        <p class="card-text">
+                            Technische en methodologische kwaliteit van het data-analyse proces volgens de 6 CRISP-DM fasen.
+                        </p>
+                        <ul style="margin-top: var(--space-4); line-height: var(--line-height-relaxed);">
+                            <li><strong>A.</strong> Business & Data Understanding (15%)</li>
+                            <li><strong>B.</strong> Data Preparation (10%)</li>
+                            <li><strong>C.</strong> Modeling & Analysis (15%)</li>
+                            <li><strong>D.</strong> Evaluation & Deployment (10%)</li>
+                            <li><strong>E.</strong> Purpose (5%)</li>
+                            <li><strong>F.</strong> Autonomy (5%)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">PAM + Process (40%)</h3>
+                        <p class="card-text">
+                            Student experience, groei en procesbeoordeling via Purpose, Autonomy en Mastery framework.
+                        </p>
+                        <ul style="margin-top: var(--space-4); line-height: var(--line-height-relaxed);">
+                            <li><strong>G.</strong> Mastery & Groei (15%)</li>
+                            <li><strong>H.</strong> Teamproces & Samenwerking (10%)</li>
+                            <li><strong>I.</strong> Peer Feedback & Learning (5%)</li>
+                            <li><strong>J.</strong> Reflectie & Meta-Learning (10%)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CRISP-DM Criteria -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">CRISP-DM Assessment Criteria (60%)</h2>
+
+            <!-- Criterium A -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">A. Business & Data Understanding (15%)</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Focus:</strong> Begrip van business context en data bronnen</p>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Role Differentiation</h4>
+                    <div class="grid grid-2">
+                        <div>
+                            <h5 style="color: var(--color-role-rvb);">👔 Senior Stakeholders (60% weight)</h5>
+                            <ul style="line-height: var(--line-height-relaxed);">
+                                <li>Strategische vraagformulering</li>
+                                <li>Stakeholder perspectief articuleren</li>
+                                <li>Business impact definiëren</li>
+                                <li>Decision criteria specificeren</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--color-success-600);">📊 Junior Analysts (40% weight)</h5>
+                            <ul style="line-height: var(--line-height-relaxed);">
+                                <li>Data feasibility check</li>
+                                <li>Data bronnen identificeren</li>
+                                <li>Variabelen definiëren</li>
+                                <li>Constraints benoemen</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3);">Methodology Path Assessment</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>AI-Augmented Path</th>
+                                <th>Conventional Tools Path</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Artifacts</strong></td>
+                                <td>Prompts + conversation logs tonen begrip</td>
+                                <td>Data schema's + dokumentatie</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bewijs</strong></td>
+                                <td>AI instructies reflecteren business vereisten</td>
+                                <td>SQL queries/Python code tonen begrip</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Criterium B -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">B. Data Preparation (10%)</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Focus:</strong> Kwaliteit van data cleaning, transformation en preprocessing</p>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Primair Junior Analyst Criterium</h4>
+                    <p>Seniors worden hier lichter beoordeeld (20% weight) - zij moeten begrijpen waarom data prep nodig is.</p>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3);">Methodology Path Assessment</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>AI-Augmented Path</th>
+                                <th>Conventional Tools Path</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Artifacts</strong></td>
+                                <td>AI prompts voor data cleaning + verification logs</td>
+                                <td>Python/R scripts of Power Query transformations</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Quality Check</strong></td>
+                                <td>AI output validatie + correcties gedocumenteerd</td>
+                                <td>Data quality reports + transformation logs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Missing Values</strong></td>
+                                <td>Prompt: "Handle missing values in column X using..."</td>
+                                <td>Code: df.fillna() of Power BI transformaties</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Criterium C -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">C. Modeling & Analysis (15%)</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Focus:</strong> Kwaliteit van analytische technieken en modellering</p>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Complexity Levels</h4>
+                    <div class="grid grid-3">
+                        <div class="card" style="border-left: 4px solid var(--color-success-600);">
+                            <div class="card-body">
+                                <h5>Foundation (max 7.0)</h5>
+                                <p style="font-size: var(--font-size-sm);">Descriptieve statistiek, visualisaties, basic KPI's</p>
+                            </div>
+                        </div>
+                        <div class="card" style="border-left: 4px solid var(--color-warning-600);">
+                            <div class="card-body">
+                                <h5>Analytical (max 8.5)</h5>
+                                <p style="font-size: var(--font-size-sm);">Regressie, correlatie, trend analysis</p>
+                            </div>
+                        </div>
+                        <div class="card" style="border-left: 4px solid var(--color-primary-600);">
+                            <div class="card-body">
+                                <h5>Advanced (max 10)</h5>
+                                <p style="font-size: var(--font-size-sm);">Predictive modeling, scenario-analyse, machine learning</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3);">Methodology Path Assessment</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>AI-Augmented Path</th>
+                                <th>Conventional Tools Path</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Artifacts</strong></td>
+                                <td>Prompt engineering voor analyse + AI output validatie</td>
+                                <td>Python/R code of Power BI models</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Technique</strong></td>
+                                <td>Prompt: "Perform regression analysis on X and Y..."</td>
+                                <td>sklearn.linear_model of Power BI analytics</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Validation</strong></td>
+                                <td>Kritisch beoordelen AI output + limitations documenteren</td>
+                                <td>Model validation metrics + residual analysis</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Criterium D -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">D. Evaluation & Deployment (10%)</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Focus:</strong> Business vertaling van resultaten en actionable recommendations</p>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Gezamenlijke Verantwoordelijkheid</h4>
+                    <p>Alle rollen gelijk gewogen - Juniors verklaren technisch, Seniors vertalen naar beslissing</p>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3);">Methodology Path Assessment</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>AI-Augmented Path</th>
+                                <th>Conventional Tools Path</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Output</strong></td>
+                                <td>AI output → business recommendations + limitations</td>
+                                <td>Dashboard/visualisaties + interpretatie</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Recommendations</strong></td>
+                                <td>Actionable insights van AI kritisch geëvalueerd</td>
+                                <td>Data-driven beslissingen uit visualisaties</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Deployment</strong></td>
+                                <td>Prompt templates + conversation logs als documentation</td>
+                                <td>Interactive dashboards of automated reports</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Criteria E & F (PAM) -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">E. Purpose (5%) & F. Autonomy (5%)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="grid grid-2">
+                        <div>
+                            <h4 style="color: var(--color-primary-600);">E. Purpose</h4>
+                            <p><strong>Focus:</strong> Impact van analyse op strategische besluitvorming</p>
+                            <ul style="line-height: var(--line-height-relaxed);">
+                                <li>Waarom doet deze analyse ertoe?</li>
+                                <li>Voor wie is dit relevant?</li>
+                                <li>Welke beslissing ondersteunt dit?</li>
+                                <li>Impact op business outcomes</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--color-primary-600);">F. Autonomy</h4>
+                            <p><strong>Focus:</strong> Zelfstandige keuzes en ownership</p>
+                            <ul style="line-height: var(--line-height-relaxed);">
+                                <li>Sector, vraagstuk, methodologie gekozen</li>
+                                <li>Rol geselecteerd en ingevuld</li>
+                                <li>Eigen leerpad bepaald (complexity level)</li>
+                                <li>Ownership over deliverables</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAM + Process Criteria -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">PAM + Process Criteria (40%)</h2>
+
+            <!-- Criterium G -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">G. Mastery & Groei (15%)</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Focus:</strong> Persoonlijke ontwikkeling en skill progression</p>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Assessment Aanpak</h4>
+                    <ul style="line-height: var(--line-height-relaxed);">
+                        <li><strong>Week 1:</strong> Self-assessment (1-5 schaal) op relevante competenties</li>
+                        <li><strong>Week 4:</strong> Mid-term checkpoint - voortgang vs. persoonlijk leerdoel</li>
+                        <li><strong>Week 7:</strong> Final reflection - "Wat kan ik nu dat ik Week 1 niet kon?"</li>
+                    </ul>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3);">Differentiation</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Role</th>
+                                <th>Mastery Focus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Senior Stakeholders</strong></td>
+                                <td>Strategic thinking, stakeholder management, business translation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Junior Analysts (AI Path)</strong></td>
+                                <td>Prompt engineering, AI output validation, critical thinking</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Junior Analysts (Conventional)</strong></td>
+                                <td>Tool mastery (Power BI/Python/R), data manipulation, visualization</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p style="margin-top: var(--space-4);"><strong>Belangrijk:</strong> Dit criterium meet NIET "hoe goed ben je in Power BI" maar "hoeveel ben je gegroeid in je gekozen pad?"</p>
+                </div>
+            </div>
+
+            <!-- Criterium H -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">H. Teamproces & Samenwerking (10%)</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Focus:</strong> Effectieve samenwerking tussen rollen en methodologiepaden</p>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Beoordelingsaspecten</h4>
+                    <ul style="line-height: var(--line-height-relaxed);">
+                        <li>Senior-Junior interactie: vraagstelling ↔ analyse ↔ besluitvorming</li>
+                        <li>Cross-methodology learning: AI en Conventional teams delen inzichten (Week 4)</li>
+                        <li>Peer buddy system: 2 teams ondersteunen elkaar (Week 2-6)</li>
+                        <li>Geen "niet mijn taak" mentaliteit - gezamenlijke ownership</li>
+                    </ul>
+
+                    <p style="margin-top: var(--space-4);"><strong>Evidence:</strong> Team meeting logs, peer feedback sessions, buddy check-ins</p>
+                </div>
+            </div>
+
+            <!-- Criterium I -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">I. Peer Feedback & Learning (5%)</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Focus:</strong> Kwaliteit van gegeven en ontvangen feedback</p>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Feedback Momenten</h4>
+                    <ul style="line-height: var(--line-height-relaxed);">
+                        <li><strong>Week 4 Checkpoint:</strong> Cross-methodology presentaties met peer feedback</li>
+                        <li><strong>Buddy Sessions:</strong> 2-wekelijkse check-ins tussen buddy teams</li>
+                        <li><strong>Retrospectives:</strong> Team retrospective na elke fase (Week 3, 5, 7)</li>
+                    </ul>
+
+                    <p style="margin-top: var(--space-4);"><strong>Assessment Tool:</strong> <a href="https://hanbedrijfskunde.github.io/retrospective/?workshop=ECONAN%20WK1" target="_blank">Student Retrospective Tool</a> voor PAM scores</p>
+                </div>
+            </div>
+
+            <!-- Criterium J -->
+            <div class="card" style="margin-bottom: var(--space-8);">
+                <div class="card-header">
+                    <h3 style="margin: 0; color: var(--color-primary-700);">J. Reflectie & Meta-Learning (10%)</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Focus:</strong> Inzicht in eigen leerproces en toepasbaarheid van methodologie</p>
+
+                    <h4 style="margin-top: var(--space-6); margin-bottom: var(--space-3); color: var(--color-primary-600);">Reflectievragen (Week 7)</h4>
+                    <ul style="line-height: var(--line-height-relaxed);">
+                        <li>"Wanneer zou je AI gebruiken vs. conventional tools? Wat zijn de trade-offs?"</li>
+                        <li>"Wat zou je doen als Power BI (of AI tool) morgen niet meer bestaat?"</li>
+                        <li>"Welke CRISP-DM fase vond je het moeilijkst en waarom?"</li>
+                        <li>"Wat heb je geleerd over het vertalen van data naar beslissingen?"</li>
+                    </ul>
+
+                    <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-accent-light); border-left: 4px solid var(--color-accent-yellow); border-radius: var(--radius-md);">
+                        <p style="margin: 0; font-weight: var(--font-weight-semibold);">💡 Future-Proof Mindset</p>
+                        <p style="margin-top: var(--space-2); margin-bottom: 0;">
+                            "Tools veranderen, systematiek (CRISP-DM) blijft. De beste technische analyse is waardeloos als je stakeholder niet overtuigt."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Reference -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Quick Reference: Assessment Weights</h2>
+
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Criterium</th>
+                                <th>Weight</th>
+                                <th>Primary Role</th>
+                                <th>Methodology Agnostic?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>A.</strong> Business & Data Understanding</td>
+                                <td>15%</td>
+                                <td>Senior (60%) / Junior (40%)</td>
+                                <td>✅ Ja</td>
+                            </tr>
+                            <tr>
+                                <td><strong>B.</strong> Data Preparation</td>
+                                <td>10%</td>
+                                <td>Junior (80%) / Senior (20%)</td>
+                                <td>✅ Ja</td>
+                            </tr>
+                            <tr>
+                                <td><strong>C.</strong> Modeling & Analysis</td>
+                                <td>15%</td>
+                                <td>Junior (80%) / Senior (20%)</td>
+                                <td>✅ Ja</td>
+                            </tr>
+                            <tr>
+                                <td><strong>D.</strong> Evaluation & Deployment</td>
+                                <td>10%</td>
+                                <td>All roles (50/50)</td>
+                                <td>✅ Ja</td>
+                            </tr>
+                            <tr>
+                                <td><strong>E.</strong> Purpose</td>
+                                <td>5%</td>
+                                <td>All roles</td>
+                                <td>✅ Ja</td>
+                            </tr>
+                            <tr>
+                                <td><strong>F.</strong> Autonomy</td>
+                                <td>5%</td>
+                                <td>All roles</td>
+                                <td>✅ Ja</td>
+                            </tr>
+                            <tr>
+                                <td><strong>G.</strong> Mastery & Groei</td>
+                                <td>15%</td>
+                                <td>Individual</td>
+                                <td>✅ Ja</td>
+                            </tr>
+                            <tr>
+                                <td><strong>H.</strong> Teamproces</td>
+                                <td>10%</td>
+                                <td>Team</td>
+                                <td>✅ Ja</td>
+                            </tr>
+                            <tr>
+                                <td><strong>I.</strong> Peer Feedback</td>
+                                <td>5%</td>
+                                <td>Individual</td>
+                                <td>✅ Ja</td>
+                            </tr>
+                            <tr>
+                                <td><strong>J.</strong> Reflectie & Meta-Learning</td>
+                                <td>10%</td>
+                                <td>Individual</td>
+                                <td>✅ Ja</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr style="font-weight: var(--font-weight-bold); background-color: var(--color-primary-50);">
+                                <td>TOTAAL</td>
+                                <td>100%</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Assessment Resources</h2>
+
+            <div class="grid grid-3">
+                <a href="https://hanbedrijfskunde.github.io/retrospective/?workshop=ECONAN%20WK1" target="_blank" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">📊 Retrospective Tool</h3>
+                        <p class="card-text">Meet je Purpose, Autonomy en Mastery scores na elke week</p>
+                    </div>
+                </a>
+                <a href="../weekplanning/" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">📅 Weekplanning</h3>
+                        <p class="card-text">Zie wanneer welke assessment momenten plaatsvinden</p>
+                    </div>
+                </a>
+                <a href="../rollen/" class="card card-link">
+                    <div class="card-body">
+                        <h3 class="card-title">👥 Rollen</h3>
+                        <p class="card-text">Begrijp welke criteria zwaarder wegen voor jouw rol</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">ECONAN - Economische Analyse | HAN Bedrijfskunde | C-Cluster</p>
+                <p class="footer-tagline">Purpose • Autonomy • Mastery</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/navigation.js"></script>
+</body>
+</html>
