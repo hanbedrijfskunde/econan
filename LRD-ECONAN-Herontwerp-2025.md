@@ -327,27 +327,16 @@ Studenten MOETEN leren wat AI (nog) niet kan: strategisch inzicht, menselijke cr
 
 ### 2.3 Mastery Requirements
 
-**LR-M1: Differentiated Complexity Levels** (Priority: MUST)
-- Module MOET onderscheid maken tussen 3 complexity levels:
-  - **Foundation**: Focus op solide basis (descriptieve statistiek, visualisatie) - max cijfer 7.0
-  - **Analytical Depth**: Focus op analyse (regressie, correlatie) - max cijfer 8.5
-  - **Advanced Innovation**: Focus op predictive modeling, scenario-analyse - max cijfer 10
-- Alle levels MOETEN voldoen aan minimum CRISP-DM standaard
-
-**LR-M2: Self-Assessment** (Priority: MUST)
+**LR-M1: Self-Assessment** (Priority: MUST)
 - Studenten MOETEN hun startniveau kunnen self-assessen in Week 1
 - "Skills inventory" tool MOET beschikbaar zijn (schaal 1-5 op relevante competenties)
 - Studenten MOETEN persoonlijk leerdoel formuleren: "Wat wil ik kunnen aan het einde?"
 
-**LR-M3: Dynamic Level Adjustment** (Priority: SHOULD)
-- Studenten MOETEN mogelijkheid hebben om niveau bij te stellen na Week 4 checkpoint
-- Docent MOET kunnen adviseren: "Level up" of "Versterk eerst de basis"
-- Verandering van niveau MOET mogelijk zijn tot Week 5
-
-**LR-M4: Growth-Based Assessment** (Priority: MUST)
+**LR-M2: Groei-Gebaseerde Beoordeling** (Priority: MUST)
 - Assessment MOET rekening houden met groei: waar begon student, waar eindigde student
 - Niet alleen eindniveau, maar ook leerproces en zichtbare ontwikkeling MOETEN beoordeeld worden
-- Reflectie op groei MOET onderdeel zijn van criterium G: Mastery & Groei
+- Docent coaching MOET gericht zijn op persoonlijke ontwikkeling
+- Reflectie op groei MOET onderdeel zijn van individuele reflectie
 
 **LR-M5: Goldilocks Calibration** (Priority: MUST)
 - Feedback MOET gegeven worden op minimaal 2 momenten tijdens module:
@@ -615,30 +604,17 @@ Studenten MOETEN leren wat AI (nog) niet kan: strategisch inzicht, menselijke cr
 
 ### 8.2 Differentiation
 
-**LR-AD1: Complexity Levels** (Priority: MUST)
-- Studenten MOETEN kunnen kiezen uit 3 levels met transparante consequenties:
-  - **Foundation**: Focus op perfecte basis → max cijfer 7.0
-  - **Analytical Depth**: Focus op analyse → max cijfer 8.5
-  - **Advanced Innovation**: Focus op innovatie → max cijfer 10
-
-**LR-AD2: Minimum Standards** (Priority: MUST)
-- ALLE studenten (ongeacht gekozen niveau) MOETEN voldoen aan minimum standaard:
+**LR-AD1: Minimum Standards** (Priority: MUST)
+- ALLE studenten MOETEN voldoen aan minimum standaard:
   - CRISP-DM systematisch doorlopen (minimaal score "Toepassen" op A, B, C, D)
   - Data van minimaal 2 bronnen gebruiken
   - Resultaten kunnen interpreteren in business context
   - Presentatie aan opdrachtgever
 
-**LR-AD3: Level Indicators** (Priority: MUST)
-- Voor elk niveau MOET helder zijn:
-  - Wat wordt verwacht (concrete deliverables)
-  - Welke skills je ontwikkelt
-  - Wat het maximum cijfer is
-  - Voor welke student dit niveau geschikt is (self-assessment hulp)
-
-**LR-AD4: Transparantie** (Priority: SHOULD)
-- Percentage studenten per niveau van vorig jaar MOET gecommuniceerd worden
-- Voorkomt "race to the bottom" door sociale normering
-- Voorbeeld: "Vorig jaar koos 60% Analytical, 30% Advanced, 10% Foundation"
+**LR-AD2: Persoonlijke Leerdoelen** (Priority: MUST)
+- Studenten MOETEN in Week 1 persoonlijk leerdoel formuleren
+- Leerdoel MOET SMART zijn (Specifiek, Meetbaar, Acceptabel, Realistisch, Tijdgebonden)
+- Leerdoel MOET gekoppeld zijn aan hun zelfgekozen rol (Management vs Analist) en methodologie (AI vs Conventional)
 
 ---
 
@@ -735,9 +711,10 @@ Studenten MOETEN leren wat AI (nog) niet kan: strategisch inzicht, menselijke cr
     - 5-8 BEDROM sectoren met strategische beslissingen (rendement/risico/groei)
     - Elke sector: 10 min pitch van strategische context + beschikbare data
     - Voorbeelden uit: Retail, Energy, Finance, Healthcare, Manufacturing
-  - **Teams vormen + Rol toewijzing** (45 min)
-    - Teams vormen zich rondom strategisch vraagstuk uit BEDROM sector (30 min)
-    - Binnen team: rollen verdelen (Senior vs Junior) met rationale (15 min)
+  - **Team Bevestiging + Rol toewijzing** (30 min)
+    - Teams zijn al gevormd uit BEDROM-module
+    - Team kiest strategisch vraagstuk uit beschikbare sectoren (20 min)
+    - Binnen team: rollen verdelen (Management vs Analist) met rationale (10 min)
     - Aanmoediging: kies vraagstuk in sector die je al kent uit BEDROM
   - **Capability self-assessment** + persoonlijk leerdoel (30 min)
     - Inclusief vragen:
@@ -822,10 +799,10 @@ Studenten MOETEN leren wat AI (nog) niet kan: strategisch inzicht, menselijke cr
     - **Seniors**: Sturen op relevantie voor strategische beslissing
       - "Helpt deze analyse ons om besluit X te nemen?"
       - Prioriteren: "Focus op analyse Y, skip Z"
-  - **Differentiation naar Complexity Level** (voor alle Analists):
-    - **Foundation**: Descriptieve statistiek + heldere visualisatie (max 7.0)
-    - **Analytical**: + Regressie/correlatie analyse + trend identificatie (max 8.5)
-    - **Advanced**: + Scenario analyse/Predictive modeling + sensitiviteitsanalyse (max 10)
+  - **Benchmark Comparative Analysis** (cruciale Analyst activiteit):
+    - **Analyst Coordinatie**: Analisten vergelijken hun bevindingen - "Hoe presteert ons eigen bedrijf vs. concurrenten?"
+    - **KPI Vergelijking**: Harmonized KPIs naast elkaar leggen (bijv. marge, groeipercentage, ESG score)
+    - **Insights genereren**: "Wat kunnen we leren van de benchmarks?" Waar is het eigen bedrijf beter/slechter?
   - **Consultsessies met Docent** (op afspraak, minimaal 1× per team):
     - **AI Path teams**: Review van prompt quality en output validation
     - **Conventional Path teams**: Technical troubleshooting en tool mastery
@@ -1350,18 +1327,18 @@ Creëer ECONAN module die scoort ≥4/5 op Purpose, Autonomy, Mastery voor ≥80
 ### 🔑 Kern Principes
 1. **Purpose**: Echte opdrachtgevers, échte impact
 2. **Autonomy**: Keuze in opdracht, tools, team, niveau binnen structuur
-3. **Mastery**: 3 complexity levels, Goldilocks tasks, groei-gebaseerde beoordeling
+3. **Mastery**: Goldilocks tasks, groei-gebaseerde beoordeling, persoonlijke leerdoelen
 
 ### 📅 Structuur (7 weken)
 W1: Mission | W2-3: Discovery | W4: Checkpoint | W5-6: Analysis | W7: Delivery
 
 ### ✅ Must-Haves
 - 8 opdrachtgevers voor 10 teams
-- 3 complexity levels (Foundation/Analytical/Advanced)
+- Teams zijn al gevormd vanuit BEDROM-module
 - Minimaal 3 consultsessies per team
 - Pulse checks Week 2 & 6
 - Retrospective Week 7
-- Nieuwe assessment criteria (E: Purpose, F: Autonomy, G: Mastery)
+- Assessment criteria volgen officieel HAN beoordelingsformulier (CRISP-DM A, B, C, D + Bloom's taxonomy)
 
 ### 📊 Success =
 ≥4/5 PAM scores + ≥7/10 opdrachtgever satisfaction + ≤110% docent werkdruk
