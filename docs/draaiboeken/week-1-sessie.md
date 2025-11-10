@@ -32,8 +32,10 @@ Na deze sessie hebben studenten:
    - Focus: Purpose, Autonomy, Mastery als intrinsieke motivators
 
 2. **Visual bestuderen** (2 min):
-   - Drive framework Venn diagram (`background-docs/subjects/drive.webp`)
+   - Drive framework Venn diagram
    - Begrijpen hoe de drie dimensies samenhangen
+
+![Daniel Pink Drive - Three Intrinsic Motivators](../images/drive.webp)
 
 3. **Reflectievragen beantwoorden** (5 min):
    - "Welke dimensie (Purpose/Autonomy/Mastery) spreekt jou het meest aan en waarom?"
