@@ -610,7 +610,31 @@ Geef minimaal 5 sub-vragen die specifiek, relevant, en haalbaar zijn.
                     <span class="phase-title">Data Understanding</span>
                 </div>
                 <div class="phase-content">
-                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">Template: Data Source Exploratie</h4>
+                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">Template A: Financial Statement Analysis</h4>
+                    <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
+                        <strong>Voorbeeld uit Week 1 demo</strong>: Upload jaarverslag en vraag om specifieke financial ratios.
+                    </p>
+                    <div class="template-box">
+[CONTEXT]<br>
+Ik ben Business Analist voor [BEDRIJF in SECTOR].<br>
+Ik heb het jaarverslag (Annual Report) als PDF.<br>
+<br>
+[TAAK]<br>
+Help me een financial statement analysis opstellen voor [BEDRIJF]:<br>
+1. Bereken de volgende ratio's: Current Ratio, ROE, Debt-to-Equity, Asset Turnover<br>
+2. Toon voor elke ratio: formule, input values (met bronvermelding), berekening, resultaat<br>
+3. Interpreteer elk cijfer in business context<br>
+<br>
+[Attachment: Annual Report PDF]
+                    </div>
+                    <div style="background-color: var(--color-info-50); border-left: 3px solid var(--color-info-500); padding: var(--space-3); border-radius: var(--radius-md); margin-top: var(--space-4);">
+                        <strong style="color: var(--color-info-700);">💡 Zie volledig uitgewerkt voorbeeld:</strong>
+                        <p style="font-size: var(--font-size-sm); color: var(--color-gray-700); margin-top: var(--space-2); margin-bottom: 0;">
+                            Docent toont in Week 1 de <strong>Rheinmetall Financial Analysis</strong> - alle 8 prompts + validatie stappen (instructor materials).
+                        </p>
+                    </div>
+
+                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3); margin-top: var(--space-6);">Template B: Data Source Exploratie</h4>
                     <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
                         Vraag AI om databronnen te analyseren en data quality issues te identificeren.
                     </p>
@@ -674,7 +698,31 @@ Geef per stap de rationale en mogelijke risks.
                     <span class="phase-title">Modeling</span>
                 </div>
                 <div class="phase-content">
-                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">Template: Model Selection & Interpretation</h4>
+                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">Template A: Financial Ratio Deep-Dive (Iteratief Prompting)</h4>
+                    <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
+                        <strong>Na basis ratios (Phase 2)</strong>: Bouw stap voor stap op met vervolgvragen.
+                    </p>
+                    <div class="template-box">
+<strong>[VERVOLGPROMPTS - na basis financial analysis]</strong><br>
+<br>
+<strong>Prompt 2:</strong> "Zoek de huidige aandelenkoers op en bereken de P/E ratio"<br>
+<br>
+<strong>Prompt 3:</strong> "Bereken 1/P/E × 100% (Earnings Yield)"<br>
+<br>
+<strong>Prompt 4:</strong> "Vergelijk Earnings Yield met de berekende ROE - wat betekent dit verschil?"<br>
+<br>
+<strong>Prompt 5:</strong> "Maak een DuPont analyse (3-factor): splits ROE in Net Profit Margin × Asset Turnover × Equity Multiplier"<br>
+<br>
+<strong>Prompt 6 (optioneel):</strong> "Maak een 5-factor DuPont voor nog diepere analyse"
+                    </div>
+                    <div style="background-color: var(--color-primary-50); border-left: 3px solid var(--color-primary-500); padding: var(--space-3); border-radius: var(--radius-md); margin-top: var(--space-4);">
+                        <strong style="color: var(--color-primary-700);">💡 Iteratief prompting principe:</strong>
+                        <p style="font-size: var(--font-size-sm); color: var(--color-gray-700); margin-top: var(--space-2); margin-bottom: 0;">
+                            Start met basis, bouw stap voor stap op. AI begrijpt context van eerdere berekeningen. Dit geeft je meer controle dan één lange mega-prompt.
+                        </p>
+                    </div>
+
+                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3); margin-top: var(--space-6);">Template B: Model Selection & Interpretation</h4>
                     <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
                         Vraag AI om modelkeuze en interpretatie hulp, maar verifieer assumpties.
                     </p>
@@ -699,7 +747,42 @@ Data: [X variables, Y target, N observations]<br>
                     <span class="phase-title">Evaluation</span>
                 </div>
                 <div class="phase-content">
-                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">Template: Results Validation</h4>
+                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">Verificatie Checklist - Financial Analysis</h4>
+                    <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
+                        <strong>KRITISCH</strong>: Controleer ALTIJD AI output voordat je het gebruikt. AI is een tool, geen orakel.
+                    </p>
+                    <div class="template-box">
+<strong>✓ Data Verificatie</strong><br>
+☐ Kloppen de cijfers met het jaarverslag? (check bronvermelding)<br>
+☐ Zijn de cijfers uit de juiste periode gehaald?<br>
+☐ Vergelijk met originele documenten (niet alleen vertrouwen op AI)<br>
+<br>
+<strong>✓ Formule Verificatie</strong><br>
+☐ Is de formule correct toegepast?<br>
+☐ Zijn alle componenten meegenomen?<br>
+☐ Klopt de wiskundige uitwerking? (herbereken handmatig!)<br>
+<br>
+<strong>✓ Interpretatie Verificatie</strong><br>
+☐ Is de conclusie logisch voor deze sector?<br>
+☐ Zijn er alternatieve verklaringen?<br>
+☐ Past dit bij de context (bijv. geopolitieke situatie)?<br>
+☐ Zijn benchmarks gebruikt voor vergelijking?<br>
+<br>
+<strong>✓ Bronvermelding</strong><br>
+☐ Zijn alle bronnen vermeld?<br>
+☐ Zijn bronnen betrouwbaar en actueel?
+                    </div>
+                    <div style="background-color: var(--color-warning-50); border-left: 3px solid var(--color-warning-500); padding: var(--space-3); border-radius: var(--radius-md); margin-top: var(--space-4);">
+                        <strong style="color: var(--color-warning-700);">⚠️ Wat AI NIET altijd goed doet:</strong>
+                        <ul style="font-size: var(--font-size-sm); color: var(--color-gray-700); margin-left: var(--space-6); margin-top: var(--space-2); margin-bottom: 0;">
+                            <li>Bronnen kunnen verkeerd geïnterpreteerd worden</li>
+                            <li>Berekeningen moeten altijd geverifieerd worden</li>
+                            <li>Context kan soms gemist worden (sector-specifieke nuances)</li>
+                            <li>Toekomstvoorspellingen zijn speculatief</li>
+                        </ul>
+                    </div>
+
+                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3); margin-top: var(--space-6);">Template: Results Validation (AI-Assisted)</h4>
                     <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
                         Laat AI helpen met sanity checks en alternatieve interpretaties.
                     </p>
@@ -724,7 +807,38 @@ Help me deze resultaten kritisch evalueren:<br>
                     <span class="phase-title">Deployment</span>
                 </div>
                 <div class="phase-content">
-                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">Template: Stakeholder Communication</h4>
+                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">Template A: Conversatie Documenteren</h4>
+                    <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
+                        <strong>BELANGRIJK</strong>: Sla je werk op voor transparantie en reproduceerbaarheid.
+                    </p>
+                    <div class="template-box">
+<strong>[PROMPT na je analyse]</strong><br>
+<br>
+"Kun je deze hele conversatie opslaan in een markdown bestand?<br>
+<br>
+Voeg toe:<br>
+- Alle prompts die ik heb gebruikt<br>
+- De volledige resultaten met formules en berekeningen<br>
+- Visualisaties en tabellen<br>
+- Mijn verificatie checklist<br>
+<br>
+Maak het overzichtelijk gestructureerd met headers en secties."<br>
+<br>
+<strong>[VERVOLGPROMPT indien nodig]</strong><br>
+<br>
+"Kun je ook alle prompts uit deze conversatie expliciet toevoegen als sectie?"
+                    </div>
+                    <div style="background-color: var(--color-success-50); border-left: 3px solid var(--color-success-500); padding: var(--space-3); border-radius: var(--radius-md); margin-top: var(--space-4);">
+                        <strong style="color: var(--color-success-700);">💡 Waarom documenteren?</strong>
+                        <ul style="font-size: var(--font-size-sm); color: var(--color-gray-700); margin-left: var(--space-6); margin-top: var(--space-2); margin-bottom: 0;">
+                            <li>Je werk is reproduceerbaar (anderen kunnen je stappen volgen)</li>
+                            <li>Transparantie voor stakeholders (hoe kwam je tot conclusies?)</li>
+                            <li>Portfolio opbouwen (toon je AI-augmented skills)</li>
+                            <li>Toekomstig gebruik (template voor volgende analyses)</li>
+                        </ul>
+                    </div>
+
+                    <h4 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3); margin-top: var(--space-6);">Template B: Stakeholder Communication</h4>
                     <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
                         AI helpt je technische resultaten vertalen naar business taal.
                     </p>
