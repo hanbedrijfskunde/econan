@@ -146,7 +146,9 @@ Na deze sessie hebben studenten:
 > "Jullie hebben als pre-werk het self-assessment formulier ingevuld. Daarin reflecteerde je op Purpose, Autonomy, Mastery."
 >
 > *[Toon drive.webp visual op scherm]*
->
+
+![Daniel Pink Drive - Three Intrinsic Motivators](../images/drive.webp)
+
 > "Zoek nu iemand die NIET in jouw team zit. Jullie krijgen 6 minuten."
 >
 > **Opdracht**:
