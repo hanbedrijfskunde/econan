@@ -70,7 +70,7 @@ Na deze sessie hebben studenten:
 - [ ] Stiften voor elk team
 
 **Handouts (print per team)**:
-- [ ] Strategische Vraagstukken overzicht (1-pager per sector, 8 versies)
+- [ ] Jaarverslag Discovery Guide (1-pager per team)
 - [ ] Decision Framework handout (1-pager)
 - [ ] Team Charter template (1-pager)
 - [ ] Role Structure visual (Management vs Analist)
@@ -83,11 +83,12 @@ Na deze sessie hebben studenten:
 
 ---
 
-## ⏱️ Sessie Flow (140 minuten - 2 uur 20 min)
+## ⏱️ Sessie Flow (120 minuten - 2 uur)
 
-**Note**: Sessie is 20 min langer geworden door student-led discovery in Block 2. Opties:
-- Start 20 min vroeger
-- Of: skip Public Declaration in closing (bespaart 7 min) + kortere Team Charter tijd (bespaart 13 min)
+**Note**: Sessie is gecomprimeerd naar exact 2 uur (120 min) door:
+- Public Declaration verplaatst naar online (Brightspace forum post)
+- Team Charter zeer kort in sessie (7 min i.p.v. 30 min), afmaken als homework
+- Closing geïntegreerd in Block 3 (laatste 2 min)
 
 ---
 
@@ -128,49 +129,69 @@ Na deze sessie hebben studenten:
 
 ---
 
-### [10-20 min] PAM Framework Check-in
+### [10-20 min] PAM Reflection Sharing
 
-**Format**: Interactive Q&A + Quick Poll
+**Format**: Pair-Share + Plenary Connection
 **Docentrol**: Facilitator
 
+**Context**: Studenten hebben als pre-werk het Capability Self-Assessment formulier ingevuld, inclusief PAM reflectievragen. Deze activiteit bouwt daarop voort.
+
 **Timing breakdown**:
-- [10-12 min] Poll + discussie
-- [12-17 min] PAM dimensies toelichten met ECONAN voorbeelden
-- [17-20 min] Q&A
+- [10-11 min] Instructie + pair-up
+- [11-17 min] Pair-Share (6 min)
+- [17-20 min] Plenary debrief + ECONAN connection (3 min)
 
-**Docent script**:
+**Docent script [10-11 min]**:
 
-> "Jullie hebben Daniel Pink's video gezien. Drive. Drie intrinsieke motivators."
+> "Jullie hebben als pre-werk het self-assessment formulier ingevuld. Daarin reflecteerde je op Purpose, Autonomy, Mastery."
 >
 > *[Toon drive.webp visual op scherm]*
 >
-> **Poll**: "Handen omhoog - welke dimensie spreekt jou het MEEST aan?"
-> - Purpose? (tel aantal)
-> - Autonomy? (tel aantal)
-> - Mastery? (tel aantal)
+> "Zoek nu iemand die NIET in jouw team zit. Jullie krijgen 6 minuten."
 >
-> *[Reageer op uitkomsten]*
+> **Opdracht**:
+> 1. Deel elkaar (elk 3 minuten): Welke PAM dimensie is voor jouw motivatie het belangrijkste en waarom?
+> 2. Wat hoop je in ECONAN te ervaren op die dimensie?
 >
-> "Interessant - [X]% Purpose, [Y]% Autonomy, [Z]% Mastery. In ECONAN zien jullie alle drie terug:"
+> *[Wijs aan: "Jij begint, jij luistert" - geef elk paar een duidelijke eerste spreker]*
 >
-> **Purpose**: "Jullie helpen échte organisaties met échte beslissingen. Niet oefeningen. Echte impact."
+> *[Start timer: 6 minuten (3 min per persoon)]*
+
+**Tijdens Pair-Share [11-17 min]**:
+
+Docent:
+- Circuleert langs pairs
+- Luistert mee (1 min per pair)
+- Noteert interessante quotes/inzichten
+- Check: "Hebben jullie je formulier bij je?"
+
+**Plenary Debrief [17-20 min]**:
+
+> "Stop! Dank jullie. Quick check - handen omhoog:"
+> - Wie had Purpose als belangrijkste? 🙋
+> - Wie Autonomy? 🙋
+> - Wie Mastery? 🙋
 >
-> **Autonomy**: "Jullie kiezen:
-> - Jullie strategische vraag (binnen je sector)
-> - Jullie rol: Management (strategisch) of Analist (technisch)
-> - Analisten kiezen: AI-tools of Conventional tools
-> - Jullie aanpak en tempo"
+> *[Reageer op verdeling]*
 >
-> **Mastery**: "Waar je ook start - beginner of gevorderd - je groeit. We meten groei, niet alleen eindniveau."
+> "Mooi - diverse motivatie drivers. In ECONAN ontwerp ik bewust voor alle drie:"
 >
-> "Vragen over PAM? Anders gaan we door naar de bridge."
+> **Purpose**: "Échte organisaties, échte beslissingen. Jullie NPV berekening = hun investment decision."
+>
+> **Autonomy**: "Jullie kiezen: vraag, rol (Management/Analist), tools (AI/Conventional), tempo."
+>
+> **Mastery**: "Groei vanaf waar je NU staat. Self-assessment = je baseline. Week 7 = je growth."
+>
+> "Laten we die bridge naar ECONAN nu concreet maken met jullie BEDROM sectoren."
 
 **Docent gedrag**:
-- ✅ Toon enthousiasme over poll-resultaten
-- ✅ Maak concrete voorbeelden ECONAN-specifiek
-- ✅ Beantwoord max 2-3 vragen (anders loop je uit)
+- ✅ Verwijs expliciet naar ingevulde formulier ("Heb je het bij je?")
+- ✅ Gebruik quotes uit pairs tijdens debrief
+- ✅ Maak PAM-ECONAN link concreet en specifiek
+- ✅ Kort en krachtig (max 3 min plenary)
 - ❌ Niet herhalen wat in video staat
-- ❌ Niet te lang blijven hangen bij theorie
+- ❌ Niet te lang theoretisch blijven
+- ❌ Niet elk pair laten delen (tijdgebrek)
 
 ---
 
@@ -485,19 +506,19 @@ Docent circuleert actief - bij elk team 3-5 min coaching per ronde (3 rondes):
 
 ---
 
-## BLOCK 3: COMMITMENT & PLANNING (60 min)
+## BLOCK 3: COMMITMENT & PLANNING (40 min)
 **Doel**: Teams maken definitieve keuzes en starten hun Team Charter
 
-### [60-90 min] Team Decision Session
+### [80-110 min] Team Decision Session
 
 **Format**: Structured Team Workshop met Decision Framework
 **Docentrol**: Coach (intensive circulation)
 
 **Timing breakdown**:
-- [60-61 min] Instructie + framework uitdelen
-- [61-91 min] Team besluitvorming (30 min)
+- [80-81 min] Instructie + framework uitdelen
+- [81-110 min] Team besluitvorming (30 min) - NOTE: Was 30 min, blijft 30 min
 
-**Docent instructie [60-61 min]**:
+**Docent instructie [80-81 min]**:
 
 > "De volgende 30 minuten zijn cruciaal. Jullie maken drie grote beslissingen:"
 >
@@ -616,23 +637,23 @@ ECONAN TEAM ROLLEN
 └─────────────────────────────────────────────────────────┘
 ```
 
-**Tijdens teamwerk [61-91 min]**:
+**Tijdens teamwerk [81-110 min]**:
 
 Docent heeft **3 rondes** van 10 min elk:
 
-**Ronde 1 [61-71 min]**: Focus op Strategische Vraag
+**Ronde 1 [81-91 min]**: Focus op Strategische Vraag
 - Bezoek elk team kort (1-2 min)
 - Check: "Hebben jullie een vraag gekozen?"
 - Coach: "Waarom past deze vraag bij jullie?"
 - Uitdagen: "Is de data beschikbaar?"
 
-**Ronde 2 [71-81 min]**: Focus op Rol Verdeling
+**Ronde 2 [91-100 min]**: Focus op Rol Verdeling
 - Bezoek elk team (2-3 min)
 - Check: "Wie wordt Management?"
 - Coach: "Past deze verdeling bij jullie self-assessment scores?"
 - Uitdagen: "Waarom deze persoon als Management? Specifieke skills?"
 
-**Ronde 3 [81-91 min]**: Focus op Methodologie & Finaliseren
+**Ronde 3 [100-110 min]**: Focus op Methodologie & Finaliseren
 - Bezoek elk team (1-2 min)
 - Check: "Hebben Analisten hun path gekozen?"
 - Coach: "Waarom AI vs Conventional?"
@@ -653,31 +674,30 @@ Docent heeft **3 rondes** van 10 min elk:
 
 ---
 
-### [90-120 min] Team Charter Kickstart
+### [110-120 min] Team Charter Kickstart + Closing
 
-**Format**: Collaborative Document Creation
+**Format**: Collaborative Document Creation + Homework Instructies
 **Docentrol**: Facilitator + Coach
 
 **Timing breakdown**:
-- [90-91 min] Instructie + template uitdelen
-- [91-116 min] Team charter drafting (25 min)
-- [116-120 min] Quality check + submission setup (4 min)
+- [110-111 min] Instructie + template uitdelen (1 min)
+- [111-118 min] Team charter drafting (7 min) - FOCUS op basics
+- [118-120 min] Homework instructies + wrap-up (2 min)
 
-**Docent instructie [90-91 min]**:
+**Docent instructie [110-111 min]**:
 
 > "Jullie hebben jullie beslissingen. Nu maken we dit officieel: Team Charter."
 >
 > *[Geef elke team Charter Template]*
 >
-> "Dit charter krijgt 4 secties:"
-> 1. Mission Statement (5 min)
-> 2. Rolverdeling + Rationale (10 min)
-> 3. Persoonlijke Leerdoelen (10 min)
-> 4. Methodologie Keuzes (indien applicable)
+> "Focus op basics (7 minuten):"
 >
-> "Je hoeft niet helemaal af te ronden - deadline is einde Week 2. Maar start NU, dan is 80% klaar."
+> 1. Mission Statement (3 min) - organisatie + vraag in 1 zin
+> 2. Rolverdeling (4 min) - wie + waarom kort
 >
-> *[Start timer: 25 min]*
+> "Persoonlijke leerdoelen en details: THUIS. Deadline einde Week 2."
+>
+> *[Start timer: 7 min]*
 
 **Team Charter Template**:
 
@@ -810,145 +830,56 @@ Inleveren via: Brightspace > Assignments > Team Charter
 ═══════════════════════════════════════════════════════════════
 ```
 
-**Tijdens teamwerk [91-116 min]**:
+**Tijdens teamwerk [111-118 min]**:
 
-Docent circuleert - focus op kwaliteit:
+Docent circuleert - focus op ALLEEN basics:
 
 **Check bij teams**:
-- "Is je mission statement specifiek genoeg? Noem de organisatie EN de vraag."
-- "Zijn persoonlijke leerdoelen SMART? Meetbaar?"
-- "Heeft elke persoon een uniek leerdoel?"
+- "Start met mission statement - organisatie naam + vraag in 1 zin"
+- "Rol verdeling - wie + waarom kort"
+- "Dat is genoeg! Rest thuis afmaken"
 
-**Voorbeelden geven** (anonymous van vorig jaar):
+**Quick coaching** (max 1 min per team):
+- "Perfect start! Finish leerdoelen thuis"
+- "Mission statement: bedrijf + vraag, klaar"
 
-**Goed mission statement**:
-> "Wij helpen H&M beslissen of investeren in sustainable fashion collecties (€50M capex) positieve NPV heeft, door marge-analyse en scenario-modelling toe te passen op financial data 2019-2024."
+**[118-120 min] Homework Instructies + Wrap-up**:
 
-**Slecht mission statement**:
-> "We gaan data analyseren voor retail sector."
-
-**Goed persoonlijk leerdoel**:
-> "Ik wil leren hoe je met regressie analyse causale verbanden vindt tussen marketing spend en revenue. Ik weet dat ik dit bereikt heb als ik zelfstandig een regressiemodel kan bouwen in Excel en de R² kan interpreteren."
-
-**Slecht persoonlijk leerdoel**:
-> "Beter worden in data analyse."
-
-**[116-120 min] Quality Check + Submission Setup**:
-
-> "Stop! Laatste 4 minuten."
+> "Stop! Laatste 2 minuten - homework instructies."
 >
-> **Quick check**:
-> - Wie heeft mission statement af? 🙋 [tel hands]
-> - Wie heeft rol verdeling + rationale? 🙋 [tel hands]
-> - Wie heeft minimaal 3 persoonlijke leerdoelen? 🙋 [tel hands]
+> **Voor Week 2** (deadline: einde Week 2):
 >
-> "Perfect. Dit is je start. Deadline: **einde Week 2**. Jullie ronden thuis af."
+> 1. **Team Charter finaliseren**:
+>    - Persoonlijke leerdoelen (SMART)
+>    - Strategische vraag details
+>    - Upload Brightspace > Assignments > Team Charter (PDF of Word)
 >
-> "Upload naar Brightspace > Assignments > Team Charter. PDF of Word."
+> 2. **Public Declaration** (online):
+>    - Post Brightspace Forum: "Team [naam] gaat [sector + vraag in 1 zin] analyseren"
+>    - Lees andere teams - inspiratie en support!
+>
+> 3. **Prep voor Week 2 sessie**:
+>    - Analisten: Check tool path materialen (AI of Conventional)
+>    - Management: Check CRISP-DM Fase 1 guide
+>
+> "Wie heeft mission statement concept? 🙋"
+>
+> *[Verwacht ~80% hands]*
+>
+> "Zie jullie volgende week. Veel succes!"
 
 **Docent gedrag**:
-- ✅ Hoge kwaliteitsstandaard aanhouden
-- ✅ Voorbeelden tonen (good vs bad)
-- ✅ Complimenteer specifieke goede formuleringen
-- ✅ Push teams die achterlopen: "Wat heb je nu al? Start daar."
-- ❌ Niet accepteren van vage leerdoelen
-- ❌ Niet zelf invullen voor teams
 
-**⏱️ BLOCK 3 TOTAAL**: 60 min
-**Student actief**: 50 min (83%)
-**Docent instructie**: 10 min (17%)
+- ✅ Focus op absolute basics (mission + rollen)
+- ✅ Zeer kort (1 min per team max)
+- ✅ Duidelijke homework instructies
+- ✅ Exact 120 min afronden
+- ❌ Niet te veel details in sessie
+- ❌ Niet uitlopen
 
----
-
-## CLOSING: COMMITMENT & NEXT STEPS (10 min)
-
-### [140-147 min] Team Commitments: Public Declaration
-
-**Format**: Whole Group Share
-**Docentrol**: Facilitator
-
-**Timing**: 7 min (10 teams × 40 sec + transitions)
-
-**Docent script**:
-
-> "Laatste onderdeel: publiek commitment. Elk team, 30 seconden:"
->
-> *[Wijs eerste team aan]*
->
-> "Zeg: 'Wij zijn Team [naam]. We gaan [sector] analyseren met focus op [strategische vraag in 1 zin].'"
-
-**Tijdens declarations**:
-
-Docent noteert op whiteboard/flipchart:
-```
-Team 1: Retail - H&M sustainable fashion NPV
-Team 2: Energy - Shell renewable energy breakeven
-Team 3: Finance - ING digital transformation ROI
-[etc.]
-```
-
-**Na laatste team**:
-
-> "Fantastisch. 10 teams, 10 missies. Dit wordt jullie 7-weken project. Jullie keuze, jullie verantwoordelijkheid, jullie impact."
-
-**Docent gedrag**:
-- ✅ Enthousiasme tonen voor elke team
-- ✅ Applaus na elke declaration (team support)
-- ✅ Board foto maken (voor Brightspace later)
-- ❌ Niet interrumpten tijdens declarations
-- ❌ Niet commentaar geven op keuzes
-
----
-
-### [147-150 min] Methodology Preview + Wrap-Up
-
-**Format**: Mini-Lecture + Logistics
-**Docentrol**: Instructor
-
-**Timing**:
-- [147-149 min] Week 2 preview (2 min)
-- [149-150 min] PAM quick check (1 min)
-
-**Docent script**:
-
-> **Week 2 Preview**:
->
-> "Week 2 - volgende week - gaan we diep in jullie methodologie. Analisten:
-> - AI-Augmented Path: Prompt engineering, ChatGPT/Claude advanced techniques
-> - Conventional Path: Power BI, Python, Excel deep dive
->
-> Management: Jullie leren hoe je Analisten stuurt en resultaten vertaalt naar business beslissingen.
->
-> **Deliverables**:
-> - Team Charter final (deadline: einde Week 2)
-> - Business Understanding document (CRISP-DM Fase 1)
->
-> Check Brightspace voor materialen."
->
-> **PAM Quick Check**:
->
-> "Laatste vraag - hoe voelde deze sessie?"
->
-> *[Toon drive.webp visual nog eens]*
->
-> - **Purpose** - voel je dat dit ertoe doet? 👍 / 👌 / 👎
-> - **Autonomy** - had je echte keuzes? 👍 / 👌 / 👎
-> - **Mastery** - voel je dat je kunt groeien? 👍 / 👌 / 👎
->
-> *[Tel snel responses per dimensie]*
->
-> "Dank jullie. Zie je volgende week. Veel succes met je charter!"
-
-**Docent gedrag**:
-- ✅ Energie hoog afsluiten
-- ✅ Duidelijke next steps
-- ✅ PAM quick check results noteren (voor verbetering)
-- ❌ Niet uitlopen (120 min strict)
-- ❌ Niet nieuwe vragen openen
-
-**⏱️ CLOSING TOTAAL**: 10 min
-**Student actief**: 1 min (10%)
-**Docent instructie**: 9 min (90%)
+**⏱️ BLOCK 3 TOTAAL**: 40 min (was 45 min)
+**Student actief**: 37 min (93%)
+**Docent instructie**: 3 min (7%)
 
 ---
 
@@ -957,21 +888,24 @@ Team 3: Finance - ING digital transformation ROI
 | Block | Tijd | Student Actief | Docent Instructie | Docent Facilitation |
 |-------|------|----------------|-------------------|---------------------|
 | Block 1: Identity & Context | 30 min | 20 min (67%) | 10 min (33%) | - |
-| Block 2: Strategic Discovery (HERZIEN) | 50 min | 45 min (90%) ⬆️ | 5 min (10%) ⬇️ | - |
-| Block 3: Commitment & Planning | 60 min | 50 min (83%) | 10 min (17%) | (embedded) |
-| Closing | 10 min | 1 min (10%) | 9 min (90%) | - |
-| **TOTAAL** | **150 min (2u 30min)** | **116 min (77%)** ⬆️ | **34 min (23%)** ⬇️ | - |
+| Block 2: Strategic Discovery | 50 min | 45 min (90%) ⬆️ | 5 min (10%) ⬇️ | - |
+| Block 3: Commitment & Planning (incl. Closing) | 40 min | 37 min (93%) ⬆️ | 3 min (7%) ⬇️ | (embedded) |
+| **TOTAAL** | **120 min** ✅ | **102 min (85%)** ⬆️ | **18 min (15%)** ⬇️ | - |
 
-**Note**: Sessie is langer geworden (2u 30min) door student-led jaarverslag discovery. **Trade-off**: 20 min extra, maar 77% student actief werk (was 70%).
+**✅ Exact 2 uur sessie** - geen buffer nodig
 
-**Opties om tijd te besparen**:
-- Start 30 min vroeger
-- Of: skip Public Declaration (saves 7 min) + korter Team Charter (save 15 min) + korter Closing (save 5 min) = terug naar 2 uur
+**Sessie gecomprimeerd naar exact 2 uur door**:
+
+- Public Declaration → online (Brightspace forum post als homework)
+- Team Charter → korte kickstart in sessie (7 min), finish thuis
+- Closing → geïntegreerd in Block 3 (laatste 2 min)
+
+**Resultaat**: 85% student actief werk (target was 70%) ✅
 
 **PAM Score Targets**:
 - **Purpose**: 4.5/5 (studenten voelen impact van echte organisaties)
 - **Autonomy**: 5/5 (echte keuzes: vraag, rol, methodologie)
-- **Mastery**: 4/5 (self-assessment + persoonlijke leerdoelen)
+- **Mastery**: 4/5 (self-assessment + persoonlijke leerdoelen + jaarverslag analyse)
 
 ---
 
@@ -1027,15 +961,20 @@ Team 3: Finance - ING digital transformation ROI
 ---
 
 ### Risk 4: "Tijd loopt uit"
-**Symptoom**: Block 3 duurt langer dan 60 min
+**Symptoom**: Sessie dreigt over 120 min heen te gaan
+
 **Mitigation**:
-- Priority cuts:
-  1. Public Declaration kan online (Brightspace forum post)
-  2. Team Charter afmaken thuis (is toch deadline Week 2)
-  3. PAM quick check overslaan (gebruik Week 2 Pulse Check)
+
+- Priority cuts (al geïmplementeerd in dit draaiboek):
+  1. Public Declaration → online (al verplaatst naar Brightspace forum post)
+  2. Team Charter → korter in sessie, afmaken thuis (al ingepland)
+  3. Closing → 2 min strict (al ingekort)
+- Extra cuts indien nodig:
+  1. Block 2 discovery → 40 min i.p.v. 45 min (reduce last 5 min)
+  2. Block 3 Decision Session → 25 min i.p.v. 30 min
 - Strikte timers gebruiken + zichtbare countdown
 
-**Prevention**: Start sessie 10 min vroeger OF bouw 10 min buffer in
+**Prevention**: Start sessie exact op tijd, gebruik timer visibility, cut ruthlessly
 
 ---
 
@@ -1093,24 +1032,27 @@ Team 3: Finance - ING digital transformation ROI
 - [ ] ~~Strategische Vraagstukken slides~~ (VERWIJDERD - studenten ontdekken zelf)
 
 **Handouts uitdelen**:
-- [ ] Block 2 [33 min]: Jaarverslag Discovery Guide (elk team krijgt hun sector-specifieke versie met bedrijvenlijst) - **NIEUW**
-- [ ] Block 3 [60 min]: Decision Framework
-- [ ] Block 3 [60 min]: Role Structure visual
-- [ ] Block 3 [90 min]: Team Charter template
+
+- [ ] Block 2 [33 min]: Jaarverslag Discovery Guide (elk team krijgt hun sector-specifieke versie met bedrijvenlijst)
+- [ ] Block 3 [80 min]: Decision Framework
+- [ ] Block 3 [80 min]: Role Structure visual
+- [ ] Block 3 [110 min]: Team Charter template
 
 ---
 
 ### Post-Sessie:
 
-**Brightspace upload**:
-- [ ] Foto van whiteboard (team declarations)
+**Brightspace upload** (direct na sessie):
+
 - [ ] Reminder Team Charter deadline (Week 2)
+- [ ] Public Declaration forum thread activeren (studenten posten hun team commitment)
 - [ ] Week 2 materialen preview
 - [ ] Self-reflection form (optioneel)
 
 **Docent evaluatie**:
-- [ ] PAM quick check scores noteren
-- [ ] Teams die support nodig hebben markeren
+
+- [ ] Teams die support nodig hebben markeren (observaties uit sessie)
+- [ ] Timing issues noteren (welke blocks liepen uit/in)
 - [ ] Aanpassingen voor volgende keer documenteren
 
 ---
@@ -1233,16 +1175,21 @@ Team 3: Finance - ING digital transformation ROI
 ### Na Week 1 Sessie:
 
 **Docent reflectie** (5 min):
+
 - Wat ging goed? (celebrate successes)
 - Wat kan beter? (concrete verbeterpunten)
 - Welke teams hebben extra support nodig?
 - Timing issues? (welke blocks liepen uit/in)
+- Haalden we 120 min? (zo niet, waar ging tijd verloren?)
 
-**PAM Quick Check Data**:
-- % thumbs up per dimensie
-- Welke dimensie laagst? → Prioriteit voor verbetering
+**Monitor Brightspace**:
+
+- Public Declaration forum: hoeveel teams posten binnen 3 dagen?
+- Kwaliteit van declarations: specifiek genoeg?
+- Interactie tussen teams? (lezen ze elkaar's posts?)
 
 **Voorbeelden verzamelen**:
+
 - Beste mission statements → Anonimiseren en bewaren voor volgend jaar
 - Beste persoonlijke leerdoelen → Delen in Week 2 als voorbeeld
 - Interessante strategische vragen → Documenteren voor Case Library
@@ -1252,8 +1199,10 @@ Team 3: Finance - ING digital transformation ROI
 ### Week 2 Pulse Check:
 
 Vragen toevoegen:
+
 - "Hielp Week 1 sessie je om goede keuzes te maken?" (1-5)
 - "Voel je ownership over je project?" (1-5)
+- "Was de sessie timing goed? (te kort/te lang/precies goed)"
 - "Wat had Week 1 beter gekund?"
 
 ---

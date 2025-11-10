@@ -141,6 +141,25 @@
     observer.observe(card);
   });
 
+  // Instructor Mode Management (persistent via localStorage)
+  const urlParams = new URLSearchParams(window.location.search);
+  const instructorsNavItem = document.getElementById('instructors-nav-item');
+
+  // Check if ?instructor=true is in URL → save to localStorage
+  if (urlParams.get('instructor') === 'true') {
+    localStorage.setItem('econan_instructor_mode', 'true');
+  } else if (urlParams.get('instructor') === 'false') {
+    // Allow explicit disable via ?instructor=false
+    localStorage.removeItem('econan_instructor_mode');
+  }
+
+  // Show instructors nav item if instructor mode is active
+  if (localStorage.getItem('econan_instructor_mode') === 'true') {
+    if (instructorsNavItem) {
+      instructorsNavItem.style.display = 'block';
+    }
+  }
+
   // Console message for developers
   console.log('%cECONAN Module', 'font-size: 20px; font-weight: bold; color: #2563eb;');
   console.log('%cPurpose • Autonomy • Mastery', 'font-size: 12px; color: #6b7280;');
