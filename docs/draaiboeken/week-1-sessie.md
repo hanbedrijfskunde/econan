@@ -306,6 +306,8 @@ Docent:
 > - Welke secties te lezen (CEO letter, strategy, financials)
 > - Welke signalen strategische vragen zijn (investment plans, risks, KPI trends)
 >
+> **Voor Week 2**: Analisten die AI-augmented path kiezen - we hebben een complete tutorial beschikbaar die jullie door je eerste analyse leidt. Deze tutorial laat zien hoe je met ChatGPT of Claude een financiële analyse uitvoert, precies zoals we nu met Shell doen maar dan stap-voor-stap met jullie eigen bedrijf. Link staat in je materiaal sectie.
+>
 > Jullie krijgen 45 minuten. Laptops open, zoek je bedrijf, duik in het jaarverslag. Start maar!"
 >
 > *[Start timer: 45 min]*
@@ -863,8 +865,9 @@ Docent circuleert - focus op ALLEEN basics:
 >    - Lees andere teams - inspiratie en support!
 >
 > 3. **Prep voor Week 2 sessie**:
->    - Analisten: Check tool path materialen (AI of Conventional)
->    - Management: Check CRISP-DM Fase 1 guide
+>    - **Analisten (AI-augmented path)**: Werk tutorial door (2-3 uur) - [Financial Analysis Tutorial](https://link-naar-tutorial)
+>    - **Analisten (Conventional path)**: Check CRISP-DM Fase 1 guide + tool tutorials
+>    - **Management**: Check CRISP-DM Fase 1 guide + Stakeholder Communication materiaal
 >
 > "Wie heeft mission statement concept? 🙋"
 >
