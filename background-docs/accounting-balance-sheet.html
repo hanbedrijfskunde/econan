@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounting Balance Sheet - ECONAN</title>
+
+    <!-- Load Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Design System - De Strategische Arena */
+        /* Custom Properties for consistent theming */
+
+        :root {
+          /* Primary Color Palette - Yale Blue */
+          --color-primary-50: #e6eff7;
+          --color-primary-100: #cce0f0;
+          --color-primary-200: #99c0e0;
+          --color-primary-300: #66a1d1;
+          --color-primary-400: #3381c1;
+          --color-primary-500: #0F4C81;  /* Yale Blue - Main brand color */
+          --color-primary-600: #0c3d68;
+          --color-primary-700: #092e4e;
+          --color-primary-800: #061f35;
+          --color-primary-900: #03101b;
+
+          /* Accent Colors */
+          --color-accent-light: #FFF9E6;
+          --color-accent-yellow: #FFE566;
+          --color-accent-orange: #F4A460;
+          --color-accent-red: #FF6347;
+
+          /* Semantic Colors */
+          --color-success-50: #f0fdf4;
+          --color-success-100: #dcfce7;
+          --color-success-200: #bbf7d0;
+          --color-success-500: #22c55e;
+          --color-success-600: #16a34a;
+
+          /* Gray Scale */
+          --color-gray-50: #f9fafb;
+          --color-gray-100: #f3f4f6;
+          --color-gray-200: #e5e7eb;
+          --color-gray-300: #d1d5db;
+          --color-gray-400: #9ca3af;
+          --color-gray-500: #6b7280;
+          --color-gray-600: #4b5563;
+          --color-gray-700: #374151;
+          --color-gray-800: #1f2937;
+          --color-gray-900: #111827;
+
+          /* Red tones for assets */
+          --color-red-100: #ffe4e6;
+          --color-red-200: #fecdd3;
+          --color-red-300: #fda4af;
+          --color-red-400: #fb7185;
+          --color-red-500: #f43f5e;
+
+          /* Typography */
+          --font-family-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+          --font-size-sm: 0.875rem;
+          --font-size-base: 1rem;
+          --font-size-lg: 1.125rem;
+          --font-size-xl: 1.25rem;
+          --font-size-2xl: 1.5rem;
+          --font-size-3xl: 1.875rem;
+          --font-size-4xl: 2.25rem;
+
+          --line-height-normal: 1.5;
+          --line-height-relaxed: 1.625;
+
+          --font-weight-normal: 400;
+          --font-weight-medium: 500;
+          --font-weight-semibold: 600;
+          --font-weight-bold: 700;
+
+          /* Spacing */
+          --space-2: 0.5rem;
+          --space-3: 0.75rem;
+          --space-4: 1rem;
+          --space-5: 1.25rem;
+          --space-6: 1.5rem;
+          --space-8: 2rem;
+          --space-10: 2.5rem;
+          --space-12: 3rem;
+          --space-16: 4rem;
+
+          /* Border Radius */
+          --radius-lg: 0.5rem;
+          --radius-xl: 0.75rem;
+          --radius-2xl: 1rem;
+
+          /* Shadows */
+          --shadow-md: 0 4px 8px -1px rgba(15, 76, 129, 0.12), 0 2px 4px -1px rgba(15, 76, 129, 0.06);
+          --shadow-lg: 0 12px 20px -4px rgba(15, 76, 129, 0.15), 0 4px 8px -2px rgba(15, 76, 129, 0.08);
+          --shadow-xl: 0 24px 32px -8px rgba(15, 76, 129, 0.18), 0 12px 16px -6px rgba(15, 76, 129, 0.10);
+
+          /* Animation */
+          --duration-normal: 300ms;
+          --ease-out: cubic-bezier(0, 0, 0.2, 1);
+        }
+
+        /* Component Styles */
+        body {
+            font-family: var(--font-family-heading);
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-gray-50) 100%);
+            color: var(--color-gray-900);
+            margin: 0;
+            padding: var(--space-8);
+            box-sizing: border-box;
+        }
+
+        .balance-sheet-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-xl);
+            padding: var(--space-12);
+            border: 4px solid var(--color-primary-400);
+        }
+
+        /* Title */
+        .title {
+            text-align: center;
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary-500);
+            margin-bottom: var(--space-3);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: var(--font-size-lg);
+            color: var(--color-gray-700);
+            margin-bottom: var(--space-12);
+            line-height: var(--line-height-relaxed);
+        }
+
+        /* Main grid layout */
+        .balance-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            margin-bottom: var(--space-8);
+        }
+
+        /* Column styling */
+        .assets-column,
+        .liabilities-column {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+
+        /* Box styling */
+        .box {
+            border: 2px solid var(--color-gray-700);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            transition: transform var(--duration-normal) var(--ease-out),
+                        box-shadow var(--duration-normal) var(--ease-out);
+            position: relative;
+        }
+
+        .box:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Asset boxes - blue tones matching financing balance sheet */
+        .current-assets {
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-primary-50) 100%);
+            color: var(--color-gray-900);
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-semibold);
+            border: 2.5px solid var(--color-primary-500);
+            box-shadow: var(--shadow-md);
+            transition: all var(--duration-normal) var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .current-assets::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--color-primary-100) 0%, transparent 70%);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .current-assets:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-primary-400);
+        }
+
+        .non-current-assets {
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-primary-50) 100%);
+            color: var(--color-gray-900);
+            height: 368px;
+            padding: var(--space-10);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 2.5px solid var(--color-primary-500);
+            box-shadow: var(--shadow-md);
+            transition: all var(--duration-normal) var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .non-current-assets::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--color-primary-100) 0%, transparent 70%);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .non-current-assets:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-primary-400);
+        }
+
+        .non-current-assets h3 {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            margin: 0 0 var(--space-4) 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .non-current-assets ol {
+            margin: 0;
+            padding-left: var(--space-6);
+            line-height: var(--line-height-relaxed);
+            font-size: var(--font-size-lg);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Liability boxes - warm orange tones matching financing balance sheet */
+        .current-liabilities {
+            background: linear-gradient(135deg, #ffffff 0%, #fff9f5 100%);
+            color: var(--color-gray-900);
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-semibold);
+            border: 2.5px solid var(--color-accent-orange);
+            box-shadow: var(--shadow-md);
+            transition: all var(--duration-normal) var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .current-liabilities::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #ffd7ba 0%, transparent 70%);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .current-liabilities:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: #e89a6f;
+        }
+
+        .non-current-liabilities {
+            background: linear-gradient(135deg, #ffffff 0%, #fff9f5 100%);
+            color: var(--color-gray-900);
+            height: 184px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-semibold);
+            border: 2.5px solid var(--color-accent-orange);
+            box-shadow: var(--shadow-md);
+            transition: all var(--duration-normal) var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .non-current-liabilities::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #ffd7ba 0%, transparent 70%);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .non-current-liabilities:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: #e89a6f;
+        }
+
+        .shareholders-equity {
+            background: linear-gradient(135deg, #ffffff 0%, #fff9f5 100%);
+            color: var(--color-gray-900);
+            height: 184px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-semibold);
+            border: 2.5px solid var(--color-accent-orange);
+            box-shadow: var(--shadow-md);
+            transition: all var(--duration-normal) var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shareholders-equity::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #ffd7ba 0%, transparent 70%);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .shareholders-equity:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: #e89a6f;
+        }
+
+        /* Net Working Capital indicator - removed */
+
+        /* Bottom labels */
+        .bottom-labels {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            margin-top: var(--space-6);
+        }
+
+        .bottom-label {
+            text-align: center;
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-gray-800);
+            padding: var(--space-4);
+            background: linear-gradient(135deg, var(--color-gray-50), var(--color-gray-100));
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--color-primary-300);
+        }
+
+        /* Responsive */
+
+        @media (max-width: 768px) {
+            body {
+                padding: var(--space-4);
+            }
+
+            .balance-sheet-container {
+                padding: var(--space-6);
+            }
+
+            .title {
+                font-size: var(--font-size-2xl);
+            }
+
+            .subtitle {
+                font-size: var(--font-size-base);
+                margin-bottom: var(--space-8);
+            }
+
+            .balance-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-6);
+            }
+
+            .bottom-labels {
+                grid-template-columns: 1fr;
+                gap: var(--space-4);
+            }
+
+            .box {
+                padding: var(--space-6);
+            }
+
+            .current-assets,
+            .current-liabilities,
+            .non-current-liabilities,
+            .shareholders-equity {
+                font-size: var(--font-size-xl);
+                height: auto;
+                min-height: 120px;
+            }
+
+            .non-current-assets {
+                height: auto;
+                min-height: 150px;
+                padding: var(--space-6);
+            }
+
+            .non-current-assets h3 {
+                font-size: var(--font-size-lg);
+            }
+
+            .non-current-assets ol {
+                font-size: var(--font-size-base);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="balance-sheet-container">
+        <!-- Title -->
+        <h1 class="title">Accounting Balance Sheet</h1>
+
+        <!-- Main Balance Sheet Grid -->
+        <div class="balance-grid">
+            <!-- Assets Column -->
+            <div class="assets-column">
+                <!-- Current Assets -->
+                <div class="box current-assets">
+                    Current assets
+                </div>
+
+                <!-- Non-Current Assets -->
+                <div class="box non-current-assets">
+                    <h3>Non-current assets</h3>
+                    <ol>
+                        <li>Tangible non-current assets</li>
+                        <li>Intangible non-current assets</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Liabilities Column -->
+            <div class="liabilities-column">
+                <!-- Current Liabilities -->
+                <div class="box current-liabilities">
+                    Current liabilities
+                </div>
+
+                <!-- Non-Current Liabilities -->
+                <div class="box non-current-liabilities">
+                    Non-current liabilities
+                </div>
+
+                <!-- Shareholders' Equity -->
+                <div class="box shareholders-equity">
+                    Shareholders' equity
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Labels -->
+        <div class="bottom-labels">
+            <div class="bottom-label">Total value of assets</div>
+            <div class="bottom-label">Total value of the firm to investors</div>
+        </div>
+    </div>
+
+</body>
+</html>

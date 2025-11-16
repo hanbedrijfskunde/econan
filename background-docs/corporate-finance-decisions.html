@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Finance Decisions - ECONAN</title>
+
+    <!-- Load Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Design System - De Strategische Arena */
+        :root {
+          /* Primary Color Palette - Yale Blue */
+          --color-primary-50: #e6eff7;
+          --color-primary-100: #cce0f0;
+          --color-primary-200: #99c0e0;
+          --color-primary-300: #66a1d1;
+          --color-primary-400: #3381c1;
+          --color-primary-500: #0F4C81;  /* Yale Blue - Main brand color */
+          --color-primary-600: #0c3d68;
+          --color-primary-700: #092e4e;
+          --color-primary-800: #061f35;
+          --color-primary-900: #03101b;
+
+          /* Accent Colors for three decisions */
+          --color-investment: #0F4C81;   /* Yale Blue */
+          --color-investment-light: #e6eff7;
+          --color-financing: #10b981;    /* Green */
+          --color-financing-light: #d1fae5;
+          --color-dividend: #9333ea;     /* Purple */
+          --color-dividend-light: #f3e8ff;
+
+          /* Goal color */
+          --color-goal: #FF6347;         /* Tomato/Red */
+          --color-goal-light: #fff5f5;
+
+          /* Gray Scale */
+          --color-gray-50: #f9fafb;
+          --color-gray-100: #f3f4f6;
+          --color-gray-200: #e5e7eb;
+          --color-gray-300: #d1d5db;
+          --color-gray-400: #9ca3af;
+          --color-gray-500: #6b7280;
+          --color-gray-600: #4b5563;
+          --color-gray-700: #374151;
+          --color-gray-800: #1f2937;
+          --color-gray-900: #111827;
+
+          /* Typography */
+          --font-family-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+          --font-size-sm: 0.875rem;
+          --font-size-base: 1rem;
+          --font-size-lg: 1.125rem;
+          --font-size-xl: 1.25rem;
+          --font-size-2xl: 1.5rem;
+          --font-size-3xl: 1.875rem;
+
+          --line-height-normal: 1.5;
+          --line-height-relaxed: 1.7;
+
+          --font-weight-normal: 400;
+          --font-weight-medium: 500;
+          --font-weight-semibold: 600;
+          --font-weight-bold: 700;
+
+          /* Spacing */
+          --space-3: 0.75rem;
+          --space-4: 1rem;
+          --space-6: 1.5rem;
+          --space-8: 2rem;
+          --space-10: 2.5rem;
+          --space-12: 3rem;
+          --space-16: 4rem;
+
+          /* Border Radius */
+          --radius-lg: 0.5rem;
+          --radius-xl: 0.75rem;
+          --radius-2xl: 1rem;
+
+          /* Shadows */
+          --shadow-md: 0 4px 8px -1px rgba(15, 76, 129, 0.12), 0 2px 4px -1px rgba(15, 76, 129, 0.06);
+          --shadow-lg: 0 12px 20px -4px rgba(15, 76, 129, 0.15), 0 4px 8px -2px rgba(15, 76, 129, 0.08);
+          --shadow-xl: 0 24px 32px -8px rgba(15, 76, 129, 0.18), 0 12px 16px -6px rgba(15, 76, 129, 0.10);
+
+          /* Animation */
+          --duration-normal: 300ms;
+          --ease-out: cubic-bezier(0, 0, 0.2, 1);
+        }
+
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-heading);
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-gray-50) 100%);
+            color: var(--color-gray-900);
+            margin: 0;
+            padding: var(--space-8);
+        }
+
+        .diagram-container {
+            width: 100%;
+            max-width: 1600px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-xl);
+            padding: var(--space-12) var(--space-8);
+        }
+
+        /* Title */
+        .title {
+            text-align: center;
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary-500);
+            margin: 0 0 var(--space-12) 0;
+        }
+
+        /* Tree Container */
+        .tree-container {
+            position: relative;
+            padding: var(--space-8) 0;
+        }
+
+        /* Goal Box */
+        .goal-box {
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-goal-light) 100%);
+            border: 3px solid var(--color-goal);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            margin: 0 auto var(--space-6);
+            max-width: 700px;
+            text-align: center;
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-goal);
+            box-shadow: var(--shadow-lg);
+            transition: all var(--duration-normal) var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .goal-box::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(255, 99, 71, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .goal-box:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* SVG Connector Layer */
+        .connector-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Connector container */
+        .goal-connector {
+            height: 80px;
+            position: relative;
+        }
+
+        /* Three Column Layout for Decisions */
+        .decisions-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-10);
+            margin-top: 0;
+            position: relative;
+        }
+
+        /* Decision Column (contains 1 main decision + 2 sub-boxes) */
+        .decision-column {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-8);
+            padding: var(--space-6);
+            background: transparent;
+            border-radius: var(--radius-xl);
+            position: relative;
+        }
+
+        /* Numbered badge */
+        .decision-column::before {
+            content: attr(data-number);
+            position: absolute;
+            top: 8px;
+            left: 24px;
+            background: white;
+            color: var(--color-gray-600);
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 2px solid var(--color-gray-300);
+            z-index: 10;
+        }
+
+        /* Main Decision Box */
+        .decision-box {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            box-shadow: var(--shadow-md);
+            transition: all var(--duration-normal) var(--ease-out);
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 5;
+        }
+
+        .decision-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .decision-column.investment .decision-box {
+            border: 3px solid var(--color-investment);
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-investment-light) 100%);
+        }
+
+        .decision-column.investment .decision-box::before {
+            background: radial-gradient(circle, var(--color-investment) 0%, transparent 70%);
+        }
+
+        .decision-column.financing .decision-box {
+            border: 3px solid var(--color-financing);
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-financing-light) 100%);
+        }
+
+        .decision-column.financing .decision-box::before {
+            background: radial-gradient(circle, var(--color-financing) 0%, transparent 70%);
+        }
+
+        .decision-column.dividend .decision-box {
+            border: 3px solid var(--color-dividend);
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-dividend-light) 100%);
+        }
+
+        .decision-column.dividend .decision-box::before {
+            background: radial-gradient(circle, var(--color-dividend) 0%, transparent 70%);
+        }
+
+        .decision-box:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .decision-box h2 {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            margin: 0 0 var(--space-4) 0;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .decision-column.investment .decision-box h2 {
+            color: var(--color-investment);
+        }
+
+        .decision-column.financing .decision-box h2 {
+            color: var(--color-financing);
+        }
+
+        .decision-column.dividend .decision-box h2 {
+            color: var(--color-dividend);
+        }
+
+        .decision-box p {
+            margin: 0;
+            line-height: var(--line-height-relaxed);
+            font-size: var(--font-size-base);
+            color: var(--color-gray-700);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Connector from decision to sub-boxes */
+        .decision-connector {
+            height: 50px;
+            position: relative;
+        }
+
+        /* Sub-boxes container */
+        .sub-boxes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+            position: relative;
+        }
+
+        /* Sub-Decision Boxes */
+        .sub-box {
+            background: white;
+            border: 2px solid var(--color-gray-300);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-md);
+            transition: all var(--duration-normal) var(--ease-out);
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 5;
+            position: relative;
+        }
+
+        .sub-box:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-gray-600);
+        }
+
+        .sub-box p {
+            margin: 0;
+            line-height: var(--line-height-relaxed);
+            font-size: var(--font-size-base);
+            color: var(--color-gray-800);
+        }
+
+        .sub-box strong {
+            font-weight: var(--font-weight-bold);
+            color: var(--color-gray-900);
+        }
+
+        /* Emphasis styling - colored bold */
+        .sub-box .emphasis {
+            font-style: normal;
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .decision-column.investment .sub-box .emphasis {
+            color: var(--color-investment);
+        }
+
+        .decision-column.financing .sub-box .emphasis {
+            color: var(--color-financing);
+        }
+
+        .decision-column.dividend .sub-box .emphasis {
+            color: var(--color-dividend);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .decisions-columns {
+                grid-template-columns: 1fr;
+                gap: var(--space-16);
+            }
+
+            .decision-column {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .decision-column::after {
+                display: none;
+            }
+
+            .sub-boxes {
+                grid-template-columns: 1fr;
+            }
+
+            .sub-boxes::before {
+                left: 50%;
+            }
+
+            .sub-boxes::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: var(--space-4);
+            }
+
+            .diagram-container {
+                padding: var(--space-8) var(--space-6);
+            }
+
+            .title {
+                font-size: var(--font-size-2xl);
+                margin-bottom: var(--space-8);
+            }
+
+            .goal-box {
+                font-size: var(--font-size-xl);
+                padding: var(--space-6);
+            }
+
+            .decisions-columns {
+                gap: var(--space-12);
+            }
+
+            .decision-box h2 {
+                font-size: var(--font-size-lg);
+            }
+
+            .decision-box p,
+            .sub-box p {
+                font-size: var(--font-size-sm);
+            }
+
+            .sub-box {
+                min-height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="diagram-container">
+        <!-- Title -->
+        <h1 class="title">Corporate Finance Decisions</h1>
+
+        <div class="tree-container">
+            <!-- Goal Box -->
+            <div class="goal-box" id="goal-box">
+                Maximize the value of the business (firm)
+            </div>
+
+            <!-- Connector from goal -->
+            <div class="goal-connector">
+                <svg class="connector-svg" id="main-connector">
+                    <!-- Main vertical line from goal -->
+                    <line x1="50%" y1="0" x2="50%" y2="40" stroke="#FF6347" stroke-width="3"/>
+                    <!-- Horizontal branching line -->
+                    <line x1="16.666%" y1="40" x2="83.333%" y2="40" stroke="#FF6347" stroke-width="3"/>
+                    <!-- Three vertical lines to decision boxes -->
+                    <line x1="16.666%" y1="40" x2="16.666%" y2="80" stroke="#0F4C81" stroke-width="3"/>
+                    <line x1="50%" y1="40" x2="50%" y2="80" stroke="#10b981" stroke-width="3"/>
+                    <line x1="83.333%" y1="40" x2="83.333%" y2="80" stroke="#9333ea" stroke-width="3"/>
+                </svg>
+            </div>
+
+            <!-- Three Decision Columns -->
+            <div class="decisions-columns">
+                <!-- Investment Decision Column -->
+                <div class="decision-column investment" data-number="1">
+                    <!-- Main Decision -->
+                    <div class="decision-box">
+                        <h2>The Investment Decision</h2>
+                        <p>Invest in assets that earn a return greater than the minimum acceptable hurdle rate</p>
+                    </div>
+
+                    <!-- Connector -->
+                    <div class="decision-connector">
+                        <svg class="connector-svg">
+                            <!-- Vertical line down -->
+                            <line x1="50%" y1="0" x2="50%" y2="20" stroke="#0F4C81" stroke-width="3"/>
+                            <!-- Horizontal branching -->
+                            <line x1="25%" y1="20" x2="75%" y2="20" stroke="#0F4C81" stroke-width="3"/>
+                            <!-- Two vertical lines to sub-boxes -->
+                            <line x1="25%" y1="20" x2="25%" y2="50" stroke="#0F4C81" stroke-width="3"/>
+                            <line x1="75%" y1="20" x2="75%" y2="50" stroke="#0F4C81" stroke-width="3"/>
+                        </svg>
+                    </div>
+
+                    <!-- Sub-Decisions -->
+                    <div class="sub-boxes">
+                        <div class="sub-box">
+                            <p>The <strong>hurdle rate</strong> should reflect the <span class="emphasis">riskiness</span> of the investment and the <span class="emphasis">mix of debt and equity</span> used to fund it.</p>
+                        </div>
+
+                        <div class="sub-box">
+                            <p>The <strong>return</strong> should reflect the <span class="emphasis">magnitude</span> and the <span class="emphasis">timing</span> of the <span class="emphasis">cashflows</span> as well as <span class="emphasis">all side effects</span>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financing Decision Column -->
+                <div class="decision-column financing" data-number="2">
+                    <!-- Main Decision -->
+                    <div class="decision-box">
+                        <h2>The Financing Decision</h2>
+                        <p>Find the right kind of debt for your firm and the right mix of debt and equity to fund your operations</p>
+                    </div>
+
+                    <!-- Connector -->
+                    <div class="decision-connector">
+                        <svg class="connector-svg">
+                            <!-- Vertical line down -->
+                            <line x1="50%" y1="0" x2="50%" y2="20" stroke="#10b981" stroke-width="3"/>
+                            <!-- Horizontal branching -->
+                            <line x1="25%" y1="20" x2="75%" y2="20" stroke="#10b981" stroke-width="3"/>
+                            <!-- Two vertical lines to sub-boxes -->
+                            <line x1="25%" y1="20" x2="25%" y2="50" stroke="#10b981" stroke-width="3"/>
+                            <line x1="75%" y1="20" x2="75%" y2="50" stroke="#10b981" stroke-width="3"/>
+                        </svg>
+                    </div>
+
+                    <!-- Sub-Decisions -->
+                    <div class="sub-boxes">
+                        <div class="sub-box">
+                            <p>The <strong>optimal mix</strong> of debt and equity <span class="emphasis">maximizes firm value</span></p>
+                        </div>
+
+                        <div class="sub-box">
+                            <p>The <strong>right kind</strong> of debt <span class="emphasis">matches the tenor of your assets</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dividend Decision Column -->
+                <div class="decision-column dividend" data-number="3">
+                    <!-- Main Decision -->
+                    <div class="decision-box">
+                        <h2>The Dividend Decision</h2>
+                        <p>If you cannot find investments that make your minimum acceptable rate, return the cash to owners of your business</p>
+                    </div>
+
+                    <!-- Connector -->
+                    <div class="decision-connector">
+                        <svg class="connector-svg">
+                            <!-- Vertical line down -->
+                            <line x1="50%" y1="0" x2="50%" y2="20" stroke="#9333ea" stroke-width="3"/>
+                            <!-- Horizontal branching -->
+                            <line x1="25%" y1="20" x2="75%" y2="20" stroke="#9333ea" stroke-width="3"/>
+                            <!-- Two vertical lines to sub-boxes -->
+                            <line x1="25%" y1="20" x2="25%" y2="50" stroke="#9333ea" stroke-width="3"/>
+                            <line x1="75%" y1="20" x2="75%" y2="50" stroke="#9333ea" stroke-width="3"/>
+                        </svg>
+                    </div>
+
+                    <!-- Sub-Decisions -->
+                    <div class="sub-boxes">
+                        <div class="sub-box">
+                            <p><strong>How much cash</strong> you can return depends upon current & potential <span class="emphasis">investment opportunities</span></p>
+                        </div>
+
+                        <div class="sub-box">
+                            <p><strong>How you choose</strong> to return cash to the owners will depend whether they <span class="emphasis">prefer dividends or buybacks</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
