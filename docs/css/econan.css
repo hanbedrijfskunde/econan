@@ -104,6 +104,17 @@ code, pre {
   color: white;
 }
 
+/* Active page indicator */
+.nav-link.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  font-weight: var(--font-weight-semibold);
+  border-bottom: 2px solid white;
+}
+
+.nav-link.active:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
 /* Mobile Navigation */
 @media (max-width: 768px) {
   .nav-toggle {
@@ -131,6 +142,13 @@ code, pre {
 
   .nav-link {
     padding: var(--space-3) var(--space-4);
+  }
+
+  /* Mobile active state */
+  .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-left: 3px solid white;
+    border-bottom: none;
   }
 }
 
