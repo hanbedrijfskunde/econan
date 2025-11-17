@@ -98,11 +98,17 @@
     });
 
     navLinks.forEach(function(link) {
-      link.classList.remove('active');
       const href = link.getAttribute('href');
-      if (href === '#' + current) {
-        link.classList.add('active');
+
+      // Only manage active state for same-page anchor links (#section)
+      if (href && href.startsWith('#')) {
+        link.classList.remove('active');
+        if (href === '#' + current) {
+          link.classList.add('active');
+        }
       }
+      // For page-level links (e.g., href="./" or href="../rollen/"),
+      // preserve the manually-set active class from HTML
     });
   }
 
