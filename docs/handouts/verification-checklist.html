@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Checklist - ECONAN Data Quality Control | HAN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/econan.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-left">
+                    <a href="../index.html" class="logo">ECONAN</a>
+                    <span class="subtitle">Economic Analysis C-Cluster</span>
+                </div>
+                <nav class="header-nav">
+                    <a href="../index.html">Home</a>
+                    <a href="../weekplanning/">Weekplanning</a>
+                    <a href="../materiaal/" class="active">Materiaal</a>
+                    <a href="../assessment/">Assessment</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <section class="section">
+            <div class="container" style="max-width: 900px;">
+                <div style="margin-bottom: var(--space-6);">
+                    <a href="../materiaal/" style="color: var(--color-primary-600); text-decoration: none; font-size: var(--font-size-sm);">
+                        ← Terug naar Materiaal
+                    </a>
+                </div>
+
+                <h1 style="color: var(--color-primary-700); font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-4); padding-bottom: var(--space-3); border-bottom: 2px solid var(--color-primary-200);">
+                    Verification Checklist
+                </h1>
+
+                <div class="card" style="background-color: var(--color-danger-50); border-left: 4px solid var(--color-danger-600); margin-bottom: var(--space-8);">
+                    <div class="card-body">
+                        <h3 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-bold); margin-bottom: var(--space-2); color: var(--color-danger-800);">
+                            "Garbage In = Garbage Out"
+                        </h3>
+                        <p style="color: var(--color-gray-700); margin-bottom: 0;">
+                            Week 3 ratio berekeningen zijn <strong>alleen betrouwbaar</strong> als je Week 2 data extraction <strong>100% correct</strong> is.
+                            Deze checklist voorkomt fouten die leiden tot foutieve analyses.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Verification Workflow -->
+                <div class="card" style="margin-bottom: var(--space-6);">
+                    <div class="card-header">
+                        <h3 class="card-title">4-Level Verification Workflow</h3>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-4);">
+                            <div style="background-color: var(--color-gray-50); padding: var(--space-4); border-radius: var(--radius-md); border-left: 3px solid var(--color-primary-500);">
+                                <h4 style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">
+                                    Level 1: Self-Check
+                                </h4>
+                                <p style="font-size: var(--font-size-sm); color: var(--color-gray-600); margin-bottom: var(--space-2);">
+                                    Completeness, Totals, Units, Source Traceability
+                                </p>
+                                <p style="font-size: var(--font-size-xs); color: var(--color-gray-500);">⏱️ 10 min</p>
+                            </div>
+                            <div style="background-color: var(--color-gray-50); padding: var(--space-4); border-radius: var(--radius-md); border-left: 3px solid var(--color-success-500);">
+                                <h4 style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">
+                                    Level 2: Formule Check
+                                </h4>
+                                <p style="font-size: var(--font-size-sm); color: var(--color-gray-600); margin-bottom: var(--space-2);">
+                                    Assets = Liab + Equity, ΔCash = Op + Inv + Fin
+                                </p>
+                                <p style="font-size: var(--font-size-xs); color: var(--color-gray-500);">⏱️ 5 min</p>
+                            </div>
+                            <div style="background-color: var(--color-gray-50); padding: var(--space-4); border-radius: var(--radius-md); border-left: 3px solid var(--color-warning-500);">
+                                <h4 style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">
+                                    Level 3: Peer Review
+                                </h4>
+                                <p style="font-size: var(--font-size-sm); color: var(--color-gray-600); margin-bottom: var(--space-2);">
+                                    Teamgenoot checkt je data, sample items tegen PDF
+                                </p>
+                                <p style="font-size: var(--font-size-xs); color: var(--color-gray-500);">⏱️ 10 min</p>
+                            </div>
+                            <div style="background-color: var(--color-gray-50); padding: var(--space-4); border-radius: var(--radius-md); border-left: 3px solid var(--color-danger-500);">
+                                <h4 style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">
+                                    Level 4: Team Alignment
+                                </h4>
+                                <p style="font-size: var(--font-size-sm); color: var(--color-gray-600); margin-bottom: var(--space-2);">
+                                    3 Analisten sync: units aligned, side-by-side comparison
+                                </p>
+                                <p style="font-size: var(--font-size-xs); color: var(--color-gray-500);">⏱️ 15 min</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Red Flags -->
+                <div class="card" style="margin-bottom: var(--space-6);">
+                    <div class="card-header">
+                        <h3 class="card-title">🚩 Red Flags: Wanneer STOP & RE-CHECK</h3>
+                    </div>
+                    <div class="card-body">
+                        <div style="background-color: var(--color-danger-50); border-left: 3px solid var(--color-danger-500); padding: var(--space-4); border-radius: var(--radius-md);">
+                            <ul style="margin-left: var(--space-6); color: var(--color-gray-700); line-height: 1.8;">
+                                <li><strong>Totals formule klopt niet</strong>: Assets ≠ Liabilities + Equity → Re-check alle items</li>
+                                <li><strong>Profit margin > 50%</strong>: Zeer onrealistisch voor meeste sectoren → Check Revenue + Net Income</li>
+                                <li><strong>Total Assets < Total Equity</strong>: Wiskundig onmogelijk → Check units (mix thousands/millions?)</li>
+                                <li><strong>Cash Flow formule klopt niet</strong>: ΔCash ≠ Operating + Investing + Financing → Re-extract from PDF</li>
+                                <li><strong>Peer reviewer vindt 3+ fouten</strong>: Start opnieuw (verbeter AI prompt of switch naar manual)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Checklists per Template -->
+                <div class="card" style="margin-bottom: var(--space-6);">
+                    <div class="card-header">
+                        <h3 class="card-title">Complete Checklists per Template</h3>
+                    </div>
+                    <div class="card-body">
+                        <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
+                            De volledige checklist bevat gedetailleerde verificatie stappen voor:
+                        </p>
+                        <ul style="margin-left: var(--space-6); color: var(--color-gray-700); line-height: 1.8;">
+                            <li><strong>Balance Sheet</strong>: 4 levels × ~20 items + balans formule</li>
+                            <li><strong>Income Statement</strong>: 4 levels × 7 items + profit margin sanity check</li>
+                            <li><strong>Cash Flow Statement</strong>: 4 levels × 4 totals + cash continuity check</li>
+                        </ul>
+                        <p style="margin-top: var(--space-4); color: var(--color-gray-700);">
+                            Plus: Peer Review Protocol, Team Alignment Check, Success Criteria, en Troubleshooting voor 4 veelvoorkomende problemen.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Download -->
+                <div class="card">
+                    <div class="card-body">
+                        <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
+                            📄 <strong>Download de complete checklist</strong>:
+                        </p>
+                        <a href="../../docs/handouts/verification-checklist.md" download style="display: inline-block; background-color: var(--color-primary-600); color: white; padding: var(--space-3) var(--space-6); border-radius: var(--radius-md); text-decoration: none; font-weight: var(--font-weight-semibold);">
+                            Download Markdown File
+                        </a>
+
+                        <div style="background-color: var(--color-warning-50); border-left: 3px solid var(--color-warning-500); padding: var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-6);">
+                            <strong style="color: var(--color-warning-700);">⚠️ CRITICAL</strong>
+                            <p style="margin-top: var(--space-2); font-size: var(--font-size-sm); color: var(--color-gray-700); margin-bottom: 0;">
+                                Verification is niet optioneel - het is essentieel voor Week 3 succes! Zonder correcte Week 2 data zijn je Week 3 ratio's waardeloos.
+                            </p>
+                        </div>
+
+                        <div style="background-color: var(--color-info-50); border-left: 3px solid var(--color-info-500); padding: var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-4);">
+                            <strong style="color: var(--color-info-700);">💡 Gerelateerde Handouts</strong>
+                            <ul style="margin-left: var(--space-6); margin-top: var(--space-2); font-size: var(--font-size-sm); color: var(--color-gray-700);">
+                                <li><a href="data-extraction-guide.html" style="color: var(--color-primary-600);">Data Extraction Guide</a> - Complete workflow</li>
+                                <li><a href="template-usage-manual.html" style="color: var(--color-primary-600);">Template Usage Manual</a> - Detailed instructions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--color-gray-200);">
+                    <a href="../materiaal/#week2-extraction" style="color: var(--color-primary-600); text-decoration: none; font-weight: var(--font-weight-semibold);">
+                        ← Terug naar Week 2 Materials
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 HAN University of Applied Sciences | ECONAN Economic Analysis C-Cluster</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -87,84 +87,155 @@ Teams hebben al gedaan:
 
 ---
 
-### **Blok 2: De Drie Financiële Overzichten** (35 min)
+### **Blok 2: Financial Statements & Data Extraction** (35 min)
 
-#### **2A: Accounting Balance Sheet** (20 min)
+#### **2A: De Drie Financiële Overzichten - Conceptueel** (15 min)
 
-**Visualisatie**: Toon [accounting-balance-sheet.html](../background-docs/accounting-balance-sheet.html)
+**Visualisatie**: Toon [accounting-balance-sheet.html](../../background-docs/subjects/accounting-balance-sheet.html)
 
-**Uitleg**:
+**Snelle Recap van de 3 Statements**:
 
-**Basisprincipe**:
+**1. Balance Sheet (Balans)**:
+
 ```
 Assets = Liabilities + Shareholders' Equity
 ```
 
-**Assets (Bezittingen)**:
-- **Current Assets** (vlottende activa): binnen jaar liquide
-  - Voorraad (inventory)
-  - Debiteuren (accounts receivable)
-  - Liquide middelen (cash)
+- **Assets**: Current (cash, inventory, receivables) + Non-Current (PPE, intangibles)
+- **Liabilities**: Current (payables, short-term debt) + Non-Current (long-term debt)
+- **Equity**: Share capital + reserves
+- **Kernbeperking**: Historical cost (backward-looking)
 
-- **Non-Current Assets** (vaste activa):
-  - **Tangible**: gebouwen, machines, grond (wat je kunt zien/aanraken)
-  - **Intangible**: goodwill, patenten, merken (wat je niet kunt zien)
+**2. Income Statement (Resultatenrekening)**:
 
-**Liabilities (Schulden)**:
-- **Current Liabilities** (kortlopende schulden): binnen jaar te betalen
-  - Crediteuren (accounts payable)
-  - Kortlopende leningen
-
-- **Non-Current Liabilities** (langlopende schulden): na >1 jaar te betalen
-  - Obligaties (bonds)
-  - Langlopende leningen
-
-**Shareholders' Equity** (Eigen Vermogen):
-- Book value (boekwaarde)
-- Historisch opgebouwde waarde
-
-**Kernbeperking**: **Backward-looking** (historical cost accounting)
-- "Je ziet wat Coca-Cola **betaalde** voor activa, niet wat het nu **waard is**"
-- Voorbeeld: Gebouw gekocht in 1965 voor €100K staat nog steeds voor €100K (minus afschrijving)
-- Damodaran over goodwill: **"plug variable to make balance sheets balance"**
-  - Goodwill ontstaat alleen bij acquisities
-  - Apple heeft bijna geen goodwill (geen grote acquisities)
-  - Yahoo had €1B goodwill voor Alibaba terwijl het €40B waard was
-
-#### **2B: Income Statement & Cash Flow Statement** (15 min)
-
-**Income Statement** (Resultatenrekening):
 ```
 Revenues (Opbrengsten)
 - Costs (Kosten)
 = Earnings (Winst)
 ```
 
-**Cash Flow Statement** (Kasstroomoverzicht):
+**3. Cash Flow Statement (Kasstroomoverzicht)**:
+
 ```
 Cash In (Geld binnen)
 - Cash Out (Geld buiten)
 = Net Cash Flow
 ```
 
-**Kritisch Verschil**:
+**Kritisch Verschil**: Damodaran quote: **"You can't spend earnings, only cash"**
 
-Damodaran quote: **"You can't spend earnings, only cash"**
+**Doel**: Basiskennis financiële overzichten opfrissen voor data extractie
 
-**Waarom earnings ≠ cash flow?**
+---
 
-| Item | Income Statement | Cash Flow |
-|------|------------------|-----------|
-| Verkoop op krediet | Telt als revenue | Nog geen cash in |
-| Afschrijvingen | Telt als cost | Geen cash uit (al betaald bij aankoop) |
-| Aankoop machine (€1M) | Alleen afschrijving (€100K/jaar) | Hele €1M cash uit bij aankoop |
+#### **2B: Template-Based Data Extraction Workshop** (20 min)
 
-**Voorbeeld**:
-- Bedrijf verkoopt €100K producten op krediet → Income Statement: +€100K revenue
-- Klant betaalt pas over 3 maanden → Cash Flow Statement: €0 nu
-- **Je kunt die €100K nog niet uitgeven!**
+**Doel**: Leer data uit jaarrekeningen te structureren met standaard templates
 
-**Doel**: Basiskennis financiële overzichten opfrissen + verschil earnings/cash begrijpen
+**Waarom templates gebruiken?**
+
+- ✅ **Consistentie**: Alle 3 Analisten gebruiken dezelfde structuur
+- ✅ **Vergelijkbaarheid**: Benchmark data tussen bedrijven is direct te vergelijken
+- ✅ **Kwaliteit**: Gestructureerde data voorkomt fouten in Week 3 ratio berekeningen
+- ✅ **Efficiency**: AI kan beter werken met gestandaardiseerde output formaten
+
+**De 3 Templates**:
+
+1. **[balance-sheet-template.md](../../background-docs/subjects/balance-sheet-template.md)** - Balans structuur
+2. **[income-statement-template.md](../../background-docs/subjects/income-statement-template.md)** - Resultatenrekening structuur
+3. **[cash-flow-statement-template.md](../../background-docs/subjects/cash-flow-statement-template.md)** - Kasstroom structuur
+
+---
+
+**Docent Demonstratie** (10 min): "Data Extraction in actie"
+
+**Voorbeeld: Ahold Delhaize Annual Report 2023 → Balance Sheet Template**
+
+**Stap 1: Open jaarrekening** (PDF pagina 142: Consolidated Balance Sheet)
+
+**Stap 2A: AI-Augmented Path**
+
+*Prompt voorbeeld*:
+
+```
+Extract the following data from the Ahold Delhaize 2023 Annual Report
+Consolidated Balance Sheet (page 142) and format it according to this template:
+
+## Assets
+### Current Assets
+* Cash and Cash Equivalents: [EXTRACT]
+* Other Net Receivables: [EXTRACT]
+* Inventory: [EXTRACT]
+* Other Current Assets: [EXTRACT]
+
+### Non-Current Assets
+* Property Plant and Equipment: [EXTRACT]
+* Intangible Assets: [EXTRACT]
+* Other Non-Current Assets: [EXTRACT]
+
+[... rest of template ...]
+
+Return ONLY the filled template with actual € millions values.
+Verify totals: Total Assets must equal Total Liabilities + Equity.
+```
+
+**Stap 2B: Conventional Path**
+
+*Handmatig*:
+- Open template in Word/Notepad
+- Zoek "Cash and Cash Equivalents" in PDF
+- Kopieer waarde: €2,847 million
+- Plak in template regel
+- Herhaal voor alle items
+
+---
+
+**Stap 3: Verificatie** (CRITICAL voor beide paths!)
+
+**Verificatie Checklist**:
+
+- [ ] **Totals Check**: Total Assets = Total Liabilities + Equity? (moet kloppen!)
+- [ ] **Units Check**: Alle waardes in dezelfde eenheid? (€ millions of € thousands?)
+- [ ] **Completeness**: Alle template items ingevuld? (geen [EXTRACT] placeholders over)
+- [ ] **Source Trace**: Kun je elke waarde terugvinden in jaarrekening pagina?
+
+**Live Demo Resultaat**:
+
+```markdown
+## Assets
+### Current Assets
+* Cash and Cash Equivalents: €2,847
+* Other Net Receivables: €1,234
+* Inventory: €3,456
+[...]
+
+**Total Assets: €45,678**
+
+## Liabilities
+[...]
+
+**Total Liabilities + Equity: €45,678** ✅ KLOPT!
+```
+
+---
+
+**Teamopdracht** (10 min): "Jullie beurt - test de workflow"
+
+**Opdracht**:
+
+- **AI Path Studenten**: Bouw een prompt om 1 template sectie te vullen (bijv. Current Assets)
+- **Conventional Path Studenten**: Vul handmatig 1 template sectie in
+- **Alle Studenten**: Verifieer met checklist
+
+**Debrief** (laatste 2 min):
+
+- Vraag 1-2 studenten: "Wat was lastig?"
+- Typische antwoorden:
+  - AI: "Goodwill stond in jaarrekening als 'Goodwill and Intangibles combined'"
+  - Conventional: "Units waren soms € millions, soms € thousands"
+- **Docent**: "Exact daarom doen we verificatie - Week 3 ratio's zijn alleen betrouwbaar als data klopt!"
+
+**Doel**: Hands-on ervaring met template-based data extraction + verificatie workflow
 
 ---
 
@@ -173,8 +244,8 @@ Damodaran quote: **"You can't spend earnings, only cash"**
 #### **3A: Finance Balance Sheet** (20 min)
 
 **Vergelijk**:
-- [accounting-balance-sheet.html](../background-docs/accounting-balance-sheet.html) **vs.**
-- [financing-balance-sheet-v2.html](../background-docs/financing-balance-sheet-v2.html)
+- [accounting-balance-sheet.html](../../background-docs/subjects/accounting-balance-sheet.html) **vs.**
+- [financing-balance-sheet.html](../../background-docs/subjects/financing-balance-sheet.html)
 
 **Het Fundamentele Verschil**:
 
@@ -251,7 +322,7 @@ Damodaran quote: **"You can't spend earnings, only cash"**
 
 ### **Blok 4: Corporate Finance First Principles** (20 min)
 
-**Visualisatie**: Toon [corporate-finance-decisions.html](../background-docs/corporate-finance-decisions.html)
+**Visualisatie**: Toon [corporate-finance-decisions.html](../../background-docs/subjects/corporate-finance-decisions.html)
 
 **Damodaran Quote**:
 > "Corporate Finance covers **any decision** made by a business that involves the use of money"
@@ -342,7 +413,7 @@ Damodaran quote: **"You can't spend earnings, only cash"**
 
 ---
 
-### **Blok 5: Team Check-in & Planning** (10 min)
+### **Blok 5: Team Check-in & Data Extraction Planning** (10 min)
 
 **Instructie**: Team huddle (10 min binnen team)
 
@@ -362,14 +433,29 @@ Damodaran quote: **"You can't spend earnings, only cash"**
   - Andere relevante bronnen
 - Is strategische vraag beantwoordbaar met deze 3-bedrijven benchmark?
 
-**Check 3: Week 3 Voorbereiding**
+**Check 3: Data Extraction Readiness** ⭐ NIEUW
+
+**CRITICAL voor Week 3**: Alle 3 Analisten moeten dezelfde template structuur gebruiken!
+
+**Verificatie Afspraken**:
+- [ ] **Template Agreement**: Welke 3 templates gebruiken jullie? (balance-sheet, income-statement, cash-flow)
+- [ ] **Units Agreement**: Welke eenheid? (€ millions aanbevolen voor consistency)
+- [ ] **Verification Protocol**: Wie controleert data extraction quality? (peer review binnen team)
+- [ ] **Deadline Agreement**: Wanneer hebben alle 3 Analisten data extraction klaar? (voor Week 3 sessie!)
+
+**Waarom dit belangrijk is**:
+- Week 3: Ratio berekeningen zijn alleen betrouwbaar als data extraction correct is
+- Benchmark vergelijking werkt alleen als alle 3 bedrijven dezelfde structuur hebben
+- Garbage in = Garbage out!
+
+**Check 4: Week 3 Voorbereiding**
 - **Volgende week**: Business Understanding deep dive
   - Management presenteert strategische vraag (5 min per team)
-  - Analisten presenteren data aanpak (5 min per team)
+  - Analisten presenteren data aanpak + **tonen extracted data templates** (5 min per team)
 
 **Actie**:
 - Zorg dat Decision Framework compleet is voor volgende week
-- Analisten starten met data exploratie
+- **Analisten starten met template-based data extraction** (HUISWERK - zie hieronder)
 
 ---
 
@@ -378,6 +464,7 @@ Damodaran quote: **"You can't spend earnings, only cash"**
 ### **Huiswerk voor Week 3**:
 
 **1. Team Project Charter Finaliseren** (indien nog niet compleet)
+
 - **Strategische Vraag** (Management-led):
   - Voorbeeld AH: "Moet AH investeren in €50M sustainable packaging plant?"
   - Voorbeeld ASML: "Moet ASML EUV capaciteit uitbreiden naar China?"
@@ -397,20 +484,77 @@ Damodaran quote: **"You can't spend earnings, only cash"**
   - Externe benchmark data (ESG databases, sector rapporten)
   - Feasibility check: "Is strategische vraag beantwoordbaar?"
 
-**2. Pulse Check** (individueel, vrijdag, 2 minuten)
+**2. 🎯 PRIORITY: Template-Based Data Extraction** (Analisten - CRITICAL voor Week 3!)
+
+**Opdracht**: Elk van de 3 Analisten extraheert financiële data van hun toegewezen bedrijf
+
+**Deliverable**: 3 ingevulde templates per Analyst:
+
+1. **[balance-sheet-template.md](../../background-docs/subjects/balance-sheet-template.md)** → `balance-sheet-[bedrijfsnaam]-[jaar].md`
+2. **[income-statement-template.md](../../background-docs/subjects/income-statement-template.md)** → `income-statement-[bedrijfsnaam]-[jaar].md`
+3. **[cash-flow-statement-template.md](../../background-docs/subjects/cash-flow-statement-template.md)** → `cash-flow-[bedrijfsnaam]-[jaar].md`
+
+**Workflow AI-Augmented Path**:
+
+```
+Stap 1: Download jaarrekening PDF (Euronext company annual report 2023)
+Stap 2: Upload PDF naar AI tool (Claude, ChatGPT, etc.)
+Stap 3: Gebruik deze prompt structure:
+
+"Extract data from [Company Name] 2023 Annual Report and fill this template:
+
+[PLAK TEMPLATE HIER]
+
+Rules:
+- Use € millions as unit
+- Verify: Total Assets = Total Liabilities + Equity
+- Return ONLY the filled template"
+
+Stap 4: Verificatie (zie checklist hieronder)
+Stap 5: Sla op als markdown file
+```
+
+**Workflow Conventional Path**:
+
+```
+Stap 1: Download jaarrekening PDF
+Stap 2: Open template in Word/Notepad
+Stap 3: Handmatig zoeken in PDF:
+  - Zoek "Consolidated Balance Sheet" pagina
+  - Zoek "Cash and Cash Equivalents" → kopieer waarde
+  - Vul in template regel
+  - Herhaal voor alle items
+Stap 4: Verificatie (zie checklist hieronder)
+Stap 5: Sla op als markdown file
+```
+
+**Verificatie Checklist** (BEIDE paths - MANDATORY!)
+
+- [ ] **Totals Check**: Total Assets = Total Liabilities + Equity?
+- [ ] **Units Consistent**: Alle waardes in € millions (of zelfde eenheid)?
+- [ ] **Completeness**: Alle template items ingevuld? (geen gaps)
+- [ ] **Source Traceable**: Kun je elke waarde terugvinden in jaarrekening + pagina nummer?
+- [ ] **Peer Review**: Heeft een andere Analyst je data gecontroleerd?
+
+**Deadline**: **Voor Week 3 sessie** - Week 3 ratio berekeningen zijn alleen mogelijk als data extraction klaar is!
+
+**Team Alignment Check**:
+
+- Hebben alle 3 Analisten dezelfde templates gebruikt? ✅
+- Zijn units consistent (bijv. alle 3 in € millions)? ✅
+- Kunnen jullie data side-by-side vergelijken? ✅
+
+**3. Pulse Check** (individueel, vrijdag, 2 minuten)
+
 - **Purpose**: Ik voel verbinding met opdracht (1-5)
 - **Autonomy**: Ik heb controle over HOE (1-5)
 - **Mastery**: Te makkelijk / Precies goed / Te moeilijk
 
-**3. Methodologie Voorbereiding** (Analisten)
-- **AI-Augmented Path**: Lees prompt template library
-- **Conventional Tools Path**: Check Power BI/Python setup
-- **Definitieve keuze deadline**: Week 3
+**4. Methodologie Voorbereiding** (Analisten - optioneel)
 
-**4. Data Exploratie Start** (Analisten)
-- Download datasets
-- Eerste EDA (Exploratory Data Analysis)
-- Noteer data quality issues
+- **AI-Augmented Path**: Experimenteer met verschillende prompt formaten
+- **Conventional Tools Path**: Check Excel/Python setup voor ratio calculations
+- **Definitieve keuze deadline**: Week 3
 
 ---
 
@@ -446,10 +590,11 @@ Damodaran quote: **"You can't spend earnings, only cash"**
 
 ## Materialen Benodigd
 
-### **HTML Visualisaties** (`background-docs/`):
-- [accounting-balance-sheet.html](../background-docs/accounting-balance-sheet.html)
-- [financing-balance-sheet-v2.html](../background-docs/financing-balance-sheet-v2.html)
-- [corporate-finance-decisions.html](../background-docs/corporate-finance-decisions.html)
+### **HTML Visualisaties** (`background-docs/subjects/`):
+
+- [accounting-balance-sheet.html](../../background-docs/subjects/accounting-balance-sheet.html)
+- [financing-balance-sheet.html](../../background-docs/subjects/financing-balance-sheet.html)
+- [corporate-finance-decisions.html](../../background-docs/subjects/corporate-finance-decisions.html)
 
 ### **Damodaran Quotes** (transcript lines 635-1050):
 - "Accounting balance sheet: what you paid. Finance balance sheet: what it's worth"
