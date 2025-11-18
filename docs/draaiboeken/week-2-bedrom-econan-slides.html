@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2: BEDROM → ECONAN Bridge - Slides</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/theme/white.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --han-primary: #0066cc;
+            --han-secondary: #003d7a;
+            --han-accent: #00a3e0;
+            --success-green: #059669;
+            --warning-orange: #f59e0b;
+            --error-red: #dc2626;
+        }
+
+        .reveal {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            text-transform: none;
+        }
+
+        .reveal h1 {
+            font-size: 2.5em;
+            color: var(--han-secondary);
+            margin-bottom: 0.5em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+            color: var(--han-primary);
+            margin-bottom: 0.8em;
+        }
+
+        .reveal h3 {
+            font-size: 1.3em;
+            color: var(--han-secondary);
+            margin-bottom: 0.5em;
+        }
+
+        .reveal .slides {
+            text-align: left;
+        }
+
+        .reveal .title-slide {
+            text-align: center;
+        }
+
+        .bedrom-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 6px solid var(--warning-orange);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-size: 0.95em;
+        }
+
+        .econan-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-left: 6px solid var(--han-primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-size: 0.95em;
+        }
+
+        .conclusion-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 6px solid var(--success-green);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .label {
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .bedrom-label {
+            color: #92400e;
+        }
+
+        .econan-label {
+            color: #1e40af;
+        }
+
+        .conclusion-label {
+            color: #065f46;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .data-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .data-card strong {
+            display: block;
+            font-size: 0.85em;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-value {
+            font-size: 2em;
+            font-weight: 800;
+            color: var(--han-primary);
+        }
+
+        .benchmark-value {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--warning-orange);
+        }
+
+        .metric-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .metric-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .metric-list li:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            background: #f3f4f6;
+            padding: 0.8rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        .company-name {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .metric-value {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--han-primary);
+        }
+
+        .question-slide {
+            background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+            padding: 3rem !important;
+            border-radius: 12px;
+        }
+
+        .question-slide h2 {
+            color: #92400e;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 1.5rem;
+        }
+
+        .question-slide p {
+            text-align: center;
+            font-size: 1.1em;
+            color: #78350f;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            font-size: 0.6em;
+            color: #9ca3af;
+        }
+
+        .reveal ul {
+            margin-left: 0;
+        }
+
+        .reveal li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #fef08a 0%, #fde047 100%);
+            padding: 0.1em 0.3em;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .arrow {
+            font-size: 2em;
+            color: var(--han-accent);
+            text-align: center;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1>Van Conceptueel naar Kwantitatief</h1>
+                <h2>BEDROM → ECONAN Bridge</h2>
+                <p style="margin-top: 2rem; font-size: 1.2em; color: #6b7280;">
+                    Week 2: Financial Statement Analysis Introductie
+                </p>
+                <p style="font-size: 0.9em; color: #9ca3af; margin-top: 3rem;">
+                    ECONAN | HAN University of Applied Sciences
+                </p>
+            </section>
+
+            <!-- Intro Slide -->
+            <section>
+                <h2>Van Kwalitatief naar Data-Gedreven</h2>
+                <div class="bedrom-box">
+                    <div class="label bedrom-label">BEDROM (Conceptueel)</div>
+                    <p><strong>Voorbeeld uitspraken:</strong></p>
+                    <ul>
+                        <li>"Retail heeft hoge concurrentie"</li>
+                        <li>"Energy sector heeft veel schulden"</li>
+                        <li>"Healthcare heeft ESG risico's"</li>
+                        <li>"Tech sector heeft hoge groei"</li>
+                    </ul>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="econan-box">
+                    <div class="label econan-label">ECONAN (Kwantitatief)</div>
+                    <p><strong>Deze uitspraken omzetten in data met getallen</strong></p>
+                </div>
+            </section>
+
+            <!-- Example 1: Retail - Title -->
+            <section>
+                <h2>Voorbeeld 1: Retail Winstgevendheid</h2>
+                <div class="bedrom-box">
+                    <div class="label bedrom-label">BEDROM Uitspraak</div>
+                    <p style="font-size: 1.2em; font-weight: 600;">
+                        "Retail sector heeft hoge concurrentie dus lage marges"
+                    </p>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="econan-box">
+                    <div class="label econan-label">ECONAN Aanpak</div>
+                    <p><strong>Operating margin analyse met 3-bedrijven benchmark</strong></p>
+                </div>
+            </section>
+
+            <!-- Example 1: Retail - Data -->
+            <section>
+                <h2>Voorbeeld 1: Retail Data</h2>
+                <ul class="metric-list">
+                    <li>
+                        <span class="company-name">🏢 Analyst 1 (Ahold Delhaize)</span>
+                        <span class="metric-value">4.2%</span>
+                    </li>
+                    <li>
+                        <span class="company-name">🏢 Analyst 2 (Carrefour)</span>
+                        <span class="metric-value">3.8%</span>
+                    </li>
+                    <li>
+                        <span class="company-name">🏢 Analyst 3 (Casino Group)</span>
+                        <span class="metric-value">3.5%</span>
+                    </li>
+                    <li>
+                        <span class="company-name">📊 Sector gemiddelde (CBS)</span>
+                        <span class="metric-value">3.7%</span>
+                    </li>
+                </ul>
+                <div class="conclusion-box">
+                    <div class="label conclusion-label">Data-Gedreven Conclusie</div>
+                    <p>AH presteert <span class="highlight">+0.5pp</span> boven concurrent gemiddelde (3.7%) → <strong>schaalvoordeel zichtbaar in data</strong></p>
+                </div>
+            </section>
+
+            <!-- Example 2: Energy - Title -->
+            <section>
+                <h2>Voorbeeld 2: Energy Financiële Gezondheid</h2>
+                <div class="bedrom-box">
+                    <div class="label bedrom-label">BEDROM Uitspraak</div>
+                    <p style="font-size: 1.2em; font-weight: 600;">
+                        "Shell heeft veel schulden door olie-investeringen"
+                    </p>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="econan-box">
+                    <div class="label econan-label">ECONAN Aanpak</div>
+                    <p><strong>Debt/Equity ratio berekenen met 3-bedrijven benchmark</strong></p>
+                </div>
+            </section>
+
+            <!-- Example 2: Energy - Data -->
+            <section>
+                <h2>Voorbeeld 2: Energy Data</h2>
+                <ul class="metric-list">
+                    <li>
+                        <span class="company-name">🏢 Analyst 1 (Shell)</span>
+                        <span class="metric-value">0.50</span>
+                    </li>
+                    <li style="font-size: 0.85em; color: #6b7280; padding-left: 2rem;">
+                        (€75B debt / €150B equity)
+                    </li>
+                    <li>
+                        <span class="company-name">🏢 Analyst 2 (BP)</span>
+                        <span class="metric-value">0.65</span>
+                    </li>
+                    <li>
+                        <span class="company-name">🏢 Analyst 3 (TotalEnergies)</span>
+                        <span class="metric-value">0.45</span>
+                    </li>
+                    <li>
+                        <span class="company-name">📊 Concurrent gemiddelde</span>
+                        <span class="metric-value">0.55</span>
+                    </li>
+                </ul>
+                <div class="conclusion-box">
+                    <div class="label conclusion-label">Data-Gedreven Conclusie</div>
+                    <p>Shell D/E (0.50) <span class="highlight">onder</span> concurrent gemiddelde → <strong>conservatiever gefinancierd dan peers</strong></p>
+                </div>
+            </section>
+
+            <!-- Example 3: ESG - Title -->
+            <section>
+                <h2>Voorbeeld 3: ESG Impact op Cost of Capital</h2>
+                <div class="bedrom-box">
+                    <div class="label bedrom-label">BEDROM Uitspraak</div>
+                    <p style="font-size: 1.2em; font-weight: 600;">
+                        "Duurzaamheid wordt belangrijker voor consumenten"
+                    </p>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="econan-box">
+                    <div class="label econan-label">ECONAN Aanpak</div>
+                    <p><strong>ESG score correlatie met WACC</strong><br>
+                    <span style="font-size: 0.85em;">(Refinitiv ESG data + jaarrekening)</span></p>
+                </div>
+            </section>
+
+            <!-- Example 3: ESG - Data -->
+            <section>
+                <h2>Voorbeeld 3: ESG Data</h2>
+                <div class="data-grid">
+                    <div class="data-card" style="border-color: var(--success-green);">
+                        <strong>ESG A-rating bedrijven</strong>
+                        <div class="data-value" style="color: var(--success-green);">6.2%</div>
+                        <p style="font-size: 0.75em; color: #6b7280; margin-top: 0.5rem;">Gemiddelde WACC</p>
+                    </div>
+                    <div class="data-card" style="border-color: var(--error-red);">
+                        <strong>ESG C-rating bedrijven</strong>
+                        <div class="data-value" style="color: var(--error-red);">7.1%</div>
+                        <p style="font-size: 0.75em; color: #6b7280; margin-top: 0.5rem;">Gemiddelde WACC</p>
+                    </div>
+                </div>
+                <div class="conclusion-box">
+                    <div class="label conclusion-label">Data-Gedreven Conclusie</div>
+                    <p>ESG verbetering kan <span class="highlight">0.9pp WACC besparing</span> opleveren → <strong>NPV impact calculeren</strong></p>
+                </div>
+            </section>
+
+            <!-- Question Slide -->
+            <section class="question-slide">
+                <h2>💭 Reflectie voor Studenten</h2>
+                <p style="margin-top: 2rem; font-size: 1.3em;">
+                    <strong>Welke BEDROM inzichten kun je kwantificeren met data?</strong>
+                </p>
+                <p style="margin-top: 2rem; font-size: 1em; font-weight: 400;">
+                    ⏱️ <strong>3 minuten individuele reflectie</strong><br>
+                    📝 Noteer 1-2 ideeën in je notities
+                </p>
+            </section>
+
+            <!-- Closing Slide -->
+            <section class="title-slide">
+                <h2>Klaar voor Week 2!</h2>
+                <p style="margin-top: 2rem; font-size: 1.1em; color: #6b7280;">
+                    Van conceptuele BEDROM kennis naar<br>
+                    data-gedreven ECONAN analyse
+                </p>
+                <div style="margin-top: 3rem; padding: 1.5rem; background: #f3f4f6; border-radius: 8px;">
+                    <p style="font-size: 0.9em; color: #374151; margin: 0;">
+                        <strong>Leerdoel:</strong> LR-BEDROM-1<br>
+                        Expliciete link tussen BEDROM concepten en ECONAN kwantitatieve analyse
+                    </p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            slideNumber: true,
+            progress: true,
+            controls: true,
+            center: false,
+            width: 1200,
+            height: 700,
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 2.0
+        });
+    </script>
+</body>
+</html>
