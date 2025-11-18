@@ -116,6 +116,7 @@ def prepare_template_variables(company: Company, template: Dict) -> Dict:
         'current_liabilities_m': format_number(company.current_liabilities, 0),
         'total_assets_m': format_number(company.total_assets, 0),
         'total_equity_m': format_number(company.total_equity, 0),
+        'total_liabilities_m': format_number(company.total_liabilities, 0),
         'total_debt_m': format_number(company.total_debt, 0),
         'revenue_m': format_number(company.revenue, 0),
         'operating_income_m': format_number(company.operating_income, 0),

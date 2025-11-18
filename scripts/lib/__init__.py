@@ -9,6 +9,7 @@ Modules:
     - config_loader: YAML configuration loading utilities
     - exercise_generator: Exercise generation with template rendering
     - formatter: Output formatting (Markdown, HTML, JSON)
+    - verification: Mathematical identity verification
 """
 
 __version__ = "0.1.0"
@@ -34,6 +35,12 @@ from .formatter import (
     format_exercise_json,
     format_exercises_batch
 )
+from .verification import (
+    verify_company_data,
+    verify_exercise,
+    verify_all_companies,
+    print_verification_report
+)
 
 __all__ = [
     # Data models
@@ -54,5 +61,10 @@ __all__ = [
     "format_exercise_markdown",
     "format_exercise_html",
     "format_exercise_json",
-    "format_exercises_batch"
+    "format_exercises_batch",
+    # Verification
+    "verify_company_data",
+    "verify_exercise",
+    "verify_all_companies",
+    "print_verification_report"
 ]

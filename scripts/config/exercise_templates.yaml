@@ -68,22 +68,24 @@ v3_exercises:
   - id: "V3_B2"
     difficulty: "advanced"
     learning_objective: "LR-FSA-3"
-    verification_identity: "Leverage = Total Assets / Total Equity = 1 + (Total Debt / Total Equity)"
+    verification_identity: "Leverage = Total Assets / Total Equity = 1 + (Total Liabilities / Total Equity)"
 
     question_template: |
-      {{ company_name }} heeft een D/E ratio van {{ de_ratio }} in {{ year }}.
+      {{ company_name }} heeft een leverage multiplicator van {{ leverage }} in {{ year }}.
       Gegeven:
       - Eigen vermogen: €{{ total_equity_m }} miljoen
       - Totale activa: €{{ total_assets_m }} miljoen
+      - Totale verplichtingen: €{{ total_liabilities_m }} miljoen
 
-      Verifieer de leverage multiplicator (Total Assets / Total Equity) en toon aan dat deze gelijk is aan 1 + D/E ratio.
+      Verifieer de leverage multiplicator en toon aan dat deze gelijk is aan 1 + (Verplichtingen / Eigen vermogen).
       Wat is de leverage multiplicator?
 
     solution_steps:
-      - "Bereken leverage: {{ total_assets_m }} / {{ total_equity_m }} = {{ leverage }}"
-      - "Bereken alternatieve methode: 1 + D/E = 1 + {{ de_ratio }} = {{ leverage_alt }}"
-      - "Verifieer identiteit: Leverage = 1 + (Total Debt / Total Equity)"
-      - "Conclusie: Beide methoden geven hetzelfde resultaat (binnen afrondingsverschillen)"
+      - "Bereken leverage direct: {{ total_assets_m }} / {{ total_equity_m }} = {{ leverage }}"
+      - "Bereken totale verplichtingen: {{ total_assets_m }} - {{ total_equity_m }} = {{ total_liabilities_m }} miljoen"
+      - "Bereken alternatieve methode: 1 + (Verplichtingen / EV) = 1 + ({{ total_liabilities_m }} / {{ total_equity_m }}) = {{ leverage }}"
+      - "Verifieer identiteit: Leverage = (Activa - EV + EV) / EV = (Verplichtingen + EV) / EV = 1 + Verplichtingen/EV"
+      - "Conclusie: De leverage multiplicator meet hoeveel euro activa per euro eigen vermogen"
 
 # ============================================================================
 # V4: VALUATION & PROFITABILITY ANALYSIS
