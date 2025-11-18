@@ -91,7 +91,7 @@ Teams hebben al gedaan:
 
 #### **2A: De Drie Financiële Overzichten - Conceptueel** (15 min)
 
-**Visualisatie**: Toon [accounting-balance-sheet.html](../../background-docs/subjects/accounting-balance-sheet.html)
+**Visualisatie**: Toon [accounting-balance-sheet.html](../background-docs/subjects/accounting-balance-sheet.html)
 
 **Snelle Recap van de 3 Statements**:
 
@@ -141,9 +141,9 @@ Cash In (Geld binnen)
 
 **De 3 Templates**:
 
-1. **[balance-sheet-template.md](../../background-docs/subjects/balance-sheet-template.md)** - Balans structuur
-2. **[income-statement-template.md](../../background-docs/subjects/income-statement-template.md)** - Resultatenrekening structuur
-3. **[cash-flow-statement-template.md](../../background-docs/subjects/cash-flow-statement-template.md)** - Kasstroom structuur
+1. **[balance-sheet-template.md](../background-docs/subjects/balance-sheet-template.md)** - Balans structuur
+2. **[income-statement-template.md](../background-docs/subjects/income-statement-template.md)** - Resultatenrekening structuur
+3. **[cash-flow-statement-template.md](../background-docs/subjects/cash-flow-statement-template.md)** - Kasstroom structuur
 
 ---
 
@@ -244,8 +244,8 @@ Verify totals: Total Assets must equal Total Liabilities + Equity.
 #### **3A: Finance Balance Sheet** (20 min)
 
 **Vergelijk**:
-- [accounting-balance-sheet.html](../../background-docs/subjects/accounting-balance-sheet.html) **vs.**
-- [financing-balance-sheet.html](../../background-docs/subjects/financing-balance-sheet.html)
+- [accounting-balance-sheet.html](../background-docs/subjects/accounting-balance-sheet.html) **vs.**
+- [financing-balance-sheet.html](../background-docs/subjects/financing-balance-sheet.html)
 
 **Het Fundamentele Verschil**:
 
@@ -322,7 +322,7 @@ Verify totals: Total Assets must equal Total Liabilities + Equity.
 
 ### **Blok 4: Corporate Finance First Principles** (20 min)
 
-**Visualisatie**: Toon [corporate-finance-decisions.html](../../background-docs/subjects/corporate-finance-decisions.html)
+**Visualisatie**: Toon [corporate-finance-decisions.html](../background-docs/subjects/corporate-finance-decisions.html)
 
 **Damodaran Quote**:
 > "Corporate Finance covers **any decision** made by a business that involves the use of money"
@@ -490,9 +490,9 @@ Verify totals: Total Assets must equal Total Liabilities + Equity.
 
 **Deliverable**: 3 ingevulde templates per Analyst:
 
-1. **[balance-sheet-template.md](../../background-docs/subjects/balance-sheet-template.md)** → `balance-sheet-[bedrijfsnaam]-[jaar].md`
-2. **[income-statement-template.md](../../background-docs/subjects/income-statement-template.md)** → `income-statement-[bedrijfsnaam]-[jaar].md`
-3. **[cash-flow-statement-template.md](../../background-docs/subjects/cash-flow-statement-template.md)** → `cash-flow-[bedrijfsnaam]-[jaar].md`
+1. **[balance-sheet-template.md](../background-docs/subjects/balance-sheet-template.md)** → `balance-sheet-[bedrijfsnaam]-[jaar].md`
+2. **[income-statement-template.md](../background-docs/subjects/income-statement-template.md)** → `income-statement-[bedrijfsnaam]-[jaar].md`
+3. **[cash-flow-statement-template.md](../background-docs/subjects/cash-flow-statement-template.md)** → `cash-flow-[bedrijfsnaam]-[jaar].md`
 
 **Workflow AI-Augmented Path**:
 
@@ -592,9 +592,9 @@ Stap 5: Sla op als markdown file
 
 ### **HTML Visualisaties** (`background-docs/subjects/`):
 
-- [accounting-balance-sheet.html](../../background-docs/subjects/accounting-balance-sheet.html)
-- [financing-balance-sheet.html](../../background-docs/subjects/financing-balance-sheet.html)
-- [corporate-finance-decisions.html](../../background-docs/subjects/corporate-finance-decisions.html)
+- [accounting-balance-sheet.html](../background-docs/subjects/accounting-balance-sheet.html)
+- [financing-balance-sheet.html](../background-docs/subjects/financing-balance-sheet.html)
+- [corporate-finance-decisions.html](../background-docs/subjects/corporate-finance-decisions.html)
 
 ### **Damodaran Quotes** (transcript lines 635-1050):
 - "Accounting balance sheet: what you paid. Finance balance sheet: what it's worth"
