@@ -13,17 +13,17 @@ v3_exercises:
     verification_identity: "Current Ratio = Current Assets / Current Liabilities"
 
     question_template: |
-      {company_name} ({ticker}) rapporteert de volgende gegevens voor {year}:
-      - Vlottende activa: €{current_assets_m} miljoen
-      - Kortlopende schulden: €{current_liabilities_m} miljoen
+      {{ company_name }} ({{ ticker }}) rapporteert de volgende gegevens voor {{ year }}:
+      - Vlottende activa: €{{ current_assets_m }} miljoen
+      - Kortlopende schulden: €{{ current_liabilities_m }} miljoen
 
       Bereken de current ratio en verifieer deze met behulp van de balansvergelijking.
-      Wat is de current ratio van {company_name}?
+      Wat is de current ratio van {{ company_name }}?
 
     solution_steps:
       - "Identificeer de benodigde gegevens: Vlottende activa en kortlopende schulden"
       - "Pas de formule toe: Current Ratio = Vlottende activa / Kortlopende schulden"
-      - "Bereken: {current_assets_m} / {current_liabilities_m} = {current_ratio}"
+      - "Bereken: {{ current_assets_m }} / {{ current_liabilities_m }} = {{ current_ratio }}"
       - "Verifieer dat current ratio > 1.0 duidt op goede liquiditeit (korte termijn solvabiliteit)"
 
   - id: "V3_A2"
@@ -32,18 +32,18 @@ v3_exercises:
     verification_identity: "Working Capital = Current Assets - Current Liabilities"
 
     question_template: |
-      {company_name} ({sector} sector) heeft de volgende liquiditeitsgegevens voor {year}:
-      - Vlottende activa: €{current_assets_m} miljoen
-      - Kortlopende schulden: €{current_liabilities_m} miljoen
-      - Current ratio: {current_ratio}
+      {{ company_name }} ({{ sector }} sector) heeft de volgende liquiditeitsgegevens voor {{ year }}:
+      - Vlottende activa: €{{ current_assets_m }} miljoen
+      - Kortlopende schulden: €{{ current_liabilities_m }} miljoen
+      - Current ratio: {{ current_ratio }}
 
       Bereken het werkkapitaal (working capital) en interpreteer wat dit betekent voor de liquiditeitspositie.
-      Wat is het werkkapitaal van {company_name}?
+      Wat is het werkkapitaal van {{ company_name }}?
 
     solution_steps:
       - "Identificeer de formule: Working Capital = Vlottende activa - Kortlopende schulden"
-      - "Bereken: {current_assets_m} - {current_liabilities_m} = {working_capital_m} miljoen"
-      - "Verifieer via current ratio: Als Current Ratio = {current_ratio}, dan Working Capital = Kortlopende schulden × (Current Ratio - 1)"
+      - "Bereken: {{ current_assets_m }} - {{ current_liabilities_m }} = {{ working_capital_m }} miljoen"
+      - "Verifieer via current ratio: Als Current Ratio = {{ current_ratio }}, dan Working Capital = Kortlopende schulden × (Current Ratio - 1)"
       - "Interpreteer: Positief werkkapitaal betekent dat het bedrijf zijn kortlopende verplichtingen kan dekken"
 
   - id: "V3_B1"
@@ -52,18 +52,18 @@ v3_exercises:
     verification_identity: "Debt-to-Equity = Total Debt / Total Equity"
 
     question_template: |
-      Voor {company_name} ({ticker}) in de {sector} sector gelden de volgende gegevens ({year}):
-      - Totale schulden: €{total_debt_m} miljoen
-      - Eigen vermogen: €{total_equity_m} miljoen
+      Voor {{ company_name }} ({{ ticker }}) in de {{ sector }} sector gelden de volgende gegevens ({{ year }}):
+      - Totale schulden: €{{ total_debt_m }} miljoen
+      - Eigen vermogen: €{{ total_equity_m }} miljoen
 
       Bereken de debt-to-equity ratio en verifieer deze aan de hand van de balansvergelijking.
-      Wat is de D/E ratio van {company_name}?
+      Wat is de D/E ratio van {{ company_name }}?
 
     solution_steps:
       - "Identificeer de formule: D/E = Totale schulden / Eigen vermogen"
-      - "Bereken: {total_debt_m} / {total_equity_m} = {de_ratio}"
+      - "Bereken: {{ total_debt_m }} / {{ total_equity_m }} = {{ de_ratio }}"
       - "Verifieer met balansidentiteit: Totale activa = Totale schulden + Eigen vermogen"
-      - "Check: {total_assets_m} = {total_debt_m} + {total_equity_m} (binnen afrondingsverschillen)"
+      - "Check: {{ total_assets_m }} = {{ total_debt_m }} + {{ total_equity_m }} (binnen afrondingsverschillen)"
 
   - id: "V3_B2"
     difficulty: "advanced"
@@ -71,17 +71,17 @@ v3_exercises:
     verification_identity: "Leverage = Total Assets / Total Equity = 1 + (Total Debt / Total Equity)"
 
     question_template: |
-      {company_name} heeft een D/E ratio van {de_ratio} in {year}.
+      {{ company_name }} heeft een D/E ratio van {{ de_ratio }} in {{ year }}.
       Gegeven:
-      - Eigen vermogen: €{total_equity_m} miljoen
-      - Totale activa: €{total_assets_m} miljoen
+      - Eigen vermogen: €{{ total_equity_m }} miljoen
+      - Totale activa: €{{ total_assets_m }} miljoen
 
       Verifieer de leverage multiplicator (Total Assets / Total Equity) en toon aan dat deze gelijk is aan 1 + D/E ratio.
       Wat is de leverage multiplicator?
 
     solution_steps:
-      - "Bereken leverage: {total_assets_m} / {total_equity_m} = {leverage}"
-      - "Bereken alternatieve methode: 1 + D/E = 1 + {de_ratio} = {leverage_alt}"
+      - "Bereken leverage: {{ total_assets_m }} / {{ total_equity_m }} = {{ leverage }}"
+      - "Bereken alternatieve methode: 1 + D/E = 1 + {{ de_ratio }} = {{ leverage_alt }}"
       - "Verifieer identiteit: Leverage = 1 + (Total Debt / Total Equity)"
       - "Conclusie: Beide methoden geven hetzelfde resultaat (binnen afrondingsverschillen)"
 
@@ -96,17 +96,17 @@ v4_exercises:
     verification_identity: "ROE = Net Income / Total Equity"
 
     question_template: |
-      {company_name} ({ticker}) rapporteert voor {year}:
-      - Nettowinst: €{net_income_m} miljoen
-      - Eigen vermogen: €{total_equity_m} miljoen
+      {{ company_name }} ({{ ticker }}) rapporteert voor {{ year }}:
+      - Nettowinst: €{{ net_income_m }} miljoen
+      - Eigen vermogen: €{{ total_equity_m }} miljoen
 
       Bereken de Return on Equity (ROE) en verifieer deze ratio.
-      Wat is de ROE van {company_name}?
+      Wat is de ROE van {{ company_name }}?
 
     solution_steps:
       - "Identificeer de formule: ROE = Nettowinst / Eigen vermogen"
-      - "Bereken: {net_income_m} / {total_equity_m} = {roe}"
-      - "Converteer naar percentage: {roe} × 100% = {roe_pct}%"
+      - "Bereken: {{ net_income_m }} / {{ total_equity_m }} = {{ roe }}"
+      - "Converteer naar percentage: {{ roe }} × 100% = {{ roe_pct }}%"
       - "Interpreteer: ROE meet het rendement op het eigen vermogen van aandeelhouders"
 
   - id: "V4_A2"
@@ -115,23 +115,23 @@ v4_exercises:
     verification_identity: "DuPont: ROE = Net Margin × Asset Turnover × Leverage"
 
     question_template: |
-      Voor {company_name} ({sector}) in {year}:
-      - Nettowinst: €{net_income_m} miljoen
-      - Omzet: €{revenue_m} miljoen
-      - Totale activa: €{total_assets_m} miljoen
-      - Eigen vermogen: €{total_equity_m} miljoen
+      Voor {{ company_name }} ({{ sector }}) in {{ year }}:
+      - Nettowinst: €{{ net_income_m }} miljoen
+      - Omzet: €{{ revenue_m }} miljoen
+      - Totale activa: €{{ total_assets_m }} miljoen
+      - Eigen vermogen: €{{ total_equity_m }} miljoen
 
       Gebruik de DuPont analyse om ROE te berekenen via Net Margin × Asset Turnover × Leverage.
       Verifieer dat dit overeenkomt met de directe ROE berekening.
       Wat is de ROE volgens DuPont analyse?
 
     solution_steps:
-      - "Bereken Net Margin: {net_income_m} / {revenue_m} = {net_margin}"
-      - "Bereken Asset Turnover: {revenue_m} / {total_assets_m} = {asset_turnover}"
-      - "Bereken Leverage: {total_assets_m} / {total_equity_m} = {leverage}"
-      - "DuPont ROE: {net_margin} × {asset_turnover} × {leverage} = {roe_dupont}"
-      - "Directe ROE: {net_income_m} / {total_equity_m} = {roe_direct}"
-      - "Verifieer: Beide methoden geven {roe}% (binnen afrondingsverschillen)"
+      - "Bereken Net Margin: {{ net_income_m }} / {{ revenue_m }} = {{ net_margin }}"
+      - "Bereken Asset Turnover: {{ revenue_m }} / {{ total_assets_m }} = {{ asset_turnover }}"
+      - "Bereken Leverage: {{ total_assets_m }} / {{ total_equity_m }} = {{ leverage }}"
+      - "DuPont ROE: {{ net_margin }} × {{ asset_turnover }} × {{ leverage }} = {{ roe_dupont }}"
+      - "Directe ROE: {{ net_income_m }} / {{ total_equity_m }} = {{ roe_direct }}"
+      - "Verifieer: Beide methoden geven {{ roe }}% (binnen afrondingsverschillen)"
 
   - id: "V4_B1"
     difficulty: "basic"
@@ -139,23 +139,23 @@ v4_exercises:
     verification_identity: "P/E Ratio = Market Cap / Net Income = Share Price / EPS"
 
     question_template: |
-      {company_name} ({ticker}) heeft de volgende marktgegevens voor {year}:
-      - Marktkapitalisatie: €{market_cap_m} miljoen
-      - Nettowinst: €{net_income_m} miljoen
-      - Beurskoers: €{share_price}
-      - Aantal aandelen: {shares_outstanding_m} miljoen
+      {{ company_name }} ({{ ticker }}) heeft de volgende marktgegevens voor {{ year }}:
+      - Marktkapitalisatie: €{{ market_cap_m }} miljoen
+      - Nettowinst: €{{ net_income_m }} miljoen
+      - Beurskoers: €{{ share_price }}
+      - Aantal aandelen: {{ shares_outstanding_m }} miljoen
 
       Bereken de Price/Earnings (P/E) ratio en verifieer deze via twee methoden:
       1) Market Cap / Net Income
       2) Share Price / EPS
 
-      Wat is de P/E ratio van {company_name}?
+      Wat is de P/E ratio van {{ company_name }}?
 
     solution_steps:
-      - "Methode 1 - P/E via market cap: {market_cap_m} / {net_income_m} = {pe_ratio}"
-      - "Bereken EPS: {net_income_m} / {shares_outstanding_m} = €{eps}"
-      - "Methode 2 - P/E via share price: {share_price} / {eps} = {pe_ratio_alt}"
-      - "Verifieer: Beide methoden geven P/E = {pe_ratio} (binnen afrondingsverschillen)"
+      - "Methode 1 - P/E via market cap: {{ market_cap_m }} / {{ net_income_m }} = {{ pe_ratio }}"
+      - "Bereken EPS: {{ net_income_m }} / {{ shares_outstanding_m }} = €{{ eps }}"
+      - "Methode 2 - P/E via share price: {{ share_price }} / {{ eps }} = {{ pe_ratio_alt }}"
+      - "Verifieer: Beide methoden geven P/E = {{ pe_ratio }} (binnen afrondingsverschillen)"
 
   - id: "V4_B2"
     difficulty: "advanced"
@@ -163,18 +163,18 @@ v4_exercises:
     verification_identity: "Earnings Yield = Net Income / Market Cap = 1 / P/E Ratio"
 
     question_template: |
-      {company_name} heeft een P/E ratio van {pe_ratio} in {year}.
+      {{ company_name }} heeft een P/E ratio van {{ pe_ratio }} in {{ year }}.
       Gegeven:
-      - Nettowinst: €{net_income_m} miljoen
-      - Marktkapitalisatie: €{market_cap_m} miljoen
+      - Nettowinst: €{{ net_income_m }} miljoen
+      - Marktkapitalisatie: €{{ market_cap_m }} miljoen
 
       Bereken de Earnings Yield en verifieer dat deze gelijk is aan 1 / P/E ratio.
-      Wat is de Earnings Yield van {company_name}?
+      Wat is de Earnings Yield van {{ company_name }}?
 
     solution_steps:
-      - "Bereken Earnings Yield: {net_income_m} / {market_cap_m} = {earnings_yield}"
-      - "Converteer naar percentage: {earnings_yield} × 100% = {earnings_yield_pct}%"
-      - "Bereken via P/E: 1 / {pe_ratio} = {earnings_yield_alt}"
+      - "Bereken Earnings Yield: {{ net_income_m }} / {{ market_cap_m }} = {{ earnings_yield }}"
+      - "Converteer naar percentage: {{ earnings_yield }} × 100% = {{ earnings_yield_pct }}%"
+      - "Bereken via P/E: 1 / {{ pe_ratio }} = {{ earnings_yield_alt }}"
       - "Verifieer identiteit: Earnings Yield = 1 / P/E ratio"
       - "Interpreteer: Earnings Yield is het inverse van de P/E ratio en meet het rendement per euro geïnvesteerd"
 
@@ -184,17 +184,17 @@ v4_exercises:
     verification_identity: "Operating Margin = Operating Income / Revenue"
 
     question_template: |
-      {company_name} ({sector} sector) rapporteert voor {year}:
-      - Omzet: €{revenue_m} miljoen
-      - Bedrijfsresultaat (EBIT): €{operating_income_m} miljoen
+      {{ company_name }} ({{ sector }} sector) rapporteert voor {{ year }}:
+      - Omzet: €{{ revenue_m }} miljoen
+      - Bedrijfsresultaat (EBIT): €{{ operating_income_m }} miljoen
 
-      Bereken de operating margin en interpreteer dit voor de {sector} sector.
-      Wat is de operating margin van {company_name}?
+      Bereken de operating margin en interpreteer dit voor de {{ sector }} sector.
+      Wat is de operating margin van {{ company_name }}?
 
     solution_steps:
       - "Identificeer formule: Operating Margin = Bedrijfsresultaat / Omzet"
-      - "Bereken: {operating_income_m} / {revenue_m} = {operating_margin}"
-      - "Converteer naar percentage: {operating_margin} × 100% = {operating_margin_pct}%"
+      - "Bereken: {{ operating_income_m }} / {{ revenue_m }} = {{ operating_margin }}"
+      - "Converteer naar percentage: {{ operating_margin }} × 100% = {{ operating_margin_pct }}%"
       - "Interpreteer: Operating margin meet de operationele efficiëntie vóór rente en belasting"
 
 # ============================================================================
@@ -208,19 +208,19 @@ v5_exercises:
     verification_identity: "Free Cash Flow = Operating Cash Flow - Capital Expenditures"
 
     question_template: |
-      {company_name} ({ticker}) heeft de volgende cashflow gegevens voor {year}:
-      - Operationele cashflow: €{operating_cf_m} miljoen
-      - Investeringscashflow: €{investing_cf_m} miljoen (negatief = uitgaven)
+      {{ company_name }} ({{ ticker }}) heeft de volgende cashflow gegevens voor {{ year }}:
+      - Operationele cashflow: €{{ operating_cf_m }} miljoen
+      - Investeringscashflow: €{{ investing_cf_m }} miljoen (negatief = uitgaven)
 
       Bereken de Free Cash Flow (FCF).
       Let op: Investeringscashflow bevat kapitaaluitgaven (CapEx).
-      Wat is de FCF van {company_name}?
+      Wat is de FCF van {{ company_name }}?
 
     solution_steps:
-      - "Identificeer CapEx: Investeringscashflow = {investing_cf_m} miljoen (negatief)"
-      - "Bereken FCF: Operationele CF - CapEx = {operating_cf_m} - ({investing_cf_m}) = {fcf_m} miljoen"
+      - "Identificeer CapEx: Investeringscashflow = {{ investing_cf_m }} miljoen (negatief)"
+      - "Bereken FCF: Operationele CF - CapEx = {{ operating_cf_m }} - ({{ investing_cf_m }}) = {{ fcf_m }} miljoen"
       - "Interpreteer: Positieve FCF betekent dat het bedrijf cashflow overhoudt na investeringen"
-      - "Verifieer: FCF = {fcf_m} miljoen beschikbaar voor dividenden, schuld aflossing, of groei"
+      - "Verifieer: FCF = {{ fcf_m }} miljoen beschikbaar voor dividenden, schuld aflossing, of groei"
 
   - id: "V5_A2"
     difficulty: "intermediate"
@@ -228,22 +228,22 @@ v5_exercises:
     verification_identity: "Net Change in Cash = Operating CF + Investing CF + Financing CF"
 
     question_template: |
-      {company_name} ({sector}) rapporteert de volgende cashflow statement voor {year}:
-      - Operationele cashflow: €{operating_cf_m} miljoen
-      - Investeringscashflow: €{investing_cf_m} miljoen
-      - Financieringscashflow: €{financing_cf_m} miljoen
+      {{ company_name }} ({{ sector }}) rapporteert de volgende cashflow statement voor {{ year }}:
+      - Operationele cashflow: €{{ operating_cf_m }} miljoen
+      - Investeringscashflow: €{{ investing_cf_m }} miljoen
+      - Financieringscashflow: €{{ financing_cf_m }} miljoen
 
       Bereken de netto verandering in cash en verifieer deze met de cashflow statement identiteit.
       Wat is de netto verandering in cash?
 
     solution_steps:
       - "Identificeer de cashflow statement identiteit: Δ Cash = Operating CF + Investing CF + Financing CF"
-      - "Bereken: {operating_cf_m} + ({investing_cf_m}) + ({financing_cf_m}) = {net_cash_change_m} miljoen"
+      - "Bereken: {{ operating_cf_m }} + ({{ investing_cf_m }}) + ({{ financing_cf_m }}) = {{ net_cash_change_m }} miljoen"
       - "Interpreteer de componenten:"
-      - "  - Operating CF ({operating_cf_m}): Cash uit bedrijfsactiviteiten"
-      - "  - Investing CF ({investing_cf_m}): Cash uit investeringen (meestal negatief)"
-      - "  - Financing CF ({financing_cf_m}): Cash uit financiering (dividenden, schuld, aandelen)"
-      - "Conclusie: Netto cash verandering = €{net_cash_change_m} miljoen"
+      - "  - Operating CF ({{ operating_cf_m }}): Cash uit bedrijfsactiviteiten"
+      - "  - Investing CF ({{ investing_cf_m }}): Cash uit investeringen (meestal negatief)"
+      - "  - Financing CF ({{ financing_cf_m }}): Cash uit financiering (dividenden, schuld, aandelen)"
+      - "Conclusie: Netto cash verandering = €{{ net_cash_change_m }} miljoen"
 
   - id: "V5_B1"
     difficulty: "intermediate"
@@ -251,19 +251,19 @@ v5_exercises:
     verification_identity: "Operating Cash Flow Margin = Operating Cash Flow / Revenue"
 
     question_template: |
-      Voor {company_name} ({ticker}) in {year}:
-      - Operationele cashflow: €{operating_cf_m} miljoen
-      - Omzet: €{revenue_m} miljoen
+      Voor {{ company_name }} ({{ ticker }}) in {{ year }}:
+      - Operationele cashflow: €{{ operating_cf_m }} miljoen
+      - Omzet: €{{ revenue_m }} miljoen
 
-      Bereken de Operating Cash Flow Margin en vergelijk deze met de Operating Margin ({operating_margin_pct}%).
+      Bereken de Operating Cash Flow Margin en vergelijk deze met de Operating Margin ({{ operating_margin_pct }}%).
       Wat zegt het verschil tussen deze twee marges?
 
     solution_steps:
-      - "Bereken OCF Margin: {operating_cf_m} / {revenue_m} = {ocf_margin}"
-      - "Converteer naar percentage: {ocf_margin} × 100% = {ocf_margin_pct}%"
-      - "Vergelijk met Operating Margin: {operating_margin_pct}%"
+      - "Bereken OCF Margin: {{ operating_cf_m }} / {{ revenue_m }} = {{ ocf_margin }}"
+      - "Converteer naar percentage: {{ ocf_margin }} × 100% = {{ ocf_margin_pct }}%"
+      - "Vergelijk met Operating Margin: {{ operating_margin_pct }}%"
       - "Interpreteer verschil: OCF margin houdt rekening met werkkapitaal veranderingen en is een betere maat voor daadwerkelijke cash generatie"
-      - "Conclusie: {company_name} converteert {ocf_margin_pct}% van omzet naar operationele cashflow"
+      - "Conclusie: {{ company_name }} converteert {{ ocf_margin_pct }}% van omzet naar operationele cashflow"
 
   - id: "V5_B2"
     difficulty: "advanced"
@@ -271,20 +271,20 @@ v5_exercises:
     verification_identity: "Cash Conversion = Operating Cash Flow / Net Income"
 
     question_template: |
-      {company_name} rapporteert voor {year}:
-      - Nettowinst: €{net_income_m} miljoen
-      - Operationele cashflow: €{operating_cf_m} miljoen
+      {{ company_name }} rapporteert voor {{ year }}:
+      - Nettowinst: €{{ net_income_m }} miljoen
+      - Operationele cashflow: €{{ operating_cf_m }} miljoen
 
       Bereken de Cash Conversion Ratio (ook wel Quality of Earnings genoemd).
       Wat betekent een ratio > 1.0 of < 1.0?
 
     solution_steps:
-      - "Bereken Cash Conversion: {operating_cf_m} / {net_income_m} = {cash_conversion}"
+      - "Bereken Cash Conversion: {{ operating_cf_m }} / {{ net_income_m }} = {{ cash_conversion }}"
       - "Interpreteer de ratio:"
       - "  - Ratio > 1.0: Bedrijf genereert meer cash dan gerapporteerde winst (goede kwaliteit)"
       - "  - Ratio < 1.0: Bedrijf genereert minder cash dan winst (mogelijk werkkapitaal issues)"
-      - "Voor {company_name}: Ratio = {cash_conversion}"
-      - "Conclusie: {interpretation_cash_conversion}"
+      - "Voor {{ company_name }}: Ratio = {{ cash_conversion }}"
+      - "Conclusie: {{ interpretation_cash_conversion }}"
 
 # ============================================================================
 # METADATA
