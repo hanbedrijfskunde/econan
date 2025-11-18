@@ -176,6 +176,65 @@
                             <li><strong>LR-CF-1</strong>: Corporate Finance beslissingen framework (Investment, Financing, Dividend)</li>
                         </ul>
                     </div>
+
+                    <h3 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-top: var(--space-6); margin-bottom: var(--space-3);">🔑 Antwoordmodellen Verificatie Oefeningen</h3>
+
+                    <div style="background-color: var(--color-warning-50); border-left: 4px solid var(--color-warning-500); padding: var(--space-4); border-radius: var(--radius-md); margin-bottom: var(--space-4);">
+                        <h4 style="color: var(--color-warning-700); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">📊 Spot de Fout - Antwoordmodel</h4>
+                        <p style="font-size: var(--font-size-sm); color: var(--color-gray-700); margin-bottom: var(--space-3);">
+                            Voor de interactieve "Spot de Fout" oefening (<a href="../oefeningen/spot-de-fout.html" style="color: var(--color-primary-600); text-decoration: underline;">open tool</a>).
+                            Studenten moeten 3 fouten detecteren per sector (Easy, Medium, Hard).
+                        </p>
+
+                        <div style="background: white; padding: var(--space-4); border-radius: var(--radius-md); margin-bottom: var(--space-3);">
+                            <h5 style="color: var(--color-primary-700); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">Bedrijf A (Kolom 1) - Makkelijk: DuPont Mismatch</h5>
+                            <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-2);"><strong>Fout:</strong> ROE (Return on Equity) klopt niet</p>
+                            <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-2);"><strong>Detectiemethode:</strong> DuPont identiteit gebruiken</p>
+                            <div style="background: var(--color-gray-50); padding: var(--space-3); border-radius: var(--radius-md); font-family: var(--font-family-mono); font-size: var(--font-size-sm);">
+                                <strong>Identiteit:</strong> ROE = Profit Margin × Asset Turnover × Equity Multiplier<br>
+                                <strong>Berekening:</strong> ROE = PM × AT × EM<br>
+                                <strong>Check:</strong> Bereken ROE uit de drie componenten en vergelijk met de gerapporteerde ROE in de tabel.<br>
+                                <strong>Uitleg:</strong> Als de berekende ROE afwijkt van de gerapporteerde waarde, zit de fout in ROE.
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: var(--space-4); border-radius: var(--radius-md); margin-bottom: var(--space-3);">
+                            <h5 style="color: var(--color-warning-700); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">Bedrijf B (Kolom 2) - Gemiddeld: Leverage Mismatch</h5>
+                            <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-2);"><strong>Fout:</strong> Debt-to-Equity Ratio klopt niet</p>
+                            <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-2);"><strong>Detectiemethode:</strong> Leverage identiteit gebruiken</p>
+                            <div style="background: var(--color-gray-50); padding: var(--space-3); border-radius: var(--radius-md); font-family: var(--font-family-mono); font-size: var(--font-size-sm);">
+                                <strong>Identiteit:</strong> Equity Multiplier = 1 + (Total Liabilities / Equity)<br>
+                                <strong>Oftewel:</strong> D/E = EM - 1<br>
+                                <strong>Berekening:</strong> D/E = Equity Multiplier - 1<br>
+                                <strong>Check:</strong> Trek 1 af van de Equity Multiplier en vergelijk met de Debt-to-Equity ratio in de tabel.<br>
+                                <strong>Uitleg:</strong> Als EM - 1 ≠ D/E, dan zit de fout in de Debt-to-Equity ratio.<br>
+                                <strong>Let op:</strong> Dit is Total Liabilities / Equity, niet alleen interest-bearing debt!
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: var(--space-4); border-radius: var(--radius-md);">
+                            <h5 style="color: var(--color-error-700); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">Bedrijf C (Kolom 3) - Moeilijk: Market Ratio Mismatch</h5>
+                            <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-2);"><strong>Fout:</strong> Market-to-Book (P/B) ratio klopt niet</p>
+                            <p style="font-size: var(--font-size-sm); margin-bottom: var(--space-2);"><strong>Detectiemethode:</strong> Market value identiteit gebruiken</p>
+                            <div style="background: var(--color-gray-50); padding: var(--space-3); border-radius: var(--radius-md); font-family: var(--font-family-mono); font-size: var(--font-size-sm);">
+                                <strong>Identiteit:</strong> ROE = (P/B) / (P/E)<br>
+                                <strong>Oftewel:</strong> P/B = ROE × P/E<br>
+                                <strong>Alternatief:</strong> P/E = (P/B) / ROE (ook correct!)<br>
+                                <strong>Berekening:</strong> P/B = ROE × P/E ratio<br>
+                                <strong>Check:</strong> Vermenigvuldig ROE met P/E ratio en vergelijk met Market-to-Book in de tabel.<br>
+                                <strong>Uitleg:</strong> Als ROE × P/E ≠ P/B, dan zit de fout in de Market-to-Book ratio.<br>
+                                <strong>Let op:</strong> Studenten hoeven Price niet te kennen - alleen de ratio's!
+                            </div>
+                        </div>
+
+                        <div style="background: var(--color-primary-50); padding: var(--space-3); border-radius: var(--radius-md); margin-top: var(--space-4);">
+                            <p style="font-size: var(--font-size-sm); color: var(--color-primary-700); margin: 0;">
+                                <strong>💡 Didactische tip:</strong> De fouten zijn opzettelijk gegenereerd met ±10% afwijking.
+                                Bij elke sector selectie worden nieuwe waarden gegenereerd, dus elke oefening is uniek.
+                                Dit voorkomt dat studenten antwoorden kopiëren.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
 

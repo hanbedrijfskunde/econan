@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spot de Fout - ECONAN Ratio Analyse Oefening</title>
+
+    <!-- ECONAN Design System -->
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/econan.css">
+
+    <style>
+        /* Exercise-specific styles */
+        .exercise-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-6);
+        }
+
+        .control-panel {
+            background: white;
+            padding: var(--space-4);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-6);
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .control-panel h1 {
+            font-size: var(--font-size-xl);
+            color: var(--color-primary-600);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .control-actions {
+            display: flex;
+            gap: var(--space-3);
+            align-items: center;
+        }
+
+        .sector-select {
+            min-width: 200px;
+            height: 44px;
+            padding: 0 var(--space-4);
+            border: 2px solid var(--color-primary-500);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            font-family: var(--font-family-body);
+            background: white;
+            color: var(--color-primary-600);
+            cursor: pointer;
+            transition: all var(--duration-fast);
+        }
+
+        .sector-select:hover {
+            border-color: var(--color-primary-600);
+            box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.1);
+        }
+
+        .sector-select:focus {
+            outline: 3px solid var(--color-primary-500);
+            outline-offset: 2px;
+        }
+
+        .exercise-sheet {
+            background: white;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            padding: var(--space-8);
+            margin-bottom: var(--space-8);
+        }
+
+        .exercise-header {
+            border-bottom: 3px solid var(--color-primary-500);
+            padding-bottom: var(--space-4);
+            margin-bottom: var(--space-6);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .exercise-header h2 {
+            font-size: var(--font-size-3xl);
+            color: var(--color-primary-700);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .exercise-meta {
+            text-align: right;
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-600);
+        }
+
+        .exercise-meta strong {
+            color: var(--color-primary-700);
+        }
+
+        .instructions {
+            background: var(--color-primary-50);
+            border-left: 4px solid var(--color-primary-500);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-6);
+        }
+
+        .instructions h3 {
+            margin-top: 0;
+            color: var(--color-primary-700);
+            font-size: var(--font-size-lg);
+        }
+
+        .instructions ul {
+            margin: var(--space-3) 0;
+            padding-left: var(--space-6);
+        }
+
+        .instructions li {
+            margin: var(--space-2) 0;
+            line-height: 1.6;
+        }
+
+        /* Table Styles */
+        .ratio-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--space-6);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-base);
+        }
+
+        .ratio-table thead {
+            background: var(--color-primary-600);
+            color: white;
+        }
+
+        .ratio-table th {
+            padding: var(--space-4);
+            font-weight: 600;
+            text-align: left;
+            font-size: var(--font-size-sm);
+        }
+
+        .ratio-table th.company-header {
+            text-align: center;
+        }
+
+        .ratio-table tbody tr {
+            border-bottom: 1px solid var(--color-gray-200);
+            transition: background var(--duration-fast);
+        }
+
+        .ratio-table tbody tr:hover {
+            background: var(--color-primary-50);
+        }
+
+        .ratio-table tbody tr.section-header {
+            background: var(--color-gray-100);
+            font-weight: 600;
+            color: var(--color-primary-700);
+            text-transform: uppercase;
+            font-size: var(--font-size-sm);
+            letter-spacing: 0.05em;
+        }
+
+        .ratio-table tbody tr.section-header:hover {
+            background: var(--color-gray-100);
+        }
+
+        .ratio-table tbody tr.highlight {
+            background: var(--color-warning-100);
+        }
+
+        .ratio-table tbody tr.helper-row {
+            background: var(--color-info-50);
+        }
+
+        .ratio-table td {
+            padding: var(--space-3) var(--space-4);
+        }
+
+        .ratio-table td.value-cell {
+            text-align: center;
+            font-family: var(--font-family-mono);
+            font-weight: 500;
+        }
+
+        .ratio-table td.label-cell {
+            font-weight: 500;
+            color: var(--color-gray-700);
+        }
+
+        /* Answer Key Section */
+        .answer-key {
+            margin-top: var(--space-8);
+            padding-top: var(--space-8);
+            border-top: 3px dashed var(--color-gray-300);
+        }
+
+        .answer-key-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+            color: var(--color-error-500);
+        }
+
+        .answer-key-header h2 {
+            margin: 0;
+            font-size: var(--font-size-2xl);
+            text-transform: uppercase;
+        }
+
+        .answer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .answer-card {
+            background: white;
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            box-shadow: var(--shadow-base);
+        }
+
+        .answer-card-header {
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+            color: var(--color-primary-700);
+            border-bottom: 2px solid var(--color-gray-200);
+            padding-bottom: var(--space-3);
+            margin-bottom: var(--space-3);
+        }
+
+        .answer-error-type {
+            font-weight: 600;
+            color: var(--color-error-500);
+            margin: var(--space-2) 0;
+        }
+
+        .answer-explanation {
+            color: var(--color-gray-700);
+            margin: var(--space-2) 0;
+            line-height: 1.6;
+        }
+
+        .answer-proof {
+            background: var(--color-gray-100);
+            padding: var(--space-3);
+            border-radius: var(--radius-lg);
+            margin-top: var(--space-3);
+            font-family: var(--font-family-mono);
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-600);
+        }
+
+        /* Print Styles */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            body {
+                background: white;
+            }
+
+            .exercise-container {
+                padding: 0;
+            }
+
+            .exercise-sheet {
+                box-shadow: none;
+                padding: 20mm;
+            }
+
+            .answer-card {
+                break-inside: avoid;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .exercise-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-3);
+            }
+
+            .exercise-meta {
+                text-align: left;
+            }
+
+            .control-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .control-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .sector-select,
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ECONAN Navigation -->
+    <nav class="nav-main">
+        <div class="container">
+            <div class="nav-content">
+                <a class="nav-brand" href="../index.html">ECONAN</a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a class="nav-link" href="../index.html#overzicht">Overzicht</a></li>
+                    <li><a class="nav-link" href="../sectoren/">Sectoren</a></li>
+                    <li><a class="nav-link" href="../rollen/">Rollen</a></li>
+                    <li><a class="nav-link" href="../strategic-framework/">Framework</a></li>
+                    <li><a class="nav-link" href="../weekplanning/">Planning</a></li>
+                    <li><a class="nav-link active" href="../materiaal/">Materiaal</a></li>
+                    <li><a class="nav-link" href="../assessment/">Assessment</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Exercise Content -->
+    <div class="exercise-container">
+        <!-- Control Panel -->
+        <div class="control-panel no-print">
+            <h1>📊 Spot de Fout - Ratio Analyse</h1>
+            <div class="control-actions">
+                <select id="sectorSelect" class="sector-select" aria-label="Selecteer sector">
+                    <option value="">Selecteer een sector...</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Energy">Energy</option>
+                    <option value="Food & Beverage">Food & Beverage</option>
+                    <option value="Healthcare">Healthcare</option>
+                </select>
+                <button onclick="window.print()" class="btn btn-primary">
+                    🖨️ Print
+                </button>
+            </div>
+        </div>
+
+        <!-- Exercise Sheet -->
+        <div class="exercise-sheet" id="worksheet">
+            <!-- Header -->
+            <div class="exercise-header">
+                <div>
+                    <h2>Oefening: Spot de Fout</h2>
+                    <p style="margin: var(--space-2) 0 0 0; color: var(--color-gray-600);">
+                        Vak: Bedrijfseconomie (Financial Statement Analysis)
+                    </p>
+                </div>
+                <div class="exercise-meta">
+                    <p><strong>Datum:</strong> <span id="dateField"></span></p>
+                    <p><strong>Sector:</strong> <span id="sectorName">Selecteer een sector...</span></p>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="instructions">
+                <h3>📋 Instructie voor de student:</h3>
+                <p>
+                    Hieronder zie je de ratio's van drie bedrijven uit dezelfde sector. De moeilijkheidsgraad loopt op van links (makkelijk) naar rechts (moeilijk). In <strong>elke kolom</strong> zit één fundamentele fout in de berekening of rapportage.
+                </p>
+                <ul>
+                    <li>Identificeer voor elk bedrijf welke ratio niet klopt.</li>
+                    <li>Geef aan wat de correcte waarde zou moeten zijn op basis van de andere (correcte) cijfers.</li>
+                    <li>Gebruik de verbanden: <em>DuPont Identity</em>, <em>Balansrelaties</em> en <em>Market Value relaties</em>.</li>
+                </ul>
+            </div>
+
+            <!-- The Table -->
+            <table class="ratio-table">
+                <thead>
+                    <tr>
+                        <th style="width: 40%;">Kental / Ratio</th>
+                        <th class="company-header" id="headerComp0" style="width: 20%;">Bedrijf A</th>
+                        <th class="company-header" id="headerComp1" style="width: 20%;">Bedrijf B</th>
+                        <th class="company-header" id="headerComp2" style="width: 20%;">Bedrijf C</th>
+                    </tr>
+                </thead>
+                <tbody id="ratioTableBody">
+                    <!-- Rows will be injected here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../js/navigation.js"></script>
+    <script>
+        // --- DATA CONFIGURATION ---
+        const SECTORS = {
+            'Retail': [
+                { name: 'Ahold Delhaize', rev: 87000, ni: 2500, assets: 45000, equity: 14000, price: 28.5, shares: 980 },
+                { name: 'Carrefour', rev: 81000, ni: 1300, assets: 52000, equity: 11000, price: 16.2, shares: 750 },
+                { name: 'Inditex (Zara)', rev: 32000, ni: 4100, assets: 28000, equity: 16500, price: 34.0, shares: 3100 }
+            ],
+            'Technology': [
+                { name: 'ASML', rev: 21000, ni: 5600, assets: 35000, equity: 18000, price: 600, shares: 400 },
+                { name: 'SAP', rev: 31000, ni: 3200, assets: 72000, equity: 41000, price: 125, shares: 1100 },
+                { name: 'Adyen', rev: 1300, ni: 470, assets: 7500, equity: 2200, price: 1400, shares: 31 }
+            ],
+            'Energy': [
+                { name: 'Shell', rev: 380000, ni: 42000, assets: 440000, equity: 190000, price: 29.5, shares: 3400 },
+                { name: 'BP', rev: 240000, ni: 28000, assets: 280000, equity: 85000, price: 5.50, shares: 18000 },
+                { name: 'TotalEnergies', rev: 260000, ni: 20000, assets: 290000, equity: 115000, price: 62, shares: 2600 }
+            ],
+            'Food & Beverage': [
+                { name: 'Unilever', rev: 60000, ni: 7600, assets: 76000, equity: 19000, price: 46, shares: 2600 },
+                { name: 'Danone', rev: 27000, ni: 959, assets: 44000, equity: 17000, price: 58, shares: 680 },
+                { name: 'Heineken', rev: 28000, ni: 2700, assets: 47000, equity: 18000, price: 92, shares: 576 }
+            ],
+            'Healthcare': [
+                { name: 'Philips', rev: 17800, ni: -1600, assets: 29000, equity: 11000, price: 19, shares: 900 },
+                { name: 'Novartis', rev: 50000, ni: 7000, assets: 100000, equity: 55000, price: 90, shares: 2100 },
+                { name: 'Roche', rev: 63000, ni: 13000, assets: 90000, equity: 35000, price: 260, shares: 700 }
+            ]
+        };
+
+        // --- UTILITY FUNCTIONS ---
+        const formatPct = (val) => (val * 100).toFixed(1) + '%';
+        const formatNum = (val) => val.toFixed(2);
+
+        // Randomize base data by +/- 10% to ensure uniqueness
+        function perturbData(company) {
+            const variance = () => 0.90 + Math.random() * 0.20; // 0.90 to 1.10
+
+            const newData = { ...company };
+            newData.rev *= variance();
+            newData.ni = company.ni * variance();
+            newData.assets *= variance();
+            newData.equity *= variance();
+
+            // Ensure Equity < Assets
+            if(newData.equity >= newData.assets) newData.equity = newData.assets * 0.6;
+
+            newData.price *= variance();
+
+            // Recalculate derived metrics
+            newData.liabilities = newData.assets - newData.equity;
+            newData.eps = newData.ni / newData.shares;
+            newData.bookValuePerShare = newData.equity / newData.shares;
+
+            return newData;
+        }
+
+        function calculateRatios(c) {
+            return {
+                ros: c.ni / c.rev,              // Return on Sales / Net Profit Margin
+                ato: c.rev / c.assets,          // Asset Turnover
+                em: c.assets / c.equity,        // Equity Multiplier
+                roe: c.ni / c.equity,           // ROE
+                debtEquity: c.liabilities / c.equity,
+                pe: c.price / c.eps,
+                marketToBook: c.price / c.bookValuePerShare
+            };
+        }
+
+        // --- ERROR INJECTION LOGIC ---
+        function generateExercise(sector) {
+            if (!sector || !SECTORS[sector]) {
+                return;
+            }
+
+            document.getElementById('sectorName').textContent = sector;
+            document.getElementById('dateField').textContent = new Date().toLocaleDateString('nl-NL');
+
+            // Prepare Companies (Perturb Data)
+            let companies = SECTORS[sector].map(perturbData);
+
+            // Assign Error Types: 0 = Easy (DuPont), 1 = Medium (Leverage), 2 = Hard (Market)
+            const errorTypes = [0, 1, 2];
+
+            const exerciseData = companies.map((comp, index) => {
+                const ratios = calculateRatios(comp);
+                const errorType = errorTypes[index];
+                let displayRatios = { ...ratios };
+                let errorDesc = {};
+
+                // INJECT ERROR
+                if (errorType === 0) {
+                    // EASY: Corrupt ROE
+                    const offset = (Math.random() > 0.5 ? 1 : -1) * (0.04 + Math.random() * 0.05);
+                    displayRatios.roe = ratios.roe + offset;
+
+                    errorDesc = {
+                        title: "Fouttype A (Makkelijk): DuPont Mismatch",
+                        explanation: `De gerapporteerde ROE (${formatPct(displayRatios.roe)}) komt niet overeen met de DuPont berekening.`,
+                        proof: `DuPont: ${formatPct(ratios.ros)} × ${formatNum(ratios.ato)} × ${formatNum(ratios.em)} = ${formatPct(ratios.ros * ratios.ato * ratios.em)}.`
+                    };
+                }
+                else if (errorType === 1) {
+                    // MEDIUM: Corrupt Debt/Equity (Identity: D/E = EM - 1)
+                    const trueDE = ratios.em - 1;
+                    const fakeDE = trueDE + (Math.random() > 0.5 ? 0.5 : -0.3);
+                    displayRatios.debtEquity = Math.abs(fakeDE);
+
+                    errorDesc = {
+                        title: "Fouttype B (Gemiddeld): Leverage Mismatch",
+                        explanation: `De Debt-to-Equity ratio (${formatNum(displayRatios.debtEquity)}) past niet bij de Equity Multiplier.`,
+                        proof: `Identiteit: D/E = EM - 1. Hier: ${formatNum(ratios.em)} - 1 = ${formatNum(trueDE)}. Er staat echter ${formatNum(displayRatios.debtEquity)}.`
+                    };
+                }
+                else if (errorType === 2) {
+                    // HARD: Corrupt Market-to-Book (Identity: ROE = M/B / P/E => M/B = ROE * P/E)
+                    const trueMB = ratios.roe * ratios.pe;
+                    const fakeMB = trueMB * (Math.random() > 0.5 ? 1.4 : 0.6);
+                    displayRatios.marketToBook = fakeMB;
+
+                    errorDesc = {
+                        title: "Fouttype C (Moeilijk): Market Ratio Mismatch",
+                        explanation: `De Market-to-Book ratio (${formatNum(displayRatios.marketToBook)}) is inconsistent met de ROE en P/E.`,
+                        proof: `Identiteit: ROE = (P/B) / (P/E), oftewel P/B = ROE × P/E. Berekening: ${formatPct(ratios.roe)} × ${formatNum(ratios.pe)} = ${formatNum(trueMB)}. De tabel toont echter ${formatNum(displayRatios.marketToBook)}.`
+                    };
+                }
+
+                return {
+                    name: comp.name,
+                    real: ratios,
+                    display: displayRatios,
+                    error: errorDesc,
+                    colIndex: index
+                };
+            });
+
+            renderTable(exerciseData);
+            // Answers are on separate instructor page, not rendered here anymore
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById('ratioTableBody');
+            tbody.innerHTML = '';
+
+            // Update Headers
+            data.forEach((d, i) => {
+                document.getElementById(`headerComp${i}`).textContent = d.name;
+            });
+
+            const rows = [
+                { label: "Winstgevendheid (Profitability)", header: true },
+                { label: "Nettowinstmarge (PM)", key: 'ros', format: formatPct },
+                { label: "Omloopsnelheid Activa (AT)", key: 'ato', format: formatNum },
+                { label: "Return on Assets (ROA)", value: (d) => d.display.ros * d.display.ato, format: formatPct },
+                { label: "Return on Equity (ROE) [Gerapporteerd]", key: 'roe', format: formatPct, highlight: true },
+
+                { label: "Solvabiliteit (Solvency)", header: true },
+                { label: "Equity Multiplier (EM)", key: 'em', format: formatNum },
+                { label: "Debt-to-Equity Ratio", key: 'debtEquity', format: formatNum },
+
+                { label: "Marktwaarde (Market Ratios)", header: true },
+                { label: "Price-Earnings (P/E)", key: 'pe', format: formatNum },
+                { label: "Market-to-Book (P/B)", key: 'marketToBook', format: formatNum },
+
+                { label: "DuPont Check (Hulpmiddel)", header: true, helper: true },
+                { label: "ROE (Calculated: PM × AT × EM)", value: (d) => d.display.ros * d.display.ato * d.display.em, format: formatPct, bold: true, helper: true }
+            ];
+
+            rows.forEach(row => {
+                const tr = document.createElement('tr');
+                if (row.header) {
+                    tr.className = row.helper ? 'section-header helper-row' : 'section-header';
+                    tr.innerHTML = `<td colspan="4" style="padding: var(--space-3) var(--space-4);">${row.label}</td>`;
+                } else {
+                    tr.className = row.highlight ? 'highlight' : (row.helper ? 'helper-row' : '');
+
+                    let cells = `<td class="label-cell ${row.bold ? 'font-bold' : ''}">${row.label}</td>`;
+
+                    data.forEach(comp => {
+                        let val = row.value ? row.value(comp) : comp.display[row.key];
+                        let displayVal = row.format(val);
+                        cells += `<td class="value-cell ${row.bold ? 'font-bold' : ''}">${displayVal}</td>`;
+                    });
+                    tr.innerHTML = cells;
+                }
+                tbody.appendChild(tr);
+            });
+        }
+
+        // --- SECTOR SELECTION HANDLER ---
+        document.getElementById('sectorSelect').addEventListener('change', function(e) {
+            const sector = e.target.value;
+            if (sector) {
+                generateExercise(sector);
+            }
+        });
+
+        // --- INITIALIZE ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Page initialization complete
+        });
+    </script>
+</body>
+</html>
