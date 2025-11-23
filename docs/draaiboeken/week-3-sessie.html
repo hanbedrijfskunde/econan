@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3 Sessie Draaiboek - ECONAN | HAN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/econan.css">
+    <!-- Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+    <style>
+        .markdown-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--space-6);
+        }
+        .markdown-content h1 {
+            color: var(--color-primary-700);
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-4);
+            padding-bottom: var(--space-3);
+            border-bottom: 2px solid var(--color-primary-200);
+        }
+        .markdown-content h2 {
+            color: var(--color-primary-600);
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            margin-top: var(--space-8);
+            margin-bottom: var(--space-4);
+        }
+        .markdown-content h3 {
+            color: var(--color-gray-800);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            margin-top: var(--space-6);
+            margin-bottom: var(--space-3);
+        }
+        .markdown-content h4 {
+            color: var(--color-gray-700);
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            margin-top: var(--space-4);
+            margin-bottom: var(--space-2);
+        }
+        .markdown-content p {
+            color: var(--color-gray-700);
+            line-height: var(--line-height-relaxed);
+            margin-bottom: var(--space-4);
+        }
+        .markdown-content ul, .markdown-content ol {
+            color: var(--color-gray-700);
+            line-height: var(--line-height-relaxed);
+            margin-bottom: var(--space-4);
+            padding-left: var(--space-6);
+        }
+        .markdown-content li {
+            margin-bottom: var(--space-2);
+        }
+        .markdown-content code {
+            background-color: var(--color-gray-100);
+            color: var(--color-primary-700);
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-family-mono);
+            font-size: 0.9em;
+        }
+        .markdown-content pre {
+            background-color: var(--color-gray-900);
+            color: var(--color-gray-100);
+            padding: var(--space-4);
+            border-radius: var(--radius-md);
+            overflow-x: auto;
+            margin-bottom: var(--space-4);
+        }
+        .markdown-content pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .markdown-content blockquote {
+            border-left: 4px solid var(--color-primary-500);
+            background-color: var(--color-primary-50);
+            padding: var(--space-4);
+            margin: var(--space-4) 0;
+            border-radius: var(--radius-md);
+        }
+        .markdown-content blockquote p {
+            margin-bottom: var(--space-2);
+        }
+        .markdown-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-4) 0;
+            font-size: var(--font-size-sm);
+        }
+        .markdown-content th {
+            background-color: var(--color-primary-100);
+            color: var(--color-primary-800);
+            font-weight: var(--font-weight-semibold);
+            padding: var(--space-3);
+            text-align: left;
+            border: 1px solid var(--color-primary-200);
+        }
+        .markdown-content td {
+            padding: var(--space-3);
+            border: 1px solid var(--color-gray-200);
+            color: var(--color-gray-700);
+        }
+        .markdown-content hr {
+            border: none;
+            border-top: 2px solid var(--color-gray-200);
+            margin: var(--space-8) 0;
+        }
+        .markdown-content strong {
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-gray-900);
+        }
+        .markdown-content em {
+            font-style: italic;
+            color: var(--color-gray-600);
+        }
+        .markdown-content a {
+            color: var(--color-primary-600);
+            text-decoration: underline;
+        }
+        .markdown-content a:hover {
+            color: var(--color-primary-700);
+        }
+        /* Image styling */
+        .markdown-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            margin: var(--space-6) 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* Checkbox styling for task lists */
+        .markdown-content input[type="checkbox"] {
+            margin-right: var(--space-2);
+        }
+        .loading {
+            text-align: center;
+            padding: var(--space-8);
+            color: var(--color-gray-600);
+        }
+        .print-button {
+            position: fixed;
+            bottom: var(--space-6);
+            right: var(--space-6);
+            background-color: var(--color-primary-600);
+            color: white;
+            border: none;
+            padding: var(--space-3) var(--space-5);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-semibold);
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--duration-normal);
+            z-index: 1000;
+        }
+        .print-button:hover {
+            background-color: var(--color-primary-700);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        @media print {
+            .print-button {
+                display: none;
+            }
+            .markdown-content {
+                max-width: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-main">
+        <div class="container">
+            <div class="nav-content">
+                <a class="nav-brand" href="../index.html">ECONAN</a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a class="nav-link" href="../index.html#overzicht">Overzicht</a></li>
+                    <li><a class="nav-link" href="../sectoren/">Sectoren</a></li>
+                    <li><a class="nav-link" href="../rollen/">Rollen</a></li>
+                    <li><a class="nav-link" href="../strategic-framework/">Framework</a></li>
+                    <li><a class="nav-link" href="../weekplanning/">Planning</a></li>
+                    <li><a class="nav-link" href="../materiaal/">Materiaal</a></li>
+                    <li><a class="nav-link" href="../assessment/">Assessment</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="markdown-content" id="markdown-content">
+        <div class="loading">Loading...</div>
+    </div>
+
+    <!-- Print Button -->
+    <button class="print-button" onclick="window.print()">🖨️ Print</button>
+
+    <!-- Scripts -->
+    <script src="../js/navigation.js"></script>
+    <script>
+        // Load and render markdown
+        fetch('week-3-sessie.md')
+            .then(response => response.text())
+            .then(text => {
+                // Configure marked options
+                marked.setOptions({
+                    breaks: true,
+                    gfm: true
+                });
+
+                // Render markdown
+                document.getElementById('markdown-content').innerHTML = marked.parse(text);
+            })
+            .catch(error => {
+                document.getElementById('markdown-content').innerHTML =
+                    '<p style="color: var(--color-error-500);">Error loading content: ' + error.message + '</p>';
+            });
+    </script>
+</body>
+</html>

@@ -317,6 +317,133 @@
                 width: 100%;
             }
         }
+
+        /* Hints Modal */
+        .hints-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: var(--space-4);
+        }
+
+        .hints-modal.active {
+            display: flex;
+        }
+
+        .hints-modal-content {
+            background: white;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .hints-modal-header {
+            background: var(--color-primary-600);
+            color: white;
+            padding: var(--space-4);
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hints-modal-header h3 {
+            margin: 0;
+            font-size: var(--font-size-xl);
+        }
+
+        .hints-modal-close {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: var(--font-size-2xl);
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background var(--duration-fast);
+        }
+
+        .hints-modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hints-modal-body {
+            padding: var(--space-6);
+        }
+
+        .hint-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            margin-bottom: var(--space-4);
+            border-left: 4px solid;
+        }
+
+        .hint-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .hint-card.easy {
+            border-left-color: var(--color-success-500);
+            background: var(--color-success-50);
+        }
+
+        .hint-card.medium {
+            border-left-color: var(--color-warning-500);
+            background: var(--color-warning-50);
+        }
+
+        .hint-card.hard {
+            border-left-color: var(--color-error-500);
+            background: var(--color-error-50);
+        }
+
+        .hint-card h4 {
+            margin: 0 0 var(--space-2) 0;
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .hint-card.easy h4 {
+            color: var(--color-success-700);
+        }
+
+        .hint-card.medium h4 {
+            color: var(--color-warning-700);
+        }
+
+        .hint-card.hard h4 {
+            color: var(--color-error-700);
+        }
+
+        .hint-card p {
+            margin: 0;
+            font-family: var(--font-family-mono);
+            font-size: var(--font-size-sm);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hints-modal-content {
+                max-width: 95%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -357,6 +484,9 @@
                     <option value="Food & Beverage">Food & Beverage</option>
                     <option value="Healthcare">Healthcare</option>
                 </select>
+                <button onclick="showHintsModal()" class="btn btn-secondary">
+                    💡 Hints
+                </button>
                 <button onclick="window.print()" class="btn btn-primary">
                     🖨️ Print
                 </button>
@@ -390,6 +520,183 @@
                     <li>Geef aan wat de correcte waarde zou moeten zijn op basis van de andere (correcte) cijfers.</li>
                     <li>Gebruik de verbanden: <em>DuPont Identity</em>, <em>Balansrelaties</em> en <em>Market Value relaties</em>.</li>
                 </ul>
+
+                <!-- Financial Ratios Cheatsheet (Collapsible) -->
+                <details style="margin-top: var(--space-4); background: var(--color-gray-50); padding: var(--space-4); border-radius: var(--radius-lg); border: 2px solid var(--color-gray-200);">
+                    <summary style="cursor: pointer; font-weight: var(--font-weight-semibold); color: var(--color-primary-700); font-size: var(--font-size-base); padding: var(--space-2); user-select: none;">
+                        📚 Financial Ratios Cheatsheet (Hillier Ch. 3.2)
+                    </summary>
+
+                    <div style="margin-top: var(--space-4); line-height: 1.7;">
+
+                        <!-- I. Liquidity Ratios -->
+                        <h4 style="color: var(--color-primary-700); font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); margin: var(--space-4) 0 var(--space-2) 0; padding-top: var(--space-3); border-top: 2px solid var(--color-gray-300);">
+                            I. Short-Term Solvency (Liquidity) Ratios
+                        </h4>
+                        <p style="font-size: var(--font-size-sm); color: var(--color-gray-600); font-style: italic; margin-bottom: var(--space-3);">
+                            Measures a firm's ability to pay its bills over the short run.
+                        </p>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>1. Current Ratio</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">Current Assets / Current Liabilities</code></li>
+                            <li><strong>Betekenis:</strong> Vermogen om kortetermijnverplichtingen te betalen</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>2. Quick (Acid-Test) Ratio</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">(Current Assets - Inventory) / Current Liabilities</code></li>
+                            <li><strong>Betekenis:</strong> Strengere liquiditeitsmaatstaf (excl. voorraad)</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>3. Cash Ratio</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">Cash / Current Liabilities</code></li>
+                            <li><strong>Betekenis:</strong> Vermogen om te betalen met alleen cash</li>
+                        </ul>
+
+                        <!-- II. Leverage Ratios -->
+                        <h4 style="color: var(--color-primary-700); font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); margin: var(--space-4) 0 var(--space-2) 0; padding-top: var(--space-3); border-top: 2px solid var(--color-gray-300);">
+                            II. Long-Term Solvency (Leverage) Ratios
+                        </h4>
+                        <p style="font-size: var(--font-size-sm); color: var(--color-gray-600); font-style: italic; margin-bottom: var(--space-3);">
+                            Measures a firm's long-term ability to meet its obligations and its financial leverage.
+                        </p>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>1. Total Debt Ratio</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">(Total Assets - Total Equity) / Total Assets</code></li>
+                            <li><strong>Betekenis:</strong> Percentage activa gefinancierd met schuld</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>2. Debt-Equity Ratio</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">Total Debt / Total Equity</code></li>
+                            <li><strong>Betekenis:</strong> Hoeveelheid schuld per eenheid eigen vermogen</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>3. Equity Multiplier</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">Total Assets / Total Equity</code></li>
+                            <li><strong>Betekenis:</strong> Activa per eenheid eigen vermogen; = 1 + D/E</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>4. Times Interest Earned (TIE)</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">EBIT / Interest</code></li>
+                            <li><strong>Betekenis:</strong> Hoe goed EBIT de rente kan dekken</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>5. Cash Coverage Ratio</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">(EBIT + Non-cash deductions) / Interest</code></li>
+                            <li><strong>Betekenis:</strong> Vermogen om cash (EBITDA) te genereren voor rente</li>
+                        </ul>
+
+                        <!-- III. Turnover Ratios -->
+                        <h4 style="color: var(--color-primary-700); font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); margin: var(--space-4) 0 var(--space-2) 0; padding-top: var(--space-3); border-top: 2px solid var(--color-gray-300);">
+                            III. Asset Management (Turnover) Ratios
+                        </h4>
+                        <p style="font-size: var(--font-size-sm); color: var(--color-gray-600); font-style: italic; margin-bottom: var(--space-3);">
+                            Measures how efficiently a firm uses its assets to generate sales.
+                        </p>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>1. Inventory Turnover</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">COGS / Inventory</code></li>
+                            <li><strong>Betekenis:</strong> Hoe vaak voorraad verkocht en aangevuld wordt</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>2. Days' Sales in Inventory</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">365 / Inventory Turnover</code></li>
+                            <li><strong>Betekenis:</strong> Gemiddeld aantal dagen voorraad op hand</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>3. Receivables Turnover</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">Sales / Trade Receivables</code></li>
+                            <li><strong>Betekenis:</strong> Hoe snel vorderingen geïnd worden</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>4. Days' Sales in Receivables</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">365 / Receivables Turnover</code></li>
+                            <li><strong>Betekenis:</strong> Gemiddelde incassotermijn</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>5. Total Asset Turnover</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">Sales / Total Assets</code></li>
+                            <li><strong>Betekenis:</strong> Efficiëntie van alle activa in het genereren van omzet</li>
+                        </ul>
+
+                        <!-- IV. Profitability Ratios -->
+                        <h4 style="color: var(--color-primary-700); font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); margin: var(--space-4) 0 var(--space-2) 0; padding-top: var(--space-3); border-top: 2px solid var(--color-gray-300);">
+                            IV. Profitability Ratios
+                        </h4>
+                        <p style="font-size: var(--font-size-sm); color: var(--color-gray-600); font-style: italic; margin-bottom: var(--space-3);">
+                            Measures how efficiently a firm uses its assets and manages its operations.
+                        </p>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>1. Profit Margin</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">Net Income / Sales</code></li>
+                            <li><strong>Betekenis:</strong> Percentage omzet dat netto winst wordt</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>2. Return on Assets (ROA)</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">Net Income / Total Assets</code></li>
+                            <li><strong>Betekenis:</strong> Winst per eenheid activa</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>3. Return on Equity (ROE)</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">Net Income / Total Equity</code></li>
+                            <li><strong>Betekenis:</strong> Boekhoudkundig rendement voor aandeelhouders</li>
+                        </ul>
+
+                        <!-- V. Market Value Ratios -->
+                        <h4 style="color: var(--color-primary-700); font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); margin: var(--space-4) 0 var(--space-2) 0; padding-top: var(--space-3); border-top: 2px solid var(--color-gray-300);">
+                            V. Market Value Ratios
+                        </h4>
+                        <p style="font-size: var(--font-size-sm); color: var(--color-gray-600); font-style: italic; margin-bottom: var(--space-3);">
+                            Based on market price per share; relates market value to accounting figures.
+                        </p>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>1. Price-Earnings (P/E) Ratio</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">Price per Share / EPS</code></li>
+                            <li><strong>Betekenis:</strong> Hoeveel investeerders betalen per euro winst</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>2. PEG Ratio</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">(P/E) / (Earnings Growth %)</code></li>
+                            <li><strong>Betekenis:</strong> P/E gecorrigeerd voor groei</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>3. Price-Sales Ratio</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">Price per Share / Sales per Share</code></li>
+                            <li><strong>Betekenis:</strong> Alternatief voor P/E (nuttig bij negatieve winst)</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>4. Market-to-Book Ratio</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">Market Value per Share / Book Value per Share</code></li>
+                            <li><strong>Betekenis:</strong> Marktwaarde vs boekhoudkundige waarde</li>
+                        </ul>
+
+                        <p style="margin-bottom: var(--space-2);"><strong>5. Tobin's Q</strong></p>
+                        <ul style="margin-left: var(--space-5); margin-bottom: var(--space-3); font-size: var(--font-size-sm);">
+                            <li><strong>Formule:</strong> <code style="background: var(--color-gray-200); padding: 2px 6px; border-radius: 3px; font-family: var(--font-family-mono);">Market Value / Replacement Cost</code></li>
+                            <li><strong>Betekenis:</strong> Marktwaarde vs vervangingskosten activa</li>
+                        </ul>
+
+                    </div>
+                </details>
             </div>
 
             <!-- The Table -->
@@ -406,6 +713,32 @@
                     <!-- Rows will be injected here by JavaScript -->
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- Hints Modal -->
+    <div id="hintsModal" class="hints-modal no-print">
+        <div class="hints-modal-content">
+            <div class="hints-modal-header">
+                <h3>💡 Hints per Bedrijf</h3>
+                <button onclick="closeHintsModal()" class="hints-modal-close" aria-label="Sluit hints">
+                    ×
+                </button>
+            </div>
+            <div class="hints-modal-body">
+                <div class="hint-card easy">
+                    <h4>Bedrijf A (Makkelijk)</h4>
+                    <p>a/b * b/c * c/d = a/d</p>
+                </div>
+                <div class="hint-card medium">
+                    <h4>Bedrijf B (Gemiddeld)</h4>
+                    <p>TV = VV + EV; Equity multiplier = TV / EV = ....</p>
+                </div>
+                <div class="hint-card hard">
+                    <h4>Bedrijf C (Moeilijk)</h4>
+                    <p>P / E = Marktwaarde EV / Nettoresultaat; ROE = Nettoresultaat / Boekwaarde EV</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -599,6 +932,31 @@
                 tbody.appendChild(tr);
             });
         }
+
+        // --- HINTS MODAL FUNCTIONS ---
+        function showHintsModal() {
+            const modal = document.getElementById('hintsModal');
+            modal.classList.add('active');
+        }
+
+        function closeHintsModal() {
+            const modal = document.getElementById('hintsModal');
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('hintsModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeHintsModal();
+            }
+        });
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeHintsModal();
+            }
+        });
 
         // --- SECTOR SELECTION HANDLER ---
         document.getElementById('sectorSelect').addEventListener('change', function(e) {
