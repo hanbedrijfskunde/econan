@@ -145,27 +145,35 @@ Business Analisten oefenen ratio analyse hands-on. CFOs leren met hints en berei
 > "Maak notities van je antwoorden. Over 40 minuten komen de CFOs terug om met jullie de oplossingen te bespreken."
 
 **Instructie aan CFOs:**
-> "CFOs: jullie hebben een speciale rol vandaag. Jullie krijgen een **printed answer sheet** met alle fouten al gemarkeerd én hints."
+> "CFOs: jullie krijgen een printed answer sheet. Maar eerst: waarom jullie?"
 >
-> "Waarom? Omdat jullie straks terug komen en als **leraar** gaan optreden voor je team. Jullie zijn 'Primus Inter Pares' - eerste onder gelijken. Jullie gaan kennisoverdracht doen."
+> **WHY - Jullie rol als Primus Inter Pares:**
+> "Jullie zijn eerste onder gelijken. Dat betekent niet dat jullie de baas zijn, maar dat jullie verantwoordelijk zijn voor kwaliteit."
+> - Jullie **controleren** wat je analisten produceren
+> - Jullie **instrueren** je team hoe ze AI correct gebruiken
+> - Jullie **zorgen** dat AI zichzelf controleert via triangulatie
 >
-> **Jullie opdracht:**
-> 1. Ga naar de backup ruimte (of zoek rustige plek buiten lokaal)
-> 2. Bestudeer het answer sheet (40 minuten):
->    - **Rode omcirkeling** = waar de fout zit
->    - **Hints** = hoe je de fout detecteert
->    - **Cheatsheet** = alle ratio formules
->    - **DuPont visual** = triangulatie methodologie
-> 3. Maak notities over:
->    - Waarom is dit fout?
->    - Hoe bereken je de correcte waarde?
->    - Hoe leg je dit aan je team uit?
-> 4. Bedenk een **strategie** om je team te leren:
->    - Begin je met de makkelijke fout (Bedrijf A)?
->    - Hoe demonstreer je de DuPont check?
->    - Welke hulpmiddelen gebruik je? (whiteboard, papier?)
+> **HOW - Hoe gaan jullie dat doen:**
+> 1. **Controleren**: Als een analist zegt "ROE = 24.5%", kunnen jullie dat checken
+> 2. **Instrueren**: Jullie leren je team hoe ze AI moeten vragen:
+>    - "Bereken ROE direct EN via DuPont"
+>    - "Check of beide uitkomsten matchen"
+>    - "Als ze verschillen, zoek de fout"
+> 3. **AI Triangulatie**: Jullie ontwikkelen voorbeelden hoe analisten AI prompts schrijven met ingebouwde verificatie
 >
-> "Over 40 minuten komen jullie terug en krijgen 5 minuten om je presentatie voor te bereiden."
+> **WHAT - Wat gaan jullie nu doen (40 min):**
+> - Bestudeer het answer sheet dat jullie krijgen:
+>   - **Rode omcirkeling** = waar de fout zit
+>   - **Hints** = hoe je de fout detecteert
+>   - **Cheatsheet** = alle ratio formules
+>   - **DuPont visual** = triangulatie methodologie
+>
+> **Jullie eindproduct:**
+> - Je kunt de 3 fouten uitleggen aan je team
+> - Je hebt 3 voorbeelden hoe analisten AI moeten instrueren voor triangulatie
+> - Je weet hoe je kwaliteitscontrole uitvoert
+>
+> "Over 40 minuten komen jullie terug. Jullie krijgen dan 5 minuten om je presentatie voor te bereiden."
 
 **Deel CFO Answer Sheets uit & stuur CFOs weg (5 min):**
 > "Oké CFOs, pak jullie answer sheet. Jullie hebben nu 40 minuten. Ga naar de backup ruimte. Tot over 40 minuten!"
