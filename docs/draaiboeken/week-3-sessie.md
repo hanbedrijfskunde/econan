@@ -18,13 +18,14 @@
 ### Voor Docent:
 
 - [ ] Beamer/projector beschikbaar voor DuPont visual
-- [ ] Uitgeprinte "Spot de Fout" oefeningen (1 per Business Analyst)
-  - Print vanuit: `/docs/oefeningen/spot-de-fout.html`
-  - Selecteer sector, print, kopieer
-- [ ] DuPont breakdown visual geprint (1 per team, A4 kleur)
-  - Bestand: `/docs/background-docs/subjects/roi-for-dupont-analysis-...jpg`
+- [ ] **CFO Answer Sheets** geprint (1 per CFO team, 5 sectoren beschikbaar)
+  - Download vanuit: `/docs/instructors/index.html` → Week 3 → CFO Answer Sheets
+  - Open HTML in browser → Print to PDF (Landscape) → Print
+  - Elk blad bevat: tabel met gemarkeerde fouten, hints, cheatsheet, DuPont visual
+  - Kies sector die matcht met team (Retail, Technology, Energy, Food & Beverage, Healthcare)
 - [ ] Backup ruimte voor CFOs (of stille hoek buiten lokaal)
 - [ ] Blanco A4 papier voor AI checklist ontwikkeling
+- [ ] Zorg dat Business Analisten laptops hebben voor online tool
 
 ---
 
@@ -100,7 +101,7 @@ Verifiëren dat studenten het boek hoofdstuk hebben bestudeerd, quick refresh va
 > "Als beide uitkomsten niet matchen → er zit een fout in je data. Dat is precies wat we vandaag gaan oefenen."
 
 **Overgang naar Blok 2:**
-> "Jullie gaan nu 50 minuten hands-on werken met een oefening vol fouten. Business Analisten krijgen een printed versie. CFOs gaan naar buiten met hun laptop en krijgen hints. Jullie hebben verschillende rollen vandaag."
+> "Jullie gaan nu 50 minuten hands-on werken met een oefening vol fouten. Business Analisten werken online op jullie laptops. CFOs krijgen een printed answer sheet en gaan naar een apart lokaal. Jullie hebben verschillende rollen vandaag."
 
 ---
 
@@ -117,11 +118,11 @@ Business Analisten oefenen ratio analyse hands-on. CFOs leren met hints en berei
 ### Setup & Instructie (5 min)
 
 **Verdeel materiaal:**
-- **Business Analisten**: Krijgen uitgeprinte "Spot de Fout" oefening
-- **CFOs**: Krijgen niets, gebruiken eigen laptop
+- **Business Analisten**: Gebruiken eigen laptop voor online tool
+- **CFOs**: Krijgen printed PDF Answer Sheet (met gemarkeerde fouten, hints, cheatsheet, DuPont visual)
 
 **Instructie aan Business Analisten:**
-> "Business Analisten: jullie krijgen straks een uitgeprinte oefening. Dit zijn 3 bedrijven uit dezelfde sector met financiële ratio's. In **elk bedrijf** zit **één fout**."
+> "Business Analisten: jullie gaan online werken met de 'Spot de Fout' tool. Dit zijn 3 bedrijven uit dezelfde sector met financiële ratio's. In **elk bedrijf** zit **één fout**."
 >
 > - Bedrijf A: **Makkelijke fout** (DuPont Identity)
 > - Bedrijf B: **Gemiddelde fout** (Leverage relatie)
@@ -129,60 +130,69 @@ Business Analisten oefenen ratio analyse hands-on. CFOs leren met hints en berei
 >
 > "Jullie taak: vind de fout, bereken de correcte waarde, leg uit welke identiteit je gebruikt hebt."
 >
+> **Ga naar:** `https://[url]/oefeningen/spot-de-fout.html` *(URL op bord schrijven)*
+>
 > **Jullie mogen:**
 > - Je boek gebruiken
 > - Samen werken met andere Analisten in je team
 > - Rekenmachine gebruiken
+> - De 💡 **Hints** button gebruiken (rechtsbovenin) **als je vast zit**
+> - De 📚 **Financial Ratios Cheatsheet** uitklappen (onder instructies)
 >
 > **Jullie mogen NIET:**
-> - Hints vragen (behalve als je echt compleet vast zit)
 > - CFOs vragen (die zijn er niet)
 >
-> "Schrijf je antwoorden op het papier. Over 40 minuten komen de CFOs terug om jullie te helpen."
+> "Maak notities van je antwoorden. Over 40 minuten komen de CFOs terug om met jullie de oplossingen te bespreken."
 
 **Instructie aan CFOs:**
-> "CFOs: jullie hebben een speciale rol vandaag. Jullie gaan **buiten dit lokaal** dezelfde oefening maken, maar dan op de website **met hints**."
+> "CFOs: jullie hebben een speciale rol vandaag. Jullie krijgen een **printed answer sheet** met alle fouten al gemarkeerd én hints."
 >
-> "Waarom? Omdat jullie straks terug komen en als **leraar** gaan optreden voor je team. Jullie zijn 'Primus Inter Pares' - eerste onder gelijken. Jullie hebben extra kennis, en gaan die overdragen."
+> "Waarom? Omdat jullie straks terug komen en als **leraar** gaan optreden voor je team. Jullie zijn 'Primus Inter Pares' - eerste onder gelijken. Jullie gaan kennisoverdracht doen."
 >
 > **Jullie opdracht:**
-> 1. Zoek een rustige plek buiten het lokaal (studiehoek, kantine, gang)
-> 2. Ga naar: `https://[url]/oefeningen/spot-de-fout.html` *(URL op bord schrijven)*
-> 3. Selecteer een sector (bijv. Retail, Technology)
-> 4. Klik op 💡 **Hints** button rechtsbovenin
-> 5. Los de oefening op, maak notities over:
->    - Hoe vind je de fouten?
->    - Welke identiteiten gebruik je?
->    - Hoe kun je dit aan je team uitleggen?
+> 1. Ga naar de backup ruimte (of zoek rustige plek buiten lokaal)
+> 2. Bestudeer het answer sheet (40 minuten):
+>    - **Rode omcirkeling** = waar de fout zit
+>    - **Hints** = hoe je de fout detecteert
+>    - **Cheatsheet** = alle ratio formules
+>    - **DuPont visual** = triangulatie methodologie
+> 3. Maak notities over:
+>    - Waarom is dit fout?
+>    - Hoe bereken je de correcte waarde?
+>    - Hoe leg je dit aan je team uit?
+> 4. Bedenk een **strategie** om je team te leren:
+>    - Begin je met de makkelijke fout (Bedrijf A)?
+>    - Hoe demonstreer je de DuPont check?
+>    - Welke hulpmiddelen gebruik je? (whiteboard, papier?)
 >
 > "Over 40 minuten komen jullie terug en krijgen 5 minuten om je presentatie voor te bereiden."
 
-**Stuur CFOs weg (5 min):**
-> "Oké CFOs, jullie hebben nu 40 minuten. Zoek een plek, begin met de oefening. Tot over 40 minuten!"
+**Deel CFO Answer Sheets uit & stuur CFOs weg (5 min):**
+> "Oké CFOs, pak jullie answer sheet. Jullie hebben nu 40 minuten. Ga naar de backup ruimte. Tot over 40 minuten!"
 
-*(CFOs verlaten het lokaal)*
+*(CFOs verlaten het lokaal met printed answer sheet)*
 
 ### Werksessie Business Analisten (40 min)
 
-**Deel oefeningen uit:**
-- Geef elke Business Analyst een uitgeprinte versie
-- Zorg dat er pen/potlood is om antwoorden te noteren
+**Zorg dat alle Analisten online zijn:**
+- Check dat iedereen de website heeft geopend
+- Check dat ze een sector hebben geselecteerd
 
 **Docent rol tijdens deze 40 minuten:**
 - **Observeren**: Loop rond, kijk hoe studenten werken
 - **Minimaal ingrijpen**: Laat ze zelf zoeken, denken, proberen
 - **Hints alleen bij vastzitten**: Als een team compleet vast zit na 15 minuten:
-  - "Kijk nog eens naar de DuPont formule in je boek"
-  - "Check of de vermenigvuldiging klopt: PM × AT × EM"
-  - "Heb je alle ratio's al uitgerekend?"
+  - "Heb je de 💡 Hints button al geprobeerd?"
+  - "Kijk nog eens naar de DuPont formule in de cheatsheet"
+  - "Check de 'DuPont Check' rij onderaan de tabel"
 
 **Wat je ziet (verwacht gedrag):**
-- Eerste 10 min: Studenten lezen de tabel, proberen uit te vogelen waar te beginnen
-- Minuut 10-25: Actief rekenen, boek raadplegen, onderling overleggen
+- Eerste 10 min: Studenten lezen de tabel, proberen uit te vogelen waar te beginnen, sommigen openen hints
+- Minuut 10-25: Actief rekenen, cheatsheet raadplegen, onderling overleggen
 - Minuut 25-40: Sommigen klaar, anderen nog bezig met moeilijke fout (Bedrijf C)
 
 **Signaal bij 40 minuten:**
-> "Oké teams, nog 5 minuten. De CFOs komen zo terug. Maak je antwoorden af."
+> "Oké teams, nog 5 minuten. De CFOs komen zo terug. Sluit je notities af."
 
 ### CFOs Voorbereiden (5 min)
 

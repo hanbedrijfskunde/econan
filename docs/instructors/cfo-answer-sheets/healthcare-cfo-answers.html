@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFO Answer Sheet - Healthcare | ECONAN</title>
+
+    <!-- ECONAN Design System -->
+    <link rel="stylesheet" href="../../css/design-system.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/econan.css">
+
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 15mm;
+        }
+
+        body {
+            font-family: var(--font-family-body);
+            background: white;
+            margin: 0;
+            padding: var(--space-6);
+        }
+
+        .cfo-sheet {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .sheet-header {
+            background: var(--color-primary-600);
+            color: white;
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-4);
+        }
+
+        .sheet-header h1 {
+            margin: 0;
+            font-size: var(--font-size-2xl);
+        }
+
+        .sheet-header p {
+            margin: var(--space-2) 0 0 0;
+            opacity: 0.9;
+        }
+
+        .instructions {
+            background: var(--color-warning-50);
+            border-left: 4px solid var(--color-warning-500);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-6);
+            page-break-inside: avoid;
+        }
+
+        .instructions h2 {
+            margin: 0 0 var(--space-2) 0;
+            color: var(--color-warning-700);
+            font-size: var(--font-size-lg);
+        }
+
+        .ratio-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--space-6);
+            page-break-inside: avoid;
+        }
+
+        .ratio-table thead {
+            background: var(--color-primary-600);
+            color: white;
+        }
+
+        .ratio-table th {
+            padding: var(--space-3);
+            font-weight: 600;
+            text-align: left;
+            font-size: var(--font-size-sm);
+        }
+
+        .ratio-table th.company-header {
+            text-align: center;
+        }
+
+        .ratio-table tbody tr {
+            border-bottom: 1px solid var(--color-gray-200);
+        }
+
+        .ratio-table tbody tr.section-header {
+            background: var(--color-gray-100);
+            font-weight: 600;
+            color: var(--color-primary-700);
+            text-transform: uppercase;
+            font-size: var(--font-size-sm);
+        }
+
+        .ratio-table tbody tr.helper-row {
+            background: var(--color-info-50);
+        }
+
+        .ratio-table td {
+            padding: var(--space-3);
+        }
+
+        .ratio-table td.value-cell {
+            text-align: center;
+            font-family: var(--font-family-mono);
+            font-weight: 500;
+        }
+
+        .ratio-table td.label-cell {
+            font-weight: 500;
+            color: var(--color-gray-700);
+        }
+
+        /* Error Marking - Red Circle */
+        .error-mark {
+            border: 3px solid #DC2626;
+            border-radius: 8px;
+            background: rgba(220, 38, 38, 0.08);
+            padding: var(--space-2);
+            display: inline-block;
+            font-weight: 700;
+            color: #DC2626;
+        }
+
+        .hints-section {
+            background: var(--color-primary-50);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-6);
+            page-break-inside: avoid;
+        }
+
+        .hints-section h2 {
+            color: var(--color-primary-700);
+            margin: 0 0 var(--space-4) 0;
+        }
+
+        .hint-card {
+            background: white;
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-3);
+            border-left: 4px solid;
+        }
+
+        .hint-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .hint-card.easy {
+            border-left-color: var(--color-success-500);
+        }
+
+        .hint-card.medium {
+            border-left-color: var(--color-warning-500);
+        }
+
+        .hint-card.hard {
+            border-left-color: var(--color-error-500);
+        }
+
+        .hint-card h3 {
+            margin: 0 0 var(--space-2) 0;
+            font-size: var(--font-size-base);
+        }
+
+        .hint-card.easy h3 { color: var(--color-success-700); }
+        .hint-card.medium h3 { color: var(--color-warning-700); }
+        .hint-card.hard h3 { color: var(--color-error-700); }
+
+        .hint-card p {
+            margin: 0;
+            font-family: var(--font-family-mono);
+            font-size: var(--font-size-sm);
+        }
+
+        .cheatsheet-section {
+            background: var(--color-gray-50);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-6);
+            border: 2px solid var(--color-gray-200);
+        }
+
+        .cheatsheet-section h2 {
+            margin: 0 0 var(--space-4) 0;
+            color: var(--color-primary-700);
+        }
+
+        .cheatsheet-section h3 {
+            color: var(--color-primary-700);
+            font-size: var(--font-size-base);
+            margin: var(--space-4) 0 var(--space-2) 0;
+            padding-top: var(--space-3);
+            border-top: 2px solid var(--color-gray-300);
+        }
+
+        .cheatsheet-section h3:first-of-type {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .cheatsheet-section ul {
+            margin: 0 0 var(--space-3) var(--space-5);
+            padding: 0;
+            list-style: none;
+        }
+
+        .cheatsheet-section li {
+            margin: var(--space-1) 0;
+            font-size: var(--font-size-sm);
+        }
+
+        .cheatsheet-section code {
+            background: var(--color-gray-200);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: var(--font-family-mono);
+            font-size: var(--font-size-xs);
+        }
+
+        .dupont-section {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--color-primary-500);
+            text-align: center;
+        }
+
+        .dupont-section h2 {
+            margin: 0 0 var(--space-4) 0;
+            color: var(--color-primary-700);
+        }
+
+        .dupont-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+        }
+
+        @media print {
+            .sheet-header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .error-mark {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cfo-sheet">
+        <!-- Header -->
+        <div class="sheet-header">
+            <h1>👔 CFO Answer Sheet - Healthcare Sector</h1>
+            <p>Week 3: Ratio Analyse & Triangulatie | Voor CFO Teams</p>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <h2>📋 Instructies voor CFO</h2>
+            <p>
+                Dit blad toont de <strong>gemarkeerde fouten</strong> (rode omcirkeling) in de ratio analyse van 3 healthcare bedrijven.
+                Jullie taak is om te begrijpen <strong>waarom</strong> deze fouten fout zijn en vervolgens jullie team (Business Analisten) te leren hoe ze fouten kunnen detecteren.
+            </p>
+            <p style="margin-top: var(--space-2);">
+                <strong>Gebruik de hints, cheatsheet en DuPont analyse</strong> hieronder om jullie uitleg voor te bereiden.
+            </p>
+            <p style="margin-top: var(--space-2); background: var(--color-warning-100); padding: var(--space-2); border-radius: 4px;">
+                <strong>⚠️ Let op:</strong> Philips heeft een negatieve nettowinstmarge (-9.0%). Dit betekent dat ROE ook negatief is, maar de methodologie blijft hetzelfde!
+            </p>
+        </div>
+
+        <!-- Ratio Table -->
+        <table class="ratio-table">
+            <thead>
+                <tr>
+                    <th style="width: 40%;">Kental / Ratio</th>
+                    <th class="company-header" style="width: 20%;">Philips</th>
+                    <th class="company-header" style="width: 20%;">Novartis</th>
+                    <th class="company-header" style="width: 20%;">Roche</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="section-header">
+                    <td colspan="4">WINSTGEVENDHEID (PROFITABILITY)</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Nettowinstmarge (PM)</td>
+                    <td class="value-cell">-9.0%</td>
+                    <td class="value-cell">14.0%</td>
+                    <td class="value-cell">20.6%</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Omloopsnelheid Activa (AT)</td>
+                    <td class="value-cell">0.61</td>
+                    <td class="value-cell">0.50</td>
+                    <td class="value-cell">0.70</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Return on Assets (ROA)</td>
+                    <td class="value-cell">-5.5%</td>
+                    <td class="value-cell">7.0%</td>
+                    <td class="value-cell">14.4%</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Return on Equity (ROE) [Gerapporteerd]</td>
+                    <td class="value-cell"><span class="error-mark">-20.0%</span></td>
+                    <td class="value-cell">12.7%</td>
+                    <td class="value-cell"><span class="error-mark">37.1%</span></td>
+                </tr>
+
+                <tr class="section-header">
+                    <td colspan="4">SOLVABILITEIT (SOLVENCY)</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Equity Multiplier (EM)</td>
+                    <td class="value-cell">2.64</td>
+                    <td class="value-cell"><span class="error-mark">1.82</span></td>
+                    <td class="value-cell">2.57</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Debt-to-Equity Ratio</td>
+                    <td class="value-cell">1.64</td>
+                    <td class="value-cell"><span class="error-mark">1.20</span></td>
+                    <td class="value-cell">1.57</td>
+                </tr>
+
+                <tr class="section-header">
+                    <td colspan="4">MARKTWAARDE (MARKET RATIOS)</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Price-Earnings (P/E)</td>
+                    <td class="value-cell">-10.69</td>
+                    <td class="value-cell">13.50</td>
+                    <td class="value-cell"><span class="error-mark">14.00</span></td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Market-to-Book (P/B)</td>
+                    <td class="value-cell">1.56</td>
+                    <td class="value-cell">1.72</td>
+                    <td class="value-cell"><span class="error-mark">4.00</span></td>
+                </tr>
+
+                <tr class="section-header helper-row">
+                    <td colspan="4">DUPONT CHECK (HULPMIDDEL)</td>
+                </tr>
+                <tr class="helper-row">
+                    <td class="label-cell" style="font-weight: 700;">ROE (Calculated: PM × AT × EM)</td>
+                    <td class="value-cell" style="font-weight: 700;"><span class="error-mark">-14.5%</span></td>
+                    <td class="value-cell" style="font-weight: 700;">12.7%</td>
+                    <td class="value-cell" style="font-weight: 700;">37.1%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Hints Section -->
+        <div class="hints-section">
+            <h2>💡 Hints per Bedrijf</h2>
+
+            <div class="hint-card easy">
+                <h3>Bedrijf A - Philips (Makkelijk)</h3>
+                <p>a/b * b/c * c/d = a/d (Ook met negatieve getallen!)</p>
+            </div>
+
+            <div class="hint-card medium">
+                <h3>Bedrijf B - Novartis (Gemiddeld)</h3>
+                <p>TV = VV + EV; Equity multiplier = TV / EV = ....</p>
+            </div>
+
+            <div class="hint-card hard">
+                <h3>Bedrijf C - Roche (Moeilijk)</h3>
+                <p>P / E = Marktwaarde EV / Nettoresultaat; ROE = Nettoresultaat / Boekwaarde EV</p>
+            </div>
+        </div>
+
+        <!-- Cheatsheet Section -->
+        <div class="cheatsheet-section">
+            <h2>📚 Financial Ratios Cheatsheet (Hillier Ch. 3.2)</h2>
+
+            <h3>I. Short-Term Solvency (Liquidity) Ratios</h3>
+            <ul>
+                <li><strong>Current Ratio:</strong> <code>Current Assets / Current Liabilities</code> - Vermogen om kortetermijnverplichtingen te betalen</li>
+                <li><strong>Quick Ratio:</strong> <code>(Current Assets - Inventory) / Current Liabilities</code> - Strengere liquiditeitsmaatstaf</li>
+                <li><strong>Cash Ratio:</strong> <code>Cash / Current Liabilities</code> - Vermogen om te betalen met alleen cash</li>
+            </ul>
+
+            <h3>II. Long-Term Solvency (Leverage) Ratios</h3>
+            <ul>
+                <li><strong>Total Debt Ratio:</strong> <code>(Total Assets - Total Equity) / Total Assets</code> - Percentage activa gefinancierd met schuld</li>
+                <li><strong>Debt-Equity Ratio:</strong> <code>Total Debt / Total Equity</code> - Hoeveelheid schuld per eenheid eigen vermogen</li>
+                <li><strong>Equity Multiplier:</strong> <code>Total Assets / Total Equity</code> - Activa per eenheid eigen vermogen; = 1 + D/E</li>
+                <li><strong>Times Interest Earned:</strong> <code>EBIT / Interest</code> - Hoe goed EBIT de rente kan dekken</li>
+                <li><strong>Cash Coverage Ratio:</strong> <code>(EBIT + Non-cash deductions) / Interest</code> - Vermogen om cash te genereren voor rente</li>
+            </ul>
+
+            <h3>III. Asset Management (Turnover) Ratios</h3>
+            <ul>
+                <li><strong>Inventory Turnover:</strong> <code>COGS / Inventory</code> - Hoe vaak voorraad verkocht wordt</li>
+                <li><strong>Days' Sales in Inventory:</strong> <code>365 / Inventory Turnover</code> - Gemiddeld aantal dagen voorraad op hand</li>
+                <li><strong>Receivables Turnover:</strong> <code>Sales / Trade Receivables</code> - Hoe snel vorderingen geïnd worden</li>
+                <li><strong>Days' Sales in Receivables:</strong> <code>365 / Receivables Turnover</code> - Gemiddelde incassotermijn</li>
+                <li><strong>Total Asset Turnover:</strong> <code>Sales / Total Assets</code> - Efficiëntie van alle activa in het genereren van omzet</li>
+            </ul>
+
+            <h3>IV. Profitability Ratios</h3>
+            <ul>
+                <li><strong>Profit Margin:</strong> <code>Net Income / Sales</code> - Percentage omzet dat netto winst wordt</li>
+                <li><strong>Return on Assets (ROA):</strong> <code>Net Income / Total Assets</code> - Winst per eenheid activa</li>
+                <li><strong>Return on Equity (ROE):</strong> <code>Net Income / Total Equity</code> - Boekhoudkundig rendement voor aandeelhouders</li>
+            </ul>
+
+            <h3>V. Market Value Ratios</h3>
+            <ul>
+                <li><strong>Price-Earnings (P/E) Ratio:</strong> <code>Price per Share / EPS</code> - Hoeveel investeerders betalen per euro winst</li>
+                <li><strong>PEG Ratio:</strong> <code>(P/E) / (Earnings Growth %)</code> - P/E gecorrigeerd voor groei</li>
+                <li><strong>Price-Sales Ratio:</strong> <code>Price per Share / Sales per Share</code> - Alternatief voor P/E</li>
+                <li><strong>Market-to-Book Ratio:</strong> <code>Market Value per Share / Book Value per Share</code> - Marktwaarde vs boekhoudkundige waarde</li>
+                <li><strong>Tobin's Q:</strong> <code>Market Value / Replacement Cost</code> - Marktwaarde vs vervangingskosten activa</li>
+            </ul>
+        </div>
+
+        <!-- DuPont Analysis Section -->
+        <div class="dupont-section">
+            <h2>🔍 DuPont Analyse Methodologie</h2>
+            <p style="margin-bottom: var(--space-4); color: var(--color-gray-700);">
+                Gebruik deze methodologie om ROA te verifiëren via twee verschillende berekenpaden (triangulatie).
+            </p>
+            <img src="../../background-docs/subjects/roi-for-dupont-analysis-which-included-sale-total-assets-in-formula-for-calculation-for-financial-analysis-vector.jpg" alt="DuPont ROA Breakdown">
+        </div>
+    </div>
+</body>
+</html>
