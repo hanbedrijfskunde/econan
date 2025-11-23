@@ -373,7 +373,7 @@ Als er een inconsistentie is, moet ROE aangepast worden aan de DuPont componente
 
 **Verificatie stappenplan:**
 ```
-Stap 1: DuPont check → ROE = Margin × Turnover × Multiplier
+Stap 1: DuPont identity check → ROE = Margin × Turnover × Multiplier
         → Ontdekking: ROE klopt niet!
 
 Stap 2: Earnings Yield berekenen → 1 / P/E

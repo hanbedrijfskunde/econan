@@ -192,7 +192,7 @@ Business Analisten oefenen ratio analyse hands-on. CFOs leren met hints en berei
 - **Hints alleen bij vastzitten**: Als een team compleet vast zit na 15 minuten:
   - "Heb je de 💡 Hints button al geprobeerd?"
   - "Kijk nog eens naar de DuPont formule in de cheatsheet"
-  - "Check de 'DuPont Check' rij onderaan de tabel"
+  - "Check de 'DuPont Identity Check' rij onderaan de tabel"
 
 **Wat je ziet (verwacht gedrag):**
 - Eerste 10 min: Studenten lezen de tabel, proberen uit te vogelen waar te beginnen, sommigen openen hints
@@ -457,7 +457,7 @@ Duidelijke homework afspraken, preview Week 4.
 1. Docent geeft "level 1 hint" aan alle teams:
    - "Begin met Bedrijf A. Bereken ROE op twee manieren."
 2. Als nog steeds vast (na 30 min), "level 2 hint":
-   - "Kijk naar de DuPont check rij onderaan de tabel. Klopt die?"
+   - "Kijk naar de DuPont identity check rij onderaan de tabel. Klopt die?"
 3. Uiterste redmiddel (35 min mark): Geef antwoord Bedrijf A, laat ze B en C zelf doen
 
 **Preventie**: Zorg dat boek hoofdstuk echt gelezen is (zie Risico 1)

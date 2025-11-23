@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBO Bedrijfskunde: Financial Statement Analysis Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background-color: white; }
+            .print-break-inside { break-inside: avoid; }
+            .print-container { box-shadow: none !important; border: none !important; width: 100% !important; max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+        }
+        .sheet {
+            background: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 20px auto;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+    <!-- Control Panel (No Print) -->
+    <div class="no-print fixed top-0 left-0 w-full bg-white shadow-md z-50 border-b border-gray-200">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <i data-lucide="graduation-cap" class="w-6 h-6 text-blue-600"></i>
+                <h1 class="font-bold text-lg text-gray-800">Ratio Analyse Generator</h1>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <button onclick="generateExercise()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow transition">
+                    <i data-lucide="refresh-cw" class="w-4 h-4"></i> Nieuwe Oefening
+                </button>
+                
+                <button onclick="toggleAnswers()" id="btnToggleAnswers" class="flex items-center gap-2 bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded transition">
+                    <i data-lucide="eye-off" class="w-4 h-4"></i> Verberg Antwoorden
+                </button>
+
+                <button onclick="window.print()" class="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow transition">
+                    <i data-lucide="printer" class="w-4 h-4"></i> Print
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-20 no-print"></div>
+
+    <!-- Main Printable Sheet -->
+    <div class="max-w-[210mm] mx-auto print-container sheet" id="worksheet">
+        
+        <!-- Header -->
+        <div class="border-b-2 border-gray-800 pb-4 mb-8 flex justify-between items-end">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900 uppercase tracking-wide">Oefening: Spot de Fout</h1>
+                <p class="text-gray-600 mt-1">Vak: Bedrijfseconomie (Financial Statement Analysis)</p>
+            </div>
+            <div class="text-right">
+                <p class="text-sm font-semibold">Datum: <span id="dateField"></span></p>
+                <p class="text-sm text-gray-500">Sector: <span id="sectorName" class="font-bold text-black">Laden...</span></p>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-8 text-sm">
+            <h3 class="font-bold text-gray-800 mb-2 flex items-center gap-2">
+                <i data-lucide="info" class="w-4 h-4"></i> Instructie voor de student:
+            </h3>
+            <p class="mb-2">
+                Hieronder zie je de ratio's van drie bedrijven uit dezelfde sector. De moeilijkheidsgraad loopt op van links (makkelijk) naar rechts (moeilijk). In <strong>elke kolom</strong> zit één fundamentele fout in de berekening of rapportage.
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-gray-700 ml-2">
+                <li>Identificeer voor elk bedrijf welke ratio niet klopt.</li>
+                <li>Geef aan wat de correcte waarde zou moeten zijn op basis van de andere (correcte) cijfers.</li>
+                <li>Gebruik de verbanden: <em>DuPont Identity</em>, <em>Balansrelaties</em> en <em>Market Value relaties</em>.</li>
+            </ul>
+        </div>
+
+        <!-- The Table -->
+        <div class="overflow-hidden rounded-lg border border-gray-300 mb-8">
+            <table class="w-full text-sm text-left">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="px-4 py-3 font-semibold w-1/4">Kental / Ratio</th>
+                        <th class="px-4 py-3 font-semibold w-1/4 text-center" id="headerComp0">Bedrijf A</th>
+                        <th class="px-4 py-3 font-semibold w-1/4 text-center" id="headerComp1">Bedrijf B</th>
+                        <th class="px-4 py-3 font-semibold w-1/4 text-center" id="headerComp2">Bedrijf C</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200" id="ratioTableBody">
+                    <!-- Rows will be injected here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Answer Key Section -->
+        <div id="answerKeySection" class="mt-12 pt-8 border-t-2 border-dashed border-gray-300 print-break-inside">
+            <div class="flex items-center gap-2 mb-4 text-red-600">
+                <i data-lucide="key" class="w-6 h-6"></i>
+                <h2 class="text-xl font-bold uppercase">Docenten Antwoordmodel</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="answersContainer">
+                <!-- Answers injected here -->
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- DATA CONFIGURATION ---
+        // Base numbers are roughly realistic (in millions/thousands where appropriate).
+        // We will apply random variation to these base numbers on every generation.
+        const SECTORS = {
+            'Retail': [
+                { name: 'Ahold Delhaize', rev: 87000, ni: 2500, assets: 45000, equity: 14000, price: 28.5, shares: 980 },
+                { name: 'Carrefour', rev: 81000, ni: 1300, assets: 52000, equity: 11000, price: 16.2, shares: 750 },
+                { name: 'Inditex (Zara)', rev: 32000, ni: 4100, assets: 28000, equity: 16500, price: 34.0, shares: 3100 }
+            ],
+            'Technology': [
+                { name: 'ASML', rev: 21000, ni: 5600, assets: 35000, equity: 18000, price: 600, shares: 400 },
+                { name: 'SAP', rev: 31000, ni: 3200, assets: 72000, equity: 41000, price: 125, shares: 1100 },
+                { name: 'Adyen', rev: 1300, ni: 470, assets: 7500, equity: 2200, price: 1400, shares: 31 }
+            ],
+            'Energy': [
+                { name: 'Shell', rev: 380000, ni: 42000, assets: 440000, equity: 190000, price: 29.5, shares: 3400 },
+                { name: 'BP', rev: 240000, ni: 28000, assets: 280000, equity: 85000, price: 5.50, shares: 18000 },
+                { name: 'TotalEnergies', rev: 260000, ni: 20000, assets: 290000, equity: 115000, price: 62, shares: 2600 }
+            ],
+            'Food & Beverage': [
+                { name: 'Unilever', rev: 60000, ni: 7600, assets: 76000, equity: 19000, price: 46, shares: 2600 },
+                { name: 'Danone', rev: 27000, ni: 959, assets: 44000, equity: 17000, price: 58, shares: 680 },
+                { name: 'Heineken', rev: 28000, ni: 2700, assets: 47000, equity: 18000, price: 92, shares: 576 }
+            ],
+            'Healthcare': [
+                { name: 'Philips', rev: 17800, ni: -1600, assets: 29000, equity: 11000, price: 19, shares: 900 }, // Negative income case
+                { name: 'Novartis', rev: 50000, ni: 7000, assets: 100000, equity: 55000, price: 90, shares: 2100 },
+                { name: 'Roche', rev: 63000, ni: 13000, assets: 90000, equity: 35000, price: 260, shares: 700 }
+            ]
+        };
+
+        // --- UTILITY FUNCTIONS ---
+        const formatPct = (val) => (val * 100).toFixed(1) + '%';
+        const formatNum = (val) => val.toFixed(2);
+        const formatCurr = (val) => '€ ' + val.toFixed(2);
+        
+        // Randomize base data by +/- 10% to ensure uniqueness every time
+        function perturbData(company) {
+            const variance = () => 0.90 + Math.random() * 0.20; // 0.90 to 1.10
+            
+            const newData = { ...company };
+            newData.rev *= variance();
+            // Ensure NI keeps sign if negative (rarely needed but good practice) but vary magnitude
+            newData.ni = (company.ni > 0) ? company.ni * variance() : company.ni * variance(); 
+            
+            newData.assets *= variance();
+            newData.equity *= variance();
+            
+            // Ensure Equity < Assets (Solvency sanity check)
+            if(newData.equity >= newData.assets) newData.equity = newData.assets * 0.6;
+
+            newData.price *= variance();
+            
+            // Recalculate derived base metrics
+            newData.liabilities = newData.assets - newData.equity;
+            newData.eps = newData.ni / newData.shares;
+            newData.bookValuePerShare = newData.equity / newData.shares;
+            
+            return newData;
+        }
+
+        function calculateRatios(c) {
+            return {
+                // Profitability
+                ros: c.ni / c.rev, // Return on Sales / Net Profit Margin
+                ato: c.rev / c.assets, // Asset Turnover
+                em: c.assets / c.equity, // Equity Multiplier
+                roe: c.ni / c.equity, // ROE
+                
+                // Solvency
+                debtEquity: c.liabilities / c.equity,
+                
+                // Market
+                pe: c.price / c.eps,
+                marketToBook: c.price / c.bookValuePerShare
+            };
+        }
+
+        // --- ERROR INJECTION LOGIC ---
+
+        function generateExercise() {
+            // 1. Pick Sector
+            const sectorKeys = Object.keys(SECTORS);
+            const randomSector = sectorKeys[Math.floor(Math.random() * sectorKeys.length)];
+            document.getElementById('sectorName').textContent = randomSector;
+            document.getElementById('dateField').textContent = new Date().toLocaleDateString('nl-NL');
+
+            // 2. Prepare Companies (Perturb Data)
+            let companies = SECTORS[randomSector].map(perturbData);
+            
+            // 3. Assign Error Types (Fixed Order: Easy -> Medium -> Hard)
+            // 0 = Easy (DuPont), 1 = Medium (Leverage), 2 = Hard (Market)
+            const errorTypes = [0, 1, 2]; 
+            
+            const exerciseData = companies.map((comp, index) => {
+                const ratios = calculateRatios(comp);
+                const errorType = errorTypes[index];
+                let displayRatios = { ...ratios };
+                let errorDesc = {};
+
+                // INJECT ERROR
+                if (errorType === 0) {
+                    // EASY: Corrupt ROE, keep components (PM, AT, EM) correct
+                    // Logic: Show wrong ROE, but calculated ROE (visible in table) is correct
+                    const offset = (Math.random() > 0.5 ? 1 : -1) * (0.04 + Math.random() * 0.05); // +/- 4-9%
+                    displayRatios.roe = ratios.roe + offset;
+                    
+                    errorDesc = {
+                        title: "Fouttype A (Makkelijk): DuPont Mismatch",
+                        explanation: `De gerapporteerde ROE (${formatPct(displayRatios.roe)}) komt niet overeen met de DuPont berekening.`,
+                        proof: `DuPont: ${formatPct(ratios.ros)} × ${formatNum(ratios.ato)} × ${formatNum(ratios.em)} = ${formatPct(ratios.ros * ratios.ato * ratios.em)}.`
+                    };
+                } 
+                else if (errorType === 1) {
+                    // MEDIUM: Corrupt Debt/Equity, keep EM correct
+                    // Identity: D/E = EM - 1
+                    const trueDE = ratios.em - 1;
+                    const fakeDE = trueDE + (Math.random() > 0.5 ? 0.5 : -0.3); // Significant shift
+                    displayRatios.debtEquity = Math.abs(fakeDE); // Ensure positive
+
+                    errorDesc = {
+                        title: "Fouttype B (Gemiddeld): Leverage Mismatch",
+                        explanation: `De Debt-to-Equity ratio (${formatNum(displayRatios.debtEquity)}) past niet bij de Equity Multiplier.`,
+                        proof: `Identiteit: D/E = EM - 1. Hier: ${formatNum(ratios.em)} - 1 = ${formatNum(trueDE)}. Er staat echter ${formatNum(displayRatios.debtEquity)}.`
+                    };
+                } 
+                else if (errorType === 2) {
+                    // HARD: Corrupt Market-to-Book, keep P/E and ROE correct
+                    // Identity: ROE = (M/B) / (P/E)  => M/B = ROE * P/E
+                    const trueMB = ratios.roe * ratios.pe;
+                    // Corrupt MB
+                    const fakeMB = trueMB * (Math.random() > 0.5 ? 1.4 : 0.6); 
+                    displayRatios.marketToBook = fakeMB;
+
+                    errorDesc = {
+                        title: "Fouttype C (Moeilijk): Market Ratio Mismatch",
+                        explanation: `De Market-to-Book ratio (${formatNum(displayRatios.marketToBook)}) is inconsistent met de ROE en P/E.`,
+                        proof: `Identiteit: ROE = (P/B) / (P/E). Dus P/B zou moeten zijn: ${formatPct(ratios.roe)} × ${formatNum(ratios.pe)} = ${formatNum(trueMB)}.`
+                    };
+                }
+
+                return {
+                    name: comp.name,
+                    real: ratios,
+                    display: displayRatios,
+                    error: errorDesc,
+                    colIndex: index
+                };
+            });
+
+            renderTable(exerciseData);
+            renderAnswers(exerciseData);
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById('ratioTableBody');
+            tbody.innerHTML = '';
+
+            // Update Headers
+            data.forEach((d, i) => {
+                document.getElementById(`headerComp${i}`).textContent = d.name;
+            });
+
+            const rows = [
+                { label: "Winstgevendheid (Profitability)", header: true },
+                { label: "Nettowinstmarge (PM)", key: 'ros', format: formatPct },
+                { label: "Omloopsnelheid Activa (AT)", key: 'ato', format: formatNum },
+                { label: "Return on Assets (ROA)", value: (d) => d.display.ros * d.display.ato, format: formatPct }, // Calc derived from display
+                { label: "Return on Equity (ROE) [Gerapporteerd]", key: 'roe', format: formatPct, highlight: true },
+                
+                { label: "Solvabiliteit (Solvency)", header: true },
+                { label: "Equity Multiplier (EM)", key: 'em', format: formatNum },
+                { label: "Debt-to-Equity Ratio", key: 'debtEquity', format: formatNum },
+                
+                { label: "Marktwaarde (Market Ratios)", header: true },
+                { label: "Price-Earnings (P/E)", key: 'pe', format: formatNum },
+                { label: "Market-to-Book (P/B)", key: 'marketToBook', format: formatNum },
+                
+                { label: "DuPont Check (Hulpmiddel)", header: true, bg: 'bg-blue-50' },
+                { label: "ROE (Calculated: PM × AT × EM)", value: (d) => d.display.ros * d.display.ato * d.display.em, format: formatPct, bold: true, bg: 'bg-blue-50' }
+            ];
+
+            rows.forEach(row => {
+                const tr = document.createElement('tr');
+                if (row.header) {
+                    tr.className = `bg-gray-100 text-gray-700 font-bold text-xs uppercase tracking-wider ${row.bg || ''}`;
+                    tr.innerHTML = `<td colspan="4" class="px-4 py-2 border-b border-gray-200">${row.label}</td>`;
+                } else {
+                    tr.className = row.bg || (row.highlight ? 'bg-yellow-50' : 'bg-white hover:bg-gray-50');
+                    
+                    let labelClass = "px-4 py-2 border-b border-gray-200 font-medium text-gray-700";
+                    if(row.bold) labelClass += " font-bold text-blue-800";
+                    
+                    let cells = `<td class="${labelClass}">${row.label}</td>`;
+                    
+                    data.forEach(comp => {
+                        let val = row.value ? row.value(comp) : comp.display[row.key];
+                        let displayVal = row.format(val);
+                        cells += `<td class="px-4 py-2 border-b border-gray-200 text-center text-gray-800 ${row.bold ? 'font-bold' : ''}">${displayVal}</td>`;
+                    });
+                    tr.innerHTML = cells;
+                }
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderAnswers(data) {
+            const container = document.getElementById('answersContainer');
+            container.innerHTML = '';
+
+            data.forEach((comp, i) => {
+                const div = document.createElement('div');
+                div.className = "bg-white p-4 rounded border border-red-200 shadow-sm";
+                div.innerHTML = `
+                    <div class="font-bold text-lg border-b border-gray-200 pb-2 mb-2 text-gray-800">
+                        ${comp.name}
+                    </div>
+                    <div class="text-sm">
+                        <p class="font-bold text-red-600 mb-1">${comp.error.title}</p>
+                        <p class="text-gray-700 mb-2">${comp.error.explanation}</p>
+                        <div class="bg-gray-100 p-2 rounded text-xs font-mono text-gray-600">
+                            ${comp.error.proof}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        let answersVisible = true;
+        function toggleAnswers() {
+            answersVisible = !answersVisible;
+            const section = document.getElementById('answerKeySection');
+            const btn = document.getElementById('btnToggleAnswers');
+            const icon = answersVisible ? 'eye-off' : 'eye';
+            
+            if(answersVisible) {
+                section.classList.remove('hidden');
+                btn.innerHTML = `<i data-lucide="${icon}" class="w-4 h-4"></i> Verberg Antwoorden`;
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+                btn.classList.remove('bg-blue-100', 'text-blue-700');
+            } else {
+                section.classList.add('hidden');
+                btn.innerHTML = `<i data-lucide="${icon}" class="w-4 h-4"></i> Toon Antwoorden`;
+                btn.classList.remove('bg-gray-200', 'text-gray-700');
+                btn.classList.add('bg-blue-100', 'text-blue-700');
+            }
+            lucide.createIcons();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            generateExercise();
+            lucide.createIcons();
+        });
+
+    </script>
+</body>
+</html>
