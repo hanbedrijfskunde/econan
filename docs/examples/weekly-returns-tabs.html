@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wekelijkse Koersdata: Rheinmetall, S&P 500, DAX</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-3.3.0.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-family-body);
+            background-color: var(--color-gray-50);
+            color: var(--color-gray-800);
+            line-height: var(--line-height-normal);
+            padding: var(--space-6);
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 {
+            font-family: var(--font-family-heading);
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary-500);
+            margin-bottom: var(--space-2);
+        }
+        .subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-gray-600);
+            margin-bottom: var(--space-6);
+        }
+        .tabs {
+            display: flex;
+            gap: var(--space-1);
+            border-bottom: 2px solid var(--color-gray-200);
+        }
+        .tab-button {
+            padding: var(--space-3) var(--space-5);
+            border: none;
+            background: var(--color-gray-100);
+            color: var(--color-gray-600);
+            font-family: var(--font-family-heading);
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-semibold);
+            cursor: pointer;
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+        .tab-button:hover { background: var(--color-gray-200); color: var(--color-gray-700); }
+        .tab-button.active {
+            background: white;
+            color: var(--color-primary-500);
+            border-bottom: 2px solid white;
+            margin-bottom: -2px;
+        }
+        .tab-content {
+            display: none;
+            background: white;
+            border-radius: 0 var(--radius-xl) var(--radius-xl) var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            padding: var(--space-5);
+        }
+        .tab-content.active { display: block; }
+        .stats-bar {
+            display: flex;
+            gap: var(--space-6);
+            margin-bottom: var(--space-4);
+            padding: var(--space-4);
+            background: var(--color-gray-50);
+            border-radius: var(--radius-lg);
+            flex-wrap: wrap;
+        }
+        .stat-item { display: flex; flex-direction: column; gap: var(--space-1); }
+        .stat-label {
+            font-size: var(--font-size-xs);
+            color: var(--color-gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .stat-value {
+            font-family: var(--font-family-mono);
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+        }
+        .positive { color: var(--color-success-600); }
+        .negative { color: var(--color-error-600); }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: var(--color-primary-500);
+            color: white;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            cursor: pointer;
+            border: none;
+            margin-bottom: var(--space-4);
+        }
+        .download-btn:hover { background: var(--color-primary-600); }
+        .download-btn.spx { background: var(--color-success-600); }
+        .download-btn.spx:hover { background: var(--color-success-700); }
+        .download-btn.dax { background: #d97706; }
+        .download-btn.dax:hover { background: #b45309; }
+        .table-wrapper {
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-md);
+        }
+        table { width: 100%; border-collapse: collapse; font-size: var(--font-size-sm); }
+        thead { position: sticky; top: 0; background: var(--color-gray-100); z-index: 10; }
+        th {
+            font-family: var(--font-family-heading);
+            font-weight: var(--font-weight-semibold);
+            padding: var(--space-3) var(--space-4);
+            text-align: right;
+            border-bottom: 2px solid var(--color-gray-300);
+            color: var(--color-gray-700);
+        }
+        th:first-child { text-align: left; }
+        td {
+            font-family: var(--font-family-mono);
+            padding: var(--space-2) var(--space-4);
+            text-align: right;
+            border-bottom: 1px solid var(--color-gray-100);
+        }
+        td:first-child {
+            font-family: var(--font-family-body);
+            text-align: left;
+            color: var(--color-gray-600);
+        }
+        tr:hover { background-color: var(--color-gray-50); }
+        footer {
+            text-align: center;
+            padding: var(--space-6);
+            color: var(--color-gray-500);
+            font-size: var(--font-size-sm);
+        }
+        footer a { color: var(--color-primary-500); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Wekelijkse Koersdata & Rendementen</h1>
+        <p class="subtitle">Nov 2020 - Nov 2025 | Bron: Reuters/LSEG</p>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab('rhm')">Rheinmetall</button>
+            <button class="tab-button" onclick="openTab('spx')">S&P 500</button>
+            <button class="tab-button" onclick="openTab('dax')">DAX</button>
+            <button class="tab-button" onclick="openTab('chart')">Rendementen</button>
+            <button class="tab-button" onclick="openTab('regression')">Regressie</button>
+        </div>
+
+        <!-- Chart Tab -->
+        <div id="tab-chart" class="tab-content">
+            <div id="returns-chart" style="width:100%; height:500px;"></div>
+            <div class="chart-legend" style="margin-top: var(--space-4); padding: var(--space-3); background: var(--color-gray-50); border-radius: var(--radius-md); font-size: var(--font-size-sm);">
+                <p><strong>Toelichting:</strong> Deze grafiek toont de wekelijkse procentuele rendementen van alle drie de indices.
+                Hogere volatiliteit (grotere uitschieters) betekent meer risico. Rheinmetall (blauw) toont duidelijk hogere volatiliteit dan de marktindices.</p>
+            </div>
+        </div>
+
+        <!-- Regression Tab -->
+        <div id="tab-regression" class="tab-content">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
+                <div>
+                    <div id="regression-spx" style="width:100%; height:400px;"></div>
+                    <div class="stats-bar" id="stats-reg-spx" style="margin-top: var(--space-3);"></div>
+                </div>
+                <div>
+                    <div id="regression-dax" style="width:100%; height:400px;"></div>
+                    <div class="stats-bar" id="stats-reg-dax" style="margin-top: var(--space-3);"></div>
+                </div>
+            </div>
+            <div class="chart-legend" id="regression-interpretation" style="margin-top: var(--space-4); padding: var(--space-3); background: var(--color-gray-50); border-radius: var(--radius-md); font-size: var(--font-size-sm);">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+
+        <!-- Rheinmetall Tab -->
+        <div id="tab-rhm" class="tab-content active">
+            <div class="stats-bar" id="stats-rhm"></div>
+            <button class="download-btn" onclick="downloadCSV('rhm')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7,10 12,15 17,10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download CSV
+            </button>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Week</th><th>Close (EUR)</th><th>Rendement (%)</th></tr></thead>
+                    <tbody id="table-rhm"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- S&P 500 Tab -->
+        <div id="tab-spx" class="tab-content">
+            <div class="stats-bar" id="stats-spx"></div>
+            <button class="download-btn spx" onclick="downloadCSV('spx')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7,10 12,15 17,10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download CSV
+            </button>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Week</th><th>Close (USD)</th><th>Rendement (%)</th></tr></thead>
+                    <tbody id="table-spx"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- DAX Tab -->
+        <div id="tab-dax" class="tab-content">
+            <div class="stats-bar" id="stats-dax"></div>
+            <button class="download-btn dax" onclick="downloadCSV('dax')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7,10 12,15 17,10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download CSV
+            </button>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Week</th><th>Close (EUR)</th><th>Rendement (%)</th></tr></thead>
+                    <tbody id="table-dax"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer>
+            <p>ECONAN Module | Week 4: Risico en Rendement | <a href="rheinmetall-regression.html">Bekijk Regressie Analyse</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // ==================== RHEINMETALL DATA (from RHMG.DE PDF) ====================
+        const rhmData = {
+            name: 'Rheinmetall',
+            ticker: 'RHMG.DE',
+            currency: 'EUR',
+            rows: [
+                {date: "Nov 30, 2020", close: 78.94},
+                {date: "Dec 07, 2020", close: 78.64},
+                {date: "Dec 14, 2020", close: 86.84},
+                {date: "Dec 21, 2020", close: 86.58},
+                {date: "Dec 28, 2020", close: 86.58},
+                {date: "Jan 04, 2021", close: 88.38},
+                {date: "Jan 11, 2021", close: 87.72},
+                {date: "Jan 18, 2021", close: 91.16},
+                {date: "Jan 25, 2021", close: 87.34},
+                {date: "Feb 01, 2021", close: 88.22},
+                {date: "Feb 08, 2021", close: 86.52},
+                {date: "Feb 15, 2021", close: 84.06},
+                {date: "Feb 22, 2021", close: 82.62},
+                {date: "Mar 01, 2021", close: 84.26},
+                {date: "Mar 08, 2021", close: 86.30},
+                {date: "Mar 15, 2021", close: 85.50},
+                {date: "Mar 22, 2021", close: 84.20},
+                {date: "Mar 29, 2021", close: 89.54},
+                {date: "Apr 05, 2021", close: 87.72},
+                {date: "Apr 12, 2021", close: 91.82},
+                {date: "Apr 19, 2021", close: 85.04},
+                {date: "Apr 26, 2021", close: 86.70},
+                {date: "May 03, 2021", close: 88.04},
+                {date: "May 10, 2021", close: 86.06},
+                {date: "May 17, 2021", close: 83.94},
+                {date: "May 24, 2021", close: 85.60},
+                {date: "May 31, 2021", close: 86.92},
+                {date: "Jun 07, 2021", close: 85.90},
+                {date: "Jun 14, 2021", close: 84.14},
+                {date: "Jun 21, 2021", close: 83.84},
+                {date: "Jun 28, 2021", close: 83.32},
+                {date: "Jul 05, 2021", close: 81.90},
+                {date: "Jul 12, 2021", close: 80.16},
+                {date: "Jul 19, 2021", close: 80.34},
+                {date: "Jul 26, 2021", close: 80.96},
+                {date: "Aug 02, 2021", close: 84.28},
+                {date: "Aug 09, 2021", close: 83.94},
+                {date: "Aug 16, 2021", close: 81.52},
+                {date: "Aug 23, 2021", close: 83.56},
+                {date: "Aug 30, 2021", close: 80.96},
+                {date: "Sep 06, 2021", close: 77.00},
+                {date: "Sep 13, 2021", close: 78.02},
+                {date: "Sep 20, 2021", close: 82.60},
+                {date: "Sep 27, 2021", close: 84.88},
+                {date: "Oct 04, 2021", close: 86.48},
+                {date: "Oct 11, 2021", close: 86.46},
+                {date: "Oct 18, 2021", close: 84.34},
+                {date: "Oct 25, 2021", close: 83.84},
+                {date: "Nov 01, 2021", close: 87.56},
+                {date: "Nov 08, 2021", close: 88.02},
+                {date: "Nov 15, 2021", close: 85.42},
+                {date: "Nov 22, 2021", close: 79.58},
+                {date: "Nov 29, 2021", close: 80.00},
+                {date: "Dec 06, 2021", close: 81.72},
+                {date: "Dec 13, 2021", close: 81.26},
+                {date: "Dec 20, 2021", close: 82.84},
+                {date: "Dec 27, 2021", close: 83.06},
+                {date: "Jan 03, 2022", close: 87.28},
+                {date: "Jan 10, 2022", close: 92.00},
+                {date: "Jan 17, 2022", close: 93.44},
+                {date: "Jan 24, 2022", close: 93.04},
+                {date: "Jan 31, 2022", close: 90.52},
+                {date: "Feb 07, 2022", close: 96.94},
+                {date: "Feb 14, 2022", close: 96.44},
+                {date: "Feb 21, 2022", close: 107.05},
+                {date: "Feb 28, 2022", close: 148.70},
+                {date: "Mar 07, 2022", close: 155.15},
+                {date: "Mar 14, 2022", close: 169.50},
+                {date: "Mar 21, 2022", close: 202.00},
+                {date: "Mar 28, 2022", close: 192.85},
+                {date: "Apr 04, 2022", close: 194.25},
+                {date: "Apr 11, 2022", close: 210.40},
+                {date: "Apr 18, 2022", close: 217.10},
+                {date: "Apr 25, 2022", close: 214.80},
+                {date: "May 02, 2022", close: 207.80},
+                {date: "May 09, 2022", close: 183.90},
+                {date: "May 16, 2022", close: 191.80},
+                {date: "May 23, 2022", close: 193.95},
+                {date: "May 30, 2022", close: 208.50},
+                {date: "Jun 06, 2022", close: 203.00},
+                {date: "Jun 13, 2022", close: 211.30},
+                {date: "Jun 20, 2022", close: 206.40},
+                {date: "Jun 27, 2022", close: 212.60},
+                {date: "Jul 04, 2022", close: 195.00},
+                {date: "Jul 11, 2022", close: 187.00},
+                {date: "Jul 18, 2022", close: 181.50},
+                {date: "Jul 25, 2022", close: 178.85},
+                {date: "Aug 01, 2022", close: 166.85},
+                {date: "Aug 08, 2022", close: 167.05},
+                {date: "Aug 15, 2022", close: 168.15},
+                {date: "Aug 22, 2022", close: 166.85},
+                {date: "Aug 29, 2022", close: 151.90},
+                {date: "Sep 05, 2022", close: 154.35},
+                {date: "Sep 12, 2022", close: 144.40},
+                {date: "Sep 19, 2022", close: 155.00},
+                {date: "Sep 26, 2022", close: 158.20},
+                {date: "Oct 03, 2022", close: 154.55},
+                {date: "Oct 10, 2022", close: 145.55},
+                {date: "Oct 17, 2022", close: 156.75},
+                {date: "Oct 24, 2022", close: 169.05},
+                {date: "Oct 31, 2022", close: 154.20},
+                {date: "Nov 07, 2022", close: 165.10},
+                {date: "Nov 14, 2022", close: 180.55},
+                {date: "Nov 21, 2022", close: 196.85},
+                {date: "Nov 28, 2022", close: 196.00},
+                {date: "Dec 05, 2022", close: 196.55},
+                {date: "Dec 12, 2022", close: 201.40},
+                {date: "Dec 19, 2022", close: 186.75},
+                {date: "Dec 26, 2022", close: 186.05},
+                {date: "Jan 02, 2023", close: 209.40},
+                {date: "Jan 09, 2023", close: 210.10},
+                {date: "Jan 16, 2023", close: 224.00},
+                {date: "Jan 23, 2023", close: 228.20},
+                {date: "Jan 30, 2023", close: 227.50},
+                {date: "Feb 06, 2023", close: 231.70},
+                {date: "Feb 13, 2023", close: 249.60},
+                {date: "Feb 20, 2023", close: 244.90},
+                {date: "Feb 27, 2023", close: 248.60},
+                {date: "Mar 06, 2023", close: 253.30},
+                {date: "Mar 13, 2023", close: 237.10},
+                {date: "Mar 20, 2023", close: 263.00},
+                {date: "Mar 27, 2023", close: 273.60},
+                {date: "Apr 03, 2023", close: 259.30},
+                {date: "Apr 10, 2023", close: 267.20},
+                {date: "Apr 17, 2023", close: 270.70},
+                {date: "Apr 24, 2023", close: 265.50},
+                {date: "May 01, 2023", close: 266.40},
+                {date: "May 08, 2023", close: 266.80},
+                {date: "May 15, 2023", close: 261.60},
+                {date: "May 22, 2023", close: 247.50},
+                {date: "May 29, 2023", close: 240.10},
+                {date: "Jun 05, 2023", close: 240.50},
+                {date: "Jun 12, 2023", close: 259.90},
+                {date: "Jun 19, 2023", close: 255.90},
+                {date: "Jun 26, 2023", close: 250.80},
+                {date: "Jul 03, 2023", close: 242.20},
+                {date: "Jul 10, 2023", close: 252.90},
+                {date: "Jul 17, 2023", close: 255.80},
+                {date: "Jul 24, 2023", close: 253.10},
+                {date: "Jul 31, 2023", close: 264.90},
+                {date: "Aug 07, 2023", close: 260.10},
+                {date: "Aug 14, 2023", close: 249.40},
+                {date: "Aug 21, 2023", close: 243.30},
+                {date: "Aug 28, 2023", close: 248.20},
+                {date: "Sep 04, 2023", close: 244.60},
+                {date: "Sep 11, 2023", close: 260.50},
+                {date: "Sep 18, 2023", close: 250.40},
+                {date: "Sep 25, 2023", close: 243.90},
+                {date: "Oct 02, 2023", close: 233.80},
+                {date: "Oct 09, 2023", close: 269.10},
+                {date: "Oct 16, 2023", close: 259.90},
+                {date: "Oct 23, 2023", close: 266.10},
+                {date: "Oct 30, 2023", close: 270.40},
+                {date: "Nov 06, 2023", close: 273.60},
+                {date: "Nov 13, 2023", close: 279.10},
+                {date: "Nov 20, 2023", close: 283.40},
+                {date: "Nov 27, 2023", close: 281.70},
+                {date: "Dec 04, 2023", close: 284.70},
+                {date: "Dec 11, 2023", close: 285.60},
+                {date: "Dec 18, 2023", close: 284.70},
+                {date: "Dec 25, 2023", close: 287.00},
+                {date: "Jan 01, 2024", close: 305.10},
+                {date: "Jan 08, 2024", close: 315.80},
+                {date: "Jan 15, 2024", close: 330.30},
+                {date: "Jan 22, 2024", close: 317.00},
+                {date: "Jan 29, 2024", close: 328.20},
+                {date: "Feb 05, 2024", close: 336.60},
+                {date: "Feb 12, 2024", close: 388.20},
+                {date: "Feb 19, 2024", close: 410.30},
+                {date: "Feb 26, 2024", close: 429.10},
+                {date: "Mar 04, 2024", close: 421.80},
+                {date: "Mar 11, 2024", close: 456.90},
+                {date: "Mar 18, 2024", close: 500.40},
+                {date: "Mar 25, 2024", close: 521.00},
+                {date: "Apr 01, 2024", close: 536.80},
+                {date: "Apr 08, 2024", close: 543.20},
+                {date: "Apr 15, 2024", close: 504.00},
+                {date: "Apr 22, 2024", close: 524.40},
+                {date: "Apr 29, 2024", close: 536.60},
+                {date: "May 06, 2024", close: 535.80},
+                {date: "May 13, 2024", close: 512.00},
+                {date: "May 20, 2024", close: 530.80},
+                {date: "May 27, 2024", close: 527.80},
+                {date: "Jun 03, 2024", close: 532.80},
+                {date: "Jun 10, 2024", close: 479.20},
+                {date: "Jun 17, 2024", close: 491.00},
+                {date: "Jun 24, 2024", close: 475.70},
+                {date: "Jul 01, 2024", close: 490.60},
+                {date: "Jul 08, 2024", close: 509.00},
+                {date: "Jul 15, 2024", close: 490.20},
+                {date: "Jul 22, 2024", close: 489.30},
+                {date: "Jul 29, 2024", close: 480.10},
+                {date: "Aug 05, 2024", close: 538.40},
+                {date: "Aug 12, 2024", close: 562.20},
+                {date: "Aug 19, 2024", close: 535.40},
+                {date: "Aug 26, 2024", close: 542.00},
+                {date: "Sep 02, 2024", close: 502.00},
+                {date: "Sep 09, 2024", close: 521.00},
+                {date: "Sep 16, 2024", close: 487.70},
+                {date: "Sep 23, 2024", close: 482.30},
+                {date: "Sep 30, 2024", close: 520.00},
+                {date: "Oct 07, 2024", close: 473.50},
+                {date: "Oct 14, 2024", close: 488.10},
+                {date: "Oct 21, 2024", close: 485.80},
+                {date: "Oct 28, 2024", close: 478.00},
+                {date: "Nov 04, 2024", close: 546.00},
+                {date: "Nov 11, 2024", close: 575.80},
+                {date: "Nov 18, 2024", close: 619.00},
+                {date: "Nov 25, 2024", close: 622.40},
+                {date: "Dec 02, 2024", close: 651.80},
+                {date: "Dec 09, 2024", close: 616.00},
+                {date: "Dec 16, 2024", close: 611.60},
+                {date: "Dec 23, 2024", close: 617.80},
+                {date: "Dec 30, 2024", close: 615.60},
+                {date: "Jan 06, 2025", close: 650.00},
+                {date: "Jan 13, 2025", close: 694.40},
+                {date: "Jan 20, 2025", close: 731.60},
+                {date: "Jan 27, 2025", close: 755.40},
+                {date: "Feb 03, 2025", close: 723.40},
+                {date: "Feb 10, 2025", close: 817.00},
+                {date: "Feb 17, 2025", close: 894.20},
+                {date: "Feb 24, 2025", close: 1006.50},
+                {date: "Mar 03, 2025", close: 1115.00},
+                {date: "Mar 10, 2025", close: 1369.00},
+                {date: "Mar 17, 2025", close: 1305.00},
+                {date: "Mar 24, 2025", close: 1310.00},
+                {date: "Mar 31, 2025", close: 1276.00},
+                {date: "Apr 07, 2025", close: 1360.50},
+                {date: "Apr 14, 2025", close: 1464.00},
+                {date: "Apr 21, 2025", close: 1386.50},
+                {date: "Apr 28, 2025", close: 1576.00},
+                {date: "May 05, 2025", close: 1694.00},
+                {date: "May 12, 2025", close: 1723.00},
+                {date: "May 19, 2025", close: 1783.50},
+                {date: "May 26, 2025", close: 1885.00},
+                {date: "Jun 02, 2025", close: 1788.00},
+                {date: "Jun 09, 2025", close: 1795.50},
+                {date: "Jun 16, 2025", close: 1757.50},
+                {date: "Jun 23, 2025", close: 1751.00},
+                {date: "Jun 30, 2025", close: 1755.00},
+                {date: "Jul 07, 2025", close: 1840.00},
+                {date: "Jul 14, 2025", close: 1835.50},
+                {date: "Jul 21, 2025", close: 1734.00},
+                {date: "Jul 28, 2025", close: 1707.50},
+                {date: "Aug 04, 2025", close: 1620.50},
+                {date: "Aug 11, 2025", close: 1621.00},
+                {date: "Aug 18, 2025", close: 1622.50},
+                {date: "Aug 25, 2025", close: 1689.50},
+                {date: "Sep 01, 2025", close: 1744.50},
+                {date: "Sep 08, 2025", close: 1896.50},
+                {date: "Sep 15, 2025", close: 1928.00},
+                {date: "Sep 22, 2025", close: 1960.50},
+                {date: "Sep 29, 2025", close: 1962.50},
+                {date: "Oct 06, 2025", close: 1882.00},
+                {date: "Oct 13, 2025", close: 1661.50},
+                {date: "Oct 20, 2025", close: 1764.00},
+                {date: "Oct 27, 2025", close: 1701.50},
+                {date: "Nov 03, 2025", close: 1749.00},
+                {date: "Nov 10, 2025", close: 1727.00},
+                {date: "Nov 17, 2025", close: 1519.50},
+                {date: "Nov 24, 2025", close: 1470.50}
+            ]
+        };
+
+        // ==================== S&P 500 DATA (from .SP500 PDF) ====================
+        const spxData = {
+            name: 'S&P 500',
+            ticker: '.SP500',
+            currency: 'USD',
+            rows: [
+                {date: "Nov 30, 2020", close: 3699.12},
+                {date: "Dec 07, 2020", close: 3663.46},
+                {date: "Dec 14, 2020", close: 3709.41},
+                {date: "Dec 21, 2020", close: 3703.06},
+                {date: "Dec 28, 2020", close: 3756.07},
+                {date: "Jan 04, 2021", close: 3824.68},
+                {date: "Jan 11, 2021", close: 3768.25},
+                {date: "Jan 18, 2021", close: 3841.47},
+                {date: "Jan 25, 2021", close: 3714.24},
+                {date: "Feb 01, 2021", close: 3886.83},
+                {date: "Feb 08, 2021", close: 3934.83},
+                {date: "Feb 15, 2021", close: 3906.71},
+                {date: "Feb 22, 2021", close: 3811.15},
+                {date: "Mar 01, 2021", close: 3841.94},
+                {date: "Mar 08, 2021", close: 3943.34},
+                {date: "Mar 15, 2021", close: 3913.10},
+                {date: "Mar 22, 2021", close: 3974.54},
+                {date: "Mar 29, 2021", close: 4019.87},
+                {date: "Apr 05, 2021", close: 4128.80},
+                {date: "Apr 12, 2021", close: 4185.47},
+                {date: "Apr 19, 2021", close: 4180.17},
+                {date: "Apr 26, 2021", close: 4181.17},
+                {date: "May 03, 2021", close: 4232.60},
+                {date: "May 10, 2021", close: 4173.85},
+                {date: "May 17, 2021", close: 4155.86},
+                {date: "May 24, 2021", close: 4204.11},
+                {date: "May 31, 2021", close: 4229.89},
+                {date: "Jun 07, 2021", close: 4247.44},
+                {date: "Jun 14, 2021", close: 4166.45},
+                {date: "Jun 21, 2021", close: 4280.70},
+                {date: "Jun 28, 2021", close: 4352.34},
+                {date: "Jul 05, 2021", close: 4369.55},
+                {date: "Jul 12, 2021", close: 4327.16},
+                {date: "Jul 19, 2021", close: 4411.79},
+                {date: "Jul 26, 2021", close: 4395.26},
+                {date: "Aug 02, 2021", close: 4436.52},
+                {date: "Aug 09, 2021", close: 4468.00},
+                {date: "Aug 16, 2021", close: 4441.67},
+                {date: "Aug 23, 2021", close: 4509.37},
+                {date: "Aug 30, 2021", close: 4535.43},
+                {date: "Sep 06, 2021", close: 4458.58},
+                {date: "Sep 13, 2021", close: 4432.99},
+                {date: "Sep 20, 2021", close: 4455.48},
+                {date: "Sep 27, 2021", close: 4357.04},
+                {date: "Oct 04, 2021", close: 4391.34},
+                {date: "Oct 11, 2021", close: 4471.37},
+                {date: "Oct 18, 2021", close: 4544.90},
+                {date: "Oct 25, 2021", close: 4605.38},
+                {date: "Nov 01, 2021", close: 4697.53},
+                {date: "Nov 08, 2021", close: 4682.85},
+                {date: "Nov 15, 2021", close: 4697.96},
+                {date: "Nov 22, 2021", close: 4594.62},
+                {date: "Nov 29, 2021", close: 4538.43},
+                {date: "Dec 06, 2021", close: 4712.02},
+                {date: "Dec 13, 2021", close: 4620.64},
+                {date: "Dec 20, 2021", close: 4725.79},
+                {date: "Dec 27, 2021", close: 4766.18},
+                {date: "Jan 03, 2022", close: 4677.03},
+                {date: "Jan 10, 2022", close: 4662.85},
+                {date: "Jan 17, 2022", close: 4397.94},
+                {date: "Jan 24, 2022", close: 4431.85},
+                {date: "Jan 31, 2022", close: 4500.53},
+                {date: "Feb 07, 2022", close: 4418.64},
+                {date: "Feb 14, 2022", close: 4348.87},
+                {date: "Feb 21, 2022", close: 4384.65},
+                {date: "Feb 28, 2022", close: 4328.87},
+                {date: "Mar 07, 2022", close: 4204.31},
+                {date: "Mar 14, 2022", close: 4463.12},
+                {date: "Mar 21, 2022", close: 4543.06},
+                {date: "Mar 28, 2022", close: 4545.86},
+                {date: "Apr 04, 2022", close: 4488.28},
+                {date: "Apr 11, 2022", close: 4392.59},
+                {date: "Apr 18, 2022", close: 4271.78},
+                {date: "Apr 25, 2022", close: 4131.93},
+                {date: "May 02, 2022", close: 4123.34},
+                {date: "May 09, 2022", close: 4023.89},
+                {date: "May 16, 2022", close: 3901.36},
+                {date: "May 23, 2022", close: 4158.24},
+                {date: "May 30, 2022", close: 4108.54},
+                {date: "Jun 06, 2022", close: 3900.86},
+                {date: "Jun 13, 2022", close: 3674.84},
+                {date: "Jun 20, 2022", close: 3911.74},
+                {date: "Jun 27, 2022", close: 3825.33},
+                {date: "Jul 04, 2022", close: 3899.38},
+                {date: "Jul 11, 2022", close: 3863.16},
+                {date: "Jul 18, 2022", close: 3961.63},
+                {date: "Jul 25, 2022", close: 4130.29},
+                {date: "Aug 01, 2022", close: 4145.19},
+                {date: "Aug 08, 2022", close: 4280.15},
+                {date: "Aug 15, 2022", close: 4228.48},
+                {date: "Aug 22, 2022", close: 4057.66},
+                {date: "Aug 29, 2022", close: 3924.26},
+                {date: "Sep 05, 2022", close: 4067.36},
+                {date: "Sep 12, 2022", close: 3873.33},
+                {date: "Sep 19, 2022", close: 3693.23},
+                {date: "Sep 26, 2022", close: 3585.62},
+                {date: "Oct 03, 2022", close: 3639.66},
+                {date: "Oct 10, 2022", close: 3583.07},
+                {date: "Oct 17, 2022", close: 3752.75},
+                {date: "Oct 24, 2022", close: 3901.06},
+                {date: "Oct 31, 2022", close: 3770.55},
+                {date: "Nov 07, 2022", close: 3992.93},
+                {date: "Nov 14, 2022", close: 3965.34},
+                {date: "Nov 21, 2022", close: 4026.12},
+                {date: "Nov 28, 2022", close: 4071.70},
+                {date: "Dec 05, 2022", close: 3934.38},
+                {date: "Dec 12, 2022", close: 3852.36},
+                {date: "Dec 19, 2022", close: 3844.82},
+                {date: "Dec 26, 2022", close: 3839.50},
+                {date: "Jan 02, 2023", close: 3895.08},
+                {date: "Jan 09, 2023", close: 3999.09},
+                {date: "Jan 16, 2023", close: 3972.61},
+                {date: "Jan 23, 2023", close: 4070.56},
+                {date: "Jan 30, 2023", close: 4136.48},
+                {date: "Feb 06, 2023", close: 4090.46},
+                {date: "Feb 13, 2023", close: 4079.09},
+                {date: "Feb 20, 2023", close: 3970.04},
+                {date: "Feb 27, 2023", close: 4045.64},
+                {date: "Mar 06, 2023", close: 3861.59},
+                {date: "Mar 13, 2023", close: 3916.64},
+                {date: "Mar 20, 2023", close: 3970.99},
+                {date: "Mar 27, 2023", close: 4109.31},
+                {date: "Apr 03, 2023", close: 4105.02},
+                {date: "Apr 10, 2023", close: 4137.64},
+                {date: "Apr 17, 2023", close: 4133.52},
+                {date: "Apr 24, 2023", close: 4169.48},
+                {date: "May 01, 2023", close: 4136.25},
+                {date: "May 08, 2023", close: 4124.08},
+                {date: "May 15, 2023", close: 4191.98},
+                {date: "May 22, 2023", close: 4205.45},
+                {date: "May 29, 2023", close: 4282.37},
+                {date: "Jun 05, 2023", close: 4298.86},
+                {date: "Jun 12, 2023", close: 4409.59},
+                {date: "Jun 19, 2023", close: 4348.33},
+                {date: "Jun 26, 2023", close: 4450.38},
+                {date: "Jul 03, 2023", close: 4398.95},
+                {date: "Jul 10, 2023", close: 4505.42},
+                {date: "Jul 17, 2023", close: 4536.34},
+                {date: "Jul 24, 2023", close: 4582.23},
+                {date: "Jul 31, 2023", close: 4478.03},
+                {date: "Aug 07, 2023", close: 4464.05},
+                {date: "Aug 14, 2023", close: 4369.71},
+                {date: "Aug 21, 2023", close: 4405.71},
+                {date: "Aug 28, 2023", close: 4515.77},
+                {date: "Sep 04, 2023", close: 4457.49},
+                {date: "Sep 11, 2023", close: 4450.32},
+                {date: "Sep 18, 2023", close: 4320.06},
+                {date: "Sep 25, 2023", close: 4288.05},
+                {date: "Oct 02, 2023", close: 4308.50},
+                {date: "Oct 09, 2023", close: 4327.78},
+                {date: "Oct 16, 2023", close: 4224.16},
+                {date: "Oct 23, 2023", close: 4117.37},
+                {date: "Oct 30, 2023", close: 4358.34},
+                {date: "Nov 06, 2023", close: 4415.24},
+                {date: "Nov 13, 2023", close: 4514.02},
+                {date: "Nov 20, 2023", close: 4559.34},
+                {date: "Nov 27, 2023", close: 4594.63},
+                {date: "Dec 04, 2023", close: 4604.37},
+                {date: "Dec 11, 2023", close: 4719.19},
+                {date: "Dec 18, 2023", close: 4754.63},
+                {date: "Dec 25, 2023", close: 4769.83},
+                {date: "Jan 01, 2024", close: 4697.24},
+                {date: "Jan 08, 2024", close: 4783.83},
+                {date: "Jan 15, 2024", close: 4839.81},
+                {date: "Jan 22, 2024", close: 4890.97},
+                {date: "Jan 29, 2024", close: 4958.61},
+                {date: "Feb 05, 2024", close: 5026.61},
+                {date: "Feb 12, 2024", close: 5005.57},
+                {date: "Feb 19, 2024", close: 5088.80},
+                {date: "Feb 26, 2024", close: 5137.08},
+                {date: "Mar 04, 2024", close: 5123.69},
+                {date: "Mar 11, 2024", close: 5117.09},
+                {date: "Mar 18, 2024", close: 5234.18},
+                {date: "Mar 25, 2024", close: 5254.35},
+                {date: "Apr 01, 2024", close: 5204.34},
+                {date: "Apr 08, 2024", close: 5123.41},
+                {date: "Apr 15, 2024", close: 4967.23},
+                {date: "Apr 22, 2024", close: 5099.96},
+                {date: "Apr 29, 2024", close: 5127.79},
+                {date: "May 06, 2024", close: 5222.68},
+                {date: "May 13, 2024", close: 5303.27},
+                {date: "May 20, 2024", close: 5304.72},
+                {date: "May 27, 2024", close: 5277.51},
+                {date: "Jun 03, 2024", close: 5346.99},
+                {date: "Jun 10, 2024", close: 5431.60},
+                {date: "Jun 17, 2024", close: 5464.62},
+                {date: "Jun 24, 2024", close: 5460.48},
+                {date: "Jul 01, 2024", close: 5567.19},
+                {date: "Jul 08, 2024", close: 5615.35},
+                {date: "Jul 15, 2024", close: 5505.00},
+                {date: "Jul 22, 2024", close: 5459.10},
+                {date: "Jul 29, 2024", close: 5346.56},
+                {date: "Aug 05, 2024", close: 5344.16},
+                {date: "Aug 12, 2024", close: 5554.25},
+                {date: "Aug 19, 2024", close: 5634.61},
+                {date: "Aug 26, 2024", close: 5648.40},
+                {date: "Sep 02, 2024", close: 5408.42},
+                {date: "Sep 09, 2024", close: 5626.02},
+                {date: "Sep 16, 2024", close: 5702.55},
+                {date: "Sep 23, 2024", close: 5738.17},
+                {date: "Sep 30, 2024", close: 5751.07},
+                {date: "Oct 07, 2024", close: 5815.03},
+                {date: "Oct 14, 2024", close: 5864.67},
+                {date: "Oct 21, 2024", close: 5808.12},
+                {date: "Oct 28, 2024", close: 5728.80},
+                {date: "Nov 04, 2024", close: 5995.54},
+                {date: "Nov 11, 2024", close: 5870.62},
+                {date: "Nov 18, 2024", close: 5969.34},
+                {date: "Nov 25, 2024", close: 6032.38},
+                {date: "Dec 02, 2024", close: 6090.27},
+                {date: "Dec 09, 2024", close: 6051.09},
+                {date: "Dec 16, 2024", close: 5930.85},
+                {date: "Dec 23, 2024", close: 5970.84},
+                {date: "Dec 30, 2024", close: 5942.47},
+                {date: "Jan 06, 2025", close: 5827.04},
+                {date: "Jan 13, 2025", close: 5996.66},
+                {date: "Jan 20, 2025", close: 6101.24},
+                {date: "Jan 27, 2025", close: 6040.53},
+                {date: "Feb 03, 2025", close: 6025.99},
+                {date: "Feb 10, 2025", close: 6114.63},
+                {date: "Feb 17, 2025", close: 6013.13},
+                {date: "Feb 24, 2025", close: 5954.50},
+                {date: "Mar 03, 2025", close: 5770.20},
+                {date: "Mar 10, 2025", close: 5638.94},
+                {date: "Mar 17, 2025", close: 5667.56},
+                {date: "Mar 24, 2025", close: 5580.94},
+                {date: "Mar 31, 2025", close: 5074.08},
+                {date: "Apr 07, 2025", close: 5363.36},
+                {date: "Apr 14, 2025", close: 5282.70},
+                {date: "Apr 21, 2025", close: 5525.21},
+                {date: "Apr 28, 2025", close: 5686.67},
+                {date: "May 05, 2025", close: 5659.91},
+                {date: "May 12, 2025", close: 5958.38},
+                {date: "May 19, 2025", close: 5802.82},
+                {date: "May 26, 2025", close: 5911.69},
+                {date: "Jun 02, 2025", close: 6000.36},
+                {date: "Jun 09, 2025", close: 5976.97},
+                {date: "Jun 16, 2025", close: 5967.84},
+                {date: "Jun 23, 2025", close: 6173.07},
+                {date: "Jun 30, 2025", close: 6279.35},
+                {date: "Jul 07, 2025", close: 6259.75},
+                {date: "Jul 14, 2025", close: 6296.79},
+                {date: "Jul 21, 2025", close: 6388.64},
+                {date: "Jul 28, 2025", close: 6238.01},
+                {date: "Aug 04, 2025", close: 6389.45},
+                {date: "Aug 11, 2025", close: 6449.80},
+                {date: "Aug 18, 2025", close: 6466.91},
+                {date: "Aug 25, 2025", close: 6460.26},
+                {date: "Sep 01, 2025", close: 6481.50},
+                {date: "Sep 08, 2025", close: 6584.29},
+                {date: "Sep 15, 2025", close: 6664.36},
+                {date: "Sep 22, 2025", close: 6643.70},
+                {date: "Sep 29, 2025", close: 6715.79},
+                {date: "Oct 06, 2025", close: 6552.51},
+                {date: "Oct 13, 2025", close: 6664.01},
+                {date: "Oct 20, 2025", close: 6791.69},
+                {date: "Oct 27, 2025", close: 6840.20},
+                {date: "Nov 03, 2025", close: 6728.80},
+                {date: "Nov 10, 2025", close: 6734.11},
+                {date: "Nov 17, 2025", close: 6602.99},
+                {date: "Nov 24, 2025", close: 6705.12}
+            ]
+        };
+
+        // ==================== DAX DATA (from .GDAXI PDF) ====================
+        const daxData = {
+            name: 'DAX',
+            ticker: '.GDAXI',
+            currency: 'EUR',
+            rows: [
+                {date: "Nov 30, 2020", close: 13298.96},
+                {date: "Dec 07, 2020", close: 13114.30},
+                {date: "Dec 14, 2020", close: 13630.51},
+                {date: "Dec 21, 2020", close: 13587.23},
+                {date: "Dec 28, 2020", close: 13718.78},
+                {date: "Jan 04, 2021", close: 14049.53},
+                {date: "Jan 11, 2021", close: 13787.73},
+                {date: "Jan 18, 2021", close: 13873.97},
+                {date: "Jan 25, 2021", close: 13432.87},
+                {date: "Feb 01, 2021", close: 14056.72},
+                {date: "Feb 08, 2021", close: 14049.89},
+                {date: "Feb 15, 2021", close: 13993.23},
+                {date: "Feb 22, 2021", close: 13786.29},
+                {date: "Mar 01, 2021", close: 13920.69},
+                {date: "Mar 08, 2021", close: 14502.39},
+                {date: "Mar 15, 2021", close: 14621.00},
+                {date: "Mar 22, 2021", close: 14748.94},
+                {date: "Mar 29, 2021", close: 15107.17},
+                {date: "Apr 05, 2021", close: 15234.16},
+                {date: "Apr 12, 2021", close: 15459.75},
+                {date: "Apr 19, 2021", close: 15279.62},
+                {date: "Apr 26, 2021", close: 15135.91},
+                {date: "May 03, 2021", close: 15399.65},
+                {date: "May 10, 2021", close: 15416.64},
+                {date: "May 17, 2021", close: 15437.51},
+                {date: "May 24, 2021", close: 15519.98},
+                {date: "May 31, 2021", close: 15692.90},
+                {date: "Jun 07, 2021", close: 15693.27},
+                {date: "Jun 14, 2021", close: 15448.04},
+                {date: "Jun 21, 2021", close: 15607.97},
+                {date: "Jun 28, 2021", close: 15650.09},
+                {date: "Jul 05, 2021", close: 15687.93},
+                {date: "Jul 12, 2021", close: 15540.31},
+                {date: "Jul 19, 2021", close: 15669.29},
+                {date: "Jul 26, 2021", close: 15544.39},
+                {date: "Aug 02, 2021", close: 15761.45},
+                {date: "Aug 09, 2021", close: 15977.44},
+                {date: "Aug 16, 2021", close: 15808.04},
+                {date: "Aug 23, 2021", close: 15851.75},
+                {date: "Aug 30, 2021", close: 15781.20},
+                {date: "Sep 06, 2021", close: 15609.81},
+                {date: "Sep 13, 2021", close: 15490.17},
+                {date: "Sep 20, 2021", close: 15531.75},
+                {date: "Sep 27, 2021", close: 15156.44},
+                {date: "Oct 04, 2021", close: 15206.13},
+                {date: "Oct 11, 2021", close: 15587.36},
+                {date: "Oct 18, 2021", close: 15542.98},
+                {date: "Oct 25, 2021", close: 15688.77},
+                {date: "Nov 01, 2021", close: 16054.36},
+                {date: "Nov 08, 2021", close: 16094.07},
+                {date: "Nov 15, 2021", close: 16159.97},
+                {date: "Nov 22, 2021", close: 15257.04},
+                {date: "Nov 29, 2021", close: 15169.98},
+                {date: "Dec 06, 2021", close: 15623.31},
+                {date: "Dec 13, 2021", close: 15531.69},
+                {date: "Dec 20, 2021", close: 15756.31},
+                {date: "Dec 27, 2021", close: 15884.86},
+                {date: "Jan 03, 2022", close: 15947.74},
+                {date: "Jan 10, 2022", close: 15883.24},
+                {date: "Jan 17, 2022", close: 15603.88},
+                {date: "Jan 24, 2022", close: 15318.95},
+                {date: "Jan 31, 2022", close: 15099.56},
+                {date: "Feb 07, 2022", close: 15425.12},
+                {date: "Feb 14, 2022", close: 15042.51},
+                {date: "Feb 21, 2022", close: 14567.23},
+                {date: "Feb 28, 2022", close: 13094.54},
+                {date: "Mar 07, 2022", close: 13628.11},
+                {date: "Mar 14, 2022", close: 14413.09},
+                {date: "Mar 21, 2022", close: 14305.76},
+                {date: "Mar 28, 2022", close: 14446.48},
+                {date: "Apr 04, 2022", close: 14283.67},
+                {date: "Apr 11, 2022", close: 14163.85},
+                {date: "Apr 18, 2022", close: 14142.09},
+                {date: "Apr 25, 2022", close: 14097.88},
+                {date: "May 02, 2022", close: 13674.29},
+                {date: "May 09, 2022", close: 14027.93},
+                {date: "May 16, 2022", close: 13981.91},
+                {date: "May 23, 2022", close: 14462.19},
+                {date: "May 30, 2022", close: 14460.09},
+                {date: "Jun 06, 2022", close: 13761.83},
+                {date: "Jun 13, 2022", close: 13126.26},
+                {date: "Jun 20, 2022", close: 13118.13},
+                {date: "Jun 27, 2022", close: 12813.03},
+                {date: "Jul 04, 2022", close: 13015.23},
+                {date: "Jul 11, 2022", close: 12864.72},
+                {date: "Jul 18, 2022", close: 13253.68},
+                {date: "Jul 25, 2022", close: 13484.05},
+                {date: "Aug 01, 2022", close: 13573.93},
+                {date: "Aug 08, 2022", close: 13795.85},
+                {date: "Aug 15, 2022", close: 13544.52},
+                {date: "Aug 22, 2022", close: 12971.47},
+                {date: "Aug 29, 2022", close: 13050.27},
+                {date: "Sep 05, 2022", close: 13088.21},
+                {date: "Sep 12, 2022", close: 12741.26},
+                {date: "Sep 19, 2022", close: 12284.19},
+                {date: "Sep 26, 2022", close: 12114.36},
+                {date: "Oct 03, 2022", close: 12273.00},
+                {date: "Oct 10, 2022", close: 12437.81},
+                {date: "Oct 17, 2022", close: 12730.90},
+                {date: "Oct 24, 2022", close: 13243.33},
+                {date: "Oct 31, 2022", close: 13459.85},
+                {date: "Nov 07, 2022", close: 14224.86},
+                {date: "Nov 14, 2022", close: 14431.86},
+                {date: "Nov 21, 2022", close: 14541.38},
+                {date: "Nov 28, 2022", close: 14529.39},
+                {date: "Dec 05, 2022", close: 14370.72},
+                {date: "Dec 12, 2022", close: 13893.07},
+                {date: "Dec 19, 2022", close: 13940.93},
+                {date: "Dec 26, 2022", close: 13923.59},
+                {date: "Jan 02, 2023", close: 14610.02},
+                {date: "Jan 09, 2023", close: 15086.52},
+                {date: "Jan 16, 2023", close: 15033.56},
+                {date: "Jan 23, 2023", close: 15150.03},
+                {date: "Jan 30, 2023", close: 15476.43},
+                {date: "Feb 06, 2023", close: 15307.98},
+                {date: "Feb 13, 2023", close: 15482.00},
+                {date: "Feb 20, 2023", close: 15209.74},
+                {date: "Feb 27, 2023", close: 15578.39},
+                {date: "Mar 06, 2023", close: 15427.97},
+                {date: "Mar 13, 2023", close: 14768.20},
+                {date: "Mar 20, 2023", close: 14957.23},
+                {date: "Mar 27, 2023", close: 15628.84},
+                {date: "Apr 03, 2023", close: 15597.89},
+                {date: "Apr 10, 2023", close: 15807.50},
+                {date: "Apr 17, 2023", close: 15881.66},
+                {date: "Apr 24, 2023", close: 15922.38},
+                {date: "May 01, 2023", close: 15961.02},
+                {date: "May 08, 2023", close: 15913.82},
+                {date: "May 15, 2023", close: 16275.38},
+                {date: "May 22, 2023", close: 15983.97},
+                {date: "May 29, 2023", close: 16051.23},
+                {date: "Jun 05, 2023", close: 15949.84},
+                {date: "Jun 12, 2023", close: 16357.63},
+                {date: "Jun 19, 2023", close: 15829.94},
+                {date: "Jun 26, 2023", close: 16147.90},
+                {date: "Jul 03, 2023", close: 15603.40},
+                {date: "Jul 10, 2023", close: 16105.07},
+                {date: "Jul 17, 2023", close: 16177.22},
+                {date: "Jul 24, 2023", close: 16469.75},
+                {date: "Jul 31, 2023", close: 15951.86},
+                {date: "Aug 07, 2023", close: 15832.17},
+                {date: "Aug 14, 2023", close: 15574.26},
+                {date: "Aug 21, 2023", close: 15631.82},
+                {date: "Aug 28, 2023", close: 15840.34},
+                {date: "Sep 04, 2023", close: 15744.75},
+                {date: "Sep 11, 2023", close: 15893.53},
+                {date: "Sep 18, 2023", close: 15557.29},
+                {date: "Sep 25, 2023", close: 15386.58},
+                {date: "Oct 02, 2023", close: 15229.77},
+                {date: "Oct 09, 2023", close: 15186.66},
+                {date: "Oct 16, 2023", close: 14798.47},
+                {date: "Oct 23, 2023", close: 14687.41},
+                {date: "Oct 30, 2023", close: 15189.25},
+                {date: "Nov 06, 2023", close: 15234.39},
+                {date: "Nov 13, 2023", close: 15919.16},
+                {date: "Nov 20, 2023", close: 16029.49},
+                {date: "Nov 27, 2023", close: 16397.52},
+                {date: "Dec 04, 2023", close: 16759.22},
+                {date: "Dec 11, 2023", close: 16751.44},
+                {date: "Dec 18, 2023", close: 16706.18},
+                {date: "Dec 25, 2023", close: 16751.64},
+                {date: "Jan 01, 2024", close: 16594.21},
+                {date: "Jan 08, 2024", close: 16704.56},
+                {date: "Jan 15, 2024", close: 16555.13},
+                {date: "Jan 22, 2024", close: 16961.39},
+                {date: "Jan 29, 2024", close: 16918.21},
+                {date: "Feb 05, 2024", close: 16926.50},
+                {date: "Feb 12, 2024", close: 17117.44},
+                {date: "Feb 19, 2024", close: 17419.33},
+                {date: "Feb 26, 2024", close: 17735.07},
+                {date: "Mar 04, 2024", close: 17814.51},
+                {date: "Mar 11, 2024", close: 17936.65},
+                {date: "Mar 18, 2024", close: 18205.94},
+                {date: "Mar 25, 2024", close: 18492.49},
+                {date: "Apr 01, 2024", close: 18175.04},
+                {date: "Apr 08, 2024", close: 17930.32},
+                {date: "Apr 15, 2024", close: 17737.36},
+                {date: "Apr 22, 2024", close: 18161.01},
+                {date: "Apr 29, 2024", close: 18001.60},
+                {date: "May 06, 2024", close: 18772.85},
+                {date: "May 13, 2024", close: 18704.42},
+                {date: "May 20, 2024", close: 18693.37},
+                {date: "May 27, 2024", close: 18497.94},
+                {date: "Jun 03, 2024", close: 18557.27},
+                {date: "Jun 10, 2024", close: 18002.02},
+                {date: "Jun 17, 2024", close: 18163.52},
+                {date: "Jun 24, 2024", close: 18235.45},
+                {date: "Jul 01, 2024", close: 18475.45},
+                {date: "Jul 08, 2024", close: 18748.18},
+                {date: "Jul 15, 2024", close: 18171.93},
+                {date: "Jul 22, 2024", close: 18417.55},
+                {date: "Jul 29, 2024", close: 17661.22},
+                {date: "Aug 05, 2024", close: 17722.88},
+                {date: "Aug 12, 2024", close: 18322.40},
+                {date: "Aug 19, 2024", close: 18633.10},
+                {date: "Aug 26, 2024", close: 18906.92},
+                {date: "Sep 02, 2024", close: 18301.90},
+                {date: "Sep 09, 2024", close: 18699.40},
+                {date: "Sep 16, 2024", close: 18720.01},
+                {date: "Sep 23, 2024", close: 19473.63},
+                {date: "Sep 30, 2024", close: 19120.93},
+                {date: "Oct 07, 2024", close: 19373.83},
+                {date: "Oct 14, 2024", close: 19657.37},
+                {date: "Oct 21, 2024", close: 19463.59},
+                {date: "Oct 28, 2024", close: 19254.97},
+                {date: "Nov 04, 2024", close: 19215.48},
+                {date: "Nov 11, 2024", close: 19210.81},
+                {date: "Nov 18, 2024", close: 19322.59},
+                {date: "Nov 25, 2024", close: 19626.45},
+                {date: "Dec 02, 2024", close: 20384.61},
+                {date: "Dec 09, 2024", close: 20405.92},
+                {date: "Dec 16, 2024", close: 19884.75},
+                {date: "Dec 23, 2024", close: 19984.32},
+                {date: "Dec 30, 2024", close: 19906.08},
+                {date: "Jan 06, 2025", close: 20214.79},
+                {date: "Jan 13, 2025", close: 20903.39},
+                {date: "Jan 20, 2025", close: 21394.93},
+                {date: "Jan 27, 2025", close: 21732.05},
+                {date: "Feb 03, 2025", close: 21787.00},
+                {date: "Feb 10, 2025", close: 22513.42},
+                {date: "Feb 17, 2025", close: 22287.56},
+                {date: "Feb 24, 2025", close: 22551.43},
+                {date: "Mar 03, 2025", close: 23008.94},
+                {date: "Mar 10, 2025", close: 22986.82},
+                {date: "Mar 17, 2025", close: 22891.68},
+                {date: "Mar 24, 2025", close: 22461.52},
+                {date: "Mar 31, 2025", close: 20641.72},
+                {date: "Apr 07, 2025", close: 20374.10},
+                {date: "Apr 14, 2025", close: 21205.86},
+                {date: "Apr 21, 2025", close: 22242.45},
+                {date: "Apr 28, 2025", close: 23086.65},
+                {date: "May 05, 2025", close: 23499.32},
+                {date: "May 12, 2025", close: 23767.43},
+                {date: "May 19, 2025", close: 23629.58},
+                {date: "May 26, 2025", close: 23997.48},
+                {date: "Jun 02, 2025", close: 24304.46},
+                {date: "Jun 09, 2025", close: 23516.23},
+                {date: "Jun 16, 2025", close: 23350.55},
+                {date: "Jun 23, 2025", close: 24033.22},
+                {date: "Jun 30, 2025", close: 23787.45},
+                {date: "Jul 07, 2025", close: 24255.31},
+                {date: "Jul 14, 2025", close: 24289.51},
+                {date: "Jul 21, 2025", close: 24217.50},
+                {date: "Jul 28, 2025", close: 23425.97},
+                {date: "Aug 04, 2025", close: 24162.86},
+                {date: "Aug 11, 2025", close: 24359.30},
+                {date: "Aug 18, 2025", close: 24363.09},
+                {date: "Aug 25, 2025", close: 23902.21},
+                {date: "Sep 01, 2025", close: 23596.98},
+                {date: "Sep 08, 2025", close: 23698.15},
+                {date: "Sep 15, 2025", close: 23639.41},
+                {date: "Sep 22, 2025", close: 23739.47},
+                {date: "Sep 29, 2025", close: 24378.80},
+                {date: "Oct 06, 2025", close: 24241.46},
+                {date: "Oct 13, 2025", close: 23830.99},
+                {date: "Oct 20, 2025", close: 24239.89},
+                {date: "Oct 27, 2025", close: 23958.30},
+                {date: "Nov 03, 2025", close: 23569.96},
+                {date: "Nov 10, 2025", close: 23876.55},
+                {date: "Nov 17, 2025", close: 23091.87},
+                {date: "Nov 24, 2025", close: 23409.51}
+            ]
+        };
+
+        // ==================== FUNCTIONS ====================
+
+        function calculateReturns(data) {
+            for (let i = 0; i < data.rows.length; i++) {
+                if (i === 0) {
+                    data.rows[i].return = null;
+                } else {
+                    const prev = data.rows[i-1].close;
+                    const curr = data.rows[i].close;
+                    data.rows[i].return = ((curr - prev) / prev) * 100;
+                }
+            }
+        }
+
+        function calcStats(data) {
+            const returns = data.rows.filter(r => r.return !== null).map(r => r.return);
+            const n = returns.length;
+            const mean = returns.reduce((a, b) => a + b, 0) / n;
+            const variance = returns.reduce((sum, r) => sum + Math.pow(r - mean, 2), 0) / (n - 1);
+            const stdDev = Math.sqrt(variance);
+            const min = Math.min(...returns);
+            const max = Math.max(...returns);
+            return { mean, stdDev, min, max, n };
+        }
+
+        function renderStats(data, elementId) {
+            const stats = calcStats(data);
+            document.getElementById(elementId).innerHTML = `
+                <div class="stat-item">
+                    <span class="stat-label">Gem. Wekelijks Rendement</span>
+                    <span class="stat-value ${stats.mean >= 0 ? 'positive' : 'negative'}">${stats.mean.toFixed(2)}%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Standaarddeviatie</span>
+                    <span class="stat-value">${stats.stdDev.toFixed(2)}%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Min / Max</span>
+                    <span class="stat-value">${stats.min.toFixed(1)}% / ${stats.max.toFixed(1)}%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Aantal Weken</span>
+                    <span class="stat-value">${data.rows.length}</span>
+                </div>
+            `;
+        }
+
+        function renderTable(data, elementId) {
+            let html = '';
+            for (const row of data.rows) {
+                const ret = row.return;
+                html += `<tr>
+                    <td>${row.date}</td>
+                    <td>${row.close.toFixed(2)}</td>
+                    <td class="${ret !== null ? (ret >= 0 ? 'positive' : 'negative') : ''}">${ret !== null ? ret.toFixed(2) + '%' : '—'}</td>
+                </tr>`;
+            }
+            document.getElementById(elementId).innerHTML = html;
+        }
+
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function downloadCSV(type) {
+            const data = type === 'rhm' ? rhmData : type === 'spx' ? spxData : daxData;
+            const filename = type === 'rhm' ? 'rheinmetall_weekly.csv' : type === 'spx' ? 'sp500_weekly.csv' : 'dax_weekly.csv';
+
+            let csv = `Week,Close (${data.currency}),Return (%)\n`;
+            for (const row of data.rows) {
+                csv += `"${row.date}",${row.close.toFixed(2)},${row.return !== null ? row.return.toFixed(4) : ''}\n`;
+            }
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+        }
+
+        // ==================== PLOTLY CHART ====================
+        function renderChart() {
+            // Convert dates to proper format and get returns
+            const parseDateUS = (dateStr) => {
+                const parts = dateStr.split(' ');
+                const months = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+                return new Date(parseInt(parts[2]), months[parts[0]], parseInt(parts[1].replace(',','')));
+            };
+
+            const rhmDates = rhmData.rows.slice(1).map(r => parseDateUS(r.date));
+            const rhmReturns = rhmData.rows.slice(1).map(r => r.return);
+
+            const spxDates = spxData.rows.slice(1).map(r => parseDateUS(r.date));
+            const spxReturns = spxData.rows.slice(1).map(r => r.return);
+
+            const daxDates = daxData.rows.slice(1).map(r => parseDateUS(r.date));
+            const daxReturns = daxData.rows.slice(1).map(r => r.return);
+
+            const traces = [
+                {
+                    x: rhmDates,
+                    y: rhmReturns,
+                    name: 'Rheinmetall',
+                    type: 'scatter',
+                    mode: 'lines',
+                    line: { color: '#0d3b66', width: 1.5 },
+                    hovertemplate: '%{x|%d %b %Y}<br>Rendement: %{y:.2f}%<extra>Rheinmetall</extra>'
+                },
+                {
+                    x: spxDates,
+                    y: spxReturns,
+                    name: 'S&P 500',
+                    type: 'scatter',
+                    mode: 'lines',
+                    line: { color: '#059669', width: 1.5 },
+                    hovertemplate: '%{x|%d %b %Y}<br>Rendement: %{y:.2f}%<extra>S&P 500</extra>'
+                },
+                {
+                    x: daxDates,
+                    y: daxReturns,
+                    name: 'DAX',
+                    type: 'scatter',
+                    mode: 'lines',
+                    line: { color: '#d97706', width: 1.5 },
+                    hovertemplate: '%{x|%d %b %Y}<br>Rendement: %{y:.2f}%<extra>DAX</extra>'
+                }
+            ];
+
+            const layout = {
+                title: {
+                    text: 'Wekelijkse Rendementen: Rheinmetall vs S&P 500 vs DAX',
+                    font: { family: 'Inter, sans-serif', size: 18, color: '#0d3b66' }
+                },
+                xaxis: {
+                    title: 'Datum',
+                    tickformat: '%b %Y',
+                    gridcolor: '#e5e7eb',
+                    showgrid: true
+                },
+                yaxis: {
+                    title: 'Wekelijks Rendement (%)',
+                    ticksuffix: '%',
+                    gridcolor: '#e5e7eb',
+                    showgrid: true,
+                    zeroline: true,
+                    zerolinecolor: '#9ca3af',
+                    zerolinewidth: 1
+                },
+                legend: {
+                    orientation: 'h',
+                    y: -0.15,
+                    x: 0.5,
+                    xanchor: 'center'
+                },
+                hovermode: 'x unified',
+                plot_bgcolor: 'white',
+                paper_bgcolor: 'white',
+                margin: { t: 60, b: 80, l: 60, r: 30 },
+                font: { family: 'Inter, sans-serif' }
+            };
+
+            const config = {
+                responsive: true,
+                displayModeBar: true,
+                modeBarButtonsToRemove: ['lasso2d', 'select2d'],
+                displaylogo: false
+            };
+
+            Plotly.newPlot('returns-chart', traces, layout, config);
+        }
+
+        // ==================== REGRESSION ANALYSIS ====================
+        function linearRegression(x, y) {
+            const n = x.length;
+            let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0, sumY2 = 0;
+
+            for (let i = 0; i < n; i++) {
+                sumX += x[i];
+                sumY += y[i];
+                sumXY += x[i] * y[i];
+                sumX2 += x[i] * x[i];
+                sumY2 += y[i] * y[i];
+            }
+
+            const beta = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+            const alpha = (sumY - beta * sumX) / n;
+
+            // R-squared calculation
+            const yMean = sumY / n;
+            let ssTotal = 0, ssResidual = 0;
+            for (let i = 0; i < n; i++) {
+                const yPred = alpha + beta * x[i];
+                ssTotal += Math.pow(y[i] - yMean, 2);
+                ssResidual += Math.pow(y[i] - yPred, 2);
+            }
+            const r2 = 1 - (ssResidual / ssTotal);
+
+            return { alpha, beta, r2 };
+        }
+
+        function renderRegressionPlots() {
+            // Get returns (skip first row which has null return)
+            const rhmReturns = rhmData.rows.slice(1).map(r => r.return);
+            const spxReturns = spxData.rows.slice(1).map(r => r.return);
+            const daxReturns = daxData.rows.slice(1).map(r => r.return);
+
+            // Calculate regressions
+            const regSPX = linearRegression(spxReturns, rhmReturns);
+            const regDAX = linearRegression(daxReturns, rhmReturns);
+
+            // Generate regression line points
+            const spxMin = Math.min(...spxReturns);
+            const spxMax = Math.max(...spxReturns);
+            const daxMin = Math.min(...daxReturns);
+            const daxMax = Math.max(...daxReturns);
+
+            const config = {
+                responsive: true,
+                displayModeBar: true,
+                modeBarButtonsToRemove: ['lasso2d', 'select2d'],
+                displaylogo: false
+            };
+
+            // ===== S&P 500 vs Rheinmetall =====
+            const tracesSPX = [
+                {
+                    x: spxReturns,
+                    y: rhmReturns,
+                    mode: 'markers',
+                    type: 'scatter',
+                    name: 'Wekelijks rendement',
+                    marker: { color: '#059669', size: 6, opacity: 0.6 },
+                    hovertemplate: 'S&P 500: %{x:.2f}%<br>Rheinmetall: %{y:.2f}%<extra></extra>'
+                },
+                {
+                    x: [spxMin, spxMax],
+                    y: [regSPX.alpha + regSPX.beta * spxMin, regSPX.alpha + regSPX.beta * spxMax],
+                    mode: 'lines',
+                    type: 'scatter',
+                    name: `Regressielijn (β=${regSPX.beta.toFixed(2)})`,
+                    line: { color: '#dc2626', width: 2 }
+                }
+            ];
+
+            const layoutSPX = {
+                title: {
+                    text: 'Rheinmetall vs S&P 500',
+                    font: { family: 'Inter, sans-serif', size: 16, color: '#0d3b66' }
+                },
+                xaxis: {
+                    title: 'S&P 500 Rendement (%)',
+                    ticksuffix: '%',
+                    gridcolor: '#e5e7eb',
+                    zeroline: true,
+                    zerolinecolor: '#9ca3af'
+                },
+                yaxis: {
+                    title: 'Rheinmetall Rendement (%)',
+                    ticksuffix: '%',
+                    gridcolor: '#e5e7eb',
+                    zeroline: true,
+                    zerolinecolor: '#9ca3af'
+                },
+                showlegend: true,
+                legend: { orientation: 'h', y: -0.2, x: 0.5, xanchor: 'center' },
+                plot_bgcolor: 'white',
+                paper_bgcolor: 'white',
+                margin: { t: 50, b: 70, l: 60, r: 20 },
+                font: { family: 'Inter, sans-serif' }
+            };
+
+            Plotly.newPlot('regression-spx', tracesSPX, layoutSPX, config);
+
+            // Display S&P 500 regression stats
+            document.getElementById('stats-reg-spx').innerHTML = `
+                <div class="stat-item">
+                    <span class="stat-label">Alpha (α)</span>
+                    <span class="stat-value ${regSPX.alpha >= 0 ? 'positive' : 'negative'}">${regSPX.alpha >= 0 ? '+' : ''}${regSPX.alpha.toFixed(3)}%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Beta (β)</span>
+                    <span class="stat-value">${regSPX.beta.toFixed(3)}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">R²</span>
+                    <span class="stat-value">${(regSPX.r2 * 100).toFixed(2)}%</span>
+                </div>
+            `;
+
+            // ===== DAX vs Rheinmetall =====
+            const tracesDAX = [
+                {
+                    x: daxReturns,
+                    y: rhmReturns,
+                    mode: 'markers',
+                    type: 'scatter',
+                    name: 'Wekelijks rendement',
+                    marker: { color: '#d97706', size: 6, opacity: 0.6 },
+                    hovertemplate: 'DAX: %{x:.2f}%<br>Rheinmetall: %{y:.2f}%<extra></extra>'
+                },
+                {
+                    x: [daxMin, daxMax],
+                    y: [regDAX.alpha + regDAX.beta * daxMin, regDAX.alpha + regDAX.beta * daxMax],
+                    mode: 'lines',
+                    type: 'scatter',
+                    name: `Regressielijn (β=${regDAX.beta.toFixed(2)})`,
+                    line: { color: '#dc2626', width: 2 }
+                }
+            ];
+
+            const layoutDAX = {
+                title: {
+                    text: 'Rheinmetall vs DAX',
+                    font: { family: 'Inter, sans-serif', size: 16, color: '#0d3b66' }
+                },
+                xaxis: {
+                    title: 'DAX Rendement (%)',
+                    ticksuffix: '%',
+                    gridcolor: '#e5e7eb',
+                    zeroline: true,
+                    zerolinecolor: '#9ca3af'
+                },
+                yaxis: {
+                    title: 'Rheinmetall Rendement (%)',
+                    ticksuffix: '%',
+                    gridcolor: '#e5e7eb',
+                    zeroline: true,
+                    zerolinecolor: '#9ca3af'
+                },
+                showlegend: true,
+                legend: { orientation: 'h', y: -0.2, x: 0.5, xanchor: 'center' },
+                plot_bgcolor: 'white',
+                paper_bgcolor: 'white',
+                margin: { t: 50, b: 70, l: 60, r: 20 },
+                font: { family: 'Inter, sans-serif' }
+            };
+
+            Plotly.newPlot('regression-dax', tracesDAX, layoutDAX, config);
+
+            // Display DAX regression stats
+            document.getElementById('stats-reg-dax').innerHTML = `
+                <div class="stat-item">
+                    <span class="stat-label">Alpha (α)</span>
+                    <span class="stat-value ${regDAX.alpha >= 0 ? 'positive' : 'negative'}">${regDAX.alpha >= 0 ? '+' : ''}${regDAX.alpha.toFixed(3)}%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Beta (β)</span>
+                    <span class="stat-value">${regDAX.beta.toFixed(3)}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">R²</span>
+                    <span class="stat-value">${(regDAX.r2 * 100).toFixed(2)}%</span>
+                </div>
+            `;
+
+            // Generate dynamic interpretation
+            const avgBeta = (regSPX.beta + regDAX.beta) / 2;
+            const avgR2 = (regSPX.r2 + regDAX.r2) / 2;
+            const avgAlpha = (regSPX.alpha + regDAX.alpha) / 2;
+
+            let betaInterpretation = '';
+            if (avgBeta < 0.5) {
+                betaInterpretation = `β ≈ ${avgBeta.toFixed(2)} betekent dat Rheinmetall slechts ~${Math.round(avgBeta * 100)}% meebeweegt met de markt — het aandeel heeft veel <em>idiosyncratisch risico</em> (bedrijfsspecifiek).`;
+            } else if (avgBeta < 1) {
+                betaInterpretation = `β ≈ ${avgBeta.toFixed(2)} betekent dat Rheinmetall minder volatiel is dan de markt (defensief aandeel).`;
+            } else if (avgBeta < 1.5) {
+                betaInterpretation = `β ≈ ${avgBeta.toFixed(2)} betekent dat Rheinmetall iets volatieler is dan de markt.`;
+            } else {
+                betaInterpretation = `β ≈ ${avgBeta.toFixed(2)} betekent dat Rheinmetall veel sterker beweegt dan de markt (hoog systematisch risico).`;
+            }
+
+            let alphaInterpretation = '';
+            if (avgAlpha > 0.1) {
+                alphaInterpretation = `α ≈ ${avgAlpha >= 0 ? '+' : ''}${avgAlpha.toFixed(2)}% per week wijst op significante outperformance t.o.v. de markt.`;
+            } else if (avgAlpha > 0) {
+                alphaInterpretation = `α ≈ ${avgAlpha >= 0 ? '+' : ''}${avgAlpha.toFixed(2)}% per week wijst op lichte outperformance t.o.v. de markt.`;
+            } else if (avgAlpha > -0.1) {
+                alphaInterpretation = `α ≈ ${avgAlpha.toFixed(2)}% per week wijst op lichte underperformance t.o.v. de markt.`;
+            } else {
+                alphaInterpretation = `α ≈ ${avgAlpha.toFixed(2)}% per week wijst op significante underperformance t.o.v. de markt.`;
+            }
+
+            let r2Interpretation = '';
+            if (avgR2 < 0.1) {
+                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% bevestigt dat slechts een klein deel van Rheinmetalls volatiliteit door marktbewegingen wordt verklaard — het risico is grotendeels bedrijfsspecifiek.`;
+            } else if (avgR2 < 0.3) {
+                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% toont een beperkte correlatie met de markt.`;
+            } else if (avgR2 < 0.6) {
+                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% toont een matige correlatie met de markt.`;
+            } else {
+                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% toont een sterke correlatie — Rheinmetall beweegt grotendeels mee met de markt.`;
+            }
+
+            document.getElementById('regression-interpretation').innerHTML = `
+                <p><strong>Interpretatie:</strong> β (beta) meet de gevoeligheid van Rheinmetall voor marktbewegingen.
+                ${betaInterpretation}
+                ${alphaInterpretation}
+                ${r2Interpretation}</p>
+            `;
+        }
+
+        // ==================== INITIALIZE ====================
+        calculateReturns(rhmData);
+        calculateReturns(spxData);
+        calculateReturns(daxData);
+
+        renderStats(rhmData, 'stats-rhm');
+        renderTable(rhmData, 'table-rhm');
+
+        renderStats(spxData, 'stats-spx');
+        renderTable(spxData, 'table-spx');
+
+        renderStats(daxData, 'stats-dax');
+        renderTable(daxData, 'table-dax');
+
+        // Render charts after data is ready
+        renderChart();
+        renderRegressionPlots();
+    </script>
+</body>
+</html>

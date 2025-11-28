@@ -583,8 +583,7 @@
                                 🤖 AI-Augmented Path
                             </h4>
                             <ul style="font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); color: var(--color-gray-700);">
-                                <li><a href="#ai-materials" style="color: var(--color-primary-600);">AI Prompt Templates</a>: Phase 4 (Modeling - regression prompts)</li>
-                                <li>Prompts voor variabele selectie en multicollineariteit check</li>
+                                <li><a href="#ai-risico-rendement" style="color: var(--color-primary-600); font-weight: var(--font-weight-semibold);">📊 Risico & Rendement Analyse Prompt</a> - CRISP-DM gestructureerd</li>
                                 <li>Regressie interpretatie en business context</li>
                                 <li>Critical evaluation: "Is de AI output betrouwbaar?"</li>
                             </ul>
@@ -605,6 +604,8 @@
                     <div style="margin-top: var(--space-4); padding: var(--space-3); background-color: var(--color-info-50); border-radius: var(--radius-md);">
                         <p style="font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">Cross-Path Learning Resources:</p>
                         <ul style="font-size: var(--font-size-sm); margin-left: var(--space-6);">
+                            <li><a href="#ai-risico-rendement" style="color: var(--color-info-700); text-decoration: underline;">📋 AI Prompt Template: Risico & Rendement</a> - CRISP-DM gestructureerde 6-stappen analyse</li>
+                            <li><a href="../examples/weekly-returns-tabs.html" style="color: var(--color-info-700); text-decoration: underline;">📊 Werkvoorbeeld: Rheinmetall Analyse</a> - Interactieve visualisatie met regressie</li>
                             <li><a href="https://datadrivendecisions.github.io/regression/demo.html" target="_blank" style="color: var(--color-info-700); text-decoration: underline;">Linear Regression Demo</a> - Zie hoe regressielijn door data points wordt getrokken</li>
                             <li><a href="https://datadrivendecisions.github.io/regression/gradientdescent.html" target="_blank" style="color: var(--color-info-700); text-decoration: underline;">Gradient Descent Demo</a> - Begrijp het optimalisatie-algoritme</li>
                             <li><a href="../strategic-framework/#dynamieken" style="color: var(--color-info-700); font-weight: var(--font-weight-semibold); text-decoration: underline;">🎯 Strategic Framework: Dynamieken Fase</a></li>
@@ -1473,6 +1474,287 @@ Data: [X variables, Y target, N observations]<br>
 3. Hoe interpreteer ik de resultaten in business termen?<br>
 4. Welke limitations heeft deze analyse?
                     </div>
+
+                    <!-- Template C: Risico & Rendement Analyse -->
+                    <div id="ai-risico-rendement" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 2px solid var(--color-gray-200);">
+                        <h4 style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-3); color: var(--color-primary-700);">
+                            Template C: Risico & Rendement Analyse (Regressie)
+                        </h4>
+                        <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
+                            Complete CRISP-DM prompt voor beta- en alpha-analyse van een bedrijf t.o.v. marktindices.
+                            <a href="../examples/weekly-returns-tabs.html" style="color: var(--color-primary-600); font-weight: var(--font-weight-medium);">Bekijk werkvoorbeeld →</a>
+                        </p>
+
+                        <!-- CRISP-DM Fasering Overview -->
+                        <div style="background-color: var(--color-gray-50); border-radius: var(--radius-lg); padding: var(--space-4); margin-bottom: var(--space-6);">
+                            <strong style="color: var(--color-gray-800);">CRISP-DM Fasering:</strong>
+                            <table style="width: 100%; margin-top: var(--space-3); font-size: var(--font-size-sm);">
+                                <tr style="background-color: var(--color-primary-100);">
+                                    <th style="padding: var(--space-2); text-align: left; border-radius: var(--radius-sm) 0 0 0;">Fase</th>
+                                    <th style="padding: var(--space-2); text-align: left; border-radius: 0 var(--radius-sm) 0 0;">Stappen</th>
+                                </tr>
+                                <tr><td style="padding: var(--space-2); border-bottom: 1px solid var(--color-gray-200);"><strong>1. Business Understanding</strong></td><td style="padding: var(--space-2); border-bottom: 1px solid var(--color-gray-200);">Context</td></tr>
+                                <tr><td style="padding: var(--space-2); border-bottom: 1px solid var(--color-gray-200);"><strong>2. Data Understanding</strong></td><td style="padding: var(--space-2); border-bottom: 1px solid var(--color-gray-200);">Databronnen, STAP 1</td></tr>
+                                <tr><td style="padding: var(--space-2); border-bottom: 1px solid var(--color-gray-200);"><strong>3. Data Preparation</strong></td><td style="padding: var(--space-2); border-bottom: 1px solid var(--color-gray-200);">STAP 1b, STAP 2, STAP 3</td></tr>
+                                <tr><td style="padding: var(--space-2); border-bottom: 1px solid var(--color-gray-200);"><strong>4. Modeling</strong></td><td style="padding: var(--space-2); border-bottom: 1px solid var(--color-gray-200);">STAP 4, STAP 5</td></tr>
+                                <tr><td style="padding: var(--space-2); border-bottom: 1px solid var(--color-gray-200);"><strong>5. Evaluation</strong></td><td style="padding: var(--space-2); border-bottom: 1px solid var(--color-gray-200);">STAP 6</td></tr>
+                                <tr><td style="padding: var(--space-2);"><strong>6. Deployment</strong></td><td style="padding: var(--space-2);">Eindrapportage, Logboek</td></tr>
+                            </table>
+                        </div>
+
+                        <!-- FASE 1: Business Understanding -->
+                        <div style="margin-bottom: var(--space-5);">
+                            <h5 style="font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); color: var(--color-primary-600); margin-bottom: var(--space-2);">
+                                FASE 1: Business Understanding
+                            </h5>
+                            <div class="template-box">
+<strong>[CONTEXT]</strong><br>
+Je bent een data-analist die een risico- en rendementanalyse uitvoert voor een beursgenoteerd bedrijf ten opzichte van twee marktindices. Je werkt met wekelijkse koersdata over een periode van 5 jaar.<br>
+<br>
+<strong>Doel van de analyse:</strong> Bepaal het systematisch risico (beta) en de risico-gecorrigeerde performance (alpha) van het bedrijf om beleggingsbeslissingen te ondersteunen.
+                            </div>
+                        </div>
+
+                        <!-- FASE 2: Data Understanding -->
+                        <div style="margin-bottom: var(--space-5);">
+                            <h5 style="font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); color: var(--color-primary-600); margin-bottom: var(--space-2);">
+                                FASE 2: Data Understanding
+                            </h5>
+                            <div class="template-box">
+<strong>[DATABRONNEN]</strong><br>
+- <strong>Bedrijf</strong>: [BEDRIJFSNAAM] - ticker: [TICKER]<br>
+- <strong>Index 1</strong>: [INDEX1_NAAM] (bijv. S&P 500, AEX, FTSE)<br>
+- <strong>Index 2</strong>: [INDEX2_NAAM] (bijv. DAX, CAC40, sectorindex)<br>
+- <strong>Periode</strong>: [STARTDATUM] tot [EINDDATUM]<br>
+- <strong>Frequentie</strong>: Wekelijks (closing prices)<br>
+<br>
+<strong>[INSTRUCTIES]</strong><br>
+Voer de analyse uit in de onderstaande stappen. <strong>Log elke stap</strong> in een overzicht met:<br>
+- Stap nummer en naam<br>
+- Input data<br>
+- Uitgevoerde actie<br>
+- Output/resultaat<br>
+- Eventuele waarschuwingen of aandachtspunten<br>
+<br>
+<strong>STAP 1: Data Inlezen en Valideren</strong><br>
+<br>
+<em>1.1 Data Extractie</em><br>
+- Lees de closing prices in voor alle drie de datasets (bedrijf + 2 indices)<br>
+- Als de data in dagfrequentie is: converteer naar weekdata (vrijdag-slotkoers)<br>
+- Noteer per dataset: bron, aantal datapunten, eerste datum, laatste datum<br>
+<br>
+<em>1.2 Datum Synchronisatie Check</em><br>
+- Vergelijk de datumreeksen<br>
+- Identificeer ontbrekende datums per dataset<br>
+- Als er verschillen zijn: synchroniseer (alleen datums in ALLE drie datasets)<br>
+<br>
+<em>1.3 Data Kwaliteit Check</em><br>
+- Check op ontbrekende waarden (nulls/NaN)<br>
+- Check op uitschieters (prijzen >50% afwijking van vorige week)<br>
+- Check of prijzen positief zijn<br>
+<br>
+<strong>LOG OUTPUT STAP 1:</strong><br>
+| Dataset | Bron | Ruwe datapunten | Na sync | Eerste datum | Laatste datum | Issues |
+                            </div>
+                        </div>
+
+                        <!-- FASE 3: Data Preparation -->
+                        <div style="margin-bottom: var(--space-5);">
+                            <h5 style="font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); color: var(--color-primary-600); margin-bottom: var(--space-2);">
+                                FASE 3: Data Preparation
+                            </h5>
+                            <div class="template-box">
+<strong>STAP 1b: Data Cleaning & Repairing</strong><br>
+<br>
+<em>1b.1 Missing Values Behandelen</em><br>
+Als er ontbrekende waarden zijn geïdentificeerd:<br>
+- <strong>Optie A</strong>: Verwijder rijen met missings (als &lt; 5% van data)<br>
+- <strong>Optie B</strong>: Interpoleer (lineair) voor tussenliggende datums<br>
+- <strong>Optie C</strong>: Forward-fill (laatste bekende waarde)<br>
+- Documenteer welke methode je kiest en waarom<br>
+<br>
+<em>1b.2 Outlier Treatment</em><br>
+- Controleer of uitschieter correct is (stock split, dividend, nieuws)<br>
+- Als data-fout: corrigeer of verwijder<br>
+- Als legitieme uitschieter: behoud maar documenteer impact<br>
+<br>
+<em>1b.3 Data Transformatie</em><br>
+- Converteer naar consistent format (decimalen, valuta)<br>
+- Datums in YYYY-MM-DD formaat<br>
+- Sorteer chronologisch (oudste eerst)<br>
+<br>
+<strong>LOG OUTPUT STAP 1b:</strong><br>
+| Issue Type | Aantal | Behandeling | Rationale |
+                            </div>
+                            <div class="template-box" style="margin-top: var(--space-3);">
+<strong>STAP 2: Rendementen Berekenen</strong><br>
+<br>
+<em>2.1 Wekelijkse Rendementen</em><br>
+Bereken voor elke dataset:<br>
+<code>Rendement_t = ((Prijs_t - Prijs_{t-1}) / Prijs_{t-1}) × 100%</code><br>
+<br>
+<em>2.2 Beschrijvende Statistieken</em><br>
+Per dataset: Gemiddeld rendement, Std.Dev, Min, Max, N observaties<br>
+<br>
+<em>2.3 Sanity Check</em><br>
+- Cumulatief rendement ≈ (Eindprijs/Beginprijs - 1)?<br>
+- Std.Dev vergelijken met bekende marktvolatiliteit<br>
+<br>
+<strong>LOG OUTPUT STAP 2:</strong><br>
+| Dataset | Gem. Rendement | Std. Dev | Min | Max | N | Cumulatief ✓/✗ |
+                            </div>
+                            <div class="template-box" style="margin-top: var(--space-3);">
+<strong>STAP 3: Tijdreeks Visualisatie</strong><br>
+<br>
+<em>3.1 Gecombineerde Lijngrafiek</em><br>
+- X-as: Tijd (weken)<br>
+- Y-as: Wekelijks rendement (%)<br>
+- Drie lijnen: Bedrijf, Index 1, Index 2<br>
+- Duidelijke legenda + nul-lijn markeren<br>
+<br>
+<em>3.2 Visuele Analyse</em><br>
+- Welke reeks toont hoogste volatiliteit?<br>
+- Zijn er periodes met extreme uitschieters?<br>
+- Bewegen de reeksen samen of onafhankelijk?<br>
+<br>
+<strong>LOG OUTPUT STAP 3:</strong><br>
+- Grafiek gegenereerd: [JA/NEE]<br>
+- Observaties volatiliteit: [...]<br>
+- Observaties co-movement: [...]
+                            </div>
+                        </div>
+
+                        <!-- FASE 4: Modeling -->
+                        <div style="margin-bottom: var(--space-5);">
+                            <h5 style="font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); color: var(--color-primary-600); margin-bottom: var(--space-2);">
+                                FASE 4: Modeling
+                            </h5>
+                            <div class="template-box">
+<strong>STAP 4: Regressie Analyse - Scatter Plots</strong><br>
+<br>
+<em>4.1 Scatter Plot Bedrijf vs Index 1</em><br>
+- X-as: Rendement Index 1 (%)<br>
+- Y-as: Rendement Bedrijf (%)<br>
+- Voeg regressielijn toe<br>
+<br>
+<em>4.2 Scatter Plot Bedrijf vs Index 2</em><br>
+- X-as: Rendement Index 2 (%)<br>
+- Y-as: Rendement Bedrijf (%)<br>
+- Voeg regressielijn toe<br>
+<br>
+<em>4.3 Visuele Beoordeling</em><br>
+- Is er een duidelijk lineair verband zichtbaar?<br>
+- Hoe "strak" liggen de punten rond de regressielijn?<br>
+- Zijn er duidelijke uitschieters?<br>
+<br>
+<strong>LOG OUTPUT STAP 4:</strong><br>
+- Scatter plot 1 (vs Index 1): [GEGENEREERD]<br>
+- Scatter plot 2 (vs Index 2): [GEGENEREERD]<br>
+- Visuele correlatie: [ZWAK/MATIG/STERK]
+                            </div>
+                            <div class="template-box" style="margin-top: var(--space-3);">
+<strong>STAP 5: Regressie Parameters Berekenen</strong><br>
+<br>
+<em>5.1 Lineaire Regressie: Bedrijf = α + β × Index</em><br>
+Bereken voor beide index-combinaties:<br>
+- <strong>Alpha (α)</strong>: Intercept - gemiddeld excess rendement t.o.v. markt<br>
+- <strong>Beta (β)</strong>: Helling - gevoeligheid voor marktbewegingen<br>
+- <strong>R²</strong>: Verklaringskracht - % variatie verklaard door markt<br>
+<br>
+<em>5.2 Interpretatie Framework</em><br>
+| Parameter | Waarde | Interpretatie |<br>
+| β &lt; 0.5 | Laag | Beweegt onafhankelijk van markt |<br>
+| β = 0.5-1.0 | Defensief | Beweegt minder dan markt |<br>
+| β = 1.0-1.5 | Neutraal/Agressief | Beweegt (iets meer dan) markt |<br>
+| β &gt; 1.5 | Hoog risico | Versterkt marktbewegingen |<br>
+| α &gt; 0 | Positief | Outperformance |<br>
+| α &lt; 0 | Negatief | Underperformance |<br>
+| R² &lt; 10% | Laag | Risico is bedrijfsspecifiek |<br>
+| R² &gt; 50% | Hoog | Beweegt mee met markt |<br>
+<br>
+<strong>LOG OUTPUT STAP 5:</strong><br>
+| Regressie | Alpha (α) | Beta (β) | R² | Interpretatie |
+                            </div>
+                        </div>
+
+                        <!-- FASE 5: Evaluation -->
+                        <div style="margin-bottom: var(--space-5);">
+                            <h5 style="font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); color: var(--color-primary-600); margin-bottom: var(--space-2);">
+                                FASE 5: Evaluation
+                            </h5>
+                            <div class="template-box">
+<strong>STAP 6: Triangulatie en Validatie</strong><br>
+<br>
+<em>6.1 Interne Consistentie Checks</em><br>
+☐ <strong>Beta consistentie</strong>: Zijn beta's t.o.v. beide indices vergelijkbaar?<br>
+☐ <strong>Volatiliteit check</strong>: Is Std.Dev(bedrijf) &gt; Std.Dev(index)?<br>
+☐ <strong>R² plausibiliteit</strong>: Is R² &lt; 100%?<br>
+☐ <strong>Alpha magnitude</strong>: Is |α| &lt; 2% per week?<br>
+<br>
+<em>6.2 Externe Validatie</em><br>
+☐ Vergelijk berekende beta met gepubliceerde beta (Yahoo Finance, Bloomberg)<br>
+☐ Controleer volatiliteit tegen sector-gemiddelden<br>
+☐ Vergelijk alpha met bekende performance<br>
+<br>
+<em>6.3 Gevoeligheidsanalyse</em><br>
+- Herbereken met andere tijdsperiode (3 jaar ipv 5 jaar)<br>
+- Zijn de conclusies robuust?<br>
+<br>
+<strong>LOG OUTPUT STAP 6:</strong><br>
+| Check | Resultaat | Opmerking |<br>
+| Beta consistentie | ✓/✗ | |<br>
+| Volatiliteit check | ✓/✗ | |<br>
+| R² plausibiliteit | ✓/✗ | |<br>
+| Externe validatie | ✓/✗ | Bron: |
+                            </div>
+                        </div>
+
+                        <!-- FASE 6: Deployment -->
+                        <div style="margin-bottom: var(--space-5);">
+                            <h5 style="font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); color: var(--color-primary-600); margin-bottom: var(--space-2);">
+                                FASE 6: Deployment
+                            </h5>
+                            <div class="template-box">
+<strong>[EINDRAPPORTAGE]</strong><br>
+<br>
+Vat de analyse samen in maximaal 200 woorden:<br>
+1. Wat is de beta van [BEDRIJF] t.o.v. de markt?<br>
+2. Hoeveel van het risico is systematisch (markt) vs. idiosyncratisch (bedrijfsspecifiek)?<br>
+3. Heeft het aandeel outperformed of underperformed (alpha)?<br>
+4. Wat betekent dit voor een belegger?<br>
+<br>
+<strong>[VOLLEDIG LOGBOEK]</strong><br>
+Voeg een compleet logboek toe met alle stappen, timestamps, en beslissingen/aanpassingen.
+                            </div>
+                        </div>
+
+                        <!-- Gebruiksinstructies -->
+                        <div style="background-color: var(--color-success-50); border-left: 3px solid var(--color-success-500); padding: var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-4);">
+                            <strong style="color: var(--color-success-700);">Instructies voor Gebruik:</strong>
+                            <ol style="font-size: var(--font-size-sm); color: var(--color-gray-700); margin-left: var(--space-6); margin-top: var(--space-2); margin-bottom: 0;">
+                                <li>Kopieer de prompt naar je AI-tool (Claude, ChatGPT, etc.)</li>
+                                <li>Vervang de placeholders [BEDRIJFSNAAM], [TICKER], etc. met je eigen data</li>
+                                <li>Upload je databestanden (CSV, Excel, of PDF van koersdata)</li>
+                                <li>Vraag de AI om stap-voor-stap te werken en na elke stap te wachten op bevestiging</li>
+                                <li>Bewaar alle log-outputs voor je eindrapport</li>
+                            </ol>
+                        </div>
+
+                        <!-- Voorbeeld -->
+                        <div style="background-color: var(--color-primary-50); border-left: 3px solid var(--color-primary-500); padding: var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-4);">
+                            <strong style="color: var(--color-primary-700);">Voorbeeld Invulling:</strong>
+                            <div style="font-family: var(--font-family-mono); font-size: var(--font-size-sm); background-color: white; padding: var(--space-3); border-radius: var(--radius-sm); margin-top: var(--space-2);">
+                                <strong>Bedrijf</strong>: Rheinmetall AG - ticker: RHM.DE<br>
+                                <strong>Index 1</strong>: S&P 500 - ticker: .SPX<br>
+                                <strong>Index 2</strong>: DAX - ticker: .GDAXI<br>
+                                <strong>Periode</strong>: November 2020 tot November 2025<br>
+                                <strong>Frequentie</strong>: Wekelijks (closing prices)
+                            </div>
+                            <p style="font-size: var(--font-size-sm); margin-top: var(--space-3); margin-bottom: 0;">
+                                <a href="../examples/weekly-returns-tabs.html" style="color: var(--color-primary-600); font-weight: var(--font-weight-semibold);">→ Bekijk volledig uitgewerkt voorbeeld met Rheinmetall data</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -2080,6 +2362,29 @@ Help me dit vertalen naar executive summary:<br>
                             <a href="../examples/rheinmetall-analysis.html" class="button button-secondary" style="display: inline-block; text-decoration: none;">
                                 🔍 Bekijk Analyse
                             </a>
+                        </div>
+
+                        <div style="margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--color-gray-200);">
+                            <h4 style="font-size: var(--font-size-base); font-weight: var(--font-weight-bold); margin-bottom: var(--space-3); color: var(--color-info-700);">
+                                📊 Risico & Rendement Analyse (Week 5)
+                            </h4>
+                            <p style="font-size: var(--font-size-sm); color: var(--color-gray-700); margin-bottom: var(--space-2);">
+                                <strong>Opdracht 2 voorbereiding:</strong> Gestructureerde AI prompt voor beta, alpha en R² berekening.
+                            </p>
+                            <ul style="margin-left: var(--space-6); font-size: var(--font-size-sm); margin-bottom: var(--space-3);">
+                                <li>CRISP-DM gestructureerd (6 fasen)</li>
+                                <li>Data validatie en synchronisatie checks</li>
+                                <li>Regressie analyse met interpretatie framework</li>
+                                <li>Triangulatie en externe validatie</li>
+                            </ul>
+                            <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+                                <a href="#ai-risico-rendement" class="button button-primary" style="display: inline-block; text-decoration: none; font-size: var(--font-size-sm);">
+                                    📋 Open AI Prompt
+                                </a>
+                                <a href="../examples/weekly-returns-tabs.html" class="button button-secondary" style="display: inline-block; text-decoration: none; font-size: var(--font-size-sm);">
+                                    🔍 Bekijk Voorbeeld (Rheinmetall)
+                                </a>
+                            </div>
                         </div>
 
                         <div style="margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--color-gray-200);">

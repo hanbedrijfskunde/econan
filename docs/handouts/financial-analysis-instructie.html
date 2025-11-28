@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructie: Financial Ratio Analysis met Evaluatie - ECONAN | HAN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/econan.css">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; }
+            .card { box-shadow: none; border: 1px solid #ddd; }
+        }
+        .template-box {
+            background-color: var(--color-gray-100);
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            font-family: var(--font-family-mono);
+            font-size: var(--font-size-sm);
+            line-height: 1.6;
+            white-space: pre-wrap;
+            margin: var(--space-4) 0;
+        }
+        .answer-box {
+            background-color: white;
+            border: 2px dashed var(--color-gray-300);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            min-height: 120px;
+            margin: var(--space-3) 0;
+        }
+        .answer-box::before {
+            content: "Jouw antwoord:";
+            display: block;
+            font-size: var(--font-size-xs);
+            color: var(--color-gray-500);
+            margin-bottom: var(--space-2);
+        }
+        .vraag-card {
+            background: white;
+            border-left: 4px solid var(--color-primary-500);
+            border-radius: var(--radius-lg);
+            padding: var(--space-5);
+            margin-bottom: var(--space-6);
+            box-shadow: var(--shadow-base);
+        }
+        .vraag-nummer {
+            display: inline-block;
+            background: var(--color-primary-500);
+            color: white;
+            font-weight: var(--font-weight-bold);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header no-print">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-left">
+                    <a href="../index.html" class="logo">ECONAN</a>
+                    <span class="subtitle">Economic Analysis C-Cluster</span>
+                </div>
+                <nav class="header-nav">
+                    <a href="../index.html">Home</a>
+                    <a href="../weekplanning/">Weekplanning</a>
+                    <a href="../materiaal/" class="active">Materiaal</a>
+                    <a href="../assessment/">Assessment</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <section class="section">
+            <div class="container" style="max-width: 900px;">
+                <div class="no-print" style="margin-bottom: var(--space-6);">
+                    <a href="../materiaal/" style="color: var(--color-primary-600); text-decoration: none; font-size: var(--font-size-sm);">
+                        ← Terug naar Materiaal
+                    </a>
+                </div>
+
+                <h1 style="color: var(--color-primary-700); font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-2);">
+                    Instructie: Financial Ratio Analysis
+                </h1>
+                <p style="font-size: var(--font-size-lg); color: var(--color-gray-600); margin-bottom: var(--space-6); padding-bottom: var(--space-4); border-bottom: 2px solid var(--color-primary-200);">
+                    AI-Augmented Analyse met Evaluatie
+                </p>
+
+                <!-- Inleiding -->
+                <div class="card" style="background: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-info-50) 100%); border-left: 4px solid var(--color-primary-600); margin-bottom: var(--space-8);">
+                    <div class="card-body">
+                        <h3 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-bold); margin-bottom: var(--space-3); color: var(--color-primary-800);">
+                            Voorbereiding
+                        </h3>
+                        <p style="color: var(--color-gray-700); margin-bottom: var(--space-3);">
+                            Deze instructie begeleidt je door een complete financial ratio analyse met AI, gevolgd door vier evaluatieopdrachten die je zelf uitwerkt.
+                        </p>
+                        <div style="background: white; border-radius: var(--radius-md); padding: var(--space-3); margin-top: var(--space-3);">
+                            <p style="font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">Bestudeer vooraf:</p>
+                            <ul style="margin-left: var(--space-6); font-size: var(--font-size-sm); color: var(--color-gray-700);">
+                                <li><strong>Hillier H3</strong>: Financial Statement Analysis and Financial Models</li>
+                                <li><strong>Brightspace</strong>: <a href="https://leren.han.nl/d2l/le/lessons/85530/topics/528567" target="_blank" style="color: var(--color-primary-600);">Introductie & Voorbeeldmateriaal Opdracht 1</a></li>
+                                <li><strong>Financial Ratios Cheat Sheet</strong>: <a href="../background-docs/subjects/financial-analysis-cheatsheet.md" style="color: var(--color-primary-600);">Download</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== DEEL 1 ==================== -->
+                <div style="margin-bottom: var(--space-10);">
+                    <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-6);">
+                        <span style="background: var(--color-primary-600); color: white; font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">1</span>
+                        <h2 style="font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); color: var(--color-primary-700); margin: 0;">
+                            Basis Analyse met AI
+                        </h2>
+                    </div>
+
+                    <p style="color: var(--color-gray-700); margin-bottom: var(--space-4);">
+                        Voer onderstaande prompt uit in je AI-tool (Claude, ChatGPT, etc.) met je eigen bedrijfsdata.
+                    </p>
+
+                    <!-- Prerequisites -->
+                    <div style="background-color: var(--color-primary-50); border-left: 3px solid var(--color-primary-500); padding: var(--space-3); border-radius: var(--radius-md); margin-bottom: var(--space-4);">
+                        <strong style="color: var(--color-primary-700);">Benodigdheden:</strong>
+                        <ul style="margin-left: var(--space-6); margin-top: var(--space-2); font-size: var(--font-size-sm); color: var(--color-gray-700); margin-bottom: 0;">
+                            <li>Week 2 templates ingevuld (Balance Sheet, Income Statement, Cash Flow)</li>
+                            <li>Financial Ratios Cheat Sheet (Hillier H3.2)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Template A Prompt -->
+                    <h3 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">
+                        AI Prompt: Comprehensive Financial Ratio Analysis
+                    </h3>
+                    <div class="template-box">[CONTEXT]
+Ik ben Business Analist voor [BEDRIJF in SECTOR].
+Ik heb Week 2 data extraction voltooid met 3 templates:
+- balance-sheet-[bedrijfsnaam]-[jaar].md
+- income-statement-[bedrijfsnaam]-[jaar].md
+- cash-flow-[bedrijfsnaam]-[jaar].md
+
+[TAAK]
+Bereken ALLE financial ratios uit de bijgevoegde Financial Ratios Cheat Sheet voor [BEDRIJF].
+
+Voor elke ratio category (5 totaal):
+1. <strong>Short-Term Solvency Ratios</strong>: Current Ratio, Quick Ratio, Cash Ratio
+2. <strong>Long-Term Solvency Ratios</strong>: Total Debt Ratio, Debt-Equity, Equity Multiplier, TIE, Cash Coverage
+3. <strong>Asset Management Ratios</strong>: Inventory Turnover, Days' Sales in Inventory, Receivables Turnover, Days' Sales in Receivables, NWC Turnover, PPE Turnover, Total Asset Turnover
+4. <strong>Profitability Ratios</strong>: Profit Margin, ROA, ROE
+5. <strong>Market Value Ratios</strong>: P/E, PEG, Price-Sales, Market-to-Book (indien marktdata beschikbaar)
+
+Voor elke ratio toon:
+- Formule (uit cheat sheet)
+- Input values (uit mijn Week 2 templates met bronvermelding)
+- Berekening met cijfers
+- Resultaat + eenheid
+- Business interpretatie in context van [SECTOR]
+
+[Attachment 1: balance-sheet-[bedrijfsnaam]-[jaar].md]
+[Attachment 2: income-statement-[bedrijfsnaam]-[jaar].md]
+[Attachment 3: cash-flow-[bedrijfsnaam]-[jaar].md]
+[Attachment 4: financial-analysis-cheatsheet.md]</div>
+
+                    <!-- Output Validatie -->
+                    <div style="background-color: var(--color-success-50); border-left: 3px solid var(--color-success-500); padding: var(--space-3); border-radius: var(--radius-md); margin-top: var(--space-4);">
+                        <strong style="color: var(--color-success-700);">Eerste Check (voordat je verder gaat):</strong>
+                        <ul style="margin-left: var(--space-6); margin-top: var(--space-2); font-size: var(--font-size-sm); color: var(--color-gray-700);">
+                            <li>Zijn alle 20+ ratio's berekend? (check tegen cheat sheet)</li>
+                            <li>Zijn input values traceable naar Week 2 templates?</li>
+                            <li>Zijn interpretaties realistisch voor deze sector?</li>
+                        </ul>
+                    </div>
+
+                    <div style="background-color: var(--color-warning-50); border-left: 3px solid var(--color-warning-500); padding: var(--space-3); border-radius: var(--radius-md); margin-top: var(--space-4);">
+                        <strong style="color: var(--color-warning-700);">Bewaar je AI output!</strong>
+                        <p style="font-size: var(--font-size-sm); color: var(--color-gray-700); margin-top: var(--space-2); margin-bottom: 0;">
+                            Je hebt de berekende ROE en ROA nodig voor de evaluatieopdrachten hieronder.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ==================== DEEL 2 ==================== -->
+                <div style="margin-bottom: var(--space-10);">
+                    <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-6);">
+                        <span style="background: var(--color-warning-600); color: white; font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">2</span>
+                        <h2 style="font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); color: var(--color-warning-700); margin: 0;">
+                            Evaluatie: Zelf Uitwerken
+                        </h2>
+                    </div>
+
+                    <p style="color: var(--color-gray-700); margin-bottom: var(--space-6);">
+                        Werk de volgende vier vragen zelfstandig uit. Dit test of je de AI-output kritisch kunt evalueren.
+                    </p>
+
+                    <!-- Vraag 1 -->
+                    <div class="vraag-card">
+                        <span class="vraag-nummer">Vraag 1</span>
+                        <h3 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">
+                            Market Value Analyse
+                        </h3>
+                        <ol style="margin-left: var(--space-6); color: var(--color-gray-700); line-height: 1.8;">
+                            <li>Zoek de <strong>huidige aandelenkoers</strong> op en bereken de <strong>P/E ratio</strong></li>
+                            <li>Bereken de <strong>Earnings Yield</strong>: <code style="background: var(--color-gray-100); padding: 2px 6px; border-radius: 3px;">1/P/E × 100%</code></li>
+                            <li>Vergelijk de Earnings Yield met de door AI berekende <strong>ROE</strong></li>
+                        </ol>
+                        <div style="background: var(--color-info-50); padding: var(--space-3); border-radius: var(--radius-md); margin-top: var(--space-4);">
+                            <strong style="color: var(--color-info-700);">Reflectievraag:</strong>
+                            <p style="font-size: var(--font-size-sm); color: var(--color-gray-700); margin-top: var(--space-2); margin-bottom: 0;">
+                                Wat betekent het verschil tussen Earnings Yield en ROE? Waarom zijn deze twee getallen niet gelijk?
+                            </p>
+                        </div>
+                        <div class="answer-box"></div>
+                    </div>
+
+                    <!-- Vraag 2 -->
+                    <div class="vraag-card">
+                        <span class="vraag-nummer">Vraag 2</span>
+                        <h3 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">
+                            DuPont 3-Factor Check
+                        </h3>
+                        <p style="color: var(--color-gray-700); margin-bottom: var(--space-3);">
+                            De <strong>DuPont Identity</strong> splitst ROE in drie componenten:
+                        </p>
+                        <div style="background: var(--color-gray-100); padding: var(--space-3); border-radius: var(--radius-md); font-family: var(--font-family-mono); text-align: center; margin-bottom: var(--space-4);">
+                            ROE = Net Profit Margin × Asset Turnover × Equity Multiplier
+                        </div>
+                        <ol style="margin-left: var(--space-6); color: var(--color-gray-700); line-height: 1.8;">
+                            <li>Haal de drie componenten uit je AI-output</li>
+                            <li>Bereken: PM × AT × EM = ?</li>
+                            <li>Vergelijk met de door AI gerapporteerde ROE</li>
+                        </ol>
+                        <div style="background: var(--color-info-50); padding: var(--space-3); border-radius: var(--radius-md); margin-top: var(--space-4);">
+                            <strong style="color: var(--color-info-700);">Reflectievraag:</strong>
+                            <p style="font-size: var(--font-size-sm); color: var(--color-gray-700); margin-top: var(--space-2); margin-bottom: 0;">
+                                Wat verwacht je? Wat zie je? Als de getallen niet exact matchen, wat kan de oorzaak zijn?
+                            </p>
+                        </div>
+                        <div class="answer-box"></div>
+                    </div>
+
+                    <!-- Vraag 3 -->
+                    <div class="vraag-card">
+                        <span class="vraag-nummer">Vraag 3</span>
+                        <h3 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">
+                            DuPont 5-Factor Analyse
+                        </h3>
+                        <p style="color: var(--color-gray-700); margin-bottom: var(--space-3);">
+                            De uitgebreide <strong>5-factor DuPont</strong> geeft nog dieper inzicht:
+                        </p>
+                        <div style="background: var(--color-gray-100); padding: var(--space-3); border-radius: var(--radius-md); font-family: var(--font-family-mono); font-size: var(--font-size-sm); margin-bottom: var(--space-4);">
+                            ROE = (Net Income/EBT) × (EBT/EBIT) × (EBIT/Sales) × (Sales/Assets) × (Assets/Equity)
+                        </div>
+                        <ol style="margin-left: var(--space-6); color: var(--color-gray-700); line-height: 1.8;">
+                            <li>Vraag de AI om een 5-factor DuPont analyse te maken</li>
+                            <li>Identificeer de vijf componenten: Tax Burden, Interest Burden, Operating Margin, Asset Turnover, Equity Multiplier</li>
+                            <li>Vergelijk de eerste drie factoren gecombineerd met de door AI berekende <strong>ROA</strong></li>
+                        </ol>
+                        <div style="background: var(--color-info-50); padding: var(--space-3); border-radius: var(--radius-md); margin-top: var(--space-4);">
+                            <strong style="color: var(--color-info-700);">Reflectievraag:</strong>
+                            <p style="font-size: var(--font-size-sm); color: var(--color-gray-700); margin-top: var(--space-2); margin-bottom: 0;">
+                                Wat leer je uit de 5-factor decompositie dat je niet ziet in de 3-factor versie?
+                            </p>
+                        </div>
+                        <div class="answer-box"></div>
+                    </div>
+
+                    <!-- Vraag 4 -->
+                    <div class="vraag-card" style="border-left-color: var(--color-error-500);">
+                        <span class="vraag-nummer" style="background: var(--color-error-500);">Vraag 4</span>
+                        <h3 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);">
+                            Ontwerp een Kwaliteitscheck Prompt
+                        </h3>
+                        <p style="color: var(--color-gray-700); margin-bottom: var(--space-3);">
+                            Ontwerp een <strong>aanvullende sectie</strong> voor Template A die de AI dwingt om zelf kwaliteitschecks uit te voeren en hierover te rapporteren.
+                        </p>
+
+                        <!-- Spot de Fout herinnering -->
+                        <div style="background: var(--color-info-50); border: 2px solid var(--color-info-200); padding: var(--space-4); border-radius: var(--radius-md); margin-bottom: var(--space-4);">
+                            <p style="font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2); color: var(--color-info-700);">
+                                Gebruik je kennis uit Spot de Fout!
+                            </p>
+                            <p style="font-size: var(--font-size-sm); color: var(--color-gray-700); margin-bottom: var(--space-2);">
+                                Tijdens de laatste sessie heb je geleerd hoe je fouten in ratio-berekeningen kunt opsporen. Gebruik <strong>minimaal twee</strong> van de drie validatie-checks:
+                            </p>
+                            <ul style="margin-left: var(--space-6); font-size: var(--font-size-sm); color: var(--color-gray-700); margin-bottom: var(--space-2);">
+                                <li><strong>DuPont Identity Check</strong>: ROE = PM × AT × EM</li>
+                                <li><strong>Leverage Mismatch</strong>: D/E = EM - 1</li>
+                                <li><strong>Market Ratio Mismatch</strong>: M/B = ROE × P/E</li>
+                            </ul>
+                            <p style="font-size: var(--font-size-xs); color: var(--color-gray-500); margin-bottom: 0;">
+                                <a href="../oefeningen/spot-de-fout.html" style="color: var(--color-info-600);">Bekijk de oefening opnieuw →</a>
+                            </p>
+                        </div>
+
+                        <div style="background: var(--color-gray-50); padding: var(--space-4); border-radius: var(--radius-md); margin-bottom: var(--space-4);">
+                            <p style="font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">Jouw prompt moet de AI vragen om:</p>
+                            <ul style="margin-left: var(--space-6); font-size: var(--font-size-sm); color: var(--color-gray-700);">
+                                <li>De gekozen validatie-checks uit te voeren</li>
+                                <li>Te rapporteren over eventuele afwijkingen</li>
+                                <li>Mogelijke oorzaken van afwijkingen te benoemen</li>
+                            </ul>
+                        </div>
+                        <p style="color: var(--color-gray-700); margin-bottom: var(--space-3);">
+                            Schrijf hieronder je kwaliteitscheck prompt-sectie:
+                        </p>
+                        <div class="answer-box" style="min-height: 180px;"></div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div style="text-align: center; padding: var(--space-6); border-top: 1px solid var(--color-gray-200); color: var(--color-gray-500); font-size: var(--font-size-sm);">
+                    <p>ECONAN - Economic Analysis C-Cluster | HAN Bedrijfskunde</p>
+                    <button onclick="window.print()" class="btn btn-secondary no-print" style="margin-top: var(--space-3);">
+                        Print deze instructie
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
