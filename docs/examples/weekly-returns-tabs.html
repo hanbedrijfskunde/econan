@@ -145,6 +145,15 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: var(--space-4);
+            overflow: hidden;
+        }
+        .regression-grid > div {
+            width: 100%;
+            min-width: 0; /* Prevents grid blowout */
+            overflow: hidden;
+        }
+        .regression-grid .js-plotly-plot {
+            width: 100% !important;
         }
         /* Responsive: stack regression charts on smaller screens */
         @media (max-width: 1000px) {
@@ -1131,6 +1140,18 @@
             document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
             document.getElementById('tab-' + tabId).classList.add('active');
             event.target.classList.add('active');
+
+            // Plotly charts need relayout when tab becomes visible
+            // (they render at wrong size when initially hidden)
+            if (tabId === 'chart') {
+                setTimeout(() => Plotly.relayout('returns-chart', {autosize: true}), 50);
+            }
+            if (tabId === 'regression') {
+                setTimeout(() => {
+                    Plotly.relayout('regression-spx', {autosize: true});
+                    Plotly.relayout('regression-dax', {autosize: true});
+                }, 50);
+            }
         }
 
         function downloadCSV(type) {
