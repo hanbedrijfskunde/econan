@@ -450,7 +450,13 @@ Interpretatie:
 
 ### Inleveren Opdracht 2
 
-- Complete regressie analyse (markdown of PDF)
+**Vorm is vrij** - kies wat past bij jouw aanpak:
+- Dashboard (Power BI, Excel, Tableau)
+- Interactieve webpagina (HTML/JavaScript)
+- Rapport (markdown, PDF, Word)
+- Jupyter Notebook (Python/R)
+
+**Inhoud vereist:**
 - Grafieken: scatter plot met regressielijn
 - Interpretatie: Beta, Alpha, R² in business context
 - Triangulatie: vergelijking met gepubliceerde waarden
