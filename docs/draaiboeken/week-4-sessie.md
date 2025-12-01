@@ -292,12 +292,16 @@ Open de [Rheinmetall Weekly Returns Analyse](../examples/weekly-returns-tabs.htm
 ### Deel C: Opdracht 2 Introductie (10 min)
 
 **Opdracht 2 overzicht:**
-> "In Opdracht 2 gaan jullie dit doen voor jullie eigen bedrijf:
+> "In Opdracht 2 gaan jullie dit doen voor jullie eigen bedrijf (volgens CRISP-DM):
 >
-> 1. **Data verzamelen**: Wekelijkse of maandelijkse returns van jullie bedrijf + benchmark index
-> 2. **Regressie uitvoeren**: Bereken Beta en R²
-> 3. **Interpreteren**: Wat zegt dit over het risicoprofiel?
-> 4. **Vergelijken**: Hoe verhoudt jullie bedrijf zich tot concurrenten?"
+> 1. **Data Inlezen en Valideren**: Koersdata van jullie bedrijf + benchmark index ophalen en checken
+> 2. **Returns Berekenen**: Wekelijkse rendementen berekenen uit slotkoersen
+> 3. **Tijdreeks Visualisatie**: Returns plotten om volatiliteit te begrijpen
+> 4. **Regressie Scatter Plots**: Bedrijf vs. index visualiseren met regressielijn
+> 5. **Regressie Parameters**: Beta, Alpha en R² berekenen en interpreteren
+> 6. **Triangulatie en Validatie**: Resultaten vergelijken met externe bronnen"
+
+**📋 Template:** Gebruik [Template C: Risico & Rendement Analyse (Regressie)](../materiaal/index.html#ai-risico-rendement) op de Materiaal pagina voor de AI-augmented aanpak.
 
 **Link naar Opdracht 1:**
 > "Dit bouwt voort op Opdracht 1. Jullie hebben daar gekeken naar *hoe goed presteert dit bedrijf?* (ROE, marges). Nu voegen we toe: *hoeveel risico loop je voor dat rendement?*"
@@ -305,16 +309,7 @@ Open de [Rheinmetall Weekly Returns Analyse](../examples/weekly-returns-tabs.htm
 **Voorbeeld tonen (indien tijd):**
 > "Hier is een simpel voorbeeld in Excel/Python/AI hoe je een regressie uitvoert..."
 
-*(Korte demo of verwijzing naar tutorial materiaal)*
-
-**Homework voor Opdracht 2:**
-
-> "Voor volgende week (Week 5 werkcollege):
->
-> 1. Download historische koersdata van jullie bedrijf (Yahoo Finance, Euronext)
-> 2. Download dezelfde periode voor een benchmark index (AEX, S&P500, sector index)
-> 3. Bereken de wekelijkse/maandelijkse returns
-> 4. Bekijk de kennisclip over lineaire regressie (optioneel: CAPM theorie)"
+*(Zie [Brightspace: Week 4](https://leren.han.nl/d2l/le/lessons/85530/topics/528571))*
 
 ---
 
@@ -341,6 +336,7 @@ Samenvatten van homework en sessie afsluiten.
 >
 > - Download koersdata (eigen bedrijf + benchmark)
 > - Bekijk kennisclip regressie/CAPM
+> - **Lees Hillier H11 & H12** (Capital Market History, Risk & Return)
 > - Week 5: werkcollege om regressie uit te voeren
 
 ### Afsluiting
