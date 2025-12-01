@@ -16,7 +16,7 @@ Deze instructie begeleidt je door een complete risico-rendement analyse met AI, 
 **Bestudeer vooraf:**
 - **Hillier H11**: Lessons from Recent Capital Market History
 - **Hillier H12**: Return, Risk and the Security Market Line
-- **Brightspace**: [Week 4 Regressie Tutorial](https://leren.han.nl/d2l/le/lessons/85530/topics/528571)
+- **Brightspace**: [Week 4 Tutorial](https://leren.han.nl/d2l/le/lessons/85530/topics/528571)
 
 ---
 
