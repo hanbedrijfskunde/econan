@@ -82,7 +82,14 @@ In Opdracht 2 voeg je **risico** toe aan je analyse:
 ### Wat je nodig hebt
 
 **1. Koersdata van je bedrijf**
-- Bron: [Yahoo Finance](https://finance.yahoo.com) of [Euronext](https://live.euronext.com)
+
+Bronnen voor koersdata:
+- [Yahoo Finance UK](https://uk.finance.yahoo.com/) - CSV download beschikbaar
+- [Google Finance](https://www.google.com/finance/?hl=en) - Overzichtelijk, geen CSV
+- [Reuters Markets](https://www.reuters.com/markets/stocks/) - Professionele data
+- [Euronext](https://live.euronext.com) - Europese beurzen
+
+Vereisten:
 - Periode: minimaal 52 weken (1 jaar), bij voorkeur 2-3 jaar
 - Frequentie: wekelijkse slotkoersen (adjusted close)
 
