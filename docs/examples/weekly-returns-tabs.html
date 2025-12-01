@@ -140,10 +140,16 @@
         }
         footer a { color: var(--color-primary-500); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
+        /* Regression charts grid */
+        .regression-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4);
+        }
         /* Responsive: stack regression charts on smaller screens */
-        @media (max-width: 900px) {
-            #tab-regression > div:first-child {
-                grid-template-columns: 1fr !important;
+        @media (max-width: 1000px) {
+            .regression-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -172,7 +178,7 @@
 
         <!-- Regression Tab -->
         <div id="tab-regression" class="tab-content">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
+            <div class="regression-grid">
                 <div>
                     <div id="regression-spx" style="width:100%; height:400px;"></div>
                     <div class="stats-bar" id="stats-reg-spx" style="margin-top: var(--space-3);"></div>
