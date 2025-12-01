@@ -124,13 +124,14 @@ Frequentie: Wekelijks (52 × 4 = 208 datapunten)
 
 ### De Anatomie van een Goede Prompt
 
-Een effectieve prompt voor risico-analyse heeft **4 componenten**:
+Een effectieve prompt voor risico-analyse heeft **5 componenten**:
 
 ```
 1. CONTEXT     → Wie ben je? Wat is het doel?
 2. DATA        → Welke koersdata heb je?
 3. OPDRACHT    → Welke berekeningen wil je?
-4. FORMAT      → Hoe wil je het resultaat zien?
+4. EVALUATIE   → Welke validatie-checks wil je?
+5. FORMAT      → Hoe wil je het resultaat zien? (incl. auditresultaten)
 ```
 
 ### Template C: Risico & Rendement Analyse
@@ -182,11 +183,36 @@ Ik heb wekelijkse koersdata voor:
   - Bloomberg (indien beschikbaar)
 - Verklaar eventuele verschillen (periode, index, frequentie)
 
+[EVALUATIE]
+Voer de volgende validatie-checks uit en rapporteer afwijkingen:
+
+1. **Data Completeness Check**
+   - Zijn er missende datapunten?
+   - Komen de periodes van bedrijf en index exact overeen?
+
+2. **Return Calculation Check**
+   - Bereken 2-3 returns handmatig en vergelijk met je berekening
+   - Toon de verificatie
+
+3. **Beta Triangulatie**
+   - Vergelijk met gepubliceerde beta (Yahoo Finance, Reuters)
+   - Afwijking > 0.3? Verklaar de oorzaak
+
+4. **Statistical Significance**
+   - Is beta statistisch significant? (t-waarde > 2)
+   - Is alpha statistisch significant?
+
 [FORMAT]
 Voor elke stap wil ik zien:
 - Wat je gedaan hebt (methode)
 - De resultaten (cijfers, grafieken)
 - Interpretatie in business context
+
+**Auditresultaten sectie:**
+Voeg aan het einde een aparte "Audit & Validatie" sectie toe met:
+- Samenvatting van alle checks (PASS/FAIL per check)
+- Gedetecteerde afwijkingen en verklaringen
+- Betrouwbaarheidsscore (hoog/medium/laag)
 
 [ATTACHMENTS]
 - [bedrijfsnaam]-weekly-prices.csv
