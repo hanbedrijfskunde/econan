@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Cards Generator - ECONAN</title>
+    <!-- Global ECONAN Styles -->
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/econan.css">
+    <style>
+        /* Timeframe Colors - Using ECONAN design system tokens */
+        :root {
+            --time-now: var(--color-error-500);       /* Tomato - Urgent/Now */
+            --time-1-3: var(--color-accent-orange);   /* Sandy Brown - Near term */
+            --time-3-5: var(--color-warning-500);     /* Naples Yellow - Medium term */
+            --time-5-7: var(--color-info-500);        /* Cyan - Long term */
+            --time-7-10: var(--color-role-rvc);       /* Purple - Far future */
+        }
+
+        /* Exercise-specific styles using ECONAN design system */
+        .exercise-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-6);
+        }
+
+        /* Control Panel - matches spot-de-fout styling */
+        .control-panel {
+            background: white;
+            padding: var(--space-4);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-6);
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .control-panel h1 {
+            font-size: var(--font-size-xl);
+            color: var(--color-primary-600);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .control-actions {
+            display: flex;
+            gap: var(--space-3);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .sector-select {
+            min-width: 220px;
+            height: 44px;
+            padding: 0 var(--space-4);
+            border: 2px solid var(--color-primary-500);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            font-family: var(--font-family-body);
+            background: white;
+            color: var(--color-primary-600);
+            cursor: pointer;
+            transition: all var(--duration-fast);
+        }
+
+        .sector-select:hover {
+            border-color: var(--color-primary-600);
+            box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.1);
+        }
+
+        .sector-select:focus {
+            outline: 3px solid var(--color-primary-500);
+            outline-offset: 2px;
+        }
+
+        .btn-generate {
+            background-color: var(--color-primary-600);
+            color: white;
+            border: none;
+            padding: var(--space-3) var(--space-5);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration-fast);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .btn-generate:hover {
+            background-color: var(--color-primary-700);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-generate:active {
+            transform: translateY(0);
+        }
+
+        /* Exercise Sheet - main content area */
+        .exercise-sheet {
+            background: white;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            padding: var(--space-8);
+            margin-bottom: var(--space-8);
+        }
+
+        .exercise-header {
+            border-bottom: 3px solid var(--color-primary-500);
+            padding-bottom: var(--space-4);
+            margin-bottom: var(--space-6);
+            text-align: center;
+        }
+
+        .exercise-header h2 {
+            font-size: var(--font-size-2xl);
+            color: var(--color-primary-700);
+            margin: 0 0 var(--space-2) 0;
+        }
+
+        .exercise-header .subtitle {
+            color: var(--color-gray-600);
+            font-size: var(--font-size-base);
+            margin: 0;
+        }
+
+        .exercise-header .source-link {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-500);
+            margin-top: var(--space-2);
+        }
+
+        .exercise-header .source-link a {
+            color: var(--color-primary-600);
+            text-decoration: underline;
+        }
+
+        .exercise-header .source-link a:hover {
+            color: var(--color-primary-700);
+        }
+
+        /* Instructions box */
+        .instructions {
+            background: var(--color-primary-50);
+            border-left: 4px solid var(--color-primary-500);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-6);
+        }
+
+        .instructions h3 {
+            margin-top: 0;
+            color: var(--color-primary-700);
+            font-size: var(--font-size-lg);
+        }
+
+        .instructions p {
+            margin: var(--space-2) 0;
+            line-height: 1.6;
+            color: var(--color-gray-700);
+        }
+
+        /* Cards Container */
+        .cards-container {
+            display: flex;
+            gap: var(--space-6);
+            flex-wrap: wrap;
+            justify-content: center;
+            min-height: 420px;
+            padding: var(--space-4) 0;
+        }
+
+        .cards-placeholder {
+            color: var(--color-gray-400);
+            font-style: italic;
+            font-size: var(--font-size-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* Flip Card Styling */
+        .card-wrapper {
+            perspective: 1000px;
+            width: 320px;
+            height: 440px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            display: none;
+        }
+
+        .card-wrapper.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Override global .card styles for flip cards */
+        .cards-container .card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--radius-xl);
+            /* Override global .card from components.css */
+            overflow: visible;
+            background-color: transparent;
+            border: none;
+        }
+
+        /* Disable global hover transform for flip cards */
+        .cards-container .card:hover {
+            transform: none;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-wrapper.flipped .card {
+            transform: rotateY(180deg);
+        }
+
+        /* Override hover when flipped */
+        .card-wrapper.flipped .card:hover {
+            transform: rotateY(180deg);
+        }
+
+        .cards-container .card-face {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: var(--radius-xl);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: var(--space-5);
+            box-sizing: border-box;
+        }
+
+        /* Card Front - ECONAN branded gradient */
+        .card-front {
+            background: linear-gradient(135deg, var(--color-primary-700), var(--color-primary-500));
+            color: white;
+            z-index: 2;
+        }
+
+        .card-front h2 {
+            font-size: 4rem;
+            margin: 0;
+            opacity: 0.15;
+            font-weight: 700;
+        }
+
+        .card-front span {
+            font-size: var(--font-size-base);
+            margin-top: var(--space-4);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        /* Card Back */
+        .card-back {
+            background-color: white;
+            color: var(--color-gray-800);
+            transform: rotateY(180deg);
+            border: 1px solid var(--color-gray-200);
+            justify-content: flex-start;
+            padding-top: var(--space-6);
+            z-index: 1;
+        }
+
+        .card-category {
+            background-color: var(--color-warning-500);
+            color: white;
+            padding: var(--space-1) var(--space-4);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+        }
+
+        .card-title {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin-bottom: var(--space-3);
+            color: var(--color-primary-700);
+            line-height: 1.3;
+        }
+
+        .card-description {
+            font-size: var(--font-size-sm);
+            line-height: 1.7;
+            color: var(--color-gray-600);
+            text-align: left;
+        }
+
+        .card-impact {
+            margin-top: auto;
+            padding-top: var(--space-4);
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-500);
+            border-top: 1px solid var(--color-gray-200);
+            width: 100%;
+            text-align: left;
+        }
+
+        .card-impact strong {
+            color: var(--color-primary-600);
+        }
+
+        /* Timeframe Badge - Consistent with ECONAN badge styling */
+        .timeframe-badge {
+            position: absolute;
+            top: var(--space-3);
+            right: var(--space-3);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-bold);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            color: white;
+            box-shadow: var(--shadow-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tf-now { background-color: var(--time-now); }
+        .tf-1-3 { background-color: var(--time-1-3); }
+        .tf-3-5 { background-color: var(--time-3-5); color: var(--color-gray-800); }
+        .tf-5-7 { background-color: var(--time-5-7); }
+        .tf-7-10 { background-color: var(--time-7-10); }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: var(--space-6);
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-600);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .control-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .control-panel h1 {
+                justify-content: center;
+                margin-bottom: var(--space-2);
+            }
+
+            .control-actions {
+                flex-direction: column;
+            }
+
+            .sector-select {
+                width: 100%;
+            }
+
+            .btn-generate {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .card-wrapper {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .exercise-sheet {
+                padding: var(--space-4);
+            }
+        }
+
+        /* Animation for reveal */
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-main">
+        <div class="container">
+            <div class="nav-content">
+                <a class="nav-brand" href="../index.html">ECONAN</a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a class="nav-link" href="../index.html#overzicht">Overzicht</a></li>
+                    <li><a class="nav-link" href="../sectoren/">Sectoren</a></li>
+                    <li><a class="nav-link" href="../rollen/">Rollen</a></li>
+                    <li><a class="nav-link" href="../strategic-framework/">Framework</a></li>
+                    <li><a class="nav-link" href="../weekplanning/">Planning</a></li>
+                    <li><a class="nav-link active" href="../materiaal/">Materiaal</a></li>
+                    <li><a class="nav-link" href="../assessment/">Assessment</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="exercise-container">
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <h1>Trend Cards Generator</h1>
+            <div class="control-actions">
+                <select id="sectorSelect" class="sector-select">
+                    <option value="" disabled selected>Kies een sector...</option>
+                    <option value="automotive">Automotive</option>
+                    <option value="food">Food & Beverage</option>
+                    <option value="aviation">Luchtvaart</option>
+                    <option value="logistics">Transport & Logistiek</option>
+                    <option value="retail">Retail</option>
+                    <option value="fmcg">FMCG (Consumer Goods)</option>
+                </select>
+                <button onclick="generateTrends()" class="btn-generate">
+                    Genereer Trends
+                </button>
+            </div>
+        </div>
+
+        <!-- Exercise Sheet -->
+        <div class="exercise-sheet">
+            <div class="exercise-header">
+                <h2>Financial Wind Tunneling</h2>
+                <p class="subtitle">ECONAN Week 6 - Scenario Analyse</p>
+                <p class="source-link">
+                    Gebaseerd op <a href="https://solferinoacademy.com/the-strategic-foresight-book/" target="_blank">The Strategic Foresight Book</a> (Solferino Academy)
+                </p>
+            </div>
+
+            <!-- Legend for timeframes -->
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--time-now)"></div>
+                    NU
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--time-1-3)"></div>
+                    1-3 Jaar
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--time-3-5)"></div>
+                    3-5 Jaar
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--time-5-7)"></div>
+                    5-7 Jaar
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--time-7-10)"></div>
+                    7-10 Jaar
+                </div>
+            </div>
+
+            <div class="instructions">
+                <h3>Hoe werkt het?</h3>
+                <p>
+                    1. Selecteer een sector uit de dropdown<br>
+                    2. Klik op "Genereer Trends" om 3 willekeurige toekomsttrends te ontvangen<br>
+                    3. Klik op een kaart om de trend te onthullen<br>
+                    4. Gebruik de trends voor jullie Wind Tunnel Canvas analyse
+                </p>
+            </div>
+
+            <div class="cards-container" id="cardsContainer">
+                <div class="cards-placeholder">Selecteer een sector en klik op "Genereer Trends" om te beginnen...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Time mapping for sorting
+        const timeOrder = {
+            'NU': 0,
+            '1-3 Jaar': 1,
+            '3-5 Jaar': 2,
+            '5-7 Jaar': 3,
+            '7-10 Jaar': 4
+        };
+
+        // Database based on FTSG 2025 Report structure with timeframes
+        const trendsDatabase = {
+            automotive: [
+                {
+                    title: "Software-Defined Vehicle",
+                    timeframe: "NU",
+                    description: "Auto's evolueren naar computers op wielen. Focus verschuift van hardware naar software-updates en OS-ecosystemen.",
+                    impact: "Nieuwe verdienmodellen via abonnementen."
+                },
+                {
+                    title: "AI-Assisted Driving (ADAS)",
+                    timeframe: "NU",
+                    description: "Trucks die autonoom remmen, sturen en afstand houden, waardoor chauffeurs minder vermoeid raken en langer kunnen doorrijden.",
+                    impact: "Verhoogde veiligheid, brandstofbesparing."
+                },
+                {
+                    title: "Driver Wellness Monitoring",
+                    timeframe: "NU",
+                    description: "Sensoren bewaken de chauffeur op vermoeidheid. Stoelen trillen om in slaap vallende chauffeurs wakker te schudden.",
+                    impact: "Preventie van ongevallen, privacy-zorgen."
+                },
+                {
+                    title: "Dark Factories (Hyper-Automation)",
+                    timeframe: "NU",
+                    description: "Fabrieken zoals Zeekr die 24/7 draaien zonder menselijke aanwezigheid (lichten uit), gedreven door robotisering.",
+                    impact: "Enorme productiecapaciteit en lagere arbeidskosten."
+                },
+                {
+                    title: "Legacy Auto Crisis",
+                    timeframe: "NU",
+                    description: "Traditionele Duitse en Europese autofabrikanten verliezen marktaandeel en winstgevendheid, vooral in China en de VS.",
+                    impact: "Herstructurering en verlies van dominantie."
+                },
+                {
+                    title: "Strategic Partnerships for Survival",
+                    timeframe: "NU",
+                    description: "Westerse autofabrikanten gaan samenwerkingen aan met Chinese techbedrijven om achterstand in EV en software in te halen.",
+                    impact: "Versnelde innovatie, afhankelijkheid van externe tech."
+                },
+                {
+                    title: "Tech Sovereignty (Made in China 2025)",
+                    timeframe: "1-3 Jaar",
+                    description: "China's strategie om technologisch onafhankelijk te worden van het Westen voor chips, inputs en supply chains.",
+                    impact: "Minder geopolitieke afhankelijkheid, sterkere export."
+                },
+                {
+                    title: "Export Overcapacity (EV Flood)",
+                    timeframe: "1-3 Jaar",
+                    description: "China produceert meer EV's dan het consumeert, wat leidt tot een wereldwijde vloedgolf aan goedkope, high-tech auto's.",
+                    impact: "Prijzenoorlogen en dreiging van handelstarieven."
+                },
+                {
+                    title: "Bidirectional Charging (V2G)",
+                    timeframe: "1-3 Jaar",
+                    description: "EV's worden mobiele energiecentrales die stroom terugleveren aan huis of grid.",
+                    impact: "Integratie mobiliteit en energiemarkt."
+                },
+                {
+                    title: "South-South EV Trade",
+                    timeframe: "3-5 Jaar",
+                    description: "Exportverschuiving naar 'vriendelijke' markten (Brazilië, Afrika, ZO-Azië) nu westerse markten zich afsluiten.",
+                    impact: "Nieuwe geopolitieke handelsroutes."
+                },
+                {
+                    title: "Immersive In-Car Experience",
+                    timeframe: "3-5 Jaar",
+                    description: "Interieur transformeert in entertainment hub met AR-voorruiten en gaming.",
+                    impact: "Auto-interieur wordt 'derde leefruimte'."
+                },
+                {
+                    title: "Solid State Batteries",
+                    timeframe: "5-7 Jaar",
+                    description: "Batterijen met groter bereik, kortere laadtijden en hogere veiligheid.",
+                    impact: "Doorbraak in actieradius."
+                }
+            ],
+            food: [
+                {
+                    title: "Dynamic Menus & Pricing",
+                    timeframe: "NU",
+                    description: "AI-gestuurde menu's passen prijzen en aanbod realtime aan op basis van data.",
+                    impact: "Maximalisatie marge, minder verspilling."
+                },
+                {
+                    title: "Precision Fermentation",
+                    timeframe: "3-5 Jaar",
+                    description: "Microben produceren specifieke eiwitten voor identieke zuivel- en vleesvervangers.",
+                    impact: "Disruptie traditionele zuivelindustrie."
+                },
+                {
+                    title: "Autonomous Restaurants",
+                    timeframe: "1-3 Jaar",
+                    description: "Geautomatiseerde keukens en robots die maaltijden bereiden en serveren.",
+                    impact: "Oplossing personeelstekorten."
+                },
+                {
+                    title: "Lab-Grown Food",
+                    timeframe: "5-7 Jaar",
+                    description: "Productie van koffie, cacao, vlees en zuivel in bioreactoren zonder landbouw of veeteelt.",
+                    impact: "Radicale verduurzaming van de voedselketen."
+                },
+                {
+                    title: "Edible QR Codes",
+                    timeframe: "7-10 Jaar",
+                    description: "3D-geprinte eetbare codes met informatie over herkomst en voeding.",
+                    impact: "Extreme transparantie."
+                }
+            ],
+            aviation: [
+                {
+                    title: "Unbundling Ancillaries",
+                    timeframe: "NU",
+                    description: "Volledige ontbundeling van tickets: betalen voor alles behalve de stoel (bagage, stoelkeuze, maaltijd).",
+                    impact: "Hogere omzet per passagier, prijsdruk op legacy carriers."
+                },
+                {
+                    title: "AI-Driven Turnaround Management",
+                    timeframe: "NU",
+                    description: "Gebruik van AI (zoals Pathfinder) om vertragingen te voorspellen en buffer in te bouwen in strakke schema's.",
+                    impact: "Voorkomen van domino-effecten bij vertragingen."
+                },
+                {
+                    title: "Integrated Operations Centers",
+                    timeframe: "NU",
+                    description: "Gecentraliseerde hubs met realtime data, CCTV en weermodellen om 300+ turnarounds per dag te managen.",
+                    impact: "Maximalisatie van stiptheid en operationele veerkracht."
+                },
+                {
+                    title: "Precision Ground Logistics",
+                    timeframe: "NU",
+                    description: "Vliegtuigomdraai als F1-pitstop: parallelle processen en strakke timing (25-50 min) voor maximaal asset-gebruik.",
+                    impact: "Hogere efficiëntie en minder grondtijd."
+                },
+                {
+                    title: "Asset-Light Operations",
+                    timeframe: "NU",
+                    description: "Gebruik van één vliegtuigtype en point-to-point vluchten om complexiteit en kosten te minimaliseren.",
+                    impact: "Lagere operationele kosten, minder flexibiliteit."
+                },
+                {
+                    title: "Secondary Airports Strategy",
+                    timeframe: "NU",
+                    description: "Vliegen op goedkopere luchthavens (bv. Gatwick i.p.v. Heathrow) om landingsrechten te drukken.",
+                    impact: "Lagere ticketprijzen, andere passagiersmix."
+                },
+                {
+                    title: "Biometric Boarding",
+                    timeframe: "NU",
+                    description: "Gezichtsherkenning vervangt paspoorten voor naadloze doorstroom.",
+                    impact: "Efficiëntie vs. Privacy."
+                },
+                {
+                    title: "Cargo as Revenue Buffer",
+                    timeframe: "1-3 Jaar",
+                    description: "Inzet van vrachtcapaciteit om inkomsten te stabiliseren tijdens seizoensgebonden passagiersdips.",
+                    impact: "Diversificatie inkomsten, minder volatiele kasstroom."
+                },
+                {
+                    title: "Seasonal Route Shifting",
+                    timeframe: "1-3 Jaar",
+                    description: "Flexibel verplaatsen van capaciteit naar zonbestemmingen in de winter om vraaguitval op te vangen.",
+                    impact: "Hogere bezetting, operationele complexiteit."
+                },
+                {
+                    title: "eVTOLs (Flying Taxis)",
+                    timeframe: "1-3 Jaar",
+                    description: "Elektrische verticale start- en landingsvoertuigen voor korte stadsritten.",
+                    impact: "Nieuwe stedelijke mobiliteit."
+                },
+                {
+                    title: "Sustainable Aviation Fuel",
+                    timeframe: "1-3 Jaar",
+                    description: "Versnelde adoptie van brandstoffen uit afvaloliën of algen.",
+                    impact: "Decarbonisatie luchtvaart."
+                },
+                {
+                    title: "Space Tourism Economy",
+                    timeframe: "5-7 Jaar",
+                    description: "Commerciële ruimtevluchten worden toegankelijker voor nieuwe doelgroepen.",
+                    impact: "Nieuwe luxemarkt."
+                },
+                {
+                    title: "Hydrogen Propulsion",
+                    timeframe: "7-10 Jaar",
+                    description: "Vliegtuigen op waterstof voor emissievrije middellange afstanden.",
+                    impact: "Nieuwe luchthaveninfrastructuur."
+                }
+            ],
+            logistics: [
+                {
+                    title: "Regionalized Fulfillment Networks",
+                    timeframe: "NU",
+                    description: "Decentralisatie van nationale netwerken naar regionale hubs om 'Same-Day' delivery standaard te maken.",
+                    impact: "Kortere reistijden, lagere transportkosten, minder CO2."
+                },
+                {
+                    title: "Generative AI Robotics",
+                    timeframe: "NU",
+                    description: "Robots gebruiken GenAI om onbekende objecten te herkennen en te hanteren zonder voorafgaande training.",
+                    impact: "Flexibele automatisering voor diverse productassortimenten."
+                },
+                {
+                    title: "AI-Driven Supply Chain Optimization",
+                    timeframe: "NU",
+                    description: "AI optimaliseert logistieke netwerken holistisch, vermindert lege kilometers en ondersteunt slimmere beslissingen.",
+                    impact: "Kostenbesparing, verhoogde efficiëntie, minder verspilling."
+                },
+                {
+                    title: "Labor Shortage Automation",
+                    timeframe: "NU",
+                    description: "Automatisering wordt noodzaak doordat jongeren kiezen voor 'gig economy' banen i.p.v. zwaar transportwerk.",
+                    impact: "Versnelde tech-adoptie uit noodzaak."
+                },
+                {
+                    title: "AI-Assisted Driving (ADAS)",
+                    timeframe: "NU",
+                    description: "Trucks die autonoom remmen, sturen en afstand houden, waardoor chauffeurs minder vermoeid raken en langer kunnen doorrijden.",
+                    impact: "Verhoogde veiligheid, brandstofbesparing."
+                },
+                {
+                    title: "Driver Wellness Monitoring",
+                    timeframe: "NU",
+                    description: "Sensoren bewaken de chauffeur op vermoeidheid. Stoelen trillen om in slaap vallende chauffeurs wakker te schudden.",
+                    impact: "Preventie van ongevallen, privacy-zorgen."
+                },
+                {
+                    title: "Digital Twins & Predictive Analytics",
+                    timeframe: "NU",
+                    description: "Digitalisering van havens en logistieke knooppunten om vrachtstromen te voorspellen en proactief te plannen.",
+                    impact: "Betere planning, minder vertragingen, verhoogde doorvoer."
+                },
+                {
+                    title: "Predictive Maintenance",
+                    timeframe: "NU",
+                    description: "AI voorspelt wanneer vrachtwagens onderhoud nodig hebben, minimaliseert stilstand.",
+                    impact: "Hogere inzetbaarheid van de vloot, lagere onderhoudskosten."
+                },
+                {
+                    title: "Data Sharing & Transparency",
+                    timeframe: "NU",
+                    description: "Delen van data tussen ketenpartners voor meer inzicht en efficiëntie.",
+                    impact: "Betere samenwerking, verhoogde klanttevredenheid."
+                },
+                {
+                    title: "Cold Chain Intelligence",
+                    timeframe: "NU",
+                    description: "IoT-sensoren bewaken continu temperatuur en conditie van goederen.",
+                    impact: "Reductie verspilling."
+                },
+                {
+                    title: "Humanoid Robots (Digit)",
+                    timeframe: "1-3 Jaar",
+                    description: "Mensachtige robots werken samen met mensen in magazijnen, kunnen lopen en bukken in bestaande gangpaden.",
+                    impact: "Automatisering van complexe, ergonomisch zware taken."
+                },
+                {
+                    title: "Autonomous Trucking",
+                    timeframe: "1-3 Jaar",
+                    description: "Zelfrijdende vrachtwagens verhogen efficiëntie en veiligheid en vangen chauffeurstekort op.",
+                    impact: "Hogere asset-benutting, verhoogde veiligheid."
+                },
+                {
+                    title: "Robot-as-a-Service",
+                    timeframe: "1-3 Jaar",
+                    description: "Flexibel huren van robots voor piekperiodes in plaats van kopen.",
+                    impact: "CAPEX naar OPEX verschuiving."
+                },
+                {
+                    title: "Smart Ports",
+                    timeframe: "1-3 Jaar",
+                    description: "Digitale tweelingen optimaliseren scheepsbewegingen en onderhoud.",
+                    impact: "Eliminatie handel-bottlenecks."
+                },
+                {
+                    title: "Smart Warehouses",
+                    timeframe: "1-3 Jaar",
+                    description: "Digitale tweelingen optimaliseren magazijnprocessen, voorraadbeheer en robot-mens interacties.",
+                    impact: "Verhoogde doorvoer en minder fouten in fulfillment."
+                },
+                {
+                    title: "Autonomous Drone Swarms",
+                    timeframe: "3-5 Jaar",
+                    description: "Zwermen drones werken samen voor inventarisatie en levering.",
+                    impact: "Schaalbare efficiëntie."
+                },
+                {
+                    title: "Underground Logistics",
+                    timeframe: "7-10 Jaar",
+                    description: "Ondergrondse buizen/tunnels voor autonoom goederentransport.",
+                    impact: "Minder stedelijke congestie."
+                }
+            ],
+            retail: [
+                {
+                    title: "Conversational Shopping (Rufus)",
+                    timeframe: "NU",
+                    description: "GenAI-shoppingassistenten waarmee je kunt praten voor productadvies en vergelijkingen in natuurlijke taal.",
+                    impact: "Intuïtievere zoekervaring, hogere conversie."
+                },
+                {
+                    title: "AI Review Summarization",
+                    timeframe: "NU",
+                    description: "GenAI vat duizenden reviews samen in kernpunten om aankoopbeslissingen voor klanten te versnellen.",
+                    impact: "Snellere besluitvorming, minder keuzestress."
+                },
+                {
+                    title: "Hyper-Personalized Shopping",
+                    timeframe: "NU",
+                    description: "AI biedt unieke ervaringen en prijzen per individuele klant.",
+                    impact: "Einde 'one-size-fits-all'."
+                },
+                {
+                    title: "Nano-Fulfillment Centers",
+                    timeframe: "1-3 Jaar",
+                    description: "Kleine magazijnen in stadscentra voor levering binnen het uur.",
+                    impact: "Strijd om 'instant' delivery."
+                },
+                {
+                    title: "Checkout-Free Stores",
+                    timeframe: "1-3 Jaar",
+                    description: "Sensoren registreren aankopen, afrekenen gebeurt automatisch.",
+                    impact: "Frictieloze ervaring."
+                },
+                {
+                    title: "Circular Retail Models",
+                    timeframe: "3-5 Jaar",
+                    description: "Integratie van reparatie en doorverkoop in het businessmodel.",
+                    impact: "Nieuwe inkomstenstromen."
+                },
+                {
+                    title: "Virtual Try-On",
+                    timeframe: "1-3 Jaar",
+                    description: "AR stelt klanten in staat producten virtueel te proberen.",
+                    impact: "Minder retouren."
+                }
+            ],
+            fmcg: [
+                {
+                    title: "AI-Driven Flavors & Products",
+                    timeframe: "NU",
+                    description: "Drankgiganten gebruiken AI om smaakprofielen te analyseren en nieuwe recepten (bier, frisdrank) te ontwikkelen.",
+                    impact: "Snellere innovatie, datagedreven smaken."
+                },
+                {
+                    title: "Carbon Capture Brewing",
+                    timeframe: "NU",
+                    description: "Brouwerijen vangen CO2 uit fermentatie af om te hergebruiken voor carbonisatie of verkoop.",
+                    impact: "Circulaire productie, lagere uitstoot."
+                },
+                {
+                    title: "Direct-to-Consumer Shift",
+                    timeframe: "NU",
+                    description: "Merken omzeilen supermarkten en bouwen directe relaties op.",
+                    impact: "Eigenaarschap klantdata."
+                },
+                {
+                    title: "Waterless / Printed Beverages",
+                    timeframe: "1-3 Jaar",
+                    description: "Gebruik van ultra-concentraten of 'printing' technologie om watertransport te elimineren (thuis/horeca menging).",
+                    impact: "Enorme reductie in logistieke CO2-uitstoot."
+                },
+                {
+                    title: "Bio-Based Materials",
+                    timeframe: "1-3 Jaar",
+                    description: "Verpakkingen op basis van algen of schimmels.",
+                    impact: "Reductie plasticvervuiling."
+                },
+                {
+                    title: "Synthetic Alcohol (Alcosynth)",
+                    timeframe: "3-5 Jaar",
+                    description: "Ontwikkeling van moleculen die het effect van alcohol nabootsen zonder de toxische bijwerkingen (kater, leverschade).",
+                    impact: "Disruptie van de traditionele alcoholindustrie."
+                },
+                {
+                    title: "Intelligent Packaging",
+                    timeframe: "3-5 Jaar",
+                    description: "Verpakkingen communiceren via NFC over versheid en herkomst.",
+                    impact: "Digitaal communicatiekanaal."
+                },
+                {
+                    title: "Personalized Nutrition",
+                    timeframe: "3-5 Jaar",
+                    description: "Voeding op maat o.b.v. DNA of gezondheidsdata.",
+                    impact: "Massa-personalisatie."
+                }
+            ]
+        };
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Helper to get CSS class for timeframe
+        function getTimeframeClass(tf) {
+            switch (tf) {
+                case 'NU': return 'tf-now';
+                case '1-3 Jaar': return 'tf-1-3';
+                case '3-5 Jaar': return 'tf-3-5';
+                case '5-7 Jaar': return 'tf-5-7';
+                case '7-10 Jaar': return 'tf-7-10';
+                default: return 'tf-now';
+            }
+        }
+
+        function createCard(trend, index) {
+            const tfClass = getTimeframeClass(trend.timeframe);
+            return `
+                <div class="card-wrapper" id="card-${index}" onclick="flipCard(this)">
+                    <div class="card">
+                        <div class="card-face card-front">
+                            <h2>${index + 1}</h2>
+                            <span>Klik om te onthullen</span>
+                        </div>
+                        <div class="card-face card-back">
+                            <div class="timeframe-badge ${tfClass}">${trend.timeframe}</div>
+                            <div class="card-category">Trend ${index + 1}</div>
+                            <div class="card-title">${trend.title}</div>
+                            <div class="card-description">${trend.description}</div>
+                            <div class="card-impact"><strong>Impact:</strong> ${trend.impact}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function flipCard(element) {
+            element.classList.toggle('flipped');
+        }
+
+        function generateTrends() {
+            const sector = document.getElementById('sectorSelect').value;
+            const container = document.getElementById('cardsContainer');
+
+            if (!sector) {
+                alert('Selecteer eerst een sector!');
+                return;
+            }
+
+            const allTrends = trendsDatabase[sector];
+
+            // Logic to force 1 NU card and 2 Future cards
+            const nowTrends = allTrends.filter(t => t.timeframe === 'NU');
+            const futureTrends = allTrends.filter(t => t.timeframe !== 'NU');
+
+            // Pick 1 random 'NOW' trend (fallback to random if none exist)
+            const selectedNow = nowTrends.length > 0
+                ? shuffleArray(nowTrends)[0]
+                : shuffleArray(allTrends)[0];
+
+            // Pick 2 random 'Future' trends (fallback if needed)
+            const remainingTrends = futureTrends.length >= 2
+                ? futureTrends
+                : allTrends.filter(t => t !== selectedNow);
+
+            const selectedFuture = shuffleArray(remainingTrends).slice(0, 2);
+
+            // Combine and sort chronologically
+            let selection = [selectedNow, ...selectedFuture];
+            selection.sort((a, b) => timeOrder[a.timeframe] - timeOrder[b.timeframe]);
+
+            // Clear container
+            container.innerHTML = '';
+
+            // Create cards HTML
+            selection.forEach((trend, index) => {
+                container.innerHTML += createCard(trend, index);
+            });
+
+            // Animate reveal with delay
+            selection.forEach((_, index) => {
+                setTimeout(() => {
+                    const card = document.getElementById(`card-${index}`);
+                    card.classList.add('visible');
+                }, index * 300);
+            });
+        }
+    </script>
+
+    <!-- Navigation JS -->
+    <script src="../js/navigation.js"></script>
+</body>
+</html>
