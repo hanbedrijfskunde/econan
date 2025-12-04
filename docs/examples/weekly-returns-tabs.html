@@ -178,6 +178,7 @@
 
         <!-- Chart Tab -->
         <div id="tab-chart" class="tab-content">
+            <div class="stats-bar" id="stats-returns"></div>
             <div id="returns-chart" style="width:100%; height:500px;"></div>
             <div class="chart-legend" style="margin-top: var(--space-4); padding: var(--space-3); background: var(--color-gray-50); border-radius: var(--radius-md); font-size: var(--font-size-sm);">
                 <p><strong>Toelichting:</strong> Deze grafiek toont de wekelijkse procentuele rendementen van alle drie de indices.
@@ -1100,6 +1101,30 @@
             return { mean, stdDev, min, max, n };
         }
 
+        function calculateCorrelation(x, y) {
+            // Calculate Pearson correlation coefficient between two arrays
+            const n = x.length;
+            if (n !== y.length || n === 0) return 0;
+
+            const meanX = x.reduce((a, b) => a + b, 0) / n;
+            const meanY = y.reduce((a, b) => a + b, 0) / n;
+
+            let numerator = 0;
+            let sumSqX = 0;
+            let sumSqY = 0;
+
+            for (let i = 0; i < n; i++) {
+                const dx = x[i] - meanX;
+                const dy = y[i] - meanY;
+                numerator += dx * dy;
+                sumSqX += dx * dx;
+                sumSqY += dy * dy;
+            }
+
+            const denominator = Math.sqrt(sumSqX * sumSqY);
+            return denominator === 0 ? 0 : numerator / denominator;
+        }
+
         function renderStats(data, elementId) {
             const stats = calcStats(data);
             document.getElementById(elementId).innerHTML = `
@@ -1133,6 +1158,46 @@
                 </tr>`;
             }
             document.getElementById(elementId).innerHTML = html;
+        }
+
+        function renderReturnStatistics() {
+            // Extract returns arrays (filter out null values)
+            const rhmReturns = rhmData.rows.filter(r => r.return !== null).map(r => r.return);
+            const spxReturns = spxData.rows.filter(r => r.return !== null).map(r => r.return);
+            const daxReturns = daxData.rows.filter(r => r.return !== null).map(r => r.return);
+
+            // Calculate standard deviations
+            const rhmStats = calcStats(rhmData);
+            const spxStats = calcStats(spxData);
+            const daxStats = calcStats(daxData);
+
+            // Calculate correlations
+            const corrRhmSpx = calculateCorrelation(rhmReturns, spxReturns);
+            const corrRhmDax = calculateCorrelation(rhmReturns, daxReturns);
+
+            // Render statistics
+            document.getElementById('stats-returns').innerHTML = `
+                <div class="stat-item">
+                    <span class="stat-label">Rheinmetall <span style="text-transform: none;">σ</span></span>
+                    <span class="stat-value">${rhmStats.stdDev.toFixed(2)}%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">S&P 500 <span style="text-transform: none;">σ</span></span>
+                    <span class="stat-value">${spxStats.stdDev.toFixed(2)}%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">DAX <span style="text-transform: none;">σ</span></span>
+                    <span class="stat-value">${daxStats.stdDev.toFixed(2)}%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label"><span style="text-transform: none;">ρ</span> RHM-SPX</span>
+                    <span class="stat-value ${corrRhmSpx > 0.7 ? 'positive' : ''}">${corrRhmSpx.toFixed(3)}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label"><span style="text-transform: none;">ρ</span> RHM-DAX</span>
+                    <span class="stat-value ${corrRhmDax > 0.7 ? 'positive' : ''}">${corrRhmDax.toFixed(3)}</span>
+                </div>
+            `;
         }
 
         function openTab(tabId) {
@@ -1474,13 +1539,13 @@
 
             let r2Interpretation = '';
             if (avgR2 < 0.1) {
-                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% bevestigt dat slechts een klein deel van Rheinmetalls volatiliteit door marktbewegingen wordt verklaard — het risico is grotendeels bedrijfsspecifiek.`;
+                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% betekent dat dit lineaire model slechts een klein deel van de variabiliteit in Rheinmetalls rendementen verklaart.`;
             } else if (avgR2 < 0.3) {
-                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% toont een beperkte correlatie met de markt.`;
+                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% betekent dat dit lineaire model een beperkt deel van de variabiliteit verklaart.`;
             } else if (avgR2 < 0.6) {
-                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% toont een matige correlatie met de markt.`;
+                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% betekent dat dit lineaire model een matig deel van de variabiliteit verklaart.`;
             } else {
-                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% toont een sterke correlatie — Rheinmetall beweegt grotendeels mee met de markt.`;
+                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% betekent dat dit lineaire model een groot deel van de variabiliteit verklaart — Rheinmetall beweegt grotendeels lineair mee met de markt.`;
             }
 
             document.getElementById('regression-interpretation').innerHTML = `
@@ -1507,6 +1572,7 @@
 
         // Render charts after data is ready
         renderChart();
+        renderReturnStatistics();
         renderRegressionPlots();
     </script>
 </body>
