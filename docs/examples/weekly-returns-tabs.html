@@ -1517,7 +1517,7 @@
 
             let betaInterpretation = '';
             if (avgBeta < 0.5) {
-                betaInterpretation = `β ≈ ${avgBeta.toFixed(2)} betekent dat Rheinmetall slechts ~${Math.round(avgBeta * 100)}% meebeweegt met de markt — het aandeel heeft veel <em>idiosyncratisch risico</em> (bedrijfsspecifiek).`;
+                betaInterpretation = `β ≈ ${avgBeta.toFixed(2)} betekent dat Rheinmetall slechts ~${Math.round(avgBeta * 100)}% meebeweegt met de markt.`;
             } else if (avgBeta < 1) {
                 betaInterpretation = `β ≈ ${avgBeta.toFixed(2)} betekent dat Rheinmetall minder volatiel is dan de markt (defensief aandeel).`;
             } else if (avgBeta < 1.5) {
@@ -1528,20 +1528,20 @@
 
             let alphaInterpretation = '';
             if (avgAlpha > 0.1) {
-                alphaInterpretation = `α ≈ ${avgAlpha >= 0 ? '+' : ''}${avgAlpha.toFixed(2)}% per week wijst op significante outperformance t.o.v. de markt.`;
+                alphaInterpretation = `α ≈ ${avgAlpha >= 0 ? '+' : ''}${avgAlpha.toFixed(2)}% per week wijst op outperformance t.o.v. de markt.`;
             } else if (avgAlpha > 0) {
                 alphaInterpretation = `α ≈ ${avgAlpha >= 0 ? '+' : ''}${avgAlpha.toFixed(2)}% per week wijst op lichte outperformance t.o.v. de markt.`;
             } else if (avgAlpha > -0.1) {
                 alphaInterpretation = `α ≈ ${avgAlpha.toFixed(2)}% per week wijst op lichte underperformance t.o.v. de markt.`;
             } else {
-                alphaInterpretation = `α ≈ ${avgAlpha.toFixed(2)}% per week wijst op significante underperformance t.o.v. de markt.`;
+                alphaInterpretation = `α ≈ ${avgAlpha.toFixed(2)}% per week wijst op underperformance t.o.v. de markt.`;
             }
 
             let r2Interpretation = '';
             if (avgR2 < 0.1) {
-                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% betekent dat dit lineaire model slechts een klein deel van de variabiliteit in Rheinmetalls rendementen verklaart.`;
+                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% betekent dat dit lineaire model slechts een klein deel van de variabiliteit in Rheinmetalls rendementen verklaart. Dit kan een indicatie zijn van veel idiosyncratisch risico dat m.b.v. diversificatie kan worden geëlimineerd.`;
             } else if (avgR2 < 0.3) {
-                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% betekent dat dit lineaire model een beperkt deel van de variabiliteit verklaart.`;
+                r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% betekent dat dit lineaire model een beperkt deel van de variabiliteit verklaart. Dit kan een indicatie zijn van idiosyncratisch risico dat m.b.v. diversificatie kan worden geëlimineerd.`;
             } else if (avgR2 < 0.6) {
                 r2Interpretation = `R² ≈ ${(avgR2 * 100).toFixed(1)}% betekent dat dit lineaire model een matig deel van de variabiliteit verklaart.`;
             } else {
