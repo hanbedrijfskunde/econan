@@ -13,6 +13,7 @@
 - [ ] **Opdracht 1 afgerond**: DuPont componenten (ROE, Profit Margin, Asset Turnover, Equity Multiplier) berekend
 - [ ] **Opdracht 2 afgerond of in afrondingsfase**: Beta en risicoprofiel bekend
 - [ ] **Laptop mee**: Excel/Power BI/Python/AI toegang
+- [ ] **Optioneel**: Ontology AI Tutor verkennen (voorbereiding voor verdieping)
 
 ### Voor Docent:
 
@@ -20,6 +21,8 @@
 - [ ] Beamer voor theorie-intro
 - [ ] Timer voor activiteiten
 - [ ] Pulse Check link klaar: `https://hanbedrijfskunde.github.io/retrospective/?workshop=ECONAN%20WK6`
+- [ ] **Ontology AI Tutor link** klaar: `https://businessdatasolutions.github.io/thtx-knowledge-bank/ontology-ai-tutor/`
+- [ ] **Huiswerk Week 7 template** klaar (voor studenten die Ontology niet in klas doen)
 
 ---
 
@@ -32,6 +35,7 @@ Na deze sessie kunnen studenten:
 3. **LR-SGR-1**: De Sustainable Growth Rate (SGR) berekenen en interpreteren
 4. **LR-SCENARIO-1**: Impact van disruptie kwantificeren via stress testing
 5. **LR-INTERVENTION-1**: Strategische interventies ontwerpen om waardevernietiging tegen te gaan
+6. **LR-DLA-1** (optioneel/huiswerk): Het Data-Logic-Action framework toepassen om interventies operationeel uitvoerbaar te maken
 
 ---
 
@@ -149,6 +153,32 @@ Of gebruik de onderstaande lijst als fallback:
 - "Hoe komen jullie aan die schatting van X%?"
 - "Wat als de impact twee keer zo groot is?"
 
+### 🚀 Verdiepingsoptie: Ontology AI Tutor (Optioneel)
+
+**Voor teams die vroeg klaar zijn met Deel 2:**
+
+> "Wacht je op instructie voor Deel 3? Gebruik de tijd voor een **verdiepingsactiviteit** over besluitvorming:
+>
+> **Ontology AI Tutor** - 15 minuten interactieve simulatie
+>
+> 📱 Link: `https://businessdatasolutions.github.io/thtx-knowledge-bank/ontology-ai-tutor/`
+>
+> **Instructies**:
+> 1. Kies **Finance Case 1** (Capital Allocation) OF **Case 5** (Kinetic DuPont)
+> 2. Doorloop de simulatie (kies Data → Logic → Action)
+> 3. Let op het **Data-Logic-Action framework**:
+>    - Data = Welke informatie gebruik je?
+>    - Logic = Welke redenering/modellen pas je toe?
+>    - Action = Naar welke systemen schrijf je terug?
+> 4. Noteer op een kladblaadje: **'Hoe kan ik DLA toepassen op onze CFO interventie (Deel 4)?'**
+>
+> Je krijgt dit **niet opnieuw uitgelegd** - dit is zelfstandige verdieping. Als je het niet in de les doet, is het **huiswerk voor Week 7**."
+
+**Docenttip tijdens rondgang**:
+- Wijs snelle teams actief op de Ontology optie
+- Zeg: "Jullie zijn snel! Probeer de Ontology simulatie - het helpt bij jullie interventie straks."
+- Check na ~5 min of teams de link gevonden hebben
+
 ---
 
 ## 📡 Blok 3: Fase 3 - De Toekomst Radar (20 min)
@@ -239,6 +269,16 @@ Strategische interventie ontwerpen om waarde te herstellen.
 >
 > **Wees concreet!** Niet 'kosten besparen' maar 'personeelsreductie van 10% in backoffice, bespaart €2M, margin +0.5%'"
 
+**💡 Data-Logic-Action Check** (voor teams die Ontology deden):
+
+> "Als je de Ontology simulatie deed: gebruik het **Data-Logic-Action framework** om je interventie sterker te maken:
+>
+> - **Data**: Welke real-time, operationele data heb je nodig? (Niet alleen historische rapporten!)
+> - **Logic**: Welke tools/modellen gebruik je om de interventie te ontwerpen? (Excel scenario's? Python simulatie? AI-ondersteuning?)
+> - **Action**: Naar welke **systemen** schrijf je de interventie terug? (ERP, CRM, WMS, finance planning tool)
+>
+> Noteer dit kort bij Deel 4 op het Canvas."
+
 *(Teams werken 15 minuten)*
 
 ---
@@ -276,6 +316,27 @@ Samenvatten, 2 teams laten pitchen, link naar Opdracht 3.
 > - **AI-augmented:** Laat AI helpen bij het bouwen van de simulatie
 >
 > Het Wind Tunnel Canvas van vandaag is jullie **conceptuele basis** voor Opdracht 3."
+
+### 📚 Huiswerk voor Week 7
+
+> "**Belangrijk**: Als je de **Ontology AI Tutor** nog NIET hebt gedaan in de les, is dit **verplicht huiswerk** voor volgende week.
+>
+> **Waarom?** In Week 7 gaan jullie Opdracht 3 bouwen. De Ontology simulatie leert je hoe je een goede simulatietool ontwerpt (niet alleen een dashboard, maar een actie-tool).
+>
+> **Opdracht (15-20 min thuis)**:
+> 1. Ga naar: `https://businessdatasolutions.github.io/thtx-knowledge-bank/ontology-ai-tutor/`
+> 2. Kies **Finance Case 1** of **Case 5** (past bij Wind Tunnel)
+> 3. Doorloop de simulatie + lees de feedback
+> 4. Vul dit korte reflectieformulier in: [link naar formulier]
+>    - Wat was je Data-keuze en waarom?
+>    - Wat was je Logic-keuze en waarom?
+>    - Wat was je Action-keuze en waarom?
+>    - Hoe ga je DLA toepassen in je Opdracht 3 tool?
+> 5. Maak een screenshot van de voltooiing (bewijs)
+>
+> **Deadline**: Voor aanvang Week 7 sessie
+>
+> Week 7 start met een 5-minuten check-in over jullie Ontology inzichten."
 
 ### Pulse Check
 
@@ -343,6 +404,14 @@ Link: `https://hanbedrijfskunde.github.io/retrospective/?workshop=ECONAN%20WK6`
 **Actie:**
 - Vraag om concreetheid: "Hoeveel euro? Hoeveel FTE? Welke afdeling?"
 - Voorbeeld geven: "Niet 'kosten besparen' maar '10% personeelsreductie in logistiek'"
+
+### Risico 5: Studenten doen Ontology huiswerk niet
+
+**Actie:**
+- Maak reflectieformulier + screenshot **verplicht** voor toegang Week 7
+- Check bij binnenkomst Week 7: "Wie heeft Ontology gedaan? Steek hand op."
+- Als >30% niet gedaan heeft: doe mini-versie (10 min) aan begin Week 7
+- Koppel Ontology completion aan Opdracht 3 beoordeling (0.5 punt bonus voor DLA-toepassing)
 
 ---
 
@@ -430,6 +499,16 @@ ________________________________________________________________________________
 ### Verwacht Effect
 
 ROE herstelt naar: ________ %
+
+### 💡 Operationele Uitvoerbaarheid (Data-Logic-Action) - Optioneel
+
+**Data bronnen**: Welke real-time data is nodig? _____________________________________
+
+**Logic/Tools**: Welke modellen/systemen ondersteunen dit? ___________________________
+
+**Action write-back**: Naar welke systemen schrijf je terug? __________________________
+
+*(Vul dit in als je Ontology AI Tutor hebt gedaan, of als voorbereiding Opdracht 3)*
 
 ---
 
