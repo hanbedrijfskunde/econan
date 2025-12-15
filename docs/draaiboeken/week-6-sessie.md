@@ -41,14 +41,14 @@ Na deze sessie kunnen studenten:
 
 ## ⏱️ Sessie Planning (90 minuten)
 
-| Blok | Tijd | Activiteit | Actieve Tijd Studenten |
-|------|------|------------|------------------------|
-| **1** | 15 min | Fase 1: De Motor Inspecteren (Nulmeting) | 80% |
-| **2** | 25 min | Fase 2: De Storm (DuPont Stress Test) | 90% |
-| **3** | 20 min | Fase 3: De Toekomst Radar (SGR & WACC) | 85% |
-| **4** | 20 min | Fase 4: De Redding (CFO Interventie) | 90% |
-| **5** | 10 min | Wrap-up & Link naar Opdracht 3 | 50% |
-| **Totaal** | **90 min** | | **~80%** |
+| Blok       | Tijd       | Activiteit                               | Actieve Tijd Studenten |
+| ---------- | ---------- | ---------------------------------------- | ---------------------- |
+| **1**      | 15 min     | Fase 1: De Motor Inspecteren (Nulmeting) | 80%                    |
+| **2**      | 25 min     | Fase 2: De Storm (DuPont Stress Test)    | 90%                    |
+| **3**      | 20 min     | Fase 3: De Toekomst Radar (SGR & WACC)   | 85%                    |
+| **4**      | 20 min     | Fase 4: De Redding (CFO Interventie)     | 90%                    |
+| **5**      | 10 min     | Wrap-up & Link naar Opdracht 3           | 50%                    |
+| **Totaal** | **90 min** |                                          | **~80%**               |
 
 ---
 
@@ -89,7 +89,7 @@ $$ROE = \text{Profit Margin} \times \text{Asset Turnover} \times \text{Equity Mu
 
 > "Pak het **Wind Tunnel Canvas** erbij. Vul nu Deel 1 in met de huidige waarden van jullie bedrijf uit Opdracht 1. Dit is jullie **Base Case** - de nulmeting."
 
-*(Teams werken 10 minuten aan Deel 1)*
+_(Teams werken 10 minuten aan Deel 1)_
 
 ---
 
@@ -111,23 +111,24 @@ De impact van een externe trend op de korte termijn (ROE) bepalen via stress tes
 > "Nu komt de storm. Kies één van deze trends die jullie bedrijf het hardst zou raken:"
 
 **🎯 Trend Cards Tool:**
+
 > **Ga naar:** [oefeningen/trend-cards.html](../oefeningen/trend-cards.html)
 >
-> *(URL op bord schrijven: `https://hanbedrijfskunde.github.io/econan/oefeningen/trend-cards.html`)*
+> _(URL op bord schrijven: `https://hanbedrijfskunde.github.io/econan/oefeningen/trend-cards.html`)_
 
 Of gebruik de onderstaande lijst als fallback:
 
 **Trend Cards (op bord of slides):**
 
-| # | Trend | Typische Impact |
-|---|-------|-----------------|
-| 1 | **Stijgende energieprijzen** | COGS stijgt → Margin daalt |
-| 2 | **Supply Chain disruptie** | Voorraden stijgen → Turnover daalt |
-| 3 | **Recessie / Vraaguitval** | Activa renderen niet → Turnover daalt |
-| 4 | **Credit Crunch** | Banken lenen niet → Multiplier moet omlaag |
-| 5 | **AI-disruptie** | Marges onder druk OF efficiency-gains |
-| 6 | **Klimaatregulering** | Compliance-kosten → Margin daalt |
-| 7 | **[Eigen trend]** | Teams mogen ook eigen trend kiezen |
+| #   | Trend                        | Typische Impact                            |
+| --- | ---------------------------- | ------------------------------------------ |
+| 1   | **Stijgende energieprijzen** | COGS stijgt → Margin daalt                 |
+| 2   | **Supply Chain disruptie**   | Voorraden stijgen → Turnover daalt         |
+| 3   | **Recessie / Vraaguitval**   | Activa renderen niet → Turnover daalt      |
+| 4   | **Credit Crunch**            | Banken lenen niet → Multiplier moet omlaag |
+| 5   | **AI-disruptie**             | Marges onder druk OF efficiency-gains      |
+| 6   | **Klimaatregulering**        | Compliance-kosten → Margin daalt           |
+| 7   | **[Eigen trend]**            | Teams mogen ook eigen trend kiezen         |
 
 > "Kies één trend die jullie businessmodel **fundamenteel** bedreigt. Niet een klein ongemak, maar iets dat de kern raakt."
 
@@ -141,15 +142,15 @@ Of gebruik de onderstaande lijst als fallback:
 >
 > **Tips voor het schatten:**
 >
-> - *AI-optie:* Vraag ChatGPT/Claude: *'What was the impact of the 2008 crash on automotive profit margins?'* of *'How did supply chain disruptions in 2021 affect retail asset turnover?'*
-> - *Python-optie:* Draai een Monte Carlo simulatie als je onzekerheid wilt modelleren
-> - *Benchmark-optie:* Kijk naar wat concurrenten overkwam in vergelijkbare situaties"
+> - _AI-optie:_ Vraag ChatGPT/Claude: _'What was the impact of the 2008 crash on automotive profit margins?'_ of _'How did supply chain disruptions in 2021 affect retail asset turnover?'_
+> - _Python-optie:_ Draai een Monte Carlo simulatie als je onzekerheid wilt modelleren
+> - _Benchmark-optie:_ Kijk naar wat concurrenten overkwam in vergelijkbare situaties"
 
-*(Teams werken 20 minuten - docent loopt rond en stelt vragen)*
+_(Teams werken 20 minuten - docent loopt rond en stelt vragen)_
 
 **Coaching vragen tijdens rondgang:**
 
-- "Waarom denken jullie dat juist *deze* variabele geraakt wordt?"
+- "Waarom denken jullie dat juist _deze_ variabele geraakt wordt?"
 - "Hoe komen jullie aan die schatting van X%?"
 - "Wat als de impact twee keer zo groot is?"
 
@@ -164,6 +165,7 @@ Of gebruik de onderstaande lijst als fallback:
 > 📱 Link: `https://businessdatasolutions.github.io/thtx-knowledge-bank/ontology-ai-tutor/`
 >
 > **Instructies**:
+>
 > 1. Kies **Finance Case 1** (Capital Allocation) OF **Case 5** (Kinetic DuPont)
 > 2. Doorloop de simulatie (kies Data → Logic → Action)
 > 3. Let op het **Data-Logic-Action framework**:
@@ -175,6 +177,7 @@ Of gebruik de onderstaande lijst als fallback:
 > Je krijgt dit **niet opnieuw uitgelegd** - dit is zelfstandige verdieping. Als je het niet in de les doet, is het **huiswerk voor Week 7**."
 
 **Docenttip tijdens rondgang**:
+
 - Wijs snelle teams actief op de Ontology optie
 - Zeg: "Jullie zijn snel! Probeer de Ontology simulatie - het helpt bij jullie interventie straks."
 - Check na ~5 min of teams de link gevonden hebben
@@ -199,7 +202,7 @@ De lange termijn impact bepalen: kan het bedrijf nog groeien? Wat doet dit met d
 
 > "Een bedrijf kan op korte termijn een klap opvangen - je hebt reserves, je kunt bezuinigen. Maar wat betekent dit voor de **toekomst**?
 >
-> De **Sustainable Growth Rate (SGR)** vertelt je hoe snel een bedrijf kan groeien *zonder externe financiering*:"
+> De **Sustainable Growth Rate (SGR)** vertelt je hoe snel een bedrijf kan groeien _zonder externe financiering_:"
 
 $$SGR = ROE \times (1 - \text{Dividend Payout Ratio})$$
 
@@ -212,21 +215,23 @@ $$SGR = ROE \times (1 - \text{Dividend Payout Ratio})$$
 > "Vul Deel 3 in:
 >
 > **A. Sustainable Growth Rate:**
+>
 > - Bereken oude en nieuwe SGR
 > - Gebruik 50% dividend payout ratio als je het niet weet
 >
 > **B. Risicoprofiel:**
+>
 > - Wat doet de trend met jullie Beta? (herinner Opdracht 2)
 > - Wat doet dit met de perceptie van banken/investeerders?
 > - Verwacht je dat de WACC (cost of capital) stijgt?"
 
-*(Teams werken 10 minuten)*
+_(Teams werken 10 minuten)_
 
 **Korte bespreking (5 min):**
 
 > "Wie heeft een SGR die onder de 5% uitkomt? Wat betekent dat voor jullie bedrijf?"
 
-*(Laat 2-3 teams kort antwoorden)*
+_(Laat 2-3 teams kort antwoorden)_
 
 ---
 
@@ -251,11 +256,11 @@ Strategische interventie ontwerpen om waarde te herstellen.
 >
 > Voorbeelden:"
 
-| Als de trend raakt... | Overweeg interventie op... | Voorbeeld |
-|-----------------------|---------------------------|-----------|
-| **Margin** (kosten stijgen) | **Turnover** (efficiënter) | Voorraad reduceren, sneller factureren |
-| **Turnover** (vraag daalt) | **Margin** (waardevoller) | Premium positionering, services toevoegen |
-| **Multiplier** (krediet krap) | **Margin** of **Turnover** | Kosten snijden om cash te genereren |
+| Als de trend raakt...         | Overweeg interventie op... | Voorbeeld                                 |
+| ----------------------------- | -------------------------- | ----------------------------------------- |
+| **Margin** (kosten stijgen)   | **Turnover** (efficiënter) | Voorraad reduceren, sneller factureren    |
+| **Turnover** (vraag daalt)    | **Margin** (waardevoller)  | Premium positionering, services toevoegen |
+| **Multiplier** (krediet krap) | **Margin** of **Turnover** | Kosten snijden om cash te genereren       |
 
 > "Het idee: als je marge daalt door externe factoren, kun je misschien compenseren door efficiënter te worden (hogere turnover). Of andersom."
 
@@ -279,7 +284,7 @@ Strategische interventie ontwerpen om waarde te herstellen.
 >
 > Noteer dit kort bij Deel 4 op het Canvas."
 
-*(Teams werken 15 minuten)*
+_(Teams werken 15 minuten)_
 
 ---
 
@@ -300,7 +305,7 @@ Samenvatten, 2 teams laten pitchen, link naar Opdracht 3.
 >
 > Structuur: Welke trend? → Welke impact? → Welke interventie?"
 
-*(Laat 2 teams pitchen)*
+_(Laat 2 teams pitchen)_
 
 ### Link naar Opdracht 3
 
@@ -324,6 +329,7 @@ Samenvatten, 2 teams laten pitchen, link naar Opdracht 3.
 > **Waarom?** In Week 7 gaan jullie Opdracht 3 bouwen. De Ontology simulatie leert je hoe je een goede simulatietool ontwerpt (niet alleen een dashboard, maar een actie-tool).
 >
 > **Opdracht (15-20 min thuis)**:
+>
 > 1. Ga naar: `https://businessdatasolutions.github.io/thtx-knowledge-bank/ontology-ai-tutor/`
 > 2. Kies **Finance Case 1** of **Case 5** (past bij Wind Tunnel)
 > 3. Doorloop de simulatie + lees de feedback
@@ -382,6 +388,7 @@ Link: `https://hanbedrijfskunde.github.io/retrospective/?workshop=ECONAN%20WK6`
 ### Risico 1: Teams hebben Opdracht 1 data niet paraat
 
 **Actie:**
+
 - Laat teams snel opzoeken in hun Opdracht 1 document
 - Bied fallback: "Gebruik sector-gemiddelden als noodoplossing"
 - Benadruk: dit toont waarom je je eigen werk moet kennen
@@ -389,6 +396,7 @@ Link: `https://hanbedrijfskunde.github.io/retrospective/?workshop=ECONAN%20WK6`
 ### Risico 2: Schattingen zijn willekeurig ("we gokken 50%")
 
 **Actie:**
+
 - Vraag naar onderbouwing: "Waar baseer je dat op?"
 - Verwijs naar AI: "Vraag ChatGPT naar historische precedenten"
 - Accepteer onzekerheid: "Maak dan een range: 30-70%"
@@ -396,18 +404,21 @@ Link: `https://hanbedrijfskunde.github.io/retrospective/?workshop=ECONAN%20WK6`
 ### Risico 3: Teams kiezen makkelijke trends
 
 **Actie:**
+
 - Challenge: "Is dit echt de grootste bedreiging voor jullie bedrijf?"
 - Bied alternatief: "Wat als ik zeg dat [X] gebeurt?"
 
 ### Risico 4: Interventies zijn vaag
 
 **Actie:**
+
 - Vraag om concreetheid: "Hoeveel euro? Hoeveel FTE? Welke afdeling?"
 - Voorbeeld geven: "Niet 'kosten besparen' maar '10% personeelsreductie in logistiek'"
 
 ### Risico 5: Studenten doen Ontology huiswerk niet
 
 **Actie:**
+
 - Maak reflectieformulier + screenshot **verplicht** voor toegang Week 7
 - Check bij binnenkomst Week 7: "Wie heeft Ontology gedaan? Steek hand op."
 - Als >30% niet gedaan heeft: doe mini-versie (10 min) aan begin Week 7
@@ -423,26 +434,26 @@ Link: `https://hanbedrijfskunde.github.io/retrospective/?workshop=ECONAN%20WK6`
 
 # FINANCIAL WIND TUNNEL CANVAS
 
-**Team:** _________________________________ **Bedrijf:** _________________________________
+**Team:** ****************\_**************** **Bedrijf:** ****************\_****************
 
 ---
 
 ## DEEL 1: DE NULMETING (Base Case)
 
-*Hoe draait de motor vandaag? (Gebruik cijfers uit Opdracht 1)*
+_Hoe draait de motor vandaag? (Gebruik cijfers uit Opdracht 1)_
 
-| DuPont Component | Formule | Huidige Waarde |
-|------------------|---------|----------------|
-| **1. Profit Margin** | Net Income / Sales | __________ % |
-| **2. Asset Turnover** | Sales / Total Assets | __________ × |
-| **3. Equity Multiplier** | Total Assets / Total Equity | __________ × |
-| **= ROE** | 1 × 2 × 3 | __________ % |
+| DuPont Component         | Formule                     | Huidige Waarde |
+| ------------------------ | --------------------------- | -------------- |
+| **1. Profit Margin**     | Net Income / Sales          | ****\_\_**** % |
+| **2. Asset Turnover**    | Sales / Total Assets        | ****\_\_**** × |
+| **3. Equity Multiplier** | Total Assets / Total Equity | ****\_\_**** × |
+| **= ROE**                | 1 × 2 × 3                   | ****\_\_**** % |
 
 ---
 
 ## DEEL 2: DE STORM (Short Term Stress Test)
 
-**Gekozen Trend:** ________________________________________________________________
+**Gekozen Trend:** ******************************\_\_\_\_******************************
 
 ### Welke DuPont-variabele wordt geraakt?
 
@@ -452,11 +463,11 @@ Link: `https://hanbedrijfskunde.github.io/retrospective/?workshop=ECONAN%20WK6`
 
 ### Impact Schatting
 
-De variabele verandert van ________ naar ________.
+De variabele verandert van **\_\_\_\_** naar **\_\_\_\_**.
 
-**Bron/Onderbouwing:** _____________________________________________________________
+**Bron/Onderbouwing:** ******************************\_******************************
 
-**NIEUWE ROE:** ________ %
+**NIEUWE ROE:** **\_\_\_\_** %
 
 ---
 
@@ -466,11 +477,11 @@ De variabele verandert van ________ naar ________.
 
 **Formule:** SGR = ROE × (1 - Dividend Payout Ratio)
 
-*Gebruik 50% dividend payout als onbekend*
+_Gebruik 50% dividend payout als onbekend_
 
-| | Oud | Nieuw |
-|---|-----|-------|
-| **SGR** | ________ % | ________ % |
+|         | Oud            | Nieuw          |
+| ------- | -------------- | -------------- |
+| **SGR** | **\_\_\_\_** % | **\_\_\_\_** % |
 
 **Conclusie:** Kunnen we nog groeien met de markt? ☐ JA / ☐ NEE
 
@@ -478,7 +489,7 @@ De variabele verandert van ________ naar ________.
 
 Verwachte impact op WACC: ☐ Gelijk / ☐ Stijgt licht / ☐ Stijgt sterk
 
-**Conclusie bedrijfswaarde:** _______________________________________________________
+**Conclusie bedrijfswaarde:** **************************\_\_\_**************************
 
 ---
 
@@ -492,23 +503,23 @@ Verwachte impact op WACC: ☐ Gelijk / ☐ Stijgt licht / ☐ Stijgt sterk
 
 ### Concrete Maatregel
 
-_________________________________________________________________________________
+---
 
-_________________________________________________________________________________
+---
 
 ### Verwacht Effect
 
-ROE herstelt naar: ________ %
+ROE herstelt naar: **\_\_\_\_** %
 
 ### 💡 Operationele Uitvoerbaarheid (Data-Logic-Action) - Optioneel
 
-**Data bronnen**: Welke real-time data is nodig? _____________________________________
+**Data bronnen**: Welke real-time data is nodig? ******************\_******************
 
-**Logic/Tools**: Welke modellen/systemen ondersteunen dit? ___________________________
+**Logic/Tools**: Welke modellen/systemen ondersteunen dit? ************\_\_\_************
 
-**Action write-back**: Naar welke systemen schrijf je terug? __________________________
+**Action write-back**: Naar welke systemen schrijf je terug? ************\_\_************
 
-*(Vul dit in als je Ontology AI Tutor hebt gedaan, of als voorbereiding Opdracht 3)*
+_(Vul dit in als je Ontology AI Tutor hebt gedaan, of als voorbereiding Opdracht 3)_
 
 ---
 
