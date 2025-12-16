@@ -66,6 +66,107 @@
                 padding-left: var(--space-4);
             }
         }
+
+        /* Print styles for PDF export */
+        @media print {
+            /* Hide UI elements */
+            .nav-main,
+            .footer,
+            button,
+            .button {
+                display: none !important;
+            }
+
+            /* Page setup */
+            @page {
+                size: A4 landscape;
+                margin: 1.5cm;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            /* Optimize layout */
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .section {
+                padding: 10px 0;
+            }
+
+            /* Prevent awkward breaks */
+            .card {
+                page-break-inside: avoid;
+                margin-bottom: 15px;
+            }
+
+            table {
+                page-break-inside: auto;
+            }
+
+            tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+
+            thead {
+                display: table-header-group;
+            }
+
+            /* Adjust sizing for print */
+            .section-title {
+                font-size: 20pt;
+                margin-bottom: 10px;
+            }
+
+            .section-subtitle {
+                font-size: 12pt;
+                margin-bottom: 15px;
+            }
+
+            .criteria-table {
+                font-size: 9pt;
+            }
+
+            .criteria-table th {
+                font-size: 10pt;
+                padding: 8px;
+            }
+
+            .criteria-table td {
+                padding: 8px;
+            }
+
+            .criteria-table ul {
+                margin: 0;
+                padding-left: 15px;
+            }
+
+            .criteria-table li {
+                margin-bottom: 4px;
+            }
+
+            /* Preserve colors */
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            /* Card styling for print */
+            .card {
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+
+            /* Grid layout adjustments */
+            .grid {
+                gap: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -221,6 +322,16 @@
                         </p>
                     </div>
                 </div>
+            </div>
+
+            <!-- PDF Download Section -->
+            <div style="text-align: center; margin: var(--space-6) 0;">
+                <button onclick="window.print()" class="button button-primary" style="display: inline-flex; align-items: center; gap: var(--space-2); cursor: pointer;">
+                    📥 Download als PDF
+                </button>
+                <p style="margin-top: var(--space-2); font-size: var(--font-size-sm); color: var(--color-gray-600);">
+                    <em>Selecteer "Opslaan als PDF" in het dialoogvenster om de matrix als PDF op te slaan</em>
+                </p>
             </div>
 
             <div class="table-responsive">
