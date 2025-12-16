@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRISP-DM Beoordelingsmatrix | ECONAN</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/econan.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Custom styles for wide table -->
+    <style>
+        /* Responsive table wrapper for horizontal scrolling on mobile */
+        .table-responsive {
+            overflow-x: auto;
+            margin: var(--space-6) 0;
+        }
+
+        /* Column width control */
+        .criteria-table th:first-child {
+            width: 30%;
+            min-width: 200px;
+        }
+
+        .criteria-table th:not(:first-child) {
+            width: 23.33%;
+        }
+
+        /* Criteria rows styling */
+        .criteria-table td {
+            vertical-align: top;
+            text-align: left;
+        }
+
+        .criteria-table td ul {
+            margin: 0;
+            padding-left: var(--space-5);
+            list-style-type: disc;
+        }
+
+        .criteria-table td li {
+            margin-bottom: var(--space-2);
+        }
+
+        /* Phase headers (A, B, C, D) in first column */
+        .criteria-table .phase-header {
+            font-weight: var(--font-weight-bold);
+            background-color: var(--color-primary-50);
+            color: var(--color-primary-700);
+        }
+
+        /* Mobile: Stack table more compactly */
+        @media (max-width: 768px) {
+            .criteria-table {
+                font-size: var(--font-size-sm);
+            }
+            .criteria-table td ul {
+                padding-left: var(--space-4);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-main">
+        <div class="container">
+            <div class="nav-content">
+                <a class="nav-brand" href="../index.html">ECONAN</a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a class="nav-link" href="../index.html#overzicht">Overzicht</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sectoren/">Sectoren</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../rollen/">Rollen</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../strategic-framework/">Strategisch Framework</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../weekplanning/">Planning</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../materiaal/">Materiaal</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="./">Assessment</a></li>
+                    <li class="nav-item" id="instructors-nav-item" style="display: none;"><a class="nav-link" href="../instructors/">Instructors</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">CRISP-DM Beoordelingsmatrix</h1>
+                    <p class="hero-subtitle">Minimale criteria "Toepassen" (5.5) per fase en opdracht</p>
+                    <p class="hero-description">
+                        Overzicht van de basisvereisten voor elke CRISP-DM fase binnen de drie opdrachten.
+                        Dit zijn de minimumcriteria om een voldoende te behalen.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Section with Warning Boxes -->
+    <section class="section">
+        <div class="container">
+            <!-- Knock-out Criteria Warning -->
+            <div style="background-color: var(--color-warning-50); border-left: 4px solid var(--color-warning-500); padding: var(--space-4); border-radius: var(--radius-md); margin-bottom: var(--space-6);">
+                <h3 style="margin: 0 0 var(--space-2) 0; font-weight: var(--font-weight-bold); color: var(--color-warning-700); display: flex; align-items: center; gap: var(--space-2);">
+                    ⚠️ Knock-out Criterium
+                </h3>
+                <p style="margin: 0; color: var(--color-gray-700); line-height: var(--line-height-relaxed);">
+                    Bij beoordeling van elke opdracht moet op <strong>alle vier de beoordelingscriteria minimaal een 3 gescoord</strong> worden.
+                    <strong>Compenseren kan niet.</strong> Is er op één van de criteria een 0 gescoord, dan wordt het eindcijfer een onvoldoende.
+                </p>
+            </div>
+
+            <!-- Assessment Structure Info -->
+            <div class="grid grid-3" style="margin-bottom: var(--space-8);">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 style="margin: 0 0 var(--space-2) 0; color: var(--color-primary-700); font-size: var(--font-size-xl);">📊 Weging</h3>
+                        <ul style="margin: 0; padding-left: var(--space-5); line-height: var(--line-height-relaxed);">
+                            <li>Opdracht 1: <strong>30%</strong></li>
+                            <li>Opdracht 2: <strong>30%</strong></li>
+                            <li>Opdracht 3: <strong>40%</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h3 style="margin: 0 0 var(--space-2) 0; color: var(--color-primary-700); font-size: var(--font-size-xl);">🎯 Criteria</h3>
+                        <p style="margin: 0; line-height: var(--line-height-relaxed);">
+                            4 CRISP-DM fases per opdracht:<br>
+                            A, B, C, D<br>
+                            <strong>12 criteria totaal</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h3 style="margin: 0 0 var(--space-2) 0; color: var(--color-primary-700); font-size: var(--font-size-xl);">✅ Minimum</h3>
+                        <p style="margin: 0; line-height: var(--line-height-relaxed);">
+                            Niveau "Toepassen" (5.5)<br>
+                            op alle 4 criteria<br>
+                            <strong>Geen compensatie</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table Section -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Beoordelingscriteria per CRISP-DM Fase</h2>
+            <p class="section-subtitle">
+                De onderstaande tabel toont de criteria voor niveau "Toepassen" (5.5) - het minimumniveau voor een voldoende.
+            </p>
+
+            <div class="table-responsive">
+                <table class="table criteria-table">
+                    <thead>
+                        <tr>
+                            <th>CRISP-DM Fase</th>
+                            <th>Opdracht 1 (30%)<br><span style="font-weight: var(--font-weight-normal); font-size: var(--font-size-sm);">KPI Dashboard</span></th>
+                            <th>Opdracht 2 (30%)<br><span style="font-weight: var(--font-weight-normal); font-size: var(--font-size-sm);">Regressieanalyse</span></th>
+                            <th>Opdracht 3 (40%)<br><span style="font-weight: var(--font-weight-normal); font-size: var(--font-size-sm);">Scenarioanalyse</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Row A: Business & Data Understanding -->
+                        <tr>
+                            <td class="phase-header"><strong>A. Business & Data Understanding</strong></td>
+                            <td>
+                                <ul>
+                                    <li>Je vertaalt de opdracht in voldoende mate naar een datavraagstuk binnen de gekozen rol</li>
+                                    <li>De kwaliteit van gekozen kentallen is voldoende</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Je vertaalt de hoofdvraag correct naar een datavraagstuk</li>
+                                    <li>Je verzamelt deze data</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>De vertaling van het kental naar variabelen en factoren is voldoende</li>
+                                    <li>Je vertaalt de factoren in voldoende mate naar een datavraagstuk ten behoeve van de scenarioanalyse</li>
+                                </ul>
+                            </td>
+                        </tr>
+
+                        <!-- Row B: Data Preparation -->
+                        <tr>
+                            <td class="phase-header"><strong>B. Data Preparation</strong></td>
+                            <td>
+                                <ul>
+                                    <li>Je leest data uit verschillende bronnen in</li>
+                                    <li>Je maakt deze correct gereed voor de volgende fase</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Je leest data uit verschillende bronnen in</li>
+                                    <li>Je maakt deze correct gereed voor de volgende fase</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Je leest data uit verschillende bronnen in</li>
+                                    <li>Je maakt deze correct gereed voor de volgende fase</li>
+                                </ul>
+                            </td>
+                        </tr>
+
+                        <!-- Row C: Modeling -->
+                        <tr>
+                            <td class="phase-header"><strong>C. Modeling</strong></td>
+                            <td>
+                                <ul>
+                                    <li>Je hebt voldoende benoemd hoe tot het model (formules en visualisatie) is gekomen</li>
+                                    <li>Je benoemt welke keuzes hierin zijn gemaakt in relatie tot de opdracht, businesscontext en gekozen rol</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Je benoemt welke keuzes in het tot stand komen van het regressiemodel zijn gemaakt</li>
+                                    <li>Je interpreteert het regressiemodel voldoende in de context van de businessvraag</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Je hebt voldoende benoemd hoe tot het model (formules en visualisatie) is gekomen</li>
+                                    <li>Je benoemt welke keuzes hierin zijn gemaakt in relatie tot de vereiste scenarioanalyse</li>
+                                </ul>
+                            </td>
+                        </tr>
+
+                        <!-- Row D: Deploy & Evaluate -->
+                        <tr>
+                            <td class="phase-header"><strong>D. Deploy & Evaluate</strong></td>
+                            <td>
+                                <ul>
+                                    <li>Je geeft een inhoudelijke uiteenzetting van de analyseresultaten</li>
+                                    <li>Je bespreekt in voldoende mate de inhoudelijke betekenis van de analyseresultaten</li>
+                                    <li>Je evalueert in voldoende mate</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Je geeft een inhoudelijke uiteenzetting van de analyseresultaten</li>
+                                    <li>Je bespreekt in voldoende mate de inhoudelijke betekenis van de analyseresultaten</li>
+                                    <li>Je evalueert in voldoende mate</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Je geeft een inhoudelijke uiteenzetting van de analyseresultaten</li>
+                                    <li>Je bespreekt in voldoende mate de inhoudelijke betekenis van de analyseresultaten</li>
+                                    <li>Je evalueert in voldoende mate</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legend Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Beoordelingsniveaus</h2>
+            <p class="section-subtitle">
+                Er zijn vijf beoordelingsniveaus. De tabel hierboven toont alleen niveau "Toepassen" (5.5).
+            </p>
+
+            <div class="grid grid-2" style="margin-bottom: var(--space-8);">
+                <div class="card">
+                    <div class="card-header" style="background-color: var(--color-error-50);">
+                        <h3 style="margin: 0; color: var(--color-error-700);">0.0 - Ontbreekt</h3>
+                    </div>
+                    <div class="card-body">
+                        <p style="margin: 0;">
+                            Het vereiste onderdeel ontbreekt volledig. Dit leidt automatisch tot een onvoldoende voor de hele opdracht.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background-color: var(--color-warning-50);">
+                        <h3 style="margin: 0; color: var(--color-warning-700);">4.0 - Begrijpen</h3>
+                    </div>
+                    <div class="card-body">
+                        <p style="margin: 0;">
+                            Je begrijpt de concepten, maar de uitvoering is onvoldoende of de kwaliteit sluit niet aan bij de vereisten.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card" style="border: 3px solid var(--color-success-500);">
+                    <div class="card-header" style="background-color: var(--color-success-50);">
+                        <h3 style="margin: 0; color: var(--color-success-700);">5.5 - Toepassen ✅ MINIMUM</h3>
+                    </div>
+                    <div class="card-body">
+                        <p style="margin: 0;">
+                            <strong>Dit is het minimumniveau voor een voldoende.</strong> Je past de concepten correct toe en voldoet aan de basisvereisten.
+                            Alle criteria in de tabel hierboven zijn op dit niveau.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background-color: var(--color-info-50);">
+                        <h3 style="margin: 0; color: var(--color-info-700);">8.0 - Analyseren</h3>
+                    </div>
+                    <div class="card-body">
+                        <p style="margin: 0;">
+                            Je gaat verder dan toepassen: je analyseert diepgaand, legt verbanden met de businessvraag en benoemt keuzes op overtuigende wijze.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background-color: var(--color-primary-50);">
+                        <h3 style="margin: 0; color: var(--color-primary-700);">10.0 - Evalueren / Creëren</h3>
+                    </div>
+                    <div class="card-body">
+                        <p style="margin: 0;">
+                            Je voldoet aan alle criteria van "Analyseren" én doet gefundeerde aanbevelingen voor verbeteringen of vervolgonderzoek.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Box -->
+            <div style="background-color: var(--color-info-50); border-left: 4px solid var(--color-info-500); padding: var(--space-4); border-radius: var(--radius-md);">
+                <h3 style="margin: 0 0 var(--space-2) 0; font-weight: var(--font-weight-bold); color: var(--color-info-700);">
+                    💡 Let op: Cumulatieve criteria
+                </h3>
+                <p style="margin: 0; color: var(--color-gray-700); line-height: var(--line-height-relaxed);">
+                    De vereisten voor hogere niveaus (Analyseren, Evalueren/Creëren) bestaan uit de criteria van lagere niveaus
+                    <strong>plus</strong> aanvullende eisen. Bijvoorbeeld: voor een 8.0 moet je eerst voldoen aan alle criteria van 5.5,
+                    en daarnaast aan de extra criteria voor 8.0.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Resources Section -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Meer Informatie</h2>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">📄 Volledige Beoordelingsformulier</h3>
+                        <p class="card-text">
+                            Voor alle niveaus (Ontbreekt, Begrijpen, Toepassen, Analyseren, Evalueren/Creëren) en gedetailleerde criteria,
+                            zie de volledige assessment pagina.
+                        </p>
+                        <a href="./index.html" class="button button-primary">Bekijk Assessment Pagina</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">🎯 Opdrachten</h3>
+                        <p class="card-text">
+                            Bekijk de specifieke opdrachten en deadlines in de weekplanning.
+                        </p>
+                        <a href="../weekplanning/" class="button button-secondary">Bekijk Planning</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">ECONAN - Economische Analyse | HAN Bedrijfskunde | C-Cluster</p>
+                <p class="footer-tagline">Purpose • Autonomy • Mastery</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation Toggle Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
