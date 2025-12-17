@@ -1479,6 +1479,7 @@
             generate() {
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF('p', 'mm', 'a4');
+                doc.setFont('helvetica'); // Explicitly set font for consistency
 
                 // Page dimensions
                 const pageWidth = 210;
@@ -1502,19 +1503,19 @@
 
                 // Title
                 doc.setFontSize(16);
-                doc.setFont(undefined, 'bold');
+                doc.setFont('helvetica', 'bold');
                 doc.setTextColor(15, 76, 129);
                 doc.text('CRISP-DM Beoordelingsformulier', margin, yPos);
 
                 yPos += 6;
                 doc.setFontSize(10);
-                doc.setFont(undefined, 'normal');
+                doc.setFont('helvetica', 'normal');
                 doc.setTextColor(100);
                 doc.text('Economische Data Analyse - ECONAN 2024/2025', margin, yPos);
 
                 yPos += 6;
                 doc.setFontSize(9);
-                doc.setFont(undefined, 'bold');
+                doc.setFont('helvetica', 'bold');
                 doc.setTextColor(200, 100, 0);
                 doc.text('⚠ PRO-FORMA BEOORDELING - UITSLUITEND ALS FEEDBACKINSTRUMENT', margin, yPos);
 
@@ -1587,18 +1588,18 @@
             renderScores(doc, x, y, width) {
                 const meta = State.data.meta;
                 doc.setFontSize(10);
-                doc.setFont(undefined, 'normal');
+                doc.setFont('helvetica', 'normal');
                 doc.setTextColor(0);
 
                 if (meta.assignmentMode === 'single') {
                     const assignment = `assignment${meta.selectedAssignment}`;
                     const assignmentData = CRITERIA_DATA[assignment];
 
-                    doc.setFont(undefined, 'bold');
+                    doc.setFont('helvetica', 'bold');
                     doc.text(assignmentData.name, x, y);
                     y += 6;
 
-                    doc.setFont(undefined, 'normal');
+                    doc.setFont('helvetica', 'normal');
                     ['A', 'B', 'C', 'D'].forEach(crit => {
                         const criteriaInfo = assignmentData.criteria[crit];
                         const scoreData = State.getScore(assignment, crit);
@@ -1611,7 +1612,7 @@
                         if (scoreData?.feedback) {
                             doc.setFontSize(9);
                             doc.setTextColor(100);
-                            const feedbackLines = doc.splitTextToSize(`→ ${scoreData.feedback}`, width - 10);
+                            const feedbackLines = doc.splitTextToSize(scoreData.feedback, width - 20);
                             doc.text(feedbackLines, x + 7, y);
                             y += feedbackLines.length * 5;
                             doc.setFontSize(10);
@@ -1622,11 +1623,11 @@
                     ['assignment1', 'assignment2', 'assignment3'].forEach(assg => {
                         const assignmentData = CRITERIA_DATA[assg];
 
-                        doc.setFont(undefined, 'bold');
+                        doc.setFont('helvetica', 'bold');
                         doc.text(assignmentData.name, x, y);
                         y += 6;
 
-                        doc.setFont(undefined, 'normal');
+                        doc.setFont('helvetica', 'normal');
                         ['A', 'B', 'C', 'D'].forEach(crit => {
                             const criteriaInfo = assignmentData.criteria[crit];
                             const scoreData = State.getScore(assg, crit);
@@ -1639,7 +1640,7 @@
                             if (scoreData?.feedback) {
                                 doc.setFontSize(9);
                                 doc.setTextColor(100);
-                                const feedbackLines = doc.splitTextToSize(`→ ${scoreData.feedback}`, width - 10);
+                                const feedbackLines = doc.splitTextToSize(scoreData.feedback, width - 20);
                                 doc.text(feedbackLines, x + 7, y);
                                 y += feedbackLines.length * 5;
                                 doc.setFontSize(10);
