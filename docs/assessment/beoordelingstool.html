@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRISP-DM Beoordelingstool | ECONAN</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/econan.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        /* Screen management */
+        .screen { display: none; }
+        .screen.active { display: block; }
+
+        /* Assessment header (sticky) */
+        .assessment-header {
+            position: sticky;
+            top: 0;
+            z-index: var(--z-40);
+            background: white;
+            border-bottom: 2px solid var(--color-primary-500);
+            box-shadow: var(--shadow-md);
+            padding: var(--space-4) 0;
+        }
+
+        .assessment-header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+        }
+
+        /* Progress section */
+        .progress-section {
+            background: var(--color-gray-50);
+            padding: var(--space-4) 0;
+        }
+
+        /* Matrix table */
+        .matrix-container {
+            overflow-x: auto;
+            margin: var(--space-6) 0;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: var(--shadow-base);
+        }
+
+        .matrix-table th {
+            background: var(--color-primary-600);
+            color: white;
+            padding: var(--space-4);
+            text-align: left;
+            font-weight: var(--font-weight-semibold);
+            border: 1px solid var(--color-primary-700);
+        }
+
+        .matrix-table th:first-child {
+            width: 20%;
+            min-width: 150px;
+        }
+
+        .matrix-table td {
+            padding: var(--space-4);
+            border: 1px solid var(--color-gray-300);
+            vertical-align: top;
+            transition: all var(--duration-fast);
+        }
+
+        .matrix-table td.criterion-label {
+            background: var(--color-primary-50);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-primary-700);
+        }
+
+        /* Clickable cell states */
+        .matrix-cell {
+            cursor: pointer;
+            min-height: 80px;
+            position: relative;
+        }
+
+        .matrix-cell:hover:not(.disabled) {
+            background: var(--color-primary-50);
+            border-color: var(--color-primary-500);
+            box-shadow: inset 0 0 0 2px var(--color-primary-500);
+        }
+
+        .matrix-cell.disabled {
+            background: repeating-linear-gradient(
+                45deg,
+                var(--color-gray-200),
+                var(--color-gray-200) 10px,
+                var(--color-gray-300) 10px,
+                var(--color-gray-300) 20px
+            );
+            cursor: not-allowed;
+            color: var(--color-gray-500);
+        }
+
+        /* Score display */
+        .cell-score {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-2);
+        }
+
+        .cell-empty {
+            color: var(--color-gray-400);
+            font-size: var(--font-size-3xl);
+        }
+
+        .cell-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-600);
+        }
+
+        /* Score color coding */
+        .score-0 { background-color: #fee2e2; color: #991b1b; }
+        .score-4 { background-color: #fed7aa; color: #9a3412; }
+        .score-5-5 { background-color: #d1fae5; color: #065f46; }
+        .score-8 { background-color: #dbeafe; color: #1e40af; }
+        .score-10 { background-color: #e9d5ff; color: #6b21a8; }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: var(--z-modal);
+            justify-content: center;
+            align-items: center;
+            padding: var(--space-4);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-2xl);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .modal-header {
+            background: var(--color-primary-50);
+            padding: var(--space-6);
+            border-bottom: 2px solid var(--color-primary-200);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            background: none;
+            border: none;
+            font-size: var(--font-size-2xl);
+            cursor: pointer;
+            color: var(--color-gray-600);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-full);
+            transition: all var(--duration-fast);
+        }
+
+        .modal-close:hover {
+            background: var(--color-gray-200);
+            color: var(--color-gray-900);
+        }
+
+        .modal-body {
+            padding: var(--space-6);
+        }
+
+        .modal-footer {
+            background: var(--color-gray-50);
+            padding: var(--space-6);
+            border-top: 1px solid var(--color-gray-200);
+            display: flex;
+            gap: var(--space-4);
+            justify-content: flex-end;
+        }
+
+        /* Score cards */
+        .score-cards {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            margin: var(--space-6) 0;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .score-card {
+            background: white;
+            border: 2px solid var(--color-gray-300);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            cursor: pointer;
+            transition: all var(--duration-fast);
+            display: flex;
+            gap: var(--space-4);
+            align-items: flex-start;
+        }
+
+        .score-card:hover {
+            border-color: var(--color-primary-500);
+            box-shadow: var(--shadow-md);
+        }
+
+        .score-card.selected {
+            border-color: var(--color-primary-600);
+            background: var(--color-primary-50);
+            box-shadow: 0 0 0 3px var(--color-primary-100);
+        }
+
+        .score-card-header {
+            flex-shrink: 0;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .score-card-value {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary-700);
+            margin-bottom: var(--space-1);
+        }
+
+        .score-card-emoji {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--space-2);
+        }
+
+        .score-card-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-600);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .score-card-body {
+            flex: 1;
+            text-align: left;
+        }
+
+        .score-card-description {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-700);
+            line-height: 1.5;
+        }
+
+        .score-card-description ul {
+            margin: 0;
+            padding-left: var(--space-5);
+        }
+
+        .score-card-description li {
+            margin-bottom: var(--space-2);
+        }
+
+        .score-card-description li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Assessment footer (sticky) */
+        .assessment-footer {
+            position: sticky;
+            bottom: 0;
+            z-index: var(--z-40);
+            background: white;
+            border-top: 2px solid var(--color-gray-300);
+            box-shadow: 0 -4px 8px rgba(0,0,0,0.1);
+            padding: var(--space-4) 0;
+        }
+
+        .assessment-footer-content {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .grade-display {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary-700);
+        }
+
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            bottom: var(--space-6);
+            right: var(--space-6);
+            background: var(--color-success-600);
+            color: white;
+            padding: var(--space-4) var(--space-6);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            z-index: 300;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .toast.error {
+            background: var(--color-error-600);
+        }
+
+        .toast.warning {
+            background: var(--color-warning-600);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .score-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .score-card-header {
+                min-width: auto;
+            }
+
+            .score-card-body {
+                text-align: center;
+            }
+
+            .score-card-description {
+                text-align: left;
+            }
+
+            .assessment-footer-content {
+                flex-direction: column;
+            }
+
+            .matrix-table th:first-child {
+                width: 25%;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .assessment-header,
+            .assessment-footer,
+            .modal,
+            .toast {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- MAIN CONTAINER -->
+    <div id="app" class="assessment-tool">
+
+        <!-- SCREEN 1: SETUP -->
+        <div id="screen-setup" class="screen active">
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <div class="hero-text">
+                            <h1 class="hero-title">CRISP-DM Beoordelingstool</h1>
+                            <p class="hero-subtitle">Beoordeel studentwerk en genereer PDF-rapporten</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <!-- Pro-Forma Disclaimer -->
+                    <div class="card" style="max-width: 800px; margin: 0 auto var(--space-4) auto; background-color: var(--color-warning-50); border-left: 4px solid var(--color-warning-500);">
+                        <div class="card-body" style="padding: var(--space-4);">
+                            <div style="display: flex; align-items: flex-start; gap: var(--space-3);">
+                                <span style="font-size: var(--font-size-2xl); flex-shrink: 0;">⚠️</span>
+                                <div>
+                                    <h3 style="margin: 0 0 var(--space-2) 0; color: var(--color-warning-700); font-size: var(--font-size-lg);">Let op: Pro-Forma Beoordeling</h3>
+                                    <p style="margin: 0; color: var(--color-warning-800); line-height: 1.5;">
+                                        Dit beoordelingsformulier is <strong>uitsluitend bedoeld als feedbackinstrument</strong> voor studenten tijdens het leerproces.
+                                        De gegenereerde scores en rapporten zijn <strong>niet officieel</strong> en hebben geen formele status.
+                                        De definitieve beoordeling vindt plaats via de officiële procedures van de opleiding.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="max-width: 800px; margin: 0 auto;">
+                        <div class="card-body">
+                            <h2 style="margin-top: 0;">Setup Beoordeling</h2>
+
+                            <form id="form-setup">
+                                <div class="form-group" style="margin-bottom: var(--space-4);">
+                                    <label for="teamMembers" class="label">Voornamen teamleden *</label>
+                                    <textarea id="teamMembers" class="input" rows="3" required placeholder="Bijvoorbeeld: Jan, Maria, Ahmed"></textarea>
+                                    <small class="form-text" style="color: var(--color-gray-600); margin-top: var(--space-2); display: block;">
+                                        Voer alleen de voornamen van alle teamleden in, gescheiden door komma's (geen achternamen i.v.m. data governance)
+                                    </small>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: var(--space-4);">
+                                    <label for="assessorName" class="label">Voornaam beoordelaar *</label>
+                                    <input type="text" id="assessorName" class="input" required placeholder="Bijvoorbeeld: Witold">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: var(--space-6);">
+                                    <label class="label">Beoordelingsmodus *</label>
+                                    <div style="margin-top: var(--space-2);">
+                                        <label style="display: block; margin-bottom: var(--space-2);">
+                                            <input type="radio" name="assignment" value="1" class="radio" required>
+                                            Opdracht 1 - KPI Dashboard (30%)
+                                        </label>
+                                        <label style="display: block; margin-bottom: var(--space-2);">
+                                            <input type="radio" name="assignment" value="2" class="radio">
+                                            Opdracht 2 - Regressieanalyse (30%)
+                                        </label>
+                                        <label style="display: block; margin-bottom: var(--space-2);">
+                                            <input type="radio" name="assignment" value="3" class="radio">
+                                            Opdracht 3 - Scenarioanalyse (40%)
+                                        </label>
+                                        <label style="display: block;">
+                                            <input type="radio" name="assignment" value="all" class="radio">
+                                            Alle opdrachten (totaal eindcijfer)
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                    Start Beoordeling →
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SCREEN 2: ASSESSMENT -->
+        <div id="screen-assessment" class="screen">
+            <!-- Header -->
+            <div class="assessment-header">
+                <div class="container">
+                    <div class="assessment-header-content">
+                        <div>
+                            <h2 id="display-studentName" style="margin: 0;"></h2>
+                            <p id="display-meta" style="margin: 0; color: var(--color-gray-600);"></p>
+                        </div>
+                        <button id="btn-back-to-setup" class="btn btn-secondary">
+                            ← Terug naar Instellingen
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress -->
+            <div class="progress-section">
+                <div class="container">
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Voortgang</span>
+                            <span id="progress-text">0 / 4 criteria ingevuld</span>
+                        </div>
+                        <div class="progress">
+                            <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Matrix -->
+            <section class="section">
+                <div class="container">
+                    <div class="matrix-container">
+                        <table class="matrix-table" id="matrix-table">
+                            <!-- Dynamically generated -->
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <div class="assessment-footer">
+                <div class="container">
+                    <div class="assessment-footer-content">
+                        <div class="grade-display" id="grade-display">
+                            Eindcijfer: —
+                        </div>
+                        <div style="display: flex; gap: var(--space-4);">
+                            <button id="btn-reset" class="btn btn-ghost">
+                                🔄 Reset
+                            </button>
+                            <button id="btn-generate-pdf" class="btn btn-primary">
+                                📄 Genereer PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Score Selection -->
+    <div id="modal-score" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title" style="margin: 0;"></h3>
+                <p id="modal-subtitle" style="margin: var(--space-2) 0 0 0; color: var(--color-gray-600);"></p>
+                <button id="modal-close" class="modal-close">×</button>
+            </div>
+            <div class="modal-body">
+                <h4 style="margin-top: 0;">Selecteer beoordelingsniveau:</h4>
+
+                <!-- Score cards with descriptions -->
+                <div id="score-cards" class="score-cards"></div>
+
+                <!-- Feedback textarea -->
+                <div class="form-group" style="margin-top: var(--space-6);">
+                    <label for="modal-feedback" class="label">Feedback / Toelichting (optioneel)</label>
+                    <textarea id="modal-feedback" class="input" rows="4"
+                        placeholder="Voeg eventueel feedback toe..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-cancel" class="btn btn-secondary">Annuleren</button>
+                <button id="modal-save" class="btn btn-primary">Opslaan</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // Criteria data from official assessment form
+        const CRITERIA_DATA = {
+            assignment1: {
+                name: "Opdracht 1: KPI Dashboard",
+                shortName: "Opdracht 1",
+                weight: 0.30,
+                criteria: {
+                    A: {
+                        title: "Business & Data Understanding",
+                        levels: {
+                            0.0: {
+                                label: "Ontbreekt",
+                                description: ["De vertaling van de opdracht in een datavraagstuk ontbreekt."],
+                                emoji: "❌"
+                            },
+                            4.0: {
+                                label: "Begrijpen",
+                                description: ["Je begrijpt voldoende hoe de context van de opdracht is te vertalen naar een datavraagstuk binnen de gekozen rol maar de kwaliteit van de gekozen kentallen is onvoldoende en / of de vertaling van de kentallen naar de nodige data is onvoldoende."],
+                                emoji: "⚠️"
+                            },
+                            5.5: {
+                                label: "Toepassen",
+                                description: [
+                                    "Je vertaalt de opdracht in voldoende mate naar een datavraagstuk binnen de gekozen rol.",
+                                    "De kwaliteit van gekozen kentallen is voldoende."
+                                ],
+                                emoji: "✅"
+                            },
+                            8.0: {
+                                label: "Analyseren",
+                                description: [
+                                    "Je vertaalt de opdracht goed door naar een datavraagstuk passend binnen de gekozen rol.",
+                                    "De kwaliteit van de gekozen kentallen met minimaal één branchespecifiek kental is goed."
+                                ],
+                                emoji: "⭐"
+                            },
+                            10.0: {
+                                label: "Evalueren / Creëren",
+                                description: [
+                                    "Je vertaalt de opdracht uitstekend door naar een datavraagstuk passend binnen de gekozen rol en vult de uitwerking ter versterking aan.",
+                                    "De kwaliteit van de gekozen kentallen met meerdere branchespecifieke kentallen is uitstekend."
+                                ],
+                                emoji: "🏆"
+                            }
+                        }
+                    },
+                    B: {
+                        title: "Data Preparation",
+                        levels: {
+                            0.0: {
+                                label: "Ontbreekt",
+                                description: ["Het gereed maken van de data is niet benoemd."],
+                                emoji: "❌"
+                            },
+                            4.0: {
+                                label: "Begrijpen",
+                                description: ["Je begrijpt voldoende hoe data gereed gemaakt moet worden maar past dit onvoldoende toe voor de volgende fase."],
+                                emoji: "⚠️"
+                            },
+                            5.5: {
+                                label: "Toepassen",
+                                description: ["Je leest data uit verschillende bronnen in en maakt deze correct gereed voor de volgende fase."],
+                                emoji: "✅"
+                            },
+                            8.0: {
+                                label: "Analyseren",
+                                description: ["Je onderwerpt de kwaliteit van de data aan een grondige analyse alvorens deze te prepareren en in te lezen."],
+                                emoji: "⭐"
+                            },
+                            10.0: {
+                                label: "Evalueren / Creëren",
+                                description: ["Je formuleert gefundeerde aanbevelingen voor verbetering van de datakwaliteit en voert deze door alvorens de data te prepareren en in te lezen."],
+                                emoji: "🏆"
+                            }
+                        }
+                    },
+                    C: {
+                        title: "Modeling",
+                        levels: {
+                            0.0: {
+                                label: "Ontbreekt",
+                                description: ["Je benoemt niet hoe tot het model (formules en visualisatie) is gekomen en welke keuzes hierin zijn gemaakt."],
+                                emoji: "❌"
+                            },
+                            4.0: {
+                                label: "Begrijpen",
+                                description: ["Je benoemt voldoende hoe tot het model (formules en visualisatie) is gekomen en welke keuzes hierin zijn gemaakt maar dit sluit onvoldoende aan op de opdracht, businesscontext en gekozen rol."],
+                                emoji: "⚠️"
+                            },
+                            5.5: {
+                                label: "Toepassen",
+                                description: ["Je hebt voldoende benoemd hoe tot het model (formules en visualisatie) is gekomen en welke keuzes hierin zijn gemaakt in relatie tot de opdracht, businesscontext en gekozen rol."],
+                                emoji: "✅"
+                            },
+                            8.0: {
+                                label: "Analyseren",
+                                description: ["Je presenteert het model (formules en visualisatie) en benoemt op overtuigende wijze welke keuzes hierin zijn gemaakt in relatie tot de opdracht, businesscontext en gekozen rol."],
+                                emoji: "⭐"
+                            },
+                            10.0: {
+                                label: "Evalueren / Creëren",
+                                description: ["Je doet gefundeerde aanbevelingen over verbeteringen van het model (formules en visualisaties)."],
+                                emoji: "🏆"
+                            }
+                        }
+                    },
+                    D: {
+                        title: "Deploy & Evaluate",
+                        levels: {
+                            0.0: {
+                                label: "Ontbreken",
+                                description: ["Je bespreekt de inhoudelijke uitkomsten van het model niet en/of evalueert niet in welke mate het model oplevert wat het op had moeten leveren."],
+                                emoji: "❌"
+                            },
+                            4.0: {
+                                label: "Begrijpen",
+                                description: ["Je toont aan de uitkomsten van de analyse te begrijpen maar brengt het onvoldoende in verband met de opdracht, businesscontext en gekozen rol en/of benoemt onvoldoende in welke mate het model oplevert wat het op had moeten leveren."],
+                                emoji: "⚠️"
+                            },
+                            5.5: {
+                                label: "Toepassen",
+                                description: ["Je geeft een inhoudelijke uiteenzetting van de analyseresultaten, bespreekt in voldoende mate de inhoudelijke betekenis van de analyseresultaten en/of evalueert in voldoende mate."],
+                                emoji: "✅"
+                            },
+                            8.0: {
+                                label: "Analyseren",
+                                description: ["Je analyseert de inhoudelijke betekenis van de analyseresultaten, legt de koppeling met de businessvraag en evalueert het model diepgaand."],
+                                emoji: "⭐"
+                            },
+                            10.0: {
+                                label: "Evalueren / Creëren",
+                                description: ["Je evalueert in welke mate het model volstaat om de businessvraag te beantwoorden en doet aanbevelingen voor vervolgonderzoek met als doel het model te verbeteren."],
+                                emoji: "🏆"
+                            }
+                        }
+                    }
+                }
+            },
+            assignment2: {
+                name: "Opdracht 2: Regressieanalyse",
+                shortName: "Opdracht 2",
+                weight: 0.30,
+                criteria: {
+                    A: {
+                        title: "Business & Data Understanding",
+                        levels: {
+                            0.0: {
+                                label: "Ontbreekt",
+                                description: ["De data om lineaire regressie toe te kunnen passen ontbreekt."],
+                                emoji: "❌"
+                            },
+                            4.0: {
+                                label: "Begrijpen",
+                                description: ["Je begrijpt welke data benodigd is om een regressieanalyse uit te voeren, maar verzamelt dit niet correct."],
+                                emoji: "⚠️"
+                            },
+                            5.5: {
+                                label: "Toepassen",
+                                description: ["Je vertaalt de hoofdvraag correct naar een datavraagstuk en je verzamelt deze data."],
+                                emoji: "✅"
+                            },
+                            8.0: {
+                                label: "Analyseren",
+                                description: ["Je vertaalt de hoofdvraag correct naar een datavraagstuk, verzamelt de data correct en onderneemt stappen om de regressieanalyse te versterken."],
+                                emoji: "⭐"
+                            },
+                            10.0: {
+                                label: "Evalueren / Creëren",
+                                description: ["Je geeft een kritische beschouwing over de kwaliteit van de data."],
+                                emoji: "🏆"
+                            }
+                        }
+                    },
+                    B: {
+                        title: "Data Preparation",
+                        levels: {
+                            0.0: {
+                                label: "Ontbreekt",
+                                description: ["Het gereedmaken van de data is niet benoemd."],
+                                emoji: "❌"
+                            },
+                            4.0: {
+                                label: "Begrijpen",
+                                description: ["Je begrijpt voldoende hoe data gereed gemaakt moet worden maar past dit onvoldoende toe voor de volgende fase."],
+                                emoji: "⚠️"
+                            },
+                            5.5: {
+                                label: "Toepassen",
+                                description: ["Je leest data uit verschillende bronnen in en maakt deze correct gereed voor de volgende fase."],
+                                emoji: "✅"
+                            },
+                            8.0: {
+                                label: "Analyseren",
+                                description: ["Je onderwerpt de kwaliteit van de data aan een grondige analyse alvorens deze te prepareren en in te lezen."],
+                                emoji: "⭐"
+                            },
+                            10.0: {
+                                label: "Evalueren / Creëren",
+                                description: ["Je formuleert gefundeerde aanbevelingen voor verbetering van de datakwaliteit en voert deze door alvorens de data te prepareren en in te lezen. Bijvoorbeeld het zoeken naar een beursgenoteerd bedrijf binnen de sector om als benchmark te fungeren."],
+                                emoji: "🏆"
+                            }
+                        }
+                    },
+                    C: {
+                        title: "Modeling",
+                        levels: {
+                            0.0: {
+                                label: "Ontbreekt",
+                                description: ["Je hebt niet benoemd welke keuzes in het tot stand komen van het regressiemodel zijn gemaakt."],
+                                emoji: "❌"
+                            },
+                            4.0: {
+                                label: "Begrijpen",
+                                description: ["Je benoemt welke keuzes in het tot stand komen van het regressiemodel zijn gemaakt, maar interpreteert het regressiemodel niet goed in de context van de businessvraag."],
+                                emoji: "⚠️"
+                            },
+                            5.5: {
+                                label: "Toepassen",
+                                description: ["Je benoemt welke keuzes in het tot stand komen van het regressiemodel zijn gemaakt en interpreteert het regressiemodel voldoende in de context van de businessvraag."],
+                                emoji: "✅"
+                            },
+                            8.0: {
+                                label: "Analyseren",
+                                description: ["Je benoemt op overtuigende wijze welke keuzes bij het tot stand komen van het regressiemodel zijn gemaakt en interpreteert het regressiemodel goed in de context van de businessvraag."],
+                                emoji: "⭐"
+                            },
+                            10.0: {
+                                label: "Evalueren / Creëren",
+                                description: ["Je doet gefundeerde aanbevelingen over verbeteringen van het regressiemodel (regressievergelijking en visualisaties)."],
+                                emoji: "🏆"
+                            }
+                        }
+                    },
+                    D: {
+                        title: "Deploy & Evaluate",
+                        levels: {
+                            0.0: {
+                                label: "Ontbreken",
+                                description: ["Je bespreekt de inhoudelijke uitkomsten van het model niet en/of de evaluatie in welke mate het model oplevert wat het op had moeten leveren ontbreekt."],
+                                emoji: "❌"
+                            },
+                            4.0: {
+                                label: "Begrijpen",
+                                description: ["Je bespreekt de inhoudelijke uitkomsten van het regressiemodel maar de inhoudelijke interpretatie is onvoldoende en/of evalueert onvoldoende in welke mate het model oplevert wat het op had moeten leveren."],
+                                emoji: "⚠️"
+                            },
+                            5.5: {
+                                label: "Toepassen",
+                                description: ["Je geeft een inhoudelijke uiteenzetting van de analyseresultaten, bespreekt in voldoende mate de inhoudelijke betekenis van de analyseresultaten en/of evalueert in voldoende mate."],
+                                emoji: "✅"
+                            },
+                            8.0: {
+                                label: "Analyseren",
+                                description: ["Je analyseert de inhoudelijke betekenis van de analyseresultaten, legt de koppeling met de businessvraag en evalueert het model diepgaand."],
+                                emoji: "⭐"
+                            },
+                            10.0: {
+                                label: "Evalueren / Creëren",
+                                description: ["Je evalueert in welke mate het model volstaat om de businessvraag te beantwoorden en doet aanbevelingen voor vervolgonderzoek met als doel het model te verbeteren."],
+                                emoji: "🏆"
+                            }
+                        }
+                    }
+                }
+            },
+            assignment3: {
+                name: "Opdracht 3: Scenarioanalyse",
+                shortName: "Opdracht 3",
+                weight: 0.40,
+                criteria: {
+                    A: {
+                        title: "Business & Data Understanding",
+                        levels: {
+                            0.0: {
+                                label: "Ontbreekt",
+                                description: ["De data om een scenarioanalyse toe te kunnen passen ontbreekt."],
+                                emoji: "❌"
+                            },
+                            4.0: {
+                                label: "Begrijpen",
+                                description: ["Je begrijpt voldoende hoe de op te zetten scenarioanalyse is te vertalen naar een datavraagstuk maar de kwaliteit van de gekozen variabelen en factoren aansluitend op het kental is onvoldoende en / of de vertaling naar de nodige data is onvoldoende."],
+                                emoji: "⚠️"
+                            },
+                            5.5: {
+                                label: "Toepassen",
+                                description: [
+                                    "De vertaling van het kental naar variabelen en factoren is voldoende.",
+                                    "Je vertaalt de factoren in voldoende mate naar een datavraagstuk ten behoeve van de scenarioanalyse."
+                                ],
+                                emoji: "✅"
+                            },
+                            8.0: {
+                                label: "Analyseren",
+                                description: [
+                                    "De vertaling van het kental naar variabelen en factoren is goed.",
+                                    "Je vertaalt de factoren goed naar een datavraagstuk ten behoeve van de scenarioanalyse waarbij de impact van de factoren op het uiteindelijke kental goed is uitgewerkt."
+                                ],
+                                emoji: "⭐"
+                            },
+                            10.0: {
+                                label: "Evalueren / Creëren",
+                                description: ["Je onderneemt stappen om de vertaling van kental naar variabelen en factoren en de vertaling van de factoren naar nodige data verdergaand te versterken"],
+                                emoji: "🏆"
+                            }
+                        }
+                    },
+                    B: {
+                        title: "Data Preparation",
+                        levels: {
+                            0.0: {
+                                label: "Ontbreekt",
+                                description: ["Het gereed maken van de data is niet benoemd."],
+                                emoji: "❌"
+                            },
+                            4.0: {
+                                label: "Begrijpen",
+                                description: ["Je begrijpt voldoende hoe data gereed gemaakt moet worden maar past dit onvoldoende toe voor de volgende fase."],
+                                emoji: "⚠️"
+                            },
+                            5.5: {
+                                label: "Toepassen",
+                                description: ["Je leest data uit verschillende bronnen in en maakt deze correct gereed voor de volgende fase."],
+                                emoji: "✅"
+                            },
+                            8.0: {
+                                label: "Analyseren",
+                                description: ["Je onderwerpt de kwaliteit van de data aan een grondige analyse alvorens deze te prepareren en in te lezen."],
+                                emoji: "⭐"
+                            },
+                            10.0: {
+                                label: "Evalueren / Creëren",
+                                description: ["Je formuleert gefundeerde aanbevelingen voor verbetering van de datakwaliteit en voert deze door alvorens de data te prepareren en in te lezen."],
+                                emoji: "🏆"
+                            }
+                        }
+                    },
+                    C: {
+                        title: "Modeling",
+                        levels: {
+                            0.0: {
+                                label: "Ontbreekt",
+                                description: ["Je benoemt niet hoe tot het model (formules en visualisatie) is gekomen en welke keuzes hierin zijn gemaakt."],
+                                emoji: "❌"
+                            },
+                            4.0: {
+                                label: "Begrijpen",
+                                description: ["Je benoemt voldoende hoe tot het model (formules en visualisatie) is gekomen en welke keuzes hierin zijn gemaakt maar dit sluit onvoldoende aan op de vereiste scenarioanalyse."],
+                                emoji: "⚠️"
+                            },
+                            5.5: {
+                                label: "Toepassen",
+                                description: ["Je hebt voldoende benoemd hoe tot het model (formules en visualisatie) is gekomen en welke keuzes hierin zijn gemaakt in relatie tot de vereiste scenarioanalyse."],
+                                emoji: "✅"
+                            },
+                            8.0: {
+                                label: "Analyseren",
+                                description: ["Je presenteert het model (formules en visualisatie) en benoemt op overtuigende wijze welke keuzes hierin zijn gemaakt in relatie tot de vereiste scenarioanalyse."],
+                                emoji: "⭐"
+                            },
+                            10.0: {
+                                label: "Evalueren / Creëren",
+                                description: ["Je doet gefundeerde aanbevelingen over verbeteringen van het model (formules en visualisaties)."],
+                                emoji: "🏆"
+                            }
+                        }
+                    },
+                    D: {
+                        title: "Deploy & Evaluate",
+                        levels: {
+                            0.0: {
+                                label: "Ontbreken",
+                                description: ["Je bespreekt de inhoudelijke uitkomsten van het model niet en/of evalueert niet in welke mate het model oplevert wat het op had moeten leveren."],
+                                emoji: "❌"
+                            },
+                            4.0: {
+                                label: "Begrijpen",
+                                description: ["Je toont aan de uitkomsten van de analyse te begrijpen maar brengt het onvoldoende in verband met de opdracht en businesscontext en/of benoemt onvoldoende in welke mate het model oplevert wat het op had moeten leveren."],
+                                emoji: "⚠️"
+                            },
+                            5.5: {
+                                label: "Toepassen",
+                                description: ["Je geeft een inhoudelijke uiteenzetting van de analyseresultaten, bespreekt in voldoende mate de inhoudelijke betekenis van de analyseresultaten en/of evalueert in voldoende mate."],
+                                emoji: "✅"
+                            },
+                            8.0: {
+                                label: "Analyseren",
+                                description: ["Je analyseert de inhoudelijke betekenis van de analyseresultaten, legt de koppeling met de businessvraag en evalueert het model diepgaand."],
+                                emoji: "⭐"
+                            },
+                            10.0: {
+                                label: "Evalueren / Creëren",
+                                description: ["Je evalueert in welke mate het model volstaat om de businessvraag te beantwoorden en doet aanbevelingen voor vervolgonderzoek met als doel het model te verbeteren."],
+                                emoji: "🏆"
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // State Management
+        const State = {
+            data: null,
+            currentCriterion: null,
+
+            init() {
+                this.data = {
+                    meta: {
+                        teamMembers: '',
+                        assessorName: '',
+                        assignmentMode: 'single',
+                        selectedAssignment: null,
+                        storageKey: null,
+                        dateCreated: new Date().toISOString(),
+                        lastModified: new Date().toISOString()
+                    },
+                    scores: {},
+                    results: {}
+                };
+            },
+
+            loadFromLocalStorage(storageKey) {
+                const stored = localStorage.getItem(storageKey);
+                if (stored) {
+                    try {
+                        this.data = JSON.parse(stored);
+                        return true;
+                    } catch (e) {
+                        console.error('Failed to parse stored data:', e);
+                        return false;
+                    }
+                }
+                return false;
+            },
+
+            save() {
+                this.data.meta.lastModified = new Date().toISOString();
+                const key = this.data.meta.storageKey || `econan-assessment-${Date.now()}`;
+                try {
+                    localStorage.setItem(key, JSON.stringify(this.data));
+                    return true;
+                } catch (e) {
+                    console.error('Failed to save to localStorage:', e);
+                    return false;
+                }
+            },
+
+            reset() {
+                const key = this.data.meta.storageKey;
+                localStorage.removeItem(key);
+                this.init();
+            },
+
+            setScore(assignment, criterion, level, feedback) {
+                if (this.data.meta.assignmentMode === 'single') {
+                    if (!this.data.scores[criterion]) {
+                        this.data.scores[criterion] = {};
+                    }
+                    this.data.scores[criterion] = { level, feedback };
+                } else {
+                    if (!this.data.scores[assignment]) {
+                        this.data.scores[assignment] = {};
+                    }
+                    this.data.scores[assignment][criterion] = { level, feedback };
+                }
+                this.save();
+            },
+
+            getScore(assignment, criterion) {
+                if (this.data.meta.assignmentMode === 'single') {
+                    return this.data.scores[criterion] || null;
+                } else {
+                    return this.data.scores[assignment]?.[criterion] || null;
+                }
+            },
+
+            getProgress() {
+                let total = 4;
+                if (this.data.meta.assignmentMode === 'all') {
+                    total = 12;
+                }
+
+                let scored = 0;
+                if (this.data.meta.assignmentMode === 'single') {
+                    scored = Object.keys(this.data.scores).length;
+                } else {
+                    ['assignment1', 'assignment2', 'assignment3'].forEach(assg => {
+                        if (this.data.scores[assg]) {
+                            scored += Object.keys(this.data.scores[assg]).length;
+                        }
+                    });
+                }
+
+                return { scored, total, percentage: (scored / total) * 100 };
+            }
+        };
+
+        // UI Rendering
+        const UI = {
+            showScreen(screenId) {
+                document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+                document.getElementById(screenId).classList.add('active');
+            },
+
+            renderAssessmentHeader() {
+                const { teamMembers, assignmentMode, selectedAssignment } = State.data.meta;
+
+                document.getElementById('display-studentName').textContent = teamMembers;
+
+                let modeText = 'Alle opdrachten';
+                if (assignmentMode === 'single') {
+                    const assignmentKey = `assignment${selectedAssignment}`;
+                    modeText = CRITERIA_DATA[assignmentKey].name;
+                }
+
+                document.getElementById('display-meta').textContent = modeText;
+            },
+
+            updateProgress() {
+                const { scored, total, percentage } = State.getProgress();
+                document.getElementById('progress-text').textContent = `${scored} / ${total} criteria ingevuld`;
+                document.getElementById('progress-bar').style.width = `${percentage}%`;
+            },
+
+            renderMatrix() {
+                const table = document.getElementById('matrix-table');
+                table.innerHTML = '';
+
+                // Header row
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+
+                const th1 = document.createElement('th');
+                th1.textContent = 'CRISP-DM Fase';
+                headerRow.appendChild(th1);
+
+                ['assignment1', 'assignment2', 'assignment3'].forEach(assg => {
+                    const th = document.createElement('th');
+                    th.textContent = CRITERIA_DATA[assg].name;
+                    headerRow.appendChild(th);
+                });
+
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+
+                // Body rows
+                const tbody = document.createElement('tbody');
+                const criteria = ['A', 'B', 'C', 'D'];
+
+                criteria.forEach(crit => {
+                    const row = document.createElement('tr');
+
+                    // Criterion label cell
+                    const labelCell = document.createElement('td');
+                    labelCell.className = 'criterion-label';
+                    labelCell.textContent = `${crit}. ${CRITERIA_DATA.assignment1.criteria[crit].title}`;
+                    row.appendChild(labelCell);
+
+                    // Cells for each assignment
+                    ['assignment1', 'assignment2', 'assignment3'].forEach((assg, idx) => {
+                        const cell = document.createElement('td');
+                        cell.className = 'matrix-cell';
+                        cell.dataset.assignment = assg;
+                        cell.dataset.criterion = crit;
+
+                        const isActive = this.isCellActive(assg, idx + 1);
+
+                        if (!isActive) {
+                            cell.classList.add('disabled');
+                            cell.innerHTML = '<div class="cell-label">Niet geselecteerd</div>';
+                        } else {
+                            const scoreData = State.getScore(assg, crit);
+
+                            if (scoreData) {
+                                const colorClass = this.getScoreColorClass(scoreData.level);
+                                cell.classList.add(colorClass);
+                                cell.innerHTML = `
+                                    <div class="cell-score">${scoreData.level}</div>
+                                    <div class="cell-label">${this.getLevelLabel(scoreData.level)}</div>
+                                `;
+                            } else {
+                                cell.innerHTML = `
+                                    <div class="cell-empty">—</div>
+                                    <div class="cell-label">Klik om te beoordelen</div>
+                                `;
+                            }
+
+                            cell.addEventListener('click', () => {
+                                Events.openScoreModal(assg, crit);
+                            });
+                        }
+
+                        row.appendChild(cell);
+                    });
+
+                    tbody.appendChild(row);
+                });
+
+                table.appendChild(tbody);
+            },
+
+            isCellActive(assignment, assignmentNumber) {
+                const { assignmentMode, selectedAssignment } = State.data.meta;
+
+                if (assignmentMode === 'all') {
+                    return true;
+                }
+
+                return selectedAssignment === assignmentNumber;
+            },
+
+            getScoreColorClass(level) {
+                if (level === 0.0) return 'score-0';
+                if (level === 4.0) return 'score-4';
+                if (level === 5.5) return 'score-5-5';
+                if (level === 8.0) return 'score-8';
+                if (level === 10.0) return 'score-10';
+                return '';
+            },
+
+            getLevelLabel(level) {
+                const labels = {
+                    0.0: "Ontbreekt",
+                    4.0: "Begrijpen",
+                    5.5: "Toepassen",
+                    8.0: "Analyseren",
+                    10.0: "Evalueren/Creëren"
+                };
+                return labels[level] || '';
+            },
+
+            openModal(assignment, criterion) {
+                const assignmentData = CRITERIA_DATA[assignment];
+                const criteriaInfo = assignmentData.criteria[criterion];
+                const scoreData = State.getScore(assignment, criterion);
+
+                document.getElementById('modal-title').textContent = `${criterion}. ${criteriaInfo.title}`;
+                document.getElementById('modal-subtitle').textContent = assignmentData.name;
+
+                // Render score cards with descriptions
+                const scoreCardsContainer = document.getElementById('score-cards');
+                scoreCardsContainer.innerHTML = '';
+
+                [0.0, 4.0, 5.5, 8.0, 10.0].forEach(level => {
+                    const levelData = criteriaInfo.levels[level];
+                    const card = document.createElement('div');
+                    card.className = 'score-card' + (scoreData?.level === level ? ' selected' : '');
+                    card.dataset.level = level;
+
+                    // Format description
+                    let descriptionHTML = '';
+                    if (Array.isArray(levelData.description)) {
+                        descriptionHTML = '<ul>' + levelData.description.map(d => `<li>${d}</li>`).join('') + '</ul>';
+                    } else {
+                        descriptionHTML = `<p style="margin: 0;">${levelData.description}</p>`;
+                    }
+
+                    card.innerHTML = `
+                        <div class="score-card-header">
+                            <div class="score-card-emoji">${levelData.emoji}</div>
+                            <div class="score-card-value">${level}</div>
+                            <div class="score-card-label">${levelData.label}</div>
+                        </div>
+                        <div class="score-card-body">
+                            <div class="score-card-description">
+                                ${descriptionHTML}
+                            </div>
+                        </div>
+                    `;
+
+                    card.addEventListener('click', () => {
+                        document.querySelectorAll('.score-card').forEach(c => c.classList.remove('selected'));
+                        card.classList.add('selected');
+                    });
+
+                    scoreCardsContainer.appendChild(card);
+                });
+
+                // Pre-fill feedback
+                document.getElementById('modal-feedback').value = scoreData?.feedback || '';
+
+                // Store current context
+                State.currentCriterion = { assignment, criterion };
+
+                // Show modal
+                document.getElementById('modal-score').classList.add('active');
+            },
+
+            closeModal() {
+                document.getElementById('modal-score').classList.remove('active');
+                State.currentCriterion = null;
+            },
+
+            updateGrade() {
+                const grade = Calc.calculateFinalGrade();
+                const knockout = Calc.checkKnockout();
+
+                let gradeText = 'Eindcijfer: —';
+
+                if (grade !== null) {
+                    if (knockout) {
+                        // Show which criterion failed and at what level
+                        const levelLabel = knockout.level === 0.0 ? 'Ontbreekt' : knockout.level === 4.0 ? 'Begrijpen' : knockout.level.toFixed(1);
+                        gradeText = `Eindcijfer: ONVOLDOENDE (${knockout.criterion}: ${levelLabel} < 5.5 vereist)`;
+                    } else {
+                        gradeText = `Eindcijfer: ${grade.toFixed(1)}`;
+                    }
+                }
+
+                document.getElementById('grade-display').textContent = gradeText;
+            },
+
+            showToast(message, type = 'success') {
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                toast.textContent = message;
+                document.body.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.remove();
+                }, 3000);
+            }
+        };
+
+        // Event Handlers
+        const Events = {
+            init() {
+                // Setup form
+                document.getElementById('form-setup').addEventListener('submit', this.handleSetupSubmit.bind(this));
+
+                // Back to setup button
+                document.getElementById('btn-back-to-setup').addEventListener('click', this.handleBackToSetup.bind(this));
+
+                // Action buttons
+                document.getElementById('btn-reset').addEventListener('click', this.handleReset.bind(this));
+                document.getElementById('btn-generate-pdf').addEventListener('click', this.handleGeneratePDF.bind(this));
+
+                // Modal buttons
+                document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
+                document.getElementById('modal-cancel').addEventListener('click', () => UI.closeModal());
+                document.getElementById('modal-save').addEventListener('click', this.handleModalSave.bind(this));
+
+                // Close modal on outside click
+                document.getElementById('modal-score').addEventListener('click', (e) => {
+                    if (e.target.id === 'modal-score') UI.closeModal();
+                });
+
+                // ESC key to close modal
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') UI.closeModal();
+                });
+            },
+
+            handleSetupSubmit(e) {
+                e.preventDefault();
+
+                // Collect form data
+                State.data.meta.teamMembers = document.getElementById('teamMembers').value;
+                State.data.meta.assessorName = document.getElementById('assessorName').value;
+
+                const assignmentValue = document.querySelector('input[name="assignment"]:checked').value;
+                if (assignmentValue === 'all') {
+                    State.data.meta.assignmentMode = 'all';
+                    State.data.meta.selectedAssignment = null;
+                } else {
+                    State.data.meta.assignmentMode = 'single';
+                    State.data.meta.selectedAssignment = parseInt(assignmentValue);
+                }
+
+                // Generate unique key based on timestamp and team members
+                const storageKey = `econan-assessment-${Date.now()}-${State.data.meta.teamMembers.substring(0, 20).replace(/[^a-zA-Z0-9]/g, '')}`;
+                State.data.meta.storageKey = storageKey;
+
+                State.save();
+
+                // Transition to assessment screen
+                UI.showScreen('screen-assessment');
+                UI.renderAssessmentHeader();
+                UI.updateProgress();
+                UI.renderMatrix();
+                UI.updateGrade();
+            },
+
+            handleBackToSetup() {
+                const confirm = window.confirm(
+                    'Terug naar instellingen? Ingevoerde scores blijven bewaard.'
+                );
+                if (confirm) {
+                    UI.showScreen('screen-setup');
+                }
+            },
+
+            handleReset() {
+                const confirm = window.confirm(
+                    '⚠️ Weet je zeker dat je alle scores wilt verwijderen? Dit kan niet ongedaan gemaakt worden.'
+                );
+                if (confirm) {
+                    State.reset();
+                    UI.updateProgress();
+                    UI.renderMatrix();
+                    UI.updateGrade();
+                    UI.showToast('🔄 Beoordeling gereset', 'warning');
+                }
+            },
+
+            handleGeneratePDF() {
+                // Validate completeness
+                const { scored, total } = State.getProgress();
+                if (scored < total) {
+                    const confirm = window.confirm(
+                        `⚠️ Niet alle criteria zijn ingevuld (${scored}/${total}).\n\nDoorgaan met incomplete beoordeling?`
+                    );
+                    if (!confirm) return;
+                }
+
+                // Check for insufficient scores
+                const knockout = Calc.checkKnockout();
+                if (knockout) {
+                    const levelLabel = knockout.level === 0.0 ? 'Ontbreekt (0.0)' : knockout.level === 4.0 ? 'Begrijpen (4.0)' : `${knockout.level.toFixed(1)}`;
+                    alert(`🚫 ONVOLDOENDE: Criterium ${knockout.criterion} heeft score ${levelLabel}.\n\nMinimum vereist: Toepassen (5.5)\n\nEindcijfer is automatisch ONVOLDOENDE.`);
+                }
+
+                // Generate PDF
+                PDF.generate();
+            },
+
+            openScoreModal(assignment, criterion) {
+                UI.openModal(assignment, criterion);
+            },
+
+            handleModalSave() {
+                const selectedCard = document.querySelector('.score-card.selected');
+                if (!selectedCard) {
+                    alert('Selecteer eerst een beoordelingsniveau.');
+                    return;
+                }
+
+                const level = parseFloat(selectedCard.dataset.level);
+                const feedback = document.getElementById('modal-feedback').value.trim();
+
+                const { assignment, criterion } = State.currentCriterion;
+                State.setScore(assignment, criterion, level, feedback);
+
+                UI.closeModal();
+                UI.updateProgress();
+                UI.renderMatrix();
+                UI.updateGrade();
+
+                UI.showToast('✅ Score opgeslagen', 'success');
+            }
+        };
+
+        // Calculations
+        const Calc = {
+            calculateFinalGrade() {
+                const { assignmentMode } = State.data.meta;
+
+                if (assignmentMode === 'single') {
+                    // Simple average of 4 criteria
+                    const scores = Object.values(State.data.scores).map(s => s.level);
+                    if (scores.length === 0) return null;
+                    return scores.reduce((sum, s) => sum + s, 0) / scores.length;
+                } else {
+                    // Weighted average: 30% + 30% + 40%
+                    const weights = { assignment1: 0.30, assignment2: 0.30, assignment3: 0.40 };
+                    let totalWeightedScore = 0;
+                    let totalWeight = 0;
+
+                    ['assignment1', 'assignment2', 'assignment3'].forEach(assg => {
+                        const scores = State.data.scores[assg];
+                        if (scores && Object.keys(scores).length > 0) {
+                            const values = Object.values(scores).map(s => s.level);
+                            const avg = values.reduce((sum, v) => sum + v, 0) / values.length;
+                            totalWeightedScore += avg * weights[assg];
+                            totalWeight += weights[assg];
+                        }
+                    });
+
+                    if (totalWeight === 0) return null;
+                    return totalWeightedScore;
+                }
+            },
+
+            checkKnockout() {
+                // Check for scores below 5.5 (minimum requirement: Toepassen)
+                // Returns first criterion below threshold, or null if all pass
+                if (State.data.meta.assignmentMode === 'single') {
+                    for (const [crit, score] of Object.entries(State.data.scores)) {
+                        if (score.level < 5.5) return { criterion: crit, level: score.level };
+                    }
+                } else {
+                    for (const assg of ['assignment1', 'assignment2', 'assignment3']) {
+                        const scores = State.data.scores[assg];
+                        if (scores) {
+                            for (const [crit, score] of Object.entries(scores)) {
+                                if (score.level < 5.5) return { criterion: `${assg}-${crit}`, level: score.level };
+                            }
+                        }
+                    }
+                }
+                return null;
+            }
+        };
+
+        // PDF Generator
+        const PDF = {
+            generate() {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF('p', 'mm', 'a4');
+
+                // Page dimensions
+                const pageWidth = 210;
+                const margin = 20;
+                const contentWidth = pageWidth - (2 * margin);
+
+                let yPos = margin;
+
+                // Header with logos
+                doc.setFontSize(10);
+                doc.setTextColor(100);
+                doc.text('HAN', margin, yPos);
+                doc.text('ECONAN', pageWidth - margin, yPos, { align: 'right' });
+
+                yPos += 5;
+                doc.setLineWidth(0.5);
+                doc.setDrawColor(15, 76, 129);
+                doc.line(margin, yPos, pageWidth - margin, yPos);
+
+                yPos += 10;
+
+                // Title
+                doc.setFontSize(16);
+                doc.setFont(undefined, 'bold');
+                doc.setTextColor(15, 76, 129);
+                doc.text('CRISP-DM Beoordelingsformulier', margin, yPos);
+
+                yPos += 6;
+                doc.setFontSize(10);
+                doc.setFont(undefined, 'normal');
+                doc.setTextColor(100);
+                doc.text('Economische Data Analyse - ECONAN 2024/2025', margin, yPos);
+
+                yPos += 6;
+                doc.setFontSize(9);
+                doc.setFont(undefined, 'bold');
+                doc.setTextColor(200, 100, 0);
+                doc.text('⚠ PRO-FORMA BEOORDELING - UITSLUITEND ALS FEEDBACKINSTRUMENT', margin, yPos);
+
+                yPos += 10;
+                doc.line(margin, yPos, pageWidth - margin, yPos);
+                yPos += 8;
+
+                // Student info
+                const meta = State.data.meta;
+                doc.setFontSize(10);
+                doc.setTextColor(0);
+                doc.text(`Teamleden: ${meta.teamMembers}`, margin, yPos);
+                yPos += 5;
+                doc.text(`Beoordelaar: ${meta.assessorName}`, margin, yPos);
+                yPos += 5;
+                const date = new Date(meta.dateCreated).toLocaleDateString('nl-NL', {
+                    day: 'numeric', month: 'long', year: 'numeric'
+                });
+                doc.text(`Datum: ${date}`, margin, yPos);
+                yPos += 5;
+                const modeText = meta.assignmentMode === 'single'
+                    ? CRITERIA_DATA[`assignment${meta.selectedAssignment}`].name
+                    : 'Alle opdrachten';
+                doc.text(`Opdracht: ${modeText}`, margin, yPos);
+
+                yPos += 10;
+                doc.line(margin, yPos, pageWidth - margin, yPos);
+                yPos += 10;
+
+                // Scores overview
+                doc.setFontSize(14);
+                doc.setFont(undefined, 'bold');
+                doc.text('SCORES OVERZICHT', margin, yPos);
+                yPos += 8;
+
+                // Add scores
+                yPos = this.renderScores(doc, margin, yPos, contentWidth);
+
+                yPos += 10;
+
+                // Final grade
+                const finalGrade = Calc.calculateFinalGrade();
+                const knockout = Calc.checkKnockout();
+
+                doc.setFillColor(15, 76, 129);
+                doc.rect(margin, yPos, contentWidth, 15, 'F');
+                doc.setTextColor(255);
+                doc.setFontSize(14);
+                doc.setFont(undefined, 'bold');
+
+                let gradeText = 'ONVOLLEDIG';
+                if (finalGrade !== null) {
+                    if (knockout) {
+                        const levelLabel = knockout.level === 0.0 ? 'Ontbreekt' : knockout.level === 4.0 ? 'Begrijpen' : knockout.level.toFixed(1);
+                        gradeText = `ONVOLDOENDE (${knockout.criterion}: ${levelLabel} < 5.5)`;
+                    } else {
+                        gradeText = finalGrade.toFixed(1);
+                    }
+                }
+
+                doc.text(`EINDCIJFER: ${gradeText}`, margin + 5, yPos + 10);
+
+                // Save PDF
+                const fileName = `ECONAN_Beoordeling_${meta.teamMembers.replace(/\s/g, '_')}_${Date.now()}.pdf`;
+                doc.save(fileName);
+
+                UI.showToast('📄 PDF gegenereerd', 'success');
+            },
+
+            renderScores(doc, x, y, width) {
+                const meta = State.data.meta;
+                doc.setFontSize(10);
+                doc.setFont(undefined, 'normal');
+                doc.setTextColor(0);
+
+                if (meta.assignmentMode === 'single') {
+                    const assignment = `assignment${meta.selectedAssignment}`;
+                    const assignmentData = CRITERIA_DATA[assignment];
+
+                    doc.setFont(undefined, 'bold');
+                    doc.text(assignmentData.name, x, y);
+                    y += 6;
+
+                    doc.setFont(undefined, 'normal');
+                    ['A', 'B', 'C', 'D'].forEach(crit => {
+                        const criteriaInfo = assignmentData.criteria[crit];
+                        const scoreData = State.getScore(assignment, crit);
+                        const score = scoreData ? scoreData.level : '—';
+
+                        doc.text(`${crit}. ${criteriaInfo.title}`, x + 5, y);
+                        doc.text(`${score} / 10.0`, x + width - 20, y, { align: 'right' });
+                        y += 5;
+
+                        if (scoreData?.feedback) {
+                            doc.setFontSize(9);
+                            doc.setTextColor(100);
+                            const feedbackLines = doc.splitTextToSize(`→ ${scoreData.feedback}`, width - 10);
+                            doc.text(feedbackLines, x + 7, y);
+                            y += feedbackLines.length * 4;
+                            doc.setFontSize(10);
+                            doc.setTextColor(0);
+                        }
+                    });
+                } else {
+                    ['assignment1', 'assignment2', 'assignment3'].forEach(assg => {
+                        const assignmentData = CRITERIA_DATA[assg];
+
+                        doc.setFont(undefined, 'bold');
+                        doc.text(assignmentData.name, x, y);
+                        y += 6;
+
+                        doc.setFont(undefined, 'normal');
+                        ['A', 'B', 'C', 'D'].forEach(crit => {
+                            const criteriaInfo = assignmentData.criteria[crit];
+                            const scoreData = State.getScore(assg, crit);
+                            const score = scoreData ? scoreData.level : '—';
+
+                            doc.text(`${crit}. ${criteriaInfo.title}`, x + 5, y);
+                            doc.text(`${score} / 10.0`, x + width - 20, y, { align: 'right' });
+                            y += 5;
+
+                            if (scoreData?.feedback) {
+                                doc.setFontSize(9);
+                                doc.setTextColor(100);
+                                const feedbackLines = doc.splitTextToSize(`→ ${scoreData.feedback}`, width - 10);
+                                doc.text(feedbackLines, x + 7, y);
+                                y += feedbackLines.length * 4;
+                                doc.setFontSize(10);
+                                doc.setTextColor(0);
+                            }
+                        });
+
+                        y += 5;
+                    });
+                }
+
+                return y;
+            }
+        };
+
+        // Initialize
+        function init() {
+            State.init();
+            Events.init();
+
+            // Show setup screen by default
+            UI.showScreen('screen-setup');
+
+            console.log('CRISP-DM Beoordelingstool geïnitialiseerd');
+        }
+
+        // Start app when DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    })();
+    </script>
+</body>
+</html>
